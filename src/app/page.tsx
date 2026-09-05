@@ -1,32 +1,28 @@
-'use client'
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
+import LogoutButton from '@/components/LogoutButton'
 
-import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase'
+export default async function Home() {
+  const supabase = await createClient()
 
-export default function Home() {
-  const [status, setStatus] = useState('Checking connection...')
+  const { data: { user } } = await supabase.auth.getUser()
 
-  useEffect(() => {
-    async function checkConnection() {
-      const { error } = await supabase.from('_test_').select('*').limit(1)
+  if (!user) {
+    redirect('/login')
+  }
 
-      // We expect an error here since no tables exist yet —
-      // but the TYPE of error tells us if the connection itself worked.
-      if (error && error.code === 'PGRST205') {
-        setStatus('✅ Connected to Supabase! (No tables yet — that\'s expected)')
-      } else if (error) {
-        setStatus(`⚠️ Connected, but got: ${error.message}`)
-      } else {
-        setStatus('✅ Connected to Supabase!')
-      }
-    }
-    checkConnection()
-  }, [])
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single()
 
   return (
     <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1>Writemates — Connection Test</h1>
-      <p>{status}</p>
+      <h1>Welcome to Writemates</h1>
+      <p>Logged in as: {user.email}</p>
+      <p>Username: {profile?.username}</p>
+      <LogoutButton />
     </main>
   )
 }

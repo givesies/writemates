@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-03 07:20:03 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 20
+- **Generated On**: 2026-09-05 07:27:39 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 27
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -27,20 +27,31 @@
 │   ├── 📄 vercel.svg (128 B)
 │   └── 📄 window.svg (385 B)
 ├── 📁 src/
-│   └── 📁 app/
-│       ├── 📁 lib/
-│       │   └── 📄 supabase.ts (246 B)
-│       ├── 📄 favicon.ico (25.32 KB)
-│       ├── 📄 globals.css (488 B)
-│       ├── 📄 layout.tsx (690 B)
-│       └── 📄 page.tsx (965 B)
+│   ├── 📁 app/
+│   │   ├── 📁 login/
+│   │   │   └── 📄 page.tsx (1.58 KB)
+│   │   ├── 📁 signup/
+│   │   │   └── 📄 page.tsx (1.58 KB)
+│   │   ├── 📄 favicon.ico (25.32 KB)
+│   │   ├── 📄 globals.css (488 B)
+│   │   ├── 📄 layout.tsx (690 B)
+│   │   └── 📄 page.tsx (965 B)
+│   ├── 📁 components/
+│   │   └── 📄 LogoutButton.tsx (454 B)
+│   ├── 📁 lib/
+│   │   ├── 📁 supabase/
+│   │   │   ├── 📄 client.ts (211 B)
+│   │   │   ├── 📄 middleware.ts (907 B)
+│   │   │   └── 📄 server.ts (704 B)
+│   │   └── 📄 supabase.ts (246 B)
+│   └── 📄 middleware.ts (336 B)
 ├── 📄 AGENTS.md (678 B)
 ├── 📄 CLAUDE.md (11 B)
 ├── 📄 eslint.config.mjs (465 B)
 ├── 📄 next-env.d.ts (296 B)
 ├── 📄 next.config.ts (133 B)
-├── 📄 package-lock.json (234.79 KB)
-├── 📄 package.json (573 B)
+├── 📄 package-lock.json (235.67 KB)
+├── 📄 package.json (605 B)
 ├── 📄 postcss.config.mjs (94 B)
 ├── 📄 README.md (1.42 KB)
 └── 📄 tsconfig.json (670 B)
@@ -50,10 +61,17 @@
 
 **Project Files:**
 
-- [📄 src/app/lib/supabase.ts](#📄-src-app-lib-supabase-ts)
+- [📄 src/app/login/page.tsx](#📄-src-app-login-page-tsx)
+- [📄 src/app/signup/page.tsx](#📄-src-app-signup-page-tsx)
 - [📄 src/app/globals.css](#📄-src-app-globals-css)
 - [📄 src/app/layout.tsx](#📄-src-app-layout-tsx)
 - [📄 src/app/page.tsx](#📄-src-app-page-tsx)
+- [📄 src/components/LogoutButton.tsx](#📄-src-components-logoutbutton-tsx)
+- [📄 src/lib/supabase/client.ts](#📄-src-lib-supabase-client-ts)
+- [📄 src/lib/supabase/middleware.ts](#📄-src-lib-supabase-middleware-ts)
+- [📄 src/lib/supabase/server.ts](#📄-src-lib-supabase-server-ts)
+- [📄 src/lib/supabase.ts](#📄-src-lib-supabase-ts)
+- [📄 src/middleware.ts](#📄-src-middleware-ts)
 - [📄 AGENTS.md](#📄-agents-md)
 - [📄 CLAUDE.md](#📄-claude-md)
 - [📄 next-env.d.ts](#📄-next-env-d-ts)
@@ -69,21 +87,21 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 20 |
-| Total Directories | 4 |
-| Text Files | 12 |
+| Total Files | 27 |
+| Total Directories | 8 |
+| Text Files | 19 |
 | Binary Files | 8 |
-| Total Size | 269.95 KB |
+| Total Size | 276.58 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
+| `.ts` | 7 |
 | `.svg` | 5 |
-| `.ts` | 3 |
+| `.tsx` | 5 |
 | `.md` | 3 |
 | `.json` | 3 |
-| `.tsx` | 2 |
 | `.mjs` | 2 |
 | `.ico` | 1 |
 | `.css` | 1 |
@@ -100,29 +118,132 @@ The following files were not included in the text content:
 - `public/vercel.svg`
 - `public/window.svg`
 
-### <a id="📄-src-app-lib-supabase-ts"></a>📄 `src/app/lib/supabase.ts`
+### <a id="📄-src-app-login-page-tsx"></a>📄 `src/app/login/page.tsx`
 
 **File Info:**
-- **Size**: 246 B
-- **Extension**: `.ts`
+- **Size**: 1.58 KB
+- **Extension**: `.tsx`
 - **Language**: `typescript`
-- **Location**: `src/app/lib/supabase.ts`
-- **Relative Path**: `src/app/lib`
-- **Created**: 2026-09-03 07:18:44 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-03 07:19:27 (Australia/Sydney / GMT+10:00)
-- **MD5**: `f1b043b96c730673b27b3331ba6ed673`
-- **SHA256**: `7de22d47b4a2a0bcbc8bbf85c1986275034459aab163ca1a56c6f48d90269029`
+- **Location**: `src/app/login/page.tsx`
+- **Relative Path**: `src/app/login`
+- **Created**: 2026-09-05 07:18:23 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-05 07:27:38 (Australia/Sydney / GMT+10:00)
+- **MD5**: `f7b4cb3d374bed3f253dab3985c00e1e`
+- **SHA256**: `843a39ea0566d70e5e6cb2aac3b272676350854d32ee96ef24883cf9ffc388d3`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```typescript
-import { createClient } from '@supabase/supabase-js'
+'use client'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export default function LoginPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  async function handleLogin(e: React.FormEvent) {
+    e.preventDefault()
+    setError(null)
+    const supabase = createClient()
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    if (error) {
+      setError(error.message)
+    } else {
+      router.push('/')
+      router.refresh()
+    }
+  }
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 400 }}>
+      <h1>Log in to Writemates</h1>
+      <form onSubmit={handleLogin}>
+        <div style={{ marginBottom: '1rem' }}>
+          <label>Email</label><br />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required style={{ width: '100%', padding: '0.5rem' }} />
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <label>Password</label><br />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required style={{ width: '100%', padding: '0.5rem' }} />
+        </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit" style={{ padding: '0.5rem 1rem' }}>Log in</button>
+      </form>
+      <p style={{ marginTop: '1rem' }}>Don&apos;t have an account? <a href="/signup">Sign up</a></p>
+    </main>
+  )
+}
+```
+
+---
+
+### <a id="📄-src-app-signup-page-tsx"></a>📄 `src/app/signup/page.tsx`
+
+**File Info:**
+- **Size**: 1.58 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/signup/page.tsx`
+- **Relative Path**: `src/app/signup`
+- **Created**: 2026-09-05 07:17:27 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-05 07:18:10 (Australia/Sydney / GMT+10:00)
+- **MD5**: `102a2929d5e63df5954d141cb0b03616`
+- **SHA256**: `2caf87f3fe23fb15b6363ad52337c5c114b1f37ce1c4c65d30c282144b91f679`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+
+export default function SignUpPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  async function handleSignUp(e: React.FormEvent) {
+    e.preventDefault()
+    setError(null)
+    const supabase = createClient()
+    const { error } = await supabase.auth.signUp({ email, password })
+    if (error) {
+      setError(error.message)
+    } else {
+      router.push('/')
+      router.refresh()
+    }
+  }
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 400 }}>
+      <h1>Sign up for Writemates</h1>
+      <form onSubmit={handleSignUp}>
+        <div style={{ marginBottom: '1rem' }}>
+          <label>Email</label><br />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required style={{ width: '100%', padding: '0.5rem' }} />
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <label>Password</label><br />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} style={{ width: '100%', padding: '0.5rem' }} />
+        </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit" style={{ padding: '0.5rem 1rem' }}>Sign up</button>
+      </form>
+      <p style={{ marginTop: '1rem' }}>Already have an account? <a href="/login">Log in</a></p>
+    </main>
+  )
+}
 ```
 
 ---
@@ -285,6 +406,236 @@ The following files were not included in the text content:
 
 - `src/app/favicon.ico`
 
+### <a id="📄-src-components-logoutbutton-tsx"></a>📄 `src/components/LogoutButton.tsx`
+
+**File Info:**
+- **Size**: 454 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/LogoutButton.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-05 07:26:56 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-05 07:27:15 (Australia/Sydney / GMT+10:00)
+- **MD5**: `d6141a23aa7aec911080fa2cfa1e7697`
+- **SHA256**: `1558b10516bcb138a9d00d903e676b8488f74b23b7d98a35951ad74bbb7c2629`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+
+export default function LogoutButton() {
+  const router = useRouter()
+
+  async function handleLogout() {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    router.push('/login')
+    router.refresh()
+  }
+
+  return (
+    <button onClick={handleLogout} style={{ padding: '0.5rem 1rem' }}>
+      Log out
+    </button>
+  )
+}
+```
+
+---
+
+### <a id="📄-src-lib-supabase-client-ts"></a>📄 `src/lib/supabase/client.ts`
+
+**File Info:**
+- **Size**: 211 B
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `src/lib/supabase/client.ts`
+- **Relative Path**: `src/lib/supabase`
+- **Created**: 2026-09-05 05:19:11 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-05 07:23:19 (Australia/Sydney / GMT+10:00)
+- **MD5**: `062004752a3310a41eb834a56911b3be`
+- **SHA256**: `91596322100a05a8a25b076aa1039d12c365911499362f6abc4886458a83e0e3`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { createBrowserClient } from '@supabase/ssr'
+
+export function createClient() {
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
+}
+```
+
+---
+
+### <a id="📄-src-lib-supabase-middleware-ts"></a>📄 `src/lib/supabase/middleware.ts`
+
+**File Info:**
+- **Size**: 907 B
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `src/lib/supabase/middleware.ts`
+- **Relative Path**: `src/lib/supabase`
+- **Created**: 2026-09-05 05:22:32 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-05 05:22:47 (Australia/Sydney / GMT+10:00)
+- **MD5**: `b1c37a515f5e8b1bf7baa21e127c97ec`
+- **SHA256**: `11850c4947a1b9317839eeee4af98909efa33611fb78ef5b43a5064204f9fbd3`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { createServerClient } from '@supabase/ssr'
+import { NextResponse, type NextRequest } from 'next/server'
+
+export async function updateSession(request: NextRequest) {
+  let supabaseResponse = NextResponse.next({ request })
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+          supabaseResponse = NextResponse.next({ request })
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          )
+        },
+      },
+    }
+  )
+
+  // This refreshes the session if it's expired
+  await supabase.auth.getUser()
+
+  return supabaseResponse
+}
+```
+
+---
+
+### <a id="📄-src-lib-supabase-server-ts"></a>📄 `src/lib/supabase/server.ts`
+
+**File Info:**
+- **Size**: 704 B
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `src/lib/supabase/server.ts`
+- **Relative Path**: `src/lib/supabase`
+- **Created**: 2026-09-05 05:19:11 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-05 05:20:53 (Australia/Sydney / GMT+10:00)
+- **MD5**: `fd77598383da86d66ba0f146a1dc662b`
+- **SHA256**: `a3e5f5f964f375f9da23a54fb90c9a5bfcc55750e203ff61d097178447311e54`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
+
+export async function createClient() {
+  const cookieStore = await cookies()
+
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll()
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            )
+          } catch {
+            // This can be safely ignored if you have middleware refreshing sessions
+          }
+        },
+      },
+    }
+  )
+}
+```
+
+---
+
+### <a id="📄-src-lib-supabase-ts"></a>📄 `src/lib/supabase.ts`
+
+**File Info:**
+- **Size**: 246 B
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `src/lib/supabase.ts`
+- **Relative Path**: `src/lib`
+- **Created**: 2026-09-03 07:18:44 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:19:27 (Australia/Sydney / GMT+10:00)
+- **MD5**: `f1b043b96c730673b27b3331ba6ed673`
+- **SHA256**: `7de22d47b4a2a0bcbc8bbf85c1986275034459aab163ca1a56c6f48d90269029`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+```
+
+---
+
+### <a id="📄-src-middleware-ts"></a>📄 `src/middleware.ts`
+
+**File Info:**
+- **Size**: 336 B
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `src/middleware.ts`
+- **Relative Path**: `src`
+- **Created**: 2026-09-05 05:23:07 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-05 05:24:40 (Australia/Sydney / GMT+10:00)
+- **MD5**: `88765f76f0523ad4c5977020beb0e61e`
+- **SHA256**: `b9108709481b43acd826e0773478bed95c56398c4df9e4b9af63197a51a91134`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { type NextRequest } from 'next/server'
+import { updateSession } from '@/lib/supabase/middleware'
+
+export async function middleware(request: NextRequest) {
+  return await updateSession(request)
+}
+
+export const config = {
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
+}
+```
+
+---
+
 ### <a id="📄-agents-md"></a>📄 `AGENTS.md`
 
 **File Info:**
@@ -400,15 +751,15 @@ export default nextConfig;
 ### <a id="📄-package-lock-json"></a>📄 `package-lock.json`
 
 **File Info:**
-- **Size**: 234.79 KB
+- **Size**: 235.67 KB
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package-lock.json`
 - **Relative Path**: `root`
 - **Created**: 2026-09-03 07:02:03 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-03 07:17:10 (Australia/Sydney / GMT+10:00)
-- **MD5**: `29450e42e4014cfbd08bd2283089577f`
-- **SHA256**: `706011e78a37aae9025b1daed30df614da3e45027be4a32c82b6d285a8fa047c`
+- **Modified**: 2026-09-05 05:18:33 (Australia/Sydney / GMT+10:00)
+- **MD5**: `e5ac6d9f93c04ee7c3eb010a2a92a391`
+- **SHA256**: `c9cd33bd5e27a9df4becab8d5b0c43dc8cdba3b3a933a9926580500126ee7129`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -424,6 +775,7 @@ export default nextConfig;
       "name": "writemates",
       "version": "0.1.0",
       "dependencies": {
+        "@supabase/ssr": "^0.12.6",
         "@supabase/supabase-js": "^2.114.0",
         "next": "16.3.4",
         "react": "19.2.8",
@@ -1854,6 +2206,18 @@ export default nextConfig;
       },
       "engines": {
         "node": ">=22.0.0"
+      }
+    },
+    "node_modules/@supabase/ssr": {
+      "version": "0.12.6",
+      "resolved": "https://registry.npmjs.org/@supabase/ssr/-/ssr-0.12.6.tgz",
+      "integrity": "sha512-JQ/hwN71p0HXWiETjCAY4sn51NeXCFj1s9l7/WQDp5O9yuF2HSja+rtjR6NWK4G3HigyNxYGwGKXabb4eYZy+Q==",
+      "license": "MIT",
+      "dependencies": {
+        "cookie": "^1.0.2"
+      },
+      "peerDependencies": {
+        "@supabase/supabase-js": "^2.114.0"
       }
     },
     "node_modules/@supabase/storage-js": {
@@ -3395,6 +3759,19 @@ export default nextConfig;
       "integrity": "sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==",
       "dev": true,
       "license": "MIT"
+    },
+    "node_modules/cookie": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/cookie/-/cookie-1.1.1.tgz",
+      "integrity": "sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
     },
     "node_modules/cross-spawn": {
       "version": "7.0.6",
@@ -7420,15 +7797,15 @@ export default nextConfig;
 ### <a id="📄-package-json"></a>📄 `package.json`
 
 **File Info:**
-- **Size**: 573 B
+- **Size**: 605 B
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package.json`
 - **Relative Path**: `root`
 - **Created**: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-03 07:17:10 (Australia/Sydney / GMT+10:00)
-- **MD5**: `7902fd0f4cf6316513724a5747ab4166`
-- **SHA256**: `50cc07740ec27e9c4c53b6123ca423d1eab6a5d385e8ca2781826044430beda0`
+- **Modified**: 2026-09-05 05:18:33 (Australia/Sydney / GMT+10:00)
+- **MD5**: `2695af9e474fac60e1e205fbc9191ad2`
+- **SHA256**: `667fc51971242c8dc660382fe6c8987942c609e0ce4661d505790fd45f520980`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -7445,6 +7822,7 @@ export default nextConfig;
     "lint": "eslint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.6",
     "@supabase/supabase-js": "^2.114.0",
     "next": "16.3.4",
     "react": "19.2.8",
