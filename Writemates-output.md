@@ -1,3 +1,419 @@
+# 📁 PROJECT EXPORT FOR LLMs
+
+## 📊 Project Information
+
+- **Project Name**: `Writemates`
+- **Generated On**: 2026-09-03 07:20:03 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 20
+- **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
+- **Tool Author**: Jota / José Guilherme Pandolfi
+
+### ⚙️ Export Configuration
+
+| Setting | Value |
+|---------|-------|
+| Language | `en` |
+| Max File Size | `1 MB` |
+| Include Hidden Files | `false` |
+| Output Format | `both` |
+
+## 🌳 Project Structure
+
+```
+├── 📁 public/
+│   ├── 📄 file.svg (391 B)
+│   ├── 📄 globe.svg (1.01 KB)
+│   ├── 📄 next.svg (1.34 KB)
+│   ├── 📄 vercel.svg (128 B)
+│   └── 📄 window.svg (385 B)
+├── 📁 src/
+│   └── 📁 app/
+│       ├── 📁 lib/
+│       │   └── 📄 supabase.ts (246 B)
+│       ├── 📄 favicon.ico (25.32 KB)
+│       ├── 📄 globals.css (488 B)
+│       ├── 📄 layout.tsx (690 B)
+│       └── 📄 page.tsx (965 B)
+├── 📄 AGENTS.md (678 B)
+├── 📄 CLAUDE.md (11 B)
+├── 📄 eslint.config.mjs (465 B)
+├── 📄 next-env.d.ts (296 B)
+├── 📄 next.config.ts (133 B)
+├── 📄 package-lock.json (234.79 KB)
+├── 📄 package.json (573 B)
+├── 📄 postcss.config.mjs (94 B)
+├── 📄 README.md (1.42 KB)
+└── 📄 tsconfig.json (670 B)
+```
+
+## 📑 Table of Contents
+
+**Project Files:**
+
+- [📄 src/app/lib/supabase.ts](#📄-src-app-lib-supabase-ts)
+- [📄 src/app/globals.css](#📄-src-app-globals-css)
+- [📄 src/app/layout.tsx](#📄-src-app-layout-tsx)
+- [📄 src/app/page.tsx](#📄-src-app-page-tsx)
+- [📄 AGENTS.md](#📄-agents-md)
+- [📄 CLAUDE.md](#📄-claude-md)
+- [📄 next-env.d.ts](#📄-next-env-d-ts)
+- [📄 next.config.ts](#📄-next-config-ts)
+- [📄 package-lock.json](#📄-package-lock-json)
+- [📄 package.json](#📄-package-json)
+- [📄 README.md](#📄-readme-md)
+- [📄 tsconfig.json](#📄-tsconfig-json)
+
+---
+
+## 📈 Project Statistics
+
+| Metric | Count |
+|--------|-------|
+| Total Files | 20 |
+| Total Directories | 4 |
+| Text Files | 12 |
+| Binary Files | 8 |
+| Total Size | 269.95 KB |
+
+### 📄 File Types Distribution
+
+| Extension | Count |
+|-----------|-------|
+| `.svg` | 5 |
+| `.ts` | 3 |
+| `.md` | 3 |
+| `.json` | 3 |
+| `.tsx` | 2 |
+| `.mjs` | 2 |
+| `.ico` | 1 |
+| `.css` | 1 |
+
+## 💻 File Code Contents
+
+## 🚫 Binary/Excluded Files
+
+The following files were not included in the text content:
+
+- `public/file.svg`
+- `public/globe.svg`
+- `public/next.svg`
+- `public/vercel.svg`
+- `public/window.svg`
+
+### <a id="📄-src-app-lib-supabase-ts"></a>📄 `src/app/lib/supabase.ts`
+
+**File Info:**
+- **Size**: 246 B
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `src/app/lib/supabase.ts`
+- **Relative Path**: `src/app/lib`
+- **Created**: 2026-09-03 07:18:44 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:19:27 (Australia/Sydney / GMT+10:00)
+- **MD5**: `f1b043b96c730673b27b3331ba6ed673`
+- **SHA256**: `7de22d47b4a2a0bcbc8bbf85c1986275034459aab163ca1a56c6f48d90269029`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+```
+
+---
+
+### <a id="📄-src-app-globals-css"></a>📄 `src/app/globals.css`
+
+**File Info:**
+- **Size**: 488 B
+- **Extension**: `.css`
+- **Language**: `css`
+- **Location**: `src/app/globals.css`
+- **Relative Path**: `src/app`
+- **Created**: 2026-09-03 07:01:04 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
+- **MD5**: `20552b4b0f91d72bbf19051b78b2aff5`
+- **SHA256**: `769edf77bd0d101a2d26e6c5656defba8cd885ff37d92279fa293a2756fe5651`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```css
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+```
+
+---
+
+### <a id="📄-src-app-layout-tsx"></a>📄 `src/app/layout.tsx`
+
+**File Info:**
+- **Size**: 690 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/layout.tsx`
+- **Relative Path**: `src/app`
+- **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
+- **MD5**: `70f839ece80281c576701dc08f055685`
+- **SHA256**: `ac0a51f726d23d255be241c5f37e47119736c2c3cdf5feac57f85de677686ee5`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">{children}</body>
+    </html>
+  );
+}
+
+```
+
+---
+
+### <a id="📄-src-app-page-tsx"></a>📄 `src/app/page.tsx`
+
+**File Info:**
+- **Size**: 965 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/page.tsx`
+- **Relative Path**: `src/app`
+- **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:20:03 (Australia/Sydney / GMT+10:00)
+- **MD5**: `61946a32a7f348308f8ca7070e8f733a`
+- **SHA256**: `2889dd7f9367bea858b7638c86d26862b178d8475b380b0d6096b202faaded08`
+- **Encoding**: UTF-8
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState } from 'react'
+import { supabase } from '@/lib/supabase'
+
+export default function Home() {
+  const [status, setStatus] = useState('Checking connection...')
+
+  useEffect(() => {
+    async function checkConnection() {
+      const { error } = await supabase.from('_test_').select('*').limit(1)
+
+      // We expect an error here since no tables exist yet —
+      // but the TYPE of error tells us if the connection itself worked.
+      if (error && error.code === 'PGRST205') {
+        setStatus('✅ Connected to Supabase! (No tables yet — that\'s expected)')
+      } else if (error) {
+        setStatus(`⚠️ Connected, but got: ${error.message}`)
+      } else {
+        setStatus('✅ Connected to Supabase!')
+      }
+    }
+    checkConnection()
+  }, [])
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+      <h1>Writemates — Connection Test</h1>
+      <p>{status}</p>
+    </main>
+  )
+}
+```
+
+---
+
+## 🚫 Binary/Excluded Files
+
+The following files were not included in the text content:
+
+- `src/app/favicon.ico`
+
+### <a id="📄-agents-md"></a>📄 `AGENTS.md`
+
+**File Info:**
+- **Size**: 678 B
+- **Extension**: `.md`
+- **Language**: `text`
+- **Location**: `AGENTS.md`
+- **Relative Path**: `root`
+- **Created**: 2026-09-03 07:02:04 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:02:04 (Australia/Sydney / GMT+10:00)
+- **MD5**: `01e8142356e15c3404e0d84c48187cd0`
+- **SHA256**: `63f2c50380ed6303237cce215ce27af1d620d094c215e28d1b1538a3c070e3bb`
+- **Encoding**: UTF-8
+
+**File code content:**
+
+````markdown
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
+
+````
+
+---
+
+### <a id="📄-claude-md"></a>📄 `CLAUDE.md`
+
+**File Info:**
+- **Size**: 11 B
+- **Extension**: `.md`
+- **Language**: `text`
+- **Location**: `CLAUDE.md`
+- **Relative Path**: `root`
+- **Created**: 2026-09-03 07:02:04 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:02:04 (Australia/Sydney / GMT+10:00)
+- **MD5**: `5c27369b226fcf2be8a6cfe52224e767`
+- **SHA256**: `336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49`
+- **Encoding**: ASCII
+
+**File code content:**
+
+````markdown
+@AGENTS.md
+
+````
+
+---
+
+### <a id="📄-next-env-d-ts"></a>📄 `next-env.d.ts`
+
+**File Info:**
+- **Size**: 296 B
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `next-env.d.ts`
+- **Relative Path**: `root`
+- **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:04:04 (Australia/Sydney / GMT+10:00)
+- **MD5**: `aa94238a90e7d04b7a47ecc3145ba6a0`
+- **SHA256**: `0f70629890b72a0a82e91972cc032c04b658b26c265373cb711cf576bfbf8fcc`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+import "./.next/dev/types/routes.d.ts";
+import "./.next/dev/types/root-params.d.ts";
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+
+```
+
+---
+
+### <a id="📄-next-config-ts"></a>📄 `next.config.ts`
+
+**File Info:**
+- **Size**: 133 B
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `next.config.ts`
+- **Relative Path**: `root`
+- **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
+- **MD5**: `9b77af189a21a7a64e4bd7a426f64176`
+- **SHA256**: `614bce25b089c3f19b1e17a6346c74b858034040154c6621e7d35303004767cc`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+
+```
+
+---
+
+### <a id="📄-package-lock-json"></a>📄 `package-lock.json`
+
+**File Info:**
+- **Size**: 234.79 KB
+- **Extension**: `.json`
+- **Language**: `json`
+- **Location**: `package-lock.json`
+- **Relative Path**: `root`
+- **Created**: 2026-09-03 07:02:03 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:17:10 (Australia/Sydney / GMT+10:00)
+- **MD5**: `29450e42e4014cfbd08bd2283089577f`
+- **SHA256**: `706011e78a37aae9025b1daed30df614da3e45027be4a32c82b6d285a8fa047c`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```json
 {
   "name": "writemates",
   "version": "0.1.0",
@@ -6996,3 +7412,178 @@
     }
   }
 }
+
+```
+
+---
+
+### <a id="📄-package-json"></a>📄 `package.json`
+
+**File Info:**
+- **Size**: 573 B
+- **Extension**: `.json`
+- **Language**: `json`
+- **Location**: `package.json`
+- **Relative Path**: `root`
+- **Created**: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:17:10 (Australia/Sydney / GMT+10:00)
+- **MD5**: `7902fd0f4cf6316513724a5747ab4166`
+- **SHA256**: `50cc07740ec27e9c4c53b6123ca423d1eab6a5d385e8ca2781826044430beda0`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```json
+{
+  "name": "writemates",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.114.0",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+
+```
+
+---
+
+### <a id="📄-readme-md"></a>📄 `README.md`
+
+**File Info:**
+- **Size**: 1.42 KB
+- **Extension**: `.md`
+- **Language**: `text`
+- **Location**: `README.md`
+- **Relative Path**: `root`
+- **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
+- **MD5**: `f15aaa42d5d299d091b1171097ea56ad`
+- **SHA256**: `60b55ff7df79af72590f9524208e46642bc32bdc175cdad41349681c0e2f958f`
+- **Encoding**: ASCII
+
+**File code content:**
+
+````markdown
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+~~~~bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+~~~~
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+````
+
+---
+
+### <a id="📄-tsconfig-json"></a>📄 `tsconfig.json`
+
+**File Info:**
+- **Size**: 670 B
+- **Extension**: `.json`
+- **Language**: `json`
+- **Location**: `tsconfig.json`
+- **Relative Path**: `root`
+- **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
+- **MD5**: `ee17fd1c97c735e9f3564e3f5251f125`
+- **SHA256**: `5c51df4c59f4510d8c7dadf07a5c32132228826a3b331da5e286207b4df7ef9c`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+
+```
+
+---
+
+## 🚫 Binary/Excluded Files
+
+The following files were not included in the text content:
+
+- `eslint.config.mjs`
+- `postcss.config.mjs`
+
