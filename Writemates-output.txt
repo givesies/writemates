@@ -5,7 +5,7 @@ PROJECT EXPORT FOR LLMs
 PROJECT INFORMATION:
 --------------------------------------------------
 Project Name: Writemates
-Generated On: 2026-09-06 10:13:06 (Australia/Sydney / GMT+10:00)
+Generated On: 2026-09-06 10:46:53 (Australia/Sydney / GMT+10:00)
 Total Files Processed: 38
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
@@ -31,7 +31,7 @@ PROJECT STRUCTURE
 ├── 📁 src/
 │   ├── 📁 app/
 │   │   ├── 📁 feed/
-│   │   │   └── 📄 page.tsx (1.88 KB)
+│   │   │   └── 📄 page.tsx (2.39 KB)
 │   │   ├── 📁 groups/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (3.11 KB)
@@ -54,14 +54,14 @@ PROJECT STRUCTURE
 │   │   │   └── 📄 page.tsx (1.58 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
-│   │   │       └── 📄 page.tsx (4.13 KB)
+│   │   │       └── 📄 page.tsx (6.12 KB)
 │   │   ├── 📄 favicon.ico (25.32 KB)
-│   │   ├── 📄 globals.css (488 B)
-│   │   ├── 📄 layout.tsx (1.16 KB)
-│   │   └── 📄 page.tsx (4.13 KB)
+│   │   ├── 📄 globals.css (472 B)
+│   │   ├── 📄 layout.tsx (1.13 KB)
+│   │   └── 📄 page.tsx (614 B)
 │   ├── 📁 components/
 │   │   ├── 📄 LogoutButton.tsx (454 B)
-│   │   ├── 📄 NavBar.tsx (1.08 KB)
+│   │   ├── 📄 NavBar.tsx (1.64 KB)
 │   │   └── 📄 ProgressChart.tsx (658 B)
 │   ├── 📁 lib/
 │   │   ├── 📁 supabase/
@@ -88,7 +88,7 @@ Total Files: 38
 Total Directories: 20
 Text Files: 30
 Binary Files: 8
-Total Size: 323.27 KB
+Total Size: 322.76 KB
 
 FILE TYPES DISTRIBUTION:
 ------------------------------
@@ -122,15 +122,15 @@ FILE: src/app/feed/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 1.88 KB
+Size: 2.39 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/feed/page.tsx
 Relative Path: src/app/feed
 Created: 2026-09-06 09:35:03 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-06 09:35:26 (Australia/Sydney / GMT+10:00)
-MD5: 9e1c3ac63de7663ec7bc0e851e0a9aca
-SHA256: 0d77e4ee206d1dff199f70a8b3641b230ef6725fbb02695cdf60b00492e516e4
+Modified: 2026-09-06 10:43:13 (Australia/Sydney / GMT+10:00)
+MD5: c4a8071967ea31722f752b6c52ed9a33
+SHA256: 9bb583a045d2e0147602dccbd5ebc6a6cb3c89d12de55e9dccccbb3bbb0433a8
 Encoding: ASCII
 
 FILE CONTENT:
@@ -149,45 +149,67 @@ export default async function FeedPage() {
     .order('updated_at', { ascending: false })
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
-      <h1>Feed</h1>
-      {(!posts || posts.length === 0) && <p>No posts yet.</p>}
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <h1
+        className="text-3xl mb-10"
+        style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}
+      >
+        Feed
+      </h1>
+
+      {(!posts || posts.length === 0) && (
+        <p style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-sans)' }}>
+          No posts yet.
+        </p>
+      )}
+
+      <div>
         {posts?.map((post) => (
-          <li
+          <article
             key={post.id}
-            style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
+            className="py-6 border-t"
+            style={{ borderColor: 'var(--color-rule)' }}
           >
-            <div style={{ fontWeight: 'bold' }}>
+            <div
+              className="text-sm mb-2"
+              style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+            >
               {post.profiles?.display_name || post.profiles?.username}
+              {' · '}
+              {new Date(post.updated_at).toLocaleDateString(undefined, {
+                month: 'short',
+                day: 'numeric',
+              })}
             </div>
 
             {post.type === 'wordcount' && (
-              <p>
-                📊 Wrote <strong>{post.word_count?.toLocaleString()}</strong> words today
+              <p className="text-lg">
+                Wrote{' '}
+                <strong style={{ color: 'var(--color-accent)' }}>
+                  {post.word_count?.toLocaleString()}
+                </strong>{' '}
+                words today
                 {post.projects?.title && <> on <em>{post.projects.title}</em></>}
               </p>
             )}
 
             {post.type === 'snippet' && post.content && (
-              <p style={{ whiteSpace: 'pre-wrap' }}>{post.content}</p>
+              <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
+                {post.content}
+              </p>
             )}
 
             {post.type === 'link' && (
-              <p>
+              <p className="text-lg">
                 {post.content && <span>{post.content} — </span>}
                 <a href={post.link_url} target="_blank" rel="noopener noreferrer">
                   {post.link_url}
                 </a>
               </p>
             )}
-
-            <div style={{ color: '#999', fontSize: '0.8rem' }}>
-              {new Date(post.updated_at).toLocaleString()}
-            </div>
-          </li>
+          </article>
         ))}
-      </ul>
+      </div>
     </main>
   )
 }
@@ -1195,15 +1217,15 @@ FILE: src/app/u/[username]/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 4.13 KB
+Size: 6.12 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/u/[username]/page.tsx
 Relative Path: src/app/u/[username]
 Created: 2026-09-06 00:00:54 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-06 10:08:47 (Australia/Sydney / GMT+10:00)
-MD5: b7506877cacb11aa8585222ccffd4d4a
-SHA256: 47fa706866c20d9bc316c17a79ee600fe7eca00b9d900633303d747eab5bcbbc
+Modified: 2026-09-06 10:46:53 (Australia/Sydney / GMT+10:00)
+MD5: 9869c211b71f4b04740b322275c513aa
+SHA256: d29850c00d17fb3c4b2e6ed7a72ebbd215641b84875303c15408a857912b78e3
 Encoding: ASCII
 
 FILE CONTENT:
@@ -1250,23 +1272,41 @@ export default async function PublicProfilePage({
   }
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
-      <h1>{profile.display_name || profile.username}</h1>
-      <p style={{ color: '#666' }}>@{profile.username}</p>
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <h1 className="text-4xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        {profile.display_name || profile.username}
+      </h1>
+      <p className="mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        @{profile.username}
+      </p>
 
-      {profile.bio && <p style={{ marginTop: '1.5rem' }}>{profile.bio}</p>}
+      {profile.bio && (
+        <p className="mt-6 text-lg" style={{ lineHeight: 1.6 }}>
+          {profile.bio}
+        </p>
+      )}
 
       {profile.current_work_description && (
-        <div style={{ marginTop: '1.5rem' }}>
-          <h2 style={{ fontSize: '1.1rem' }}>Currently working on</h2>
-          <p>{profile.current_work_description}</p>
+        <div className="mt-8">
+          <h2
+            className="text-sm mb-2"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+          >
+            Currently working on
+          </h2>
+          <p className="text-lg" style={{ lineHeight: 1.6 }}>{profile.current_work_description}</p>
         </div>
       )}
 
       {projects && projects.length > 0 && (
-        <div style={{ marginTop: '2rem' }}>
-          <h2 style={{ fontSize: '1.1rem' }}>Projects</h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
+        <div className="mt-12">
+          <h2
+            className="text-sm mb-4 pb-2 border-b"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+          >
+            Projects
+          </h2>
+          <div>
             {projects.map((project) => {
               const current = latestWordCountFor(project.id)
               const percent =
@@ -1274,58 +1314,93 @@ export default async function PublicProfilePage({
                   ? Math.min(100, Math.round((current / project.goal_word_count) * 100))
                   : null
               return (
-                <li
-                  key={project.id}
-                  style={{ padding: '0.75rem 0', borderBottom: '1px solid #eee' }}
-                >
-                  <strong>{project.title}</strong>
+                <div key={project.id} className="py-4 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-lg">{project.title}</span>
+                    {percent !== null && (
+                      <span
+                        className="text-sm"
+                        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
+                      >
+                        {percent}%
+                      </span>
+                    )}
+                  </div>
                   {current !== null && (
-                    <div style={{ color: '#666', fontSize: '0.9rem' }}>
-                      {current.toLocaleString()} words
-                      {project.goal_word_count && (
-                        <> — {percent}% of {project.goal_word_count.toLocaleString()} goal</>
-                      )}
-                    </div>
+                    <>
+                      <div
+                        className="mt-2 h-px w-full"
+                        style={{ backgroundColor: 'var(--color-rule)', position: 'relative' }}
+                      >
+                        {percent !== null && (
+                          <div
+                            className="h-px absolute top-0 left-0"
+                            style={{ width: `${percent}%`, backgroundColor: 'var(--color-accent)' }}
+                          />
+                        )}
+                      </div>
+                      <div
+                        className="mt-2 text-sm"
+                        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+                      >
+                        {current.toLocaleString()} words
+                        {project.goal_word_count && <> of {project.goal_word_count.toLocaleString()} goal</>}
+                      </div>
+                    </>
                   )}
-                </li>
+                </div>
               )
             })}
-          </ul>
+          </div>
         </div>
       )}
 
       {posts && posts.length > 0 && (
-        <div style={{ marginTop: '2rem' }}>
-          <h2 style={{ fontSize: '1.1rem' }}>Recent activity</h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
+        <div className="mt-12">
+          <h2
+            className="text-sm mb-4 pb-2 border-b"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+          >
+            Recent activity
+          </h2>
+          <div>
             {posts.map((post) => (
-              <li
-                key={post.id}
-                style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
-              >
+              <div key={post.id} className="py-5 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+                <div
+                  className="text-sm mb-2"
+                  style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+                >
+                  {new Date(post.updated_at).toLocaleDateString(undefined, {
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </div>
                 {post.type === 'wordcount' && (
-                  <p>
-                    📊 Wrote <strong>{post.word_count?.toLocaleString()}</strong> words
+                  <p className="text-lg">
+                    Wrote{' '}
+                    <strong style={{ color: 'var(--color-accent)' }}>
+                      {post.word_count?.toLocaleString()}
+                    </strong>{' '}
+                    words
                     {post.projects?.title && <> on <em>{post.projects.title}</em></>}
                   </p>
                 )}
                 {post.type === 'snippet' && post.content && (
-                  <p style={{ whiteSpace: 'pre-wrap' }}>{post.content}</p>
+                  <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
+                    {post.content}
+                  </p>
                 )}
                 {post.type === 'link' && (
-                  <p>
+                  <p className="text-lg">
                     {post.content && <span>{post.content} — </span>}
                     <a href={post.link_url} target="_blank" rel="noopener noreferrer">
                       {post.link_url}
                     </a>
                   </p>
                 )}
-                <div style={{ color: '#999', fontSize: '0.8rem' }}>
-                  {new Date(post.updated_at).toLocaleString()}
-                </div>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </main>
@@ -1340,15 +1415,15 @@ FILE: src/app/globals.css
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 488 B
+Size: 472 B
 Extension: .css
 Language: css
 Location: src/app/globals.css
 Relative Path: src/app
 Created: 2026-09-03 07:01:04 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
-MD5: 20552b4b0f91d72bbf19051b78b2aff5
-SHA256: 769edf77bd0d101a2d26e6c5656defba8cd885ff37d92279fa293a2756fe5651
+Modified: 2026-09-06 10:39:31 (Australia/Sydney / GMT+10:00)
+MD5: 570e713d39a7b916a635937352550a68
+SHA256: 68480cffa0e089c2632010ac5fdf5f52403af58c6ac4ae122a2feb81cc9671b2
 Encoding: ASCII
 
 FILE CONTENT:
@@ -1356,30 +1431,32 @@ FILE CONTENT:
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-ink: #23201b;
+  --color-ink-muted: #6b6b63;
+  --color-paper: #fbfaf7;
+  --color-paper-raised: #f4f2ec;
+  --color-rule: #e5e2da;
+  --color-accent: #33503e;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-serif), serif;
 }
 
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: var(--font-sans), sans-serif;
+}
 ================================================================================
 
 
@@ -1389,32 +1466,32 @@ FILE: src/app/layout.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 1.16 KB
+Size: 1.13 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/layout.tsx
 Relative Path: src/app
 Created: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-06 00:03:55 (Australia/Sydney / GMT+10:00)
-MD5: da072ee93147949163cdc147fddeb6b5
-SHA256: 738ef887ba2b74b44e371571353123d344d6611bc926e5752a5f2653dbe2b22e
+Modified: 2026-09-06 10:39:00 (Australia/Sydney / GMT+10:00)
+MD5: 096d93669411f5971cdd436a1fb0f613
+SHA256: a253d53ce1bc8de9febc076c2843c8fba0c112ef10aea6b65b0a83bdd683623b
 Encoding: ASCII
 
 FILE CONTENT:
 ----------------------------------------
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Source_Serif_4, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { createClient } from '@/lib/supabase/server'
 import NavBar from '@/components/NavBar'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-serif",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const workSans = Work_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
@@ -1438,10 +1515,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   }
 
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${sourceSerif.variable} ${workSans.variable}`}>
       <body className="min-h-full flex flex-col">
         <NavBar username={username} />
         {children}
@@ -1449,7 +1523,6 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     </html>
   );
 }
-
 ================================================================================
 
 
@@ -1459,142 +1532,46 @@ FILE: src/app/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 4.13 KB
+Size: 614 B
 Extension: .tsx
 Language: typescript
 Location: src/app/page.tsx
 Relative Path: src/app
 Created: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-06 10:03:39 (Australia/Sydney / GMT+10:00)
-MD5: b7506877cacb11aa8585222ccffd4d4a
-SHA256: 47fa706866c20d9bc316c17a79ee600fe7eca00b9d900633303d747eab5bcbbc
+Modified: 2026-09-06 10:33:31 (Australia/Sydney / GMT+10:00)
+MD5: 5ff9c94342e82e329cbade106caec4f8
+SHA256: 414b8fd9478f1458f7992f423a32d6d79a0b2346f262a8200d460408711a42ee
 Encoding: ASCII
 
 FILE CONTENT:
 ----------------------------------------
 import { createClient } from '@/lib/supabase/server'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
-export default async function PublicProfilePage({
-  params,
-}: {
-  params: Promise<{ username: string }>
-}) {
-  const { username } = await params
+export default async function Home() {
   const supabase = await createClient()
+
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect('/login')
+  }
 
   const { data: profile } = await supabase
     .from('profiles')
     .select('*')
-    .eq('username', username)
+    .eq('id', user.id)
     .single()
 
-  if (!profile) {
-    notFound()
-  }
-
-  const { data: projects } = await supabase
-    .from('projects')
-    .select('*')
-    .eq('user_id', profile.id)
-    .order('created_at', { ascending: false })
-
-  const { data: posts } = await supabase
-    .from('posts')
-    .select('*, projects(title)')
-    .eq('user_id', profile.id)
-    .order('updated_at', { ascending: false })
-    .limit(10)
-
-  function latestWordCountFor(projectId: string) {
-    const wordcountPosts = (posts || []).filter(
-      (p) => p.type === 'wordcount' && p.project_id === projectId
-    )
-    return wordcountPosts.length > 0 ? wordcountPosts[0].word_count : null
-  }
-
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
-      <h1>{profile.display_name || profile.username}</h1>
-      <p style={{ color: '#666' }}>@{profile.username}</p>
-
-      {profile.bio && <p style={{ marginTop: '1.5rem' }}>{profile.bio}</p>}
-
-      {profile.current_work_description && (
-        <div style={{ marginTop: '1.5rem' }}>
-          <h2 style={{ fontSize: '1.1rem' }}>Currently working on</h2>
-          <p>{profile.current_work_description}</p>
-        </div>
-      )}
-
-      {projects && projects.length > 0 && (
-        <div style={{ marginTop: '2rem' }}>
-          <h2 style={{ fontSize: '1.1rem' }}>Projects</h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {projects.map((project) => {
-              const current = latestWordCountFor(project.id)
-              const percent =
-                current && project.goal_word_count
-                  ? Math.min(100, Math.round((current / project.goal_word_count) * 100))
-                  : null
-              return (
-                <li
-                  key={project.id}
-                  style={{ padding: '0.75rem 0', borderBottom: '1px solid #eee' }}
-                >
-                  <strong>{project.title}</strong>
-                  {current !== null && (
-                    <div style={{ color: '#666', fontSize: '0.9rem' }}>
-                      {current.toLocaleString()} words
-                      {project.goal_word_count && (
-                        <> — {percent}% of {project.goal_word_count.toLocaleString()} goal</>
-                      )}
-                    </div>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      )}
-
-      {posts && posts.length > 0 && (
-        <div style={{ marginTop: '2rem' }}>
-          <h2 style={{ fontSize: '1.1rem' }}>Recent activity</h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {posts.map((post) => (
-              <li
-                key={post.id}
-                style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
-              >
-                {post.type === 'wordcount' && (
-                  <p>
-                    📊 Wrote <strong>{post.word_count?.toLocaleString()}</strong> words
-                    {post.projects?.title && <> on <em>{post.projects.title}</em></>}
-                  </p>
-                )}
-                {post.type === 'snippet' && post.content && (
-                  <p style={{ whiteSpace: 'pre-wrap' }}>{post.content}</p>
-                )}
-                {post.type === 'link' && (
-                  <p>
-                    {post.content && <span>{post.content} — </span>}
-                    <a href={post.link_url} target="_blank" rel="noopener noreferrer">
-                      {post.link_url}
-                    </a>
-                  </p>
-                )}
-                <div style={{ color: '#999', fontSize: '0.8rem' }}>
-                  {new Date(post.updated_at).toLocaleString()}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+      <h1>Welcome to Writemates</h1>
+      <p>Logged in as: {user.email}</p>
+      <p>Username: {profile?.username}</p>
     </main>
   )
 }
+
 ================================================================================
 
 
@@ -1653,15 +1630,15 @@ FILE: src/components/NavBar.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 1.08 KB
+Size: 1.64 KB
 Extension: .tsx
 Language: typescript
 Location: src/components/NavBar.tsx
 Relative Path: src/components
 Created: 2026-09-06 00:03:47 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-06 10:13:06 (Australia/Sydney / GMT+10:00)
-MD5: 679c76e38ed707dc863a94f5fa243532
-SHA256: acc6753dcb3aa15dd940e4fe6a507471e658e9a543a5f8d9a883852b8652c378
+Modified: 2026-09-06 10:41:16 (Australia/Sydney / GMT+10:00)
+MD5: a1fa3d3f862e0846d8cc59a9c3378033
+SHA256: 098fd51cfcbd19e9ab1d08517859214dd1d2bce1ae6eb8d39c7553fc120f46f4
 Encoding: ASCII
 
 FILE CONTENT:
@@ -1671,36 +1648,35 @@ import LogoutButton from '@/components/LogoutButton'
 
 export default function NavBar({ username }: { username: string | null }) {
   return (
-    <nav
-      style={{
-        padding: '1rem 2rem',
-        borderBottom: '1px solid #ddd',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1.5rem',
-        fontFamily: 'sans-serif',
-      }}
-    >
-      <Link href="/" style={{ fontWeight: 'bold' }}>Writemates</Link>
-      {username ? (
-        <>
-          <Link href="/feed">Feed</Link>
-          <Link href="/projects">Projects</Link>
-          <Link href="/projects/log">Log Wordcount</Link>
-          <Link href="/post/new">Share</Link>
-          <Link href="/groups">Groups</Link>
-          <Link href="/profile/edit">Edit Profile</Link>
-          <Link href={`/u/${username}`}>Public Profile</Link>
-          <div style={{ marginLeft: 'auto' }}>
-            <LogoutButton />
-          </div>
-        </>
-      ) : (
-        <>
-          <Link href="/login">Log in</Link>
-          <Link href="/signup">Sign up</Link>
-        </>
-      )}
+    <nav className="border-b" style={{ borderColor: 'var(--color-rule)' }}>
+      <div className="max-w-2xl mx-auto px-6 py-5 flex items-center gap-6" style={{ fontFamily: 'var(--font-sans)' }}>
+        <Link
+          href="/"
+          className="text-lg mr-2"
+          style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}
+        >
+          Writemates
+        </Link>
+        {username ? (
+          <>
+            <Link href="/feed" className="text-sm" style={{ color: 'var(--color-ink)' }}>Feed</Link>
+            <Link href="/projects" className="text-sm" style={{ color: 'var(--color-ink)' }}>Projects</Link>
+            <Link href="/projects/log" className="text-sm" style={{ color: 'var(--color-ink)' }}>Log wordcount</Link>
+            <Link href="/post/new" className="text-sm" style={{ color: 'var(--color-ink)' }}>Share</Link>
+            <Link href="/groups" className="text-sm" style={{ color: 'var(--color-ink)' }}>Groups</Link>
+            <Link href="/profile/edit" className="text-sm" style={{ color: 'var(--color-ink)' }}>Edit profile</Link>
+            <Link href={`/u/${username}`} className="text-sm" style={{ color: 'var(--color-ink)' }}>Profile</Link>
+            <div className="ml-auto text-sm">
+              <LogoutButton />
+            </div>
+          </>
+        ) : (
+          <>
+            <Link href="/login" className="text-sm">Log in</Link>
+            <Link href="/signup" className="text-sm">Sign up</Link>
+          </>
+        )}
+      </div>
     </nav>
   )
 }

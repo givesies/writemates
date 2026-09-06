@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Source_Serif_4, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { createClient } from '@/lib/supabase/server'
 import NavBar from '@/components/NavBar'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-serif",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const workSans = Work_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
@@ -34,10 +34,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   }
 
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${sourceSerif.variable} ${workSans.variable}`}>
       <body className="min-h-full flex flex-col">
         <NavBar username={username} />
         {children}

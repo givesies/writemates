@@ -12,45 +12,67 @@ export default async function FeedPage() {
     .order('updated_at', { ascending: false })
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
-      <h1>Feed</h1>
-      {(!posts || posts.length === 0) && <p>No posts yet.</p>}
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <h1
+        className="text-3xl mb-10"
+        style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}
+      >
+        Feed
+      </h1>
+
+      {(!posts || posts.length === 0) && (
+        <p style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-sans)' }}>
+          No posts yet.
+        </p>
+      )}
+
+      <div>
         {posts?.map((post) => (
-          <li
+          <article
             key={post.id}
-            style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
+            className="py-6 border-t"
+            style={{ borderColor: 'var(--color-rule)' }}
           >
-            <div style={{ fontWeight: 'bold' }}>
+            <div
+              className="text-sm mb-2"
+              style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+            >
               {post.profiles?.display_name || post.profiles?.username}
+              {' · '}
+              {new Date(post.updated_at).toLocaleDateString(undefined, {
+                month: 'short',
+                day: 'numeric',
+              })}
             </div>
 
             {post.type === 'wordcount' && (
-              <p>
-                📊 Wrote <strong>{post.word_count?.toLocaleString()}</strong> words today
+              <p className="text-lg">
+                Wrote{' '}
+                <strong style={{ color: 'var(--color-accent)' }}>
+                  {post.word_count?.toLocaleString()}
+                </strong>{' '}
+                words today
                 {post.projects?.title && <> on <em>{post.projects.title}</em></>}
               </p>
             )}
 
             {post.type === 'snippet' && post.content && (
-              <p style={{ whiteSpace: 'pre-wrap' }}>{post.content}</p>
+              <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
+                {post.content}
+              </p>
             )}
 
             {post.type === 'link' && (
-              <p>
+              <p className="text-lg">
                 {post.content && <span>{post.content} — </span>}
                 <a href={post.link_url} target="_blank" rel="noopener noreferrer">
                   {post.link_url}
                 </a>
               </p>
             )}
-
-            <div style={{ color: '#999', fontSize: '0.8rem' }}>
-              {new Date(post.updated_at).toLocaleString()}
-            </div>
-          </li>
+          </article>
         ))}
-      </ul>
+      </div>
     </main>
   )
 }

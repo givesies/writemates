@@ -40,23 +40,41 @@ export default async function PublicProfilePage({
   }
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
-      <h1>{profile.display_name || profile.username}</h1>
-      <p style={{ color: '#666' }}>@{profile.username}</p>
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <h1 className="text-4xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        {profile.display_name || profile.username}
+      </h1>
+      <p className="mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        @{profile.username}
+      </p>
 
-      {profile.bio && <p style={{ marginTop: '1.5rem' }}>{profile.bio}</p>}
+      {profile.bio && (
+        <p className="mt-6 text-lg" style={{ lineHeight: 1.6 }}>
+          {profile.bio}
+        </p>
+      )}
 
       {profile.current_work_description && (
-        <div style={{ marginTop: '1.5rem' }}>
-          <h2 style={{ fontSize: '1.1rem' }}>Currently working on</h2>
-          <p>{profile.current_work_description}</p>
+        <div className="mt-8">
+          <h2
+            className="text-sm mb-2"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+          >
+            Currently working on
+          </h2>
+          <p className="text-lg" style={{ lineHeight: 1.6 }}>{profile.current_work_description}</p>
         </div>
       )}
 
       {projects && projects.length > 0 && (
-        <div style={{ marginTop: '2rem' }}>
-          <h2 style={{ fontSize: '1.1rem' }}>Projects</h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
+        <div className="mt-12">
+          <h2
+            className="text-sm mb-4 pb-2 border-b"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+          >
+            Projects
+          </h2>
+          <div>
             {projects.map((project) => {
               const current = latestWordCountFor(project.id)
               const percent =
@@ -64,58 +82,93 @@ export default async function PublicProfilePage({
                   ? Math.min(100, Math.round((current / project.goal_word_count) * 100))
                   : null
               return (
-                <li
-                  key={project.id}
-                  style={{ padding: '0.75rem 0', borderBottom: '1px solid #eee' }}
-                >
-                  <strong>{project.title}</strong>
+                <div key={project.id} className="py-4 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-lg">{project.title}</span>
+                    {percent !== null && (
+                      <span
+                        className="text-sm"
+                        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
+                      >
+                        {percent}%
+                      </span>
+                    )}
+                  </div>
                   {current !== null && (
-                    <div style={{ color: '#666', fontSize: '0.9rem' }}>
-                      {current.toLocaleString()} words
-                      {project.goal_word_count && (
-                        <> — {percent}% of {project.goal_word_count.toLocaleString()} goal</>
-                      )}
-                    </div>
+                    <>
+                      <div
+                        className="mt-2 h-px w-full"
+                        style={{ backgroundColor: 'var(--color-rule)', position: 'relative' }}
+                      >
+                        {percent !== null && (
+                          <div
+                            className="h-px absolute top-0 left-0"
+                            style={{ width: `${percent}%`, backgroundColor: 'var(--color-accent)' }}
+                          />
+                        )}
+                      </div>
+                      <div
+                        className="mt-2 text-sm"
+                        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+                      >
+                        {current.toLocaleString()} words
+                        {project.goal_word_count && <> of {project.goal_word_count.toLocaleString()} goal</>}
+                      </div>
+                    </>
                   )}
-                </li>
+                </div>
               )
             })}
-          </ul>
+          </div>
         </div>
       )}
 
       {posts && posts.length > 0 && (
-        <div style={{ marginTop: '2rem' }}>
-          <h2 style={{ fontSize: '1.1rem' }}>Recent activity</h2>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
+        <div className="mt-12">
+          <h2
+            className="text-sm mb-4 pb-2 border-b"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+          >
+            Recent activity
+          </h2>
+          <div>
             {posts.map((post) => (
-              <li
-                key={post.id}
-                style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
-              >
+              <div key={post.id} className="py-5 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+                <div
+                  className="text-sm mb-2"
+                  style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+                >
+                  {new Date(post.updated_at).toLocaleDateString(undefined, {
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </div>
                 {post.type === 'wordcount' && (
-                  <p>
-                    📊 Wrote <strong>{post.word_count?.toLocaleString()}</strong> words
+                  <p className="text-lg">
+                    Wrote{' '}
+                    <strong style={{ color: 'var(--color-accent)' }}>
+                      {post.word_count?.toLocaleString()}
+                    </strong>{' '}
+                    words
                     {post.projects?.title && <> on <em>{post.projects.title}</em></>}
                   </p>
                 )}
                 {post.type === 'snippet' && post.content && (
-                  <p style={{ whiteSpace: 'pre-wrap' }}>{post.content}</p>
+                  <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
+                    {post.content}
+                  </p>
                 )}
                 {post.type === 'link' && (
-                  <p>
+                  <p className="text-lg">
                     {post.content && <span>{post.content} — </span>}
                     <a href={post.link_url} target="_blank" rel="noopener noreferrer">
                       {post.link_url}
                     </a>
                   </p>
                 )}
-                <div style={{ color: '#999', fontSize: '0.8rem' }}>
-                  {new Date(post.updated_at).toLocaleString()}
-                </div>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </main>
