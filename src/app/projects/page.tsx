@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 type Project = {
   id: string
@@ -99,7 +100,9 @@ export default function ProjectsPage() {
             key={project.id}
             style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
           >
-            <strong>{project.title}</strong>
+            <Link href={`/projects/${project.id}`} style={{ fontWeight: 'bold' }}>
+              {project.title}
+            </Link>
             {project.goal_word_count && <span> — goal: {project.goal_word_count.toLocaleString()} words</span>}
             <div style={{ color: '#666', fontSize: '0.9rem' }}>Status: {project.status}</div>
           </li>
