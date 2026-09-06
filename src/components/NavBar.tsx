@@ -20,6 +20,7 @@ export default function NavBar({ username }: { username: string | null }) {
           <Link href="/projects">Projects</Link>
           <Link href="/projects/log">Log Wordcount</Link>
           <Link href="/post/new">Share</Link>
+          <Link href="/groups">Groups</Link>
           <Link href="/profile/edit">Edit Profile</Link>
           <Link href={`/u/${username}`}>Public Profile</Link>
           <div style={{ marginLeft: 'auto' }}>

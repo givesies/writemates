@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-06 10:08:48 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 36
+- **Generated On**: 2026-09-06 10:13:06 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 38
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -30,6 +30,10 @@
 │   ├── 📁 app/
 │   │   ├── 📁 feed/
 │   │   │   └── 📄 page.tsx (1.88 KB)
+│   │   ├── 📁 groups/
+│   │   │   ├── 📁 [id]/
+│   │   │   │   └── 📄 page.tsx (3.11 KB)
+│   │   │   └── 📄 page.tsx (2.97 KB)
 │   │   ├── 📁 login/
 │   │   │   └── 📄 page.tsx (1.58 KB)
 │   │   ├── 📁 post/
@@ -55,7 +59,7 @@
 │   │   └── 📄 page.tsx (4.13 KB)
 │   ├── 📁 components/
 │   │   ├── 📄 LogoutButton.tsx (454 B)
-│   │   ├── 📄 NavBar.tsx (1.04 KB)
+│   │   ├── 📄 NavBar.tsx (1.08 KB)
 │   │   └── 📄 ProgressChart.tsx (658 B)
 │   ├── 📁 lib/
 │   │   ├── 📁 supabase/
@@ -81,6 +85,8 @@
 **Project Files:**
 
 - [📄 src/app/feed/page.tsx](#📄-src-app-feed-page-tsx)
+- [📄 src/app/groups/[id]/page.tsx](#📄-src-app-groups-id-page-tsx)
+- [📄 src/app/groups/page.tsx](#📄-src-app-groups-page-tsx)
 - [📄 src/app/login/page.tsx](#📄-src-app-login-page-tsx)
 - [📄 src/app/post/new/page.tsx](#📄-src-app-post-new-page-tsx)
 - [📄 src/app/profile/edit/page.tsx](#📄-src-app-profile-edit-page-tsx)
@@ -115,17 +121,17 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 36 |
-| Total Directories | 18 |
-| Text Files | 28 |
+| Total Files | 38 |
+| Total Directories | 20 |
+| Text Files | 30 |
 | Binary Files | 8 |
-| Total Size | 317.15 KB |
+| Total Size | 323.27 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 14 |
+| `.tsx` | 16 |
 | `.ts` | 7 |
 | `.svg` | 5 |
 | `.md` | 3 |
@@ -213,6 +219,264 @@ export default async function FeedPage() {
             <div style={{ color: '#999', fontSize: '0.8rem' }}>
               {new Date(post.updated_at).toLocaleString()}
             </div>
+          </li>
+        ))}
+      </ul>
+    </main>
+  )
+}
+```
+
+---
+
+### <a id="📄-src-app-groups-id-page-tsx"></a>📄 `src/app/groups/[id]/page.tsx`
+
+**File Info:**
+- **Size**: 3.11 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/groups/[id]/page.tsx`
+- **Relative Path**: `src/app/groups/[id]`
+- **Created**: 2026-09-06 10:12:09 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-06 10:12:23 (Australia/Sydney / GMT+10:00)
+- **MD5**: `83f68ec803a229f173760d8cb244412e`
+- **SHA256**: `6b67848425a4a01c7ff354a02a8213c428c1807e65666bea9a4165b8eceea7ae`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState, use } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+
+type Member = {
+  user_id: string
+  profiles: { username: string; display_name: string | null }
+}
+
+export default function GroupDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = use(params)
+  const [groupName, setGroupName] = useState('')
+  const [isOwner, setIsOwner] = useState(false)
+  const [members, setMembers] = useState<Member[]>([])
+  const [usernameToAdd, setUsernameToAdd] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  async function loadGroup() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      router.push('/login')
+      return
+    }
+
+    const { data: group } = await supabase.from('groups').select('*').eq('id', id).single()
+    if (group) {
+      setGroupName(group.name)
+      setIsOwner(group.owner_id === user.id)
+    }
+
+    const { data: memberData } = await supabase
+      .from('group_members')
+      .select('user_id, profiles(username, display_name)')
+      .eq('group_id', id)
+
+    setMembers((memberData as unknown as Member[]) || [])
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadGroup()
+  }, [id])
+
+  async function handleAddMember(e: React.FormEvent) {
+    e.preventDefault()
+    setError(null)
+    const supabase = createClient()
+
+    const { data: targetProfile, error: lookupError } = await supabase
+      .from('profiles')
+      .select('id')
+      .eq('username', usernameToAdd.trim())
+      .single()
+
+    if (lookupError || !targetProfile) {
+      setError('No user found with that username')
+      return
+    }
+
+    const { error: addError } = await supabase.from('group_members').insert({
+      group_id: id,
+      user_id: targetProfile.id,
+    })
+
+    if (addError) {
+      setError(addError.message)
+    } else {
+      setUsernameToAdd('')
+      loadGroup()
+    }
+  }
+
+  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
+      <h1>{groupName}</h1>
+
+      <h2 style={{ fontSize: '1.1rem', marginTop: '1.5rem' }}>Members</h2>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {members.map((m) => (
+          <li key={m.user_id} style={{ padding: '0.5rem 0' }}>
+            {m.profiles?.display_name || m.profiles?.username}
+          </li>
+        ))}
+      </ul>
+
+      {isOwner && (
+        <form onSubmit={handleAddMember} style={{ marginTop: '1.5rem' }}>
+          <label>Add member by username</label><br />
+          <input
+            type="text"
+            value={usernameToAdd}
+            onChange={(e) => setUsernameToAdd(e.target.value)}
+            style={{ width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }}
+          />
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <button type="submit" style={{ padding: '0.5rem 1rem' }}>Add member</button>
+        </form>
+      )}
+    </main>
+  )
+}
+```
+
+---
+
+### <a id="📄-src-app-groups-page-tsx"></a>📄 `src/app/groups/page.tsx`
+
+**File Info:**
+- **Size**: 2.97 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/groups/page.tsx`
+- **Relative Path**: `src/app/groups`
+- **Created**: 2026-09-06 10:10:57 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-06 10:11:35 (Australia/Sydney / GMT+10:00)
+- **MD5**: `2d4e138a5b7b25bbcf9009def52d8dcb`
+- **SHA256**: `13c31a94b72857e92a87191a64ee2813e30d5d4a2a0839b1e90bf5863b27f4c0`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+
+type Group = {
+  id: string
+  name: string
+  owner_id: string
+}
+
+export default function GroupsPage() {
+  const [groups, setGroups] = useState<Group[]>([])
+  const [name, setName] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [userId, setUserId] = useState<string | null>(null)
+  const router = useRouter()
+
+  async function loadGroups() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      router.push('/login')
+      return
+    }
+    setUserId(user.id)
+
+    const { data } = await supabase.from('groups').select('*').order('created_at', { ascending: false })
+    setGroups(data || [])
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadGroups()
+  }, [])
+
+  async function handleCreate(e: React.FormEvent) {
+    e.preventDefault()
+    setError(null)
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { data: newGroup, error: groupError } = await supabase
+      .from('groups')
+      .insert({ owner_id: user.id, name })
+      .select()
+      .single()
+
+    if (groupError) {
+      setError(groupError.message)
+      return
+    }
+
+    // Add the owner as a member too, so they count as "in" the group for sharing purposes
+    await supabase.from('group_members').insert({
+      group_id: newGroup.id,
+      user_id: user.id,
+    })
+
+    setName('')
+    loadGroups()
+  }
+
+  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
+      <h1>Your groups</h1>
+
+      <form onSubmit={handleCreate} style={{ marginBottom: '2rem' }}>
+        <div style={{ marginBottom: '0.75rem' }}>
+          <label>Group name</label><br />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            style={{ width: '100%', padding: '0.5rem' }}
+          />
+        </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit" style={{ padding: '0.5rem 1rem' }}>Create group</button>
+      </form>
+
+      <h2>Existing groups</h2>
+      {groups.length === 0 && <p>No groups yet — create one above.</p>}
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {groups.map((group) => (
+          <li
+            key={group.id}
+            style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
+          >
+            <Link href={`/groups/${group.id}`} style={{ fontWeight: 'bold' }}>{group.name}</Link>
+            {group.owner_id === userId && <span style={{ color: '#666' }}> (you own this)</span>}
           </li>
         ))}
       </ul>
@@ -1407,15 +1671,15 @@ export default function LogoutButton() {
 ### <a id="📄-src-components-navbar-tsx"></a>📄 `src/components/NavBar.tsx`
 
 **File Info:**
-- **Size**: 1.04 KB
+- **Size**: 1.08 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/NavBar.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-06 00:03:47 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 03:15:27 (Australia/Sydney / GMT+10:00)
-- **MD5**: `4464a0fcd269715a72ab60ec4f9bcb02`
-- **SHA256**: `1d3712186ceed483f62ae9a6d666c5c6370a0e02871935399a836b890ebeedc5`
+- **Modified**: 2026-09-06 10:13:06 (Australia/Sydney / GMT+10:00)
+- **MD5**: `679c76e38ed707dc863a94f5fa243532`
+- **SHA256**: `acc6753dcb3aa15dd940e4fe6a507471e658e9a543a5f8d9a883852b8652c378`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1443,6 +1707,7 @@ export default function NavBar({ username }: { username: string | null }) {
           <Link href="/projects">Projects</Link>
           <Link href="/projects/log">Log Wordcount</Link>
           <Link href="/post/new">Share</Link>
+          <Link href="/groups">Groups</Link>
           <Link href="/profile/edit">Edit Profile</Link>
           <Link href={`/u/${username}`}>Public Profile</Link>
           <div style={{ marginLeft: 'auto' }}>
@@ -1458,7 +1723,6 @@ export default function NavBar({ username }: { username: string | null }) {
     </nav>
   )
 }
-
 ```
 
 ---
