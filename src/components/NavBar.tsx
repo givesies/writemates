@@ -17,6 +17,8 @@ export default function NavBar({ username }: { username: string | null }) {
       {username ? (
         <>
           <Link href="/">Home</Link>
+          <Link href="/projects">Projects</Link>
+          <Link href="/projects/log">Log Wordcount</Link>
           <Link href="/profile/edit">Edit Profile</Link>
           <Link href={`/u/${username}`}>View Public Profile</Link>
           <div style={{ marginLeft: 'auto' }}>
