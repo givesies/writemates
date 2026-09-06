@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-05 07:27:39 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 27
+- **Generated On**: 2026-09-06 10:08:48 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 36
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -28,16 +28,35 @@
 │   └── 📄 window.svg (385 B)
 ├── 📁 src/
 │   ├── 📁 app/
+│   │   ├── 📁 feed/
+│   │   │   └── 📄 page.tsx (1.88 KB)
 │   │   ├── 📁 login/
 │   │   │   └── 📄 page.tsx (1.58 KB)
+│   │   ├── 📁 post/
+│   │   │   └── 📁 new/
+│   │   │       └── 📄 page.tsx (2.19 KB)
+│   │   ├── 📁 profile/
+│   │   │   └── 📁 edit/
+│   │   │       └── 📄 page.tsx (3.04 KB)
+│   │   ├── 📁 projects/
+│   │   │   ├── 📁 [id]/
+│   │   │   │   └── 📄 page.tsx (2 KB)
+│   │   │   ├── 📁 log/
+│   │   │   │   └── 📄 page.tsx (3.77 KB)
+│   │   │   └── 📄 page.tsx (3.35 KB)
 │   │   ├── 📁 signup/
 │   │   │   └── 📄 page.tsx (1.58 KB)
+│   │   ├── 📁 u/
+│   │   │   └── 📁 [username]/
+│   │   │       └── 📄 page.tsx (4.13 KB)
 │   │   ├── 📄 favicon.ico (25.32 KB)
 │   │   ├── 📄 globals.css (488 B)
-│   │   ├── 📄 layout.tsx (690 B)
-│   │   └── 📄 page.tsx (965 B)
+│   │   ├── 📄 layout.tsx (1.16 KB)
+│   │   └── 📄 page.tsx (4.13 KB)
 │   ├── 📁 components/
-│   │   └── 📄 LogoutButton.tsx (454 B)
+│   │   ├── 📄 LogoutButton.tsx (454 B)
+│   │   ├── 📄 NavBar.tsx (1.04 KB)
+│   │   └── 📄 ProgressChart.tsx (658 B)
 │   ├── 📁 lib/
 │   │   ├── 📁 supabase/
 │   │   │   ├── 📄 client.ts (211 B)
@@ -50,8 +69,8 @@
 ├── 📄 eslint.config.mjs (465 B)
 ├── 📄 next-env.d.ts (296 B)
 ├── 📄 next.config.ts (133 B)
-├── 📄 package-lock.json (235.67 KB)
-├── 📄 package.json (605 B)
+├── 📄 package-lock.json (250.51 KB)
+├── 📄 package.json (632 B)
 ├── 📄 postcss.config.mjs (94 B)
 ├── 📄 README.md (1.42 KB)
 └── 📄 tsconfig.json (670 B)
@@ -61,12 +80,21 @@
 
 **Project Files:**
 
+- [📄 src/app/feed/page.tsx](#📄-src-app-feed-page-tsx)
 - [📄 src/app/login/page.tsx](#📄-src-app-login-page-tsx)
+- [📄 src/app/post/new/page.tsx](#📄-src-app-post-new-page-tsx)
+- [📄 src/app/profile/edit/page.tsx](#📄-src-app-profile-edit-page-tsx)
+- [📄 src/app/projects/[id]/page.tsx](#📄-src-app-projects-id-page-tsx)
+- [📄 src/app/projects/log/page.tsx](#📄-src-app-projects-log-page-tsx)
+- [📄 src/app/projects/page.tsx](#📄-src-app-projects-page-tsx)
 - [📄 src/app/signup/page.tsx](#📄-src-app-signup-page-tsx)
+- [📄 src/app/u/[username]/page.tsx](#📄-src-app-u-username-page-tsx)
 - [📄 src/app/globals.css](#📄-src-app-globals-css)
 - [📄 src/app/layout.tsx](#📄-src-app-layout-tsx)
 - [📄 src/app/page.tsx](#📄-src-app-page-tsx)
 - [📄 src/components/LogoutButton.tsx](#📄-src-components-logoutbutton-tsx)
+- [📄 src/components/NavBar.tsx](#📄-src-components-navbar-tsx)
+- [📄 src/components/ProgressChart.tsx](#📄-src-components-progresschart-tsx)
 - [📄 src/lib/supabase/client.ts](#📄-src-lib-supabase-client-ts)
 - [📄 src/lib/supabase/middleware.ts](#📄-src-lib-supabase-middleware-ts)
 - [📄 src/lib/supabase/server.ts](#📄-src-lib-supabase-server-ts)
@@ -87,19 +115,19 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 27 |
-| Total Directories | 8 |
-| Text Files | 19 |
+| Total Files | 36 |
+| Total Directories | 18 |
+| Text Files | 28 |
 | Binary Files | 8 |
-| Total Size | 276.58 KB |
+| Total Size | 317.15 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
+| `.tsx` | 14 |
 | `.ts` | 7 |
 | `.svg` | 5 |
-| `.tsx` | 5 |
 | `.md` | 3 |
 | `.json` | 3 |
 | `.mjs` | 2 |
@@ -117,6 +145,83 @@ The following files were not included in the text content:
 - `public/next.svg`
 - `public/vercel.svg`
 - `public/window.svg`
+
+### <a id="📄-src-app-feed-page-tsx"></a>📄 `src/app/feed/page.tsx`
+
+**File Info:**
+- **Size**: 1.88 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/feed/page.tsx`
+- **Relative Path**: `src/app/feed`
+- **Created**: 2026-09-06 09:35:03 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-06 09:35:26 (Australia/Sydney / GMT+10:00)
+- **MD5**: `9e1c3ac63de7663ec7bc0e851e0a9aca`
+- **SHA256**: `0d77e4ee206d1dff199f70a8b3641b230ef6725fbb02695cdf60b00492e516e4`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
+
+export default async function FeedPage() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login')
+
+  const { data: posts } = await supabase
+    .from('posts')
+    .select('*, profiles(username, display_name), projects(title)')
+    .order('updated_at', { ascending: false })
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
+      <h1>Feed</h1>
+      {(!posts || posts.length === 0) && <p>No posts yet.</p>}
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {posts?.map((post) => (
+          <li
+            key={post.id}
+            style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
+          >
+            <div style={{ fontWeight: 'bold' }}>
+              {post.profiles?.display_name || post.profiles?.username}
+            </div>
+
+            {post.type === 'wordcount' && (
+              <p>
+                📊 Wrote <strong>{post.word_count?.toLocaleString()}</strong> words today
+                {post.projects?.title && <> on <em>{post.projects.title}</em></>}
+              </p>
+            )}
+
+            {post.type === 'snippet' && post.content && (
+              <p style={{ whiteSpace: 'pre-wrap' }}>{post.content}</p>
+            )}
+
+            {post.type === 'link' && (
+              <p>
+                {post.content && <span>{post.content} — </span>}
+                <a href={post.link_url} target="_blank" rel="noopener noreferrer">
+                  {post.link_url}
+                </a>
+              </p>
+            )}
+
+            <div style={{ color: '#999', fontSize: '0.8rem' }}>
+              {new Date(post.updated_at).toLocaleString()}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </main>
+  )
+}
+```
+
+---
 
 ### <a id="📄-src-app-login-page-tsx"></a>📄 `src/app/login/page.tsx`
 
@@ -179,6 +284,604 @@ export default function LoginPage() {
     </main>
   )
 }
+```
+
+---
+
+### <a id="📄-src-app-post-new-page-tsx"></a>📄 `src/app/post/new/page.tsx`
+
+**File Info:**
+- **Size**: 2.19 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/post/new/page.tsx`
+- **Relative Path**: `src/app/post/new`
+- **Created**: 2026-09-06 03:15:12 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-06 03:15:12 (Australia/Sydney / GMT+10:00)
+- **MD5**: `b0fd1a935bc513543519a40e67fb2519`
+- **SHA256**: `102ac26682d023e22cfe86e36d270bfd45a3b1020e315f866c3f788bd9f2c067`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+
+export default function NewPostPage() {
+  const [content, setContent] = useState('')
+  const [linkUrl, setLinkUrl] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setSaving(true)
+    setError(null)
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { error } = await supabase.from('posts').insert({
+      user_id: user.id,
+      type: linkUrl ? 'link' : 'snippet',
+      content: content || null,
+      link_url: linkUrl || null,
+    })
+
+    setSaving(false)
+
+    if (error) {
+      setError(error.message)
+    } else {
+      router.push('/')
+      router.refresh()
+    }
+  }
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
+      <h1>Share something</h1>
+      <p style={{ color: '#666', fontSize: '0.9rem' }}>
+        This will be visible to everyone for now — group/individual sharing is coming soon.
+      </p>
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: '0.75rem' }}>
+          <label>Text (a snippet, thought, update...)</label><br />
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            rows={4}
+            style={{ width: '100%', padding: '0.5rem' }}
+          />
+        </div>
+        <div style={{ marginBottom: '0.75rem' }}>
+          <label>Link (optional — e.g. your Substack post)</label><br />
+          <input
+            type="url"
+            value={linkUrl}
+            onChange={(e) => setLinkUrl(e.target.value)}
+            placeholder="https://..."
+            style={{ width: '100%', padding: '0.5rem' }}
+          />
+        </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit" disabled={saving} style={{ padding: '0.5rem 1rem' }}>
+          {saving ? 'Posting...' : 'Post'}
+        </button>
+      </form>
+    </main>
+  )
+}
+
+```
+
+---
+
+### <a id="📄-src-app-profile-edit-page-tsx"></a>📄 `src/app/profile/edit/page.tsx`
+
+**File Info:**
+- **Size**: 3.04 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/profile/edit/page.tsx`
+- **Relative Path**: `src/app/profile/edit`
+- **Created**: 2026-09-05 23:58:11 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-05 23:58:11 (Australia/Sydney / GMT+10:00)
+- **MD5**: `560e643fa0f6f784dd4cdbdfb39d2b06`
+- **SHA256**: `e3da9932c83693ad1357474d03b6813db6a989b5e928e3d803fc3787595cfb33`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+
+export default function EditProfilePage() {
+  const [displayName, setDisplayName] = useState('')
+  const [bio, setBio] = useState('')
+  const [currentWork, setCurrentWork] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    async function loadProfile() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        router.push('/login')
+        return
+      }
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single()
+
+      if (profile) {
+        setDisplayName(profile.display_name || '')
+        setBio(profile.bio || '')
+        setCurrentWork(profile.current_work_description || '')
+      }
+      setLoading(false)
+    }
+    loadProfile()
+  }, [router])
+
+  async function handleSave(e: React.FormEvent) {
+    e.preventDefault()
+    setSaving(true)
+    setError(null)
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { error } = await supabase
+      .from('profiles')
+      .update({
+        display_name: displayName,
+        bio: bio,
+        current_work_description: currentWork,
+      })
+      .eq('id', user.id)
+
+    setSaving(false)
+
+    if (error) {
+      setError(error.message)
+    } else {
+      router.push('/')
+      router.refresh()
+    }
+  }
+
+  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
+      <h1>Edit your profile</h1>
+      <form onSubmit={handleSave}>
+        <div style={{ marginBottom: '1rem' }}>
+          <label>Display name</label><br />
+          <input
+            type="text"
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+            style={{ width: '100%', padding: '0.5rem' }}
+          />
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <label>Bio</label><br />
+          <textarea
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            rows={3}
+            style={{ width: '100%', padding: '0.5rem' }}
+          />
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <label>What I&apos;ve been working on</label><br />
+          <textarea
+            value={currentWork}
+            onChange={(e) => setCurrentWork(e.target.value)}
+            rows={4}
+            style={{ width: '100%', padding: '0.5rem' }}
+          />
+        </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit" disabled={saving} style={{ padding: '0.5rem 1rem' }}>
+          {saving ? 'Saving...' : 'Save profile'}
+        </button>
+      </form>
+    </main>
+  )
+}
+
+```
+
+---
+
+### <a id="📄-src-app-projects-id-page-tsx"></a>📄 `src/app/projects/[id]/page.tsx`
+
+**File Info:**
+- **Size**: 2 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/projects/[id]/page.tsx`
+- **Relative Path**: `src/app/projects/[id]`
+- **Created**: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
+- **MD5**: `d558ad73fe743bc52103864d3c169963`
+- **SHA256**: `1da9fb26cb523ae4247c7a56e22dfdc4e97bb40d19b99b4eb4a531177b13336e`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { createClient } from '@/lib/supabase/server'
+import { redirect, notFound } from 'next/navigation'
+import ProgressChart from '@/components/ProgressChart'
+
+export default async function ProjectDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const supabase = await createClient()
+
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login')
+
+  const { data: project } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('id', id)
+    .single()
+
+  if (!project) notFound()
+
+  const { data: snapshots } = await supabase
+    .from('wordcount_snapshots')
+    .select('word_count, recorded_at')
+    .eq('project_id', id)
+    .order('recorded_at', { ascending: true })
+
+  // Group by day, keeping the highest count recorded that day
+  const dailyMap = new Map<string, number>()
+  for (const snap of snapshots || []) {
+    const day = new Date(snap.recorded_at).toISOString().split('T')[0]
+    const existing = dailyMap.get(day) || 0
+    if (snap.word_count > existing) dailyMap.set(day, snap.word_count)
+  }
+
+  const chartData = Array.from(dailyMap.entries()).map(([date, wordCount]) => ({
+    date,
+    wordCount,
+  }))
+
+  const currentWordCount = chartData.length > 0 ? chartData[chartData.length - 1].wordCount : 0
+  const percentComplete = project.goal_word_count
+    ? Math.min(100, Math.round((currentWordCount / project.goal_word_count) * 100))
+    : null
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 700 }}>
+      <h1>{project.title}</h1>
+      <p>Current word count: {currentWordCount.toLocaleString()}</p>
+      {percentComplete !== null && (
+        <p>{percentComplete}% of {project.goal_word_count?.toLocaleString()} word goal</p>
+      )}
+
+      {chartData.length > 1 ? (
+        <ProgressChart data={chartData} />
+      ) : (
+        <p style={{ color: '#666' }}>
+          Log a few more wordcounts (ideally on different days) to see your progress graph.
+        </p>
+      )}
+    </main>
+  )
+}
+
+```
+
+---
+
+### <a id="📄-src-app-projects-log-page-tsx"></a>📄 `src/app/projects/log/page.tsx`
+
+**File Info:**
+- **Size**: 3.77 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/projects/log/page.tsx`
+- **Relative Path**: `src/app/projects/log`
+- **Created**: 2026-09-06 00:08:45 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-06 03:15:01 (Australia/Sydney / GMT+10:00)
+- **MD5**: `f8e87d30953940f95268b5b58e14583a`
+- **SHA256**: `584bffb463bc11b4f6300a21c055ce30f9d489e7e4b4b691e39ffa58f55bdcf6`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+
+type Project = {
+  id: string
+  title: string
+}
+
+export default function LogWordcountPage() {
+  const [projects, setProjects] = useState<Project[]>([])
+  const [projectId, setProjectId] = useState('')
+  const [wordCount, setWordCount] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [message, setMessage] = useState<string | null>(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    async function loadProjects() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        router.push('/login')
+        return
+      }
+      const { data } = await supabase.from('projects').select('id, title')
+      setProjects(data || [])
+      if (data && data.length > 0) setProjectId(data[0].id)
+      setLoading(false)
+    }
+    loadProjects()
+  }, [router])
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setSaving(true)
+    setMessage(null)
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const wordCountNum = parseInt(wordCount)
+    const today = new Date().toISOString().split('T')[0]
+
+    // Save the private snapshot (powers your own graph)
+    const { error: snapshotError } = await supabase.from('wordcount_snapshots').insert({
+      project_id: projectId,
+      user_id: user.id,
+      word_count: wordCountNum,
+      source: 'manual',
+    })
+
+    if (snapshotError) {
+      setSaving(false)
+      setMessage(`Error: ${snapshotError.message}`)
+      return
+    }
+
+    // Create or update today's public wordcount post for this project
+    const { error: postError } = await supabase.from('posts').upsert(
+      {
+        user_id: user.id,
+        project_id: projectId,
+        type: 'wordcount',
+        word_count: wordCountNum,
+        entry_date: today,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'user_id,project_id,entry_date,type' }
+    )
+
+    setSaving(false)
+
+    if (postError) {
+      setMessage(`Snapshot saved, but post update failed: ${postError.message}`)
+    } else {
+      setMessage('Wordcount logged and today\'s post updated!')
+      setWordCount('')
+    }
+  }
+
+  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+
+  if (projects.length === 0) {
+    return (
+      <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+        <p>You need to create a project first before logging a wordcount.</p>
+      </main>
+    )
+  }
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
+      <h1>Log your wordcount</h1>
+      <form onSubmit={handleSubmit}>
+        <div style={{ marginBottom: '0.75rem' }}>
+          <label>Project</label><br />
+          <select
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
+            style={{ width: '100%', padding: '0.5rem' }}
+          >
+            {projects.map((p) => (
+              <option key={p.id} value={p.id}>{p.title}</option>
+            ))}
+          </select>
+        </div>
+        <div style={{ marginBottom: '0.75rem' }}>
+          <label>Current total word count</label><br />
+          <input
+            type="number"
+            value={wordCount}
+            onChange={(e) => setWordCount(e.target.value)}
+            required
+            style={{ width: '100%', padding: '0.5rem' }}
+          />
+        </div>
+        {message && <p>{message}</p>}
+        <button type="submit" disabled={saving} style={{ padding: '0.5rem 1rem' }}>
+          {saving ? 'Saving...' : 'Log wordcount'}
+        </button>
+      </form>
+    </main>
+  )
+}
+
+```
+
+---
+
+### <a id="📄-src-app-projects-page-tsx"></a>📄 `src/app/projects/page.tsx`
+
+**File Info:**
+- **Size**: 3.35 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/projects/page.tsx`
+- **Relative Path**: `src/app/projects`
+- **Created**: 2026-09-06 00:06:08 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-06 03:07:01 (Australia/Sydney / GMT+10:00)
+- **MD5**: `c9589f25ee59ecfb5d40df93c19ef8f2`
+- **SHA256**: `43e9b627fc4b11d8d317effabc491a831f0beb97281b248b02c6ebbf17f049ac`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+
+type Project = {
+  id: string
+  title: string
+  goal_word_count: number | null
+  status: string
+}
+
+export default function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[]>([])
+  const [title, setTitle] = useState('')
+  const [goalWordCount, setGoalWordCount] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  async function loadProjects() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      router.push('/login')
+      return
+    }
+    const { data } = await supabase
+      .from('projects')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    setProjects(data || [])
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadProjects()
+  }, [])
+
+  async function handleCreate(e: React.FormEvent) {
+    e.preventDefault()
+    setError(null)
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { error } = await supabase.from('projects').insert({
+      user_id: user.id,
+      title,
+      goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
+    })
+
+    if (error) {
+      setError(error.message)
+    } else {
+      setTitle('')
+      setGoalWordCount('')
+      loadProjects()
+    }
+  }
+
+  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
+      <h1>Your projects</h1>
+
+      <form onSubmit={handleCreate} style={{ marginBottom: '2rem' }}>
+        <div style={{ marginBottom: '0.75rem' }}>
+          <label>Project title</label><br />
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            style={{ width: '100%', padding: '0.5rem' }}
+          />
+        </div>
+        <div style={{ marginBottom: '0.75rem' }}>
+          <label>Goal word count (optional)</label><br />
+          <input
+            type="number"
+            value={goalWordCount}
+            onChange={(e) => setGoalWordCount(e.target.value)}
+            style={{ width: '100%', padding: '0.5rem' }}
+          />
+        </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit" style={{ padding: '0.5rem 1rem' }}>Create project</button>
+      </form>
+
+      <h2>Existing projects</h2>
+      {projects.length === 0 && <p>No projects yet — create one above.</p>}
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {projects.map((project) => (
+          <li
+            key={project.id}
+            style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
+          >
+            <Link href={`/projects/${project.id}`} style={{ fontWeight: 'bold' }}>
+              {project.title}
+            </Link>
+            {project.goal_word_count && <span> — goal: {project.goal_word_count.toLocaleString()} words</span>}
+            <div style={{ color: '#666', fontSize: '0.9rem' }}>Status: {project.status}</div>
+          </li>
+        ))}
+      </ul>
+    </main>
+  )
+}
+
 ```
 
 ---
@@ -248,6 +951,150 @@ export default function SignUpPage() {
 
 ---
 
+### <a id="📄-src-app-u-username-page-tsx"></a>📄 `src/app/u/[username]/page.tsx`
+
+**File Info:**
+- **Size**: 4.13 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/u/[username]/page.tsx`
+- **Relative Path**: `src/app/u/[username]`
+- **Created**: 2026-09-06 00:00:54 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-06 10:08:47 (Australia/Sydney / GMT+10:00)
+- **MD5**: `b7506877cacb11aa8585222ccffd4d4a`
+- **SHA256**: `47fa706866c20d9bc316c17a79ee600fe7eca00b9d900633303d747eab5bcbbc`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { createClient } from '@/lib/supabase/server'
+import { notFound } from 'next/navigation'
+
+export default async function PublicProfilePage({
+  params,
+}: {
+  params: Promise<{ username: string }>
+}) {
+  const { username } = await params
+  const supabase = await createClient()
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('username', username)
+    .single()
+
+  if (!profile) {
+    notFound()
+  }
+
+  const { data: projects } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('user_id', profile.id)
+    .order('created_at', { ascending: false })
+
+  const { data: posts } = await supabase
+    .from('posts')
+    .select('*, projects(title)')
+    .eq('user_id', profile.id)
+    .order('updated_at', { ascending: false })
+    .limit(10)
+
+  function latestWordCountFor(projectId: string) {
+    const wordcountPosts = (posts || []).filter(
+      (p) => p.type === 'wordcount' && p.project_id === projectId
+    )
+    return wordcountPosts.length > 0 ? wordcountPosts[0].word_count : null
+  }
+
+  return (
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
+      <h1>{profile.display_name || profile.username}</h1>
+      <p style={{ color: '#666' }}>@{profile.username}</p>
+
+      {profile.bio && <p style={{ marginTop: '1.5rem' }}>{profile.bio}</p>}
+
+      {profile.current_work_description && (
+        <div style={{ marginTop: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.1rem' }}>Currently working on</h2>
+          <p>{profile.current_work_description}</p>
+        </div>
+      )}
+
+      {projects && projects.length > 0 && (
+        <div style={{ marginTop: '2rem' }}>
+          <h2 style={{ fontSize: '1.1rem' }}>Projects</h2>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {projects.map((project) => {
+              const current = latestWordCountFor(project.id)
+              const percent =
+                current && project.goal_word_count
+                  ? Math.min(100, Math.round((current / project.goal_word_count) * 100))
+                  : null
+              return (
+                <li
+                  key={project.id}
+                  style={{ padding: '0.75rem 0', borderBottom: '1px solid #eee' }}
+                >
+                  <strong>{project.title}</strong>
+                  {current !== null && (
+                    <div style={{ color: '#666', fontSize: '0.9rem' }}>
+                      {current.toLocaleString()} words
+                      {project.goal_word_count && (
+                        <> — {percent}% of {project.goal_word_count.toLocaleString()} goal</>
+                      )}
+                    </div>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )}
+
+      {posts && posts.length > 0 && (
+        <div style={{ marginTop: '2rem' }}>
+          <h2 style={{ fontSize: '1.1rem' }}>Recent activity</h2>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {posts.map((post) => (
+              <li
+                key={post.id}
+                style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
+              >
+                {post.type === 'wordcount' && (
+                  <p>
+                    📊 Wrote <strong>{post.word_count?.toLocaleString()}</strong> words
+                    {post.projects?.title && <> on <em>{post.projects.title}</em></>}
+                  </p>
+                )}
+                {post.type === 'snippet' && post.content && (
+                  <p style={{ whiteSpace: 'pre-wrap' }}>{post.content}</p>
+                )}
+                {post.type === 'link' && (
+                  <p>
+                    {post.content && <span>{post.content} — </span>}
+                    <a href={post.link_url} target="_blank" rel="noopener noreferrer">
+                      {post.link_url}
+                    </a>
+                  </p>
+                )}
+                <div style={{ color: '#999', fontSize: '0.8rem' }}>
+                  {new Date(post.updated_at).toLocaleString()}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </main>
+  )
+}
+```
+
+---
+
 ### <a id="📄-src-app-globals-css"></a>📄 `src/app/globals.css`
 
 **File Info:**
@@ -299,15 +1146,15 @@ body {
 ### <a id="📄-src-app-layout-tsx"></a>📄 `src/app/layout.tsx`
 
 **File Info:**
-- **Size**: 690 B
+- **Size**: 1.16 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/layout.tsx`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
-- **MD5**: `70f839ece80281c576701dc08f055685`
-- **SHA256**: `ac0a51f726d23d255be241c5f37e47119736c2c3cdf5feac57f85de677686ee5`
+- **Modified**: 2026-09-06 00:03:55 (Australia/Sydney / GMT+10:00)
+- **MD5**: `da072ee93147949163cdc147fddeb6b5`
+- **SHA256**: `738ef887ba2b74b44e371571353123d344d6611bc926e5752a5f2653dbe2b22e`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -316,6 +1163,8 @@ body {
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { createClient } from '@/lib/supabase/server'
+import NavBar from '@/components/NavBar'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -328,17 +1177,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Create Next App",
-  description: "Generated by create next app",
+  title: "Writemates",
+  description: "Track your writing progress with fellow writers",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  let username: string | null = null
+  if (user) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('username')
+      .eq('id', user.id)
+      .single()
+    username = profile?.username ?? null
+  }
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <NavBar username={username} />
+        {children}
+      </body>
     </html>
   );
 }
@@ -350,49 +1215,140 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 ### <a id="📄-src-app-page-tsx"></a>📄 `src/app/page.tsx`
 
 **File Info:**
-- **Size**: 965 B
+- **Size**: 4.13 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/page.tsx`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-03 07:20:03 (Australia/Sydney / GMT+10:00)
-- **MD5**: `61946a32a7f348308f8ca7070e8f733a`
-- **SHA256**: `2889dd7f9367bea858b7638c86d26862b178d8475b380b0d6096b202faaded08`
-- **Encoding**: UTF-8
+- **Modified**: 2026-09-06 10:03:39 (Australia/Sydney / GMT+10:00)
+- **MD5**: `b7506877cacb11aa8585222ccffd4d4a`
+- **SHA256**: `47fa706866c20d9bc316c17a79ee600fe7eca00b9d900633303d747eab5bcbbc`
+- **Encoding**: ASCII
 
 **File code content:**
 
 ```typescript
-'use client'
+import { createClient } from '@/lib/supabase/server'
+import { notFound } from 'next/navigation'
 
-import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase'
+export default async function PublicProfilePage({
+  params,
+}: {
+  params: Promise<{ username: string }>
+}) {
+  const { username } = await params
+  const supabase = await createClient()
 
-export default function Home() {
-  const [status, setStatus] = useState('Checking connection...')
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('username', username)
+    .single()
 
-  useEffect(() => {
-    async function checkConnection() {
-      const { error } = await supabase.from('_test_').select('*').limit(1)
+  if (!profile) {
+    notFound()
+  }
 
-      // We expect an error here since no tables exist yet —
-      // but the TYPE of error tells us if the connection itself worked.
-      if (error && error.code === 'PGRST205') {
-        setStatus('✅ Connected to Supabase! (No tables yet — that\'s expected)')
-      } else if (error) {
-        setStatus(`⚠️ Connected, but got: ${error.message}`)
-      } else {
-        setStatus('✅ Connected to Supabase!')
-      }
-    }
-    checkConnection()
-  }, [])
+  const { data: projects } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('user_id', profile.id)
+    .order('created_at', { ascending: false })
+
+  const { data: posts } = await supabase
+    .from('posts')
+    .select('*, projects(title)')
+    .eq('user_id', profile.id)
+    .order('updated_at', { ascending: false })
+    .limit(10)
+
+  function latestWordCountFor(projectId: string) {
+    const wordcountPosts = (posts || []).filter(
+      (p) => p.type === 'wordcount' && p.project_id === projectId
+    )
+    return wordcountPosts.length > 0 ? wordcountPosts[0].word_count : null
+  }
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1>Writemates — Connection Test</h1>
-      <p>{status}</p>
+    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
+      <h1>{profile.display_name || profile.username}</h1>
+      <p style={{ color: '#666' }}>@{profile.username}</p>
+
+      {profile.bio && <p style={{ marginTop: '1.5rem' }}>{profile.bio}</p>}
+
+      {profile.current_work_description && (
+        <div style={{ marginTop: '1.5rem' }}>
+          <h2 style={{ fontSize: '1.1rem' }}>Currently working on</h2>
+          <p>{profile.current_work_description}</p>
+        </div>
+      )}
+
+      {projects && projects.length > 0 && (
+        <div style={{ marginTop: '2rem' }}>
+          <h2 style={{ fontSize: '1.1rem' }}>Projects</h2>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {projects.map((project) => {
+              const current = latestWordCountFor(project.id)
+              const percent =
+                current && project.goal_word_count
+                  ? Math.min(100, Math.round((current / project.goal_word_count) * 100))
+                  : null
+              return (
+                <li
+                  key={project.id}
+                  style={{ padding: '0.75rem 0', borderBottom: '1px solid #eee' }}
+                >
+                  <strong>{project.title}</strong>
+                  {current !== null && (
+                    <div style={{ color: '#666', fontSize: '0.9rem' }}>
+                      {current.toLocaleString()} words
+                      {project.goal_word_count && (
+                        <> — {percent}% of {project.goal_word_count.toLocaleString()} goal</>
+                      )}
+                    </div>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )}
+
+      {posts && posts.length > 0 && (
+        <div style={{ marginTop: '2rem' }}>
+          <h2 style={{ fontSize: '1.1rem' }}>Recent activity</h2>
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {posts.map((post) => (
+              <li
+                key={post.id}
+                style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
+              >
+                {post.type === 'wordcount' && (
+                  <p>
+                    📊 Wrote <strong>{post.word_count?.toLocaleString()}</strong> words
+                    {post.projects?.title && <> on <em>{post.projects.title}</em></>}
+                  </p>
+                )}
+                {post.type === 'snippet' && post.content && (
+                  <p style={{ whiteSpace: 'pre-wrap' }}>{post.content}</p>
+                )}
+                {post.type === 'link' && (
+                  <p>
+                    {post.content && <span>{post.content} — </span>}
+                    <a href={post.link_url} target="_blank" rel="noopener noreferrer">
+                      {post.link_url}
+                    </a>
+                  </p>
+                )}
+                <div style={{ color: '#999', fontSize: '0.8rem' }}>
+                  {new Date(post.updated_at).toLocaleString()}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </main>
   )
 }
@@ -444,6 +1400,111 @@ export default function LogoutButton() {
     </button>
   )
 }
+```
+
+---
+
+### <a id="📄-src-components-navbar-tsx"></a>📄 `src/components/NavBar.tsx`
+
+**File Info:**
+- **Size**: 1.04 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/NavBar.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-06 00:03:47 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-06 03:15:27 (Australia/Sydney / GMT+10:00)
+- **MD5**: `4464a0fcd269715a72ab60ec4f9bcb02`
+- **SHA256**: `1d3712186ceed483f62ae9a6d666c5c6370a0e02871935399a836b890ebeedc5`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import Link from 'next/link'
+import LogoutButton from '@/components/LogoutButton'
+
+export default function NavBar({ username }: { username: string | null }) {
+  return (
+    <nav
+      style={{
+        padding: '1rem 2rem',
+        borderBottom: '1px solid #ddd',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1.5rem',
+        fontFamily: 'sans-serif',
+      }}
+    >
+      <Link href="/" style={{ fontWeight: 'bold' }}>Writemates</Link>
+      {username ? (
+        <>
+          <Link href="/feed">Feed</Link>
+          <Link href="/projects">Projects</Link>
+          <Link href="/projects/log">Log Wordcount</Link>
+          <Link href="/post/new">Share</Link>
+          <Link href="/profile/edit">Edit Profile</Link>
+          <Link href={`/u/${username}`}>Public Profile</Link>
+          <div style={{ marginLeft: 'auto' }}>
+            <LogoutButton />
+          </div>
+        </>
+      ) : (
+        <>
+          <Link href="/login">Log in</Link>
+          <Link href="/signup">Sign up</Link>
+        </>
+      )}
+    </nav>
+  )
+}
+
+```
+
+---
+
+### <a id="📄-src-components-progresschart-tsx"></a>📄 `src/components/ProgressChart.tsx`
+
+**File Info:**
+- **Size**: 658 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/ProgressChart.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-06 03:06:38 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-06 03:06:38 (Australia/Sydney / GMT+10:00)
+- **MD5**: `5a24b972b240e3fb96b6fb306fad583e`
+- **SHA256**: `004658b6558786d411b3d5d8a8ad5f0ed031b3c83d98aae9bd34160bdfced768`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+
+type DataPoint = {
+  date: string
+  wordCount: number
+}
+
+export default function ProgressChart({ data }: { data: DataPoint[] }) {
+  return (
+    <div style={{ width: '100%', height: 300 }}>
+      <ResponsiveContainer>
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Line type="monotone" dataKey="wordCount" stroke="#333" strokeWidth={2} dot={false} />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  )
+}
+
 ```
 
 ---
@@ -751,15 +1812,15 @@ export default nextConfig;
 ### <a id="📄-package-lock-json"></a>📄 `package-lock.json`
 
 **File Info:**
-- **Size**: 235.67 KB
+- **Size**: 250.51 KB
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package-lock.json`
 - **Relative Path**: `root`
 - **Created**: 2026-09-03 07:02:03 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-05 05:18:33 (Australia/Sydney / GMT+10:00)
-- **MD5**: `e5ac6d9f93c04ee7c3eb010a2a92a391`
-- **SHA256**: `c9cd33bd5e27a9df4becab8d5b0c43dc8cdba3b3a933a9926580500126ee7129`
+- **Modified**: 2026-09-06 03:06:25 (Australia/Sydney / GMT+10:00)
+- **MD5**: `f3ecdecef8841b2879c4e629d1f05f97`
+- **SHA256**: `e5bb05d527da0cd28442b0f3aa03fa3a47f92f3dec5d3820a3c50a1d884b61cd`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -779,7 +1840,8 @@ export default nextConfig;
         "@supabase/supabase-js": "^2.114.0",
         "next": "16.3.4",
         "react": "19.2.8",
-        "react-dom": "19.2.8"
+        "react-dom": "19.2.8",
+        "recharts": "^3.10.1"
       },
       "devDependencies": {
         "@tailwindcss/postcss": "^4",
@@ -2146,11 +3208,49 @@ export default nextConfig;
         "node": ">=12.4.0"
       }
     },
+    "node_modules/@reduxjs/toolkit": {
+      "version": "2.12.0",
+      "resolved": "https://registry.npmjs.org/@reduxjs/toolkit/-/toolkit-2.12.0.tgz",
+      "integrity": "sha512-KiT+RzZbp6mQET+Mg+h2c97+9j1sNflUxQkIHI7Yuzf6Peu+OYpmkn6nbHWmLLWj+1ZODUJFwGZ7gx3L9R9EOw==",
+      "license": "MIT",
+      "dependencies": {
+        "@standard-schema/spec": "^1.0.0",
+        "@standard-schema/utils": "^0.3.0",
+        "immer": "^11.0.0",
+        "redux": "^5.0.1",
+        "redux-thunk": "^3.1.0",
+        "reselect": "^5.1.0"
+      },
+      "peerDependencies": {
+        "react": "^16.9.0 || ^17.0.0 || ^18 || ^19",
+        "react-redux": "^7.2.1 || ^8.1.3 || ^9.0.0"
+      },
+      "peerDependenciesMeta": {
+        "react": {
+          "optional": true
+        },
+        "react-redux": {
+          "optional": true
+        }
+      }
+    },
     "node_modules/@rtsao/scc": {
       "version": "1.1.0",
       "resolved": "https://registry.npmjs.org/@rtsao/scc/-/scc-1.1.0.tgz",
       "integrity": "sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==",
       "dev": true,
+      "license": "MIT"
+    },
+    "node_modules/@standard-schema/spec": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@standard-schema/spec/-/spec-1.1.0.tgz",
+      "integrity": "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==",
+      "license": "MIT"
+    },
+    "node_modules/@standard-schema/utils": {
+      "version": "0.3.0",
+      "resolved": "https://registry.npmjs.org/@standard-schema/utils/-/utils-0.3.0.tgz",
+      "integrity": "sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==",
       "license": "MIT"
     },
     "node_modules/@supabase/auth-js": {
@@ -2560,6 +3660,69 @@ export default nextConfig;
         "tslib": "^2.4.0"
       }
     },
+    "node_modules/@types/d3-array": {
+      "version": "3.2.2",
+      "resolved": "https://registry.npmjs.org/@types/d3-array/-/d3-array-3.2.2.tgz",
+      "integrity": "sha512-hOLWVbm7uRza0BYXpIIW5pxfrKe0W+D5lrFiAEYR+pb6w3N2SwSMaJbXdUfSEv+dT4MfHBLtn5js0LAWaO6otw==",
+      "license": "MIT"
+    },
+    "node_modules/@types/d3-color": {
+      "version": "3.1.3",
+      "resolved": "https://registry.npmjs.org/@types/d3-color/-/d3-color-3.1.3.tgz",
+      "integrity": "sha512-iO90scth9WAbmgv7ogoq57O9YpKmFBbmoEoCHDB2xMBY0+/KVrqAaCDyCE16dUspeOvIxFFRI+0sEtqDqy2b4A==",
+      "license": "MIT"
+    },
+    "node_modules/@types/d3-ease": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/@types/d3-ease/-/d3-ease-3.0.2.tgz",
+      "integrity": "sha512-NcV1JjO5oDzoK26oMzbILE6HW7uVXOHLQvHshBUW4UMdZGfiY6v5BeQwh9a9tCzv+CeefZQHJt5SRgK154RtiA==",
+      "license": "MIT"
+    },
+    "node_modules/@types/d3-interpolate": {
+      "version": "3.0.4",
+      "resolved": "https://registry.npmjs.org/@types/d3-interpolate/-/d3-interpolate-3.0.4.tgz",
+      "integrity": "sha512-mgLPETlrpVV1YRJIglr4Ez47g7Yxjl1lj7YKsiMCb27VJH9W8NVM6Bb9d8kkpG/uAQS5AmbA48q2IAolKKo1MA==",
+      "license": "MIT",
+      "dependencies": {
+        "@types/d3-color": "*"
+      }
+    },
+    "node_modules/@types/d3-path": {
+      "version": "3.1.1",
+      "resolved": "https://registry.npmjs.org/@types/d3-path/-/d3-path-3.1.1.tgz",
+      "integrity": "sha512-VMZBYyQvbGmWyWVea0EHs/BwLgxc+MKi1zLDCONksozI4YJMcTt8ZEuIR4Sb1MMTE8MMW49v0IwI5+b7RmfWlg==",
+      "license": "MIT"
+    },
+    "node_modules/@types/d3-scale": {
+      "version": "4.0.9",
+      "resolved": "https://registry.npmjs.org/@types/d3-scale/-/d3-scale-4.0.9.tgz",
+      "integrity": "sha512-dLmtwB8zkAeO/juAMfnV+sItKjlsw2lKdZVVy6LRr0cBmegxSABiLEpGVmSJJ8O08i4+sGR6qQtb6WtuwJdvVw==",
+      "license": "MIT",
+      "dependencies": {
+        "@types/d3-time": "*"
+      }
+    },
+    "node_modules/@types/d3-shape": {
+      "version": "3.2.0",
+      "resolved": "https://registry.npmjs.org/@types/d3-shape/-/d3-shape-3.2.0.tgz",
+      "integrity": "sha512-kVd74ta9eof3eJOvbNd1vGKS/XERRyQbT26Og63hIsvDO84cjD5gEOhsXf26w3FSoNlPVz84DOFcKv/oou+fMw==",
+      "license": "MIT",
+      "dependencies": {
+        "@types/d3-path": "*"
+      }
+    },
+    "node_modules/@types/d3-time": {
+      "version": "3.0.4",
+      "resolved": "https://registry.npmjs.org/@types/d3-time/-/d3-time-3.0.4.tgz",
+      "integrity": "sha512-yuzZug1nkAAaBlBBikKZTgzCeA+k1uy4ZFwWANOfKw5z5LRhV0gNA7gNkKm7HoK+HRN0wX3EkxGk0fpbWhmB7g==",
+      "license": "MIT"
+    },
+    "node_modules/@types/d3-timer": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/@types/d3-timer/-/d3-timer-3.0.2.tgz",
+      "integrity": "sha512-Ps3T8E8dZDam6fUyNiMkekK3XUsaUEik+idO9/YjPtfj2qruF8tFBXS7XhtE4iIXBLxhmLjP3SXpLhVf21I9Lw==",
+      "license": "MIT"
+    },
     "node_modules/@types/estree": {
       "version": "1.0.9",
       "resolved": "https://registry.npmjs.org/@types/estree/-/estree-1.0.9.tgz",
@@ -2595,7 +3758,7 @@ export default nextConfig;
       "version": "19.2.18",
       "resolved": "https://registry.npmjs.org/@types/react/-/react-19.2.18.tgz",
       "integrity": "sha512-AnzbBERsrLKtk2XSfTbYRLjQPdy116Sty4q+T+Bp3IC4l6jNBvreVPAHmpq9qhXQM7CXZPjLVmGMw9sy+hxQ3w==",
-      "dev": true,
+      "devOptional": true,
       "license": "MIT",
       "dependencies": {
         "csstype": "^3.2.2"
@@ -2610,6 +3773,12 @@ export default nextConfig;
       "peerDependencies": {
         "@types/react": "^19.2.0"
       }
+    },
+    "node_modules/@types/use-sync-external-store": {
+      "version": "0.0.6",
+      "resolved": "https://registry.npmjs.org/@types/use-sync-external-store/-/use-sync-external-store-0.0.6.tgz",
+      "integrity": "sha512-zFDAD+tlpf2r4asuHEj0XH6pY6i0g5NeAHPn+15wk3BV6JA69eERFXC1gyGThDkVa1zCyKr5jox1+2LbV/AMLg==",
+      "license": "MIT"
     },
     "node_modules/@typescript-eslint/eslint-plugin": {
       "version": "8.69.0",
@@ -3726,6 +4895,15 @@ export default nextConfig;
       "integrity": "sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==",
       "license": "MIT"
     },
+    "node_modules/clsx": {
+      "version": "2.1.1",
+      "resolved": "https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz",
+      "integrity": "sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=6"
+      }
+    },
     "node_modules/color-convert": {
       "version": "2.0.1",
       "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",
@@ -3792,8 +4970,129 @@ export default nextConfig;
       "version": "3.2.3",
       "resolved": "https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz",
       "integrity": "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==",
-      "dev": true,
+      "devOptional": true,
       "license": "MIT"
+    },
+    "node_modules/d3-array": {
+      "version": "3.2.4",
+      "resolved": "https://registry.npmjs.org/d3-array/-/d3-array-3.2.4.tgz",
+      "integrity": "sha512-tdQAmyA18i4J7wprpYq8ClcxZy3SC31QMeByyCFyRt7BVHdREQZ5lpzoe5mFEYZUWe+oq8HBvk9JjpibyEV4Jg==",
+      "license": "ISC",
+      "dependencies": {
+        "internmap": "1 - 2"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-color": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/d3-color/-/d3-color-3.1.0.tgz",
+      "integrity": "sha512-zg/chbXyeBtMQ1LbD/WSoW2DpC3I0mpmPdW+ynRTj/x2DAWYrIY7qeZIHidozwV24m4iavr15lNwIwLxRmOxhA==",
+      "license": "ISC",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-ease": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/d3-ease/-/d3-ease-3.0.1.tgz",
+      "integrity": "sha512-wR/XK3D3XcLIZwpbvQwQ5fK+8Ykds1ip7A2Txe0yxncXSdq1L9skcG7blcedkOX+ZcgxGAmLX1FrRGbADwzi0w==",
+      "license": "BSD-3-Clause",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-format": {
+      "version": "3.1.2",
+      "resolved": "https://registry.npmjs.org/d3-format/-/d3-format-3.1.2.tgz",
+      "integrity": "sha512-AJDdYOdnyRDV5b6ArilzCPPwc1ejkHcoyFarqlPqT7zRYjhavcT3uSrqcMvsgh2CgoPbK3RCwyHaVyxYcP2Arg==",
+      "license": "ISC",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-interpolate": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/d3-interpolate/-/d3-interpolate-3.0.1.tgz",
+      "integrity": "sha512-3bYs1rOD33uo8aqJfKP3JWPAibgw8Zm2+L9vBKEHJ2Rg+viTR7o5Mmv5mZcieN+FRYaAOWX5SJATX6k1PWz72g==",
+      "license": "ISC",
+      "dependencies": {
+        "d3-color": "1 - 3"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-path": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/d3-path/-/d3-path-3.1.0.tgz",
+      "integrity": "sha512-p3KP5HCf/bvjBSSKuXid6Zqijx7wIfNW+J/maPs+iwR35at5JCbLUT0LzF1cnjbCHWhqzQTIN2Jpe8pRebIEFQ==",
+      "license": "ISC",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-scale": {
+      "version": "4.0.2",
+      "resolved": "https://registry.npmjs.org/d3-scale/-/d3-scale-4.0.2.tgz",
+      "integrity": "sha512-GZW464g1SH7ag3Y7hXjf8RoUuAFIqklOAq3MRl4OaWabTFJY9PN/E1YklhXLh+OQ3fM9yS2nOkCoS+WLZ6kvxQ==",
+      "license": "ISC",
+      "dependencies": {
+        "d3-array": "2.10.0 - 3",
+        "d3-format": "1 - 3",
+        "d3-interpolate": "1.2.0 - 3",
+        "d3-time": "2.1.1 - 3",
+        "d3-time-format": "2 - 4"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-shape": {
+      "version": "3.2.0",
+      "resolved": "https://registry.npmjs.org/d3-shape/-/d3-shape-3.2.0.tgz",
+      "integrity": "sha512-SaLBuwGm3MOViRq2ABk3eLoxwZELpH6zhl3FbAoJ7Vm1gofKx6El1Ib5z23NUEhF9AsGl7y+dzLe5Cw2AArGTA==",
+      "license": "ISC",
+      "dependencies": {
+        "d3-path": "^3.1.0"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-time": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/d3-time/-/d3-time-3.1.0.tgz",
+      "integrity": "sha512-VqKjzBLejbSMT4IgbmVgDjpkYrNWUYJnbCGo874u7MMKIWsILRX+OpX/gTk8MqjpT1A/c6HY2dCA77ZN0lkQ2Q==",
+      "license": "ISC",
+      "dependencies": {
+        "d3-array": "2 - 3"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-time-format": {
+      "version": "4.1.0",
+      "resolved": "https://registry.npmjs.org/d3-time-format/-/d3-time-format-4.1.0.tgz",
+      "integrity": "sha512-dJxPBlzC7NugB2PDLwo9Q8JiTR3M3e4/XANkreKSUxF8vvXKqm1Yfq4Q5dl8budlunRVlUUaDUgFt7eA8D6NLg==",
+      "license": "ISC",
+      "dependencies": {
+        "d3-time": "1 - 3"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-timer": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/d3-timer/-/d3-timer-3.0.1.tgz",
+      "integrity": "sha512-ndfJ/JxxMd3nw31uyKoY2naivF+r29V+Lc0svZxe1JvvIRmi8hUsrMvdOwgS1o6uBHmiz91geQ0ylPP0aj1VUA==",
+      "license": "ISC",
+      "engines": {
+        "node": ">=12"
+      }
     },
     "node_modules/damerau-levenshtein": {
       "version": "1.0.8",
@@ -3873,6 +5172,12 @@ export default nextConfig;
           "optional": true
         }
       }
+    },
+    "node_modules/decimal.js-light": {
+      "version": "2.5.1",
+      "resolved": "https://registry.npmjs.org/decimal.js-light/-/decimal.js-light-2.5.1.tgz",
+      "integrity": "sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg==",
+      "license": "MIT"
     },
     "node_modules/deep-is": {
       "version": "0.1.4",
@@ -4181,6 +5486,18 @@ export default nextConfig;
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
       }
+    },
+    "node_modules/es-toolkit": {
+      "version": "1.52.0",
+      "resolved": "https://registry.npmjs.org/es-toolkit/-/es-toolkit-1.52.0.tgz",
+      "integrity": "sha512-XTNEJQh1tY1ZJVcf6ayP/2n4ZPyaHlW2FWs7xvw5ddPuhUVjLD3olQVQS7kf58JbAB48iL0uL/jerTrjtV3lDA==",
+      "license": "MIT",
+      "workspaces": [
+        "docs",
+        "benchmarks",
+        "tests/types",
+        "tests/browser-compat"
+      ]
     },
     "node_modules/escalade": {
       "version": "3.2.0",
@@ -4611,6 +5928,12 @@ export default nextConfig;
       "engines": {
         "node": ">=0.10.0"
       }
+    },
+    "node_modules/eventemitter3": {
+      "version": "5.0.4",
+      "resolved": "https://registry.npmjs.org/eventemitter3/-/eventemitter3-5.0.4.tgz",
+      "integrity": "sha512-mlsTRyGaPBjPedk6Bvw+aqbsXDtoAyAzm5MO7JgU+yVRyMQ5O8bD4Kcci7BS85f93veegeCPkL8R4GLClnjLFw==",
+      "license": "MIT"
     },
     "node_modules/fast-deep-equal": {
       "version": "3.1.3",
@@ -5080,6 +6403,16 @@ export default nextConfig;
         "node": ">= 4"
       }
     },
+    "node_modules/immer": {
+      "version": "11.1.18",
+      "resolved": "https://registry.npmjs.org/immer/-/immer-11.1.18.tgz",
+      "integrity": "sha512-EQyQtLiYW029lyoczMl/Hh4Xu7cDecSc58JRYpHyL4tIAu3eqd1yJzQX04d2BZHDkzFFvm6qJEJWOtfDSWAXbQ==",
+      "license": "MIT",
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/immer"
+      }
+    },
     "node_modules/import-fresh": {
       "version": "3.3.1",
       "resolved": "https://registry.npmjs.org/import-fresh/-/import-fresh-3.3.1.tgz",
@@ -5120,6 +6453,15 @@ export default nextConfig;
       },
       "engines": {
         "node": ">= 0.4"
+      }
+    },
+    "node_modules/internmap": {
+      "version": "2.0.3",
+      "resolved": "https://registry.npmjs.org/internmap/-/internmap-2.0.3.tgz",
+      "integrity": "sha512-5Hh7Y1wQbvY5ooGgPbDaL5iYLAPzMTUrjMulskHLH6wnv/A+1q5rgEaiuqEjB+oxGXIVZs1FF+R/KPN3ZSQYYg==",
+      "license": "ISC",
+      "engines": {
+        "node": ">=12"
       }
     },
     "node_modules/is-array-buffer": {
@@ -6644,8 +7986,75 @@ export default nextConfig;
       "version": "16.13.1",
       "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",
       "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==",
-      "dev": true,
       "license": "MIT"
+    },
+    "node_modules/react-redux": {
+      "version": "9.3.0",
+      "resolved": "https://registry.npmjs.org/react-redux/-/react-redux-9.3.0.tgz",
+      "integrity": "sha512-KQopgqFo/p/fgmAs5qz6p5RWaNAzq40WAu7fJIXnQpYxFPbJYtsJPWvGeF2rOBaY/kEuV77AVsX8TsQzKm+A/g==",
+      "license": "MIT",
+      "dependencies": {
+        "@types/use-sync-external-store": "^0.0.6",
+        "use-sync-external-store": "^1.4.0"
+      },
+      "peerDependencies": {
+        "@types/react": "^18.2.25 || ^19",
+        "react": "^18.0 || ^19",
+        "redux": "^5.0.0"
+      },
+      "peerDependenciesMeta": {
+        "@types/react": {
+          "optional": true
+        },
+        "redux": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/recharts": {
+      "version": "3.10.1",
+      "resolved": "https://registry.npmjs.org/recharts/-/recharts-3.10.1.tgz",
+      "integrity": "sha512-QXFrvt6IVcw7eeZCoyXTwkIJAX3Dv1nyVhMicXJ47GsGDDpcN8z6o644DibE9XjpBTThtsomLKnTV6lc+cVFUA==",
+      "license": "MIT",
+      "workspaces": [
+        "www"
+      ],
+      "dependencies": {
+        "@reduxjs/toolkit": "^1.9.0 || 2.x.x",
+        "clsx": "^2.1.1",
+        "decimal.js-light": "^2.5.1",
+        "es-toolkit": "^1.39.3",
+        "eventemitter3": "^5.0.1",
+        "immer": "^11.1.8",
+        "react-redux": "8.x.x || 9.x.x",
+        "reselect": "5.2.0",
+        "tiny-invariant": "^1.3.3",
+        "use-sync-external-store": "^1.2.2",
+        "victory-vendor": "^37.0.2"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "peerDependencies": {
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+        "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+        "react-is": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+      }
+    },
+    "node_modules/redux": {
+      "version": "5.0.1",
+      "resolved": "https://registry.npmjs.org/redux/-/redux-5.0.1.tgz",
+      "integrity": "sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==",
+      "license": "MIT"
+    },
+    "node_modules/redux-thunk": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/redux-thunk/-/redux-thunk-3.1.0.tgz",
+      "integrity": "sha512-NW2r5T6ksUKXCabzhL9z+h206HQw/NJkcLm1GPImRQ8IzfXwRGqjVhKJGauHirT0DAuyy6hjdnMZaRoAcy0Klw==",
+      "license": "MIT",
+      "peerDependencies": {
+        "redux": "^5.0.0"
+      }
     },
     "node_modules/reflect.getprototypeof": {
       "version": "1.0.10",
@@ -6690,6 +8099,12 @@ export default nextConfig;
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
       }
+    },
+    "node_modules/reselect": {
+      "version": "5.2.0",
+      "resolved": "https://registry.npmjs.org/reselect/-/reselect-5.2.0.tgz",
+      "integrity": "sha512-AgZ3UOZm3YndfrJ4OYjgrT7bmCm/1iqkjvEfH/oYjzh6PD2qw4QuT3jjnXIrpdt4MTpMXclMT3lXbmRY+XRakw==",
+      "license": "MIT"
     },
     "node_modules/resolve": {
       "version": "2.0.0-next.7",
@@ -7289,6 +8704,12 @@ export default nextConfig;
         "url": "https://opencollective.com/webpack"
       }
     },
+    "node_modules/tiny-invariant": {
+      "version": "1.3.3",
+      "resolved": "https://registry.npmjs.org/tiny-invariant/-/tiny-invariant-1.3.3.tgz",
+      "integrity": "sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg==",
+      "license": "MIT"
+    },
     "node_modules/tinyglobby": {
       "version": "0.2.17",
       "resolved": "https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.17.tgz",
@@ -7629,6 +9050,37 @@ export default nextConfig;
         "punycode": "^2.1.0"
       }
     },
+    "node_modules/use-sync-external-store": {
+      "version": "1.6.0",
+      "resolved": "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.6.0.tgz",
+      "integrity": "sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==",
+      "license": "MIT",
+      "peerDependencies": {
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+      }
+    },
+    "node_modules/victory-vendor": {
+      "version": "37.3.6",
+      "resolved": "https://registry.npmjs.org/victory-vendor/-/victory-vendor-37.3.6.tgz",
+      "integrity": "sha512-SbPDPdDBYp+5MJHhBCAyI7wKM3d5ivekigc2Dk2s7pgbZ9wIgIBYGVw4zGHBml/qTFbexrofXW6Gu4noGxrOwQ==",
+      "license": "MIT AND ISC",
+      "dependencies": {
+        "@types/d3-array": "^3.0.3",
+        "@types/d3-ease": "^3.0.0",
+        "@types/d3-interpolate": "^3.0.1",
+        "@types/d3-scale": "^4.0.2",
+        "@types/d3-shape": "^3.1.0",
+        "@types/d3-time": "^3.0.0",
+        "@types/d3-timer": "^3.0.0",
+        "d3-array": "^3.1.6",
+        "d3-ease": "^3.0.1",
+        "d3-interpolate": "^3.0.1",
+        "d3-scale": "^4.0.2",
+        "d3-shape": "^3.1.0",
+        "d3-time": "^3.0.0",
+        "d3-timer": "^3.0.1"
+      }
+    },
     "node_modules/which": {
       "version": "2.0.2",
       "resolved": "https://registry.npmjs.org/which/-/which-2.0.2.tgz",
@@ -7797,15 +9249,15 @@ export default nextConfig;
 ### <a id="📄-package-json"></a>📄 `package.json`
 
 **File Info:**
-- **Size**: 605 B
+- **Size**: 632 B
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package.json`
 - **Relative Path**: `root`
 - **Created**: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-05 05:18:33 (Australia/Sydney / GMT+10:00)
-- **MD5**: `2695af9e474fac60e1e205fbc9191ad2`
-- **SHA256**: `667fc51971242c8dc660382fe6c8987942c609e0ce4661d505790fd45f520980`
+- **Modified**: 2026-09-06 03:06:25 (Australia/Sydney / GMT+10:00)
+- **MD5**: `7bbd64b88869c53f1debf36b88c9a63d`
+- **SHA256**: `05d1a7f2ef2ac05e1df2349dcc89ed27d1892cee1a90cafe284d95ccdf68712f`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -7826,7 +9278,8 @@ export default nextConfig;
     "@supabase/supabase-js": "^2.114.0",
     "next": "16.3.4",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "recharts": "^3.10.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

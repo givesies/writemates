@@ -16,11 +16,12 @@ export default function NavBar({ username }: { username: string | null }) {
       <Link href="/" style={{ fontWeight: 'bold' }}>Writemates</Link>
       {username ? (
         <>
-          <Link href="/">Home</Link>
+          <Link href="/feed">Feed</Link>
           <Link href="/projects">Projects</Link>
           <Link href="/projects/log">Log Wordcount</Link>
+          <Link href="/post/new">Share</Link>
           <Link href="/profile/edit">Edit Profile</Link>
-          <Link href={`/u/${username}`}>View Public Profile</Link>
+          <Link href={`/u/${username}`}>Public Profile</Link>
           <div style={{ marginLeft: 'auto' }}>
             <LogoutButton />
           </div>

@@ -43,19 +43,42 @@ export default function LogWordcountPage() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
-    const { error } = await supabase.from('wordcount_snapshots').insert({
+    const wordCountNum = parseInt(wordCount)
+    const today = new Date().toISOString().split('T')[0]
+
+    // Save the private snapshot (powers your own graph)
+    const { error: snapshotError } = await supabase.from('wordcount_snapshots').insert({
       project_id: projectId,
       user_id: user.id,
-      word_count: parseInt(wordCount),
+      word_count: wordCountNum,
       source: 'manual',
     })
 
+    if (snapshotError) {
+      setSaving(false)
+      setMessage(`Error: ${snapshotError.message}`)
+      return
+    }
+
+    // Create or update today's public wordcount post for this project
+    const { error: postError } = await supabase.from('posts').upsert(
+      {
+        user_id: user.id,
+        project_id: projectId,
+        type: 'wordcount',
+        word_count: wordCountNum,
+        entry_date: today,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'user_id,project_id,entry_date,type' }
+    )
+
     setSaving(false)
 
-    if (error) {
-      setMessage(`Error: ${error.message}`)
+    if (postError) {
+      setMessage(`Snapshot saved, but post update failed: ${postError.message}`)
     } else {
-      setMessage('Wordcount logged!')
+      setMessage('Wordcount logged and today\'s post updated!')
       setWordCount('')
     }
   }
