@@ -62,52 +62,69 @@ export default function ProjectsPage() {
     }
   }
 
-  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+  if (loading) return <main className="max-w-2xl mx-auto px-6 py-12">Loading...</main>
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
-      <h1>Your projects</h1>
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <h1 className="text-3xl mb-10" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Your projects
+      </h1>
 
-      <form onSubmit={handleCreate} style={{ marginBottom: '2rem' }}>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Project title</label><br />
+      <form onSubmit={handleCreate} className="mb-12 pb-10 border-b" style={{ borderColor: 'var(--color-rule)', fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Goal word count (optional)</label><br />
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Goal word count (optional)</label>
           <input
             type="number"
             value={goalWordCount}
             onChange={(e) => setGoalWordCount(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" style={{ padding: '0.5rem 1rem' }}>Create project</button>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Create project
+        </button>
       </form>
 
-      <h2>Existing projects</h2>
-      {projects.length === 0 && <p>No projects yet — create one above.</p>}
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      {projects.length === 0 && (
+        <p style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-sans)' }}>
+          No projects yet — create one above.
+        </p>
+      )}
+
+      <div>
         {projects.map((project) => (
-          <li
-            key={project.id}
-            style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
-          >
-            <Link href={`/projects/${project.id}`} style={{ fontWeight: 'bold' }}>
+          <div key={project.id} className="py-5 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+            <Link href={`/projects/${project.id}`} className="text-lg">
               {project.title}
             </Link>
-            {project.goal_word_count && <span> — goal: {project.goal_word_count.toLocaleString()} words</span>}
-            <div style={{ color: '#666', fontSize: '0.9rem' }}>Status: {project.status}</div>
-          </li>
+            {project.goal_word_count && (
+              <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                goal: {project.goal_word_count.toLocaleString()} words
+              </span>
+            )}
+            <div className="text-sm mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+              {project.status}
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </main>
   )
 }

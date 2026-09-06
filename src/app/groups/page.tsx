@@ -55,7 +55,6 @@ export default function GroupsPage() {
       return
     }
 
-    // Add the owner as a member too, so they count as "in" the group for sharing purposes
     await supabase.from('group_members').insert({
       group_id: newGroup.id,
       user_id: user.id,
@@ -65,40 +64,53 @@ export default function GroupsPage() {
     loadGroups()
   }
 
-  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
-      <h1>Your groups</h1>
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Your groups
+      </h1>
 
-      <form onSubmit={handleCreate} style={{ marginBottom: '2rem' }}>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Group name</label><br />
+      <form onSubmit={handleCreate} className="mb-10 pb-8 border-b" style={{ borderColor: 'var(--color-rule)', fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Group name</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" style={{ padding: '0.5rem 1rem' }}>Create group</button>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Create group
+        </button>
       </form>
 
-      <h2>Existing groups</h2>
-      {groups.length === 0 && <p>No groups yet — create one above.</p>}
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      {groups.length === 0 && (
+        <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          No groups yet — create one above.
+        </p>
+      )}
+      <div>
         {groups.map((group) => (
-          <li
-            key={group.id}
-            style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
-          >
-            <Link href={`/groups/${group.id}`} style={{ fontWeight: 'bold' }}>{group.name}</Link>
-            {group.owner_id === userId && <span style={{ color: '#666' }}> (you own this)</span>}
-          </li>
+          <div key={group.id} className="py-4 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+            <Link href={`/groups/${group.id}`} className="text-lg">{group.name}</Link>
+            {group.owner_id === userId && (
+              <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                (you own this)
+              </span>
+            )}
+          </div>
         ))}
-      </ul>
+      </div>
     </main>
   )
 }

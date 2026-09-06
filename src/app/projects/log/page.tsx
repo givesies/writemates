@@ -46,7 +46,6 @@ export default function LogWordcountPage() {
     const wordCountNum = parseInt(wordCount)
     const today = new Date().toISOString().split('T')[0]
 
-    // Save the private snapshot (powers your own graph)
     const { error: snapshotError } = await supabase.from('wordcount_snapshots').insert({
       project_id: projectId,
       user_id: user.id,
@@ -60,7 +59,6 @@ export default function LogWordcountPage() {
       return
     }
 
-    // Create or update today's public wordcount post for this project
     const { error: postError } = await supabase.from('posts').upsert(
       {
         user_id: user.id,
@@ -83,44 +81,55 @@ export default function LogWordcountPage() {
     }
   }
 
-  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
 
   if (projects.length === 0) {
     return (
-      <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-        <p>You need to create a project first before logging a wordcount.</p>
+      <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+        <p style={{ color: 'var(--color-ink-muted)' }}>
+          You need to create a project first before logging a wordcount.
+        </p>
       </main>
     )
   }
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
-      <h1>Log your wordcount</h1>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Project</label><br />
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Log your wordcount
+      </h1>
+      <form onSubmit={handleSubmit} style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project</label>
           <select
             value={projectId}
             onChange={(e) => setProjectId(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           >
             {projects.map((p) => (
               <option key={p.id} value={p.id}>{p.title}</option>
             ))}
           </select>
         </div>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Current total word count</label><br />
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Current total word count</label>
           <input
             type="number"
             value={wordCount}
             onChange={(e) => setWordCount(e.target.value)}
             required
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        {message && <p>{message}</p>}
-        <button type="submit" disabled={saving} style={{ padding: '0.5rem 1rem' }}>
+        {message && <p className="mb-4 text-sm" style={{ color: 'var(--color-ink-muted)' }}>{message}</p>}
+        <button
+          type="submit"
+          disabled={saving}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
           {saving ? 'Saving...' : 'Log wordcount'}
         </button>
       </form>

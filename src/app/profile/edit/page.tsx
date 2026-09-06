@@ -65,41 +65,51 @@ export default function EditProfilePage() {
     }
   }
 
-  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
-      <h1>Edit your profile</h1>
-      <form onSubmit={handleSave}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Display name</label><br />
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Edit your profile
+      </h1>
+      <form onSubmit={handleSave} style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Display name</label>
           <input
             type="text"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Bio</label><br />
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Bio</label>
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             rows={3}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>What I&apos;ve been working on</label><br />
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>What I&apos;ve been working on</label>
           <textarea
             value={currentWork}
             onChange={(e) => setCurrentWork(e.target.value)}
             rows={4}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" disabled={saving} style={{ padding: '0.5rem 1rem' }}>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          disabled={saving}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
           {saving ? 'Saving...' : 'Save profile'}
         </button>
       </form>

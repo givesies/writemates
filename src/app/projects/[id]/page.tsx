@@ -27,7 +27,6 @@ export default async function ProjectDetailPage({
     .eq('project_id', id)
     .order('recorded_at', { ascending: true })
 
-  // Group by day, keeping the highest count recorded that day
   const dailyMap = new Map<string, number>()
   for (const snap of snapshots || []) {
     const day = new Date(snap.recorded_at).toISOString().split('T')[0]
@@ -46,17 +45,21 @@ export default async function ProjectDetailPage({
     : null
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 700 }}>
-      <h1>{project.title}</h1>
-      <p>Current word count: {currentWordCount.toLocaleString()}</p>
-      {percentComplete !== null && (
-        <p>{percentComplete}% of {project.goal_word_count?.toLocaleString()} word goal</p>
-      )}
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <h1 className="text-3xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        {project.title}
+      </h1>
+      <p className="mb-8" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        {currentWordCount.toLocaleString()} words
+        {percentComplete !== null && (
+          <> — <span style={{ color: 'var(--color-accent)' }}>{percentComplete}%</span> of {project.goal_word_count?.toLocaleString()} word goal</>
+        )}
+      </p>
 
       {chartData.length > 1 ? (
         <ProgressChart data={chartData} />
       ) : (
-        <p style={{ color: '#666' }}>
+        <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
           Log a few more wordcounts (ideally on different days) to see your progress graph.
         </p>
       )}

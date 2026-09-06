@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-06 10:46:53 (Australia/Sydney / GMT+10:00)
+- **Generated On**: 2026-09-06 10:58:32 (Australia/Sydney / GMT+10:00)
 - **Total Files Processed**: 38
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -32,24 +32,24 @@
 │   │   │   └── 📄 page.tsx (2.39 KB)
 │   │   ├── 📁 groups/
 │   │   │   ├── 📁 [id]/
-│   │   │   │   └── 📄 page.tsx (3.11 KB)
-│   │   │   └── 📄 page.tsx (2.97 KB)
+│   │   │   │   └── 📄 page.tsx (3.59 KB)
+│   │   │   └── 📄 page.tsx (3.42 KB)
 │   │   ├── 📁 login/
-│   │   │   └── 📄 page.tsx (1.58 KB)
+│   │   │   └── 📄 page.tsx (2.32 KB)
 │   │   ├── 📁 post/
 │   │   │   └── 📁 new/
-│   │   │       └── 📄 page.tsx (2.19 KB)
+│   │   │       └── 📄 page.tsx (5.03 KB)
 │   │   ├── 📁 profile/
 │   │   │   └── 📁 edit/
-│   │   │       └── 📄 page.tsx (3.04 KB)
+│   │   │       └── 📄 page.tsx (3.7 KB)
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
-│   │   │   │   └── 📄 page.tsx (2 KB)
+│   │   │   │   └── 📄 page.tsx (2.21 KB)
 │   │   │   ├── 📁 log/
-│   │   │   │   └── 📄 page.tsx (3.77 KB)
-│   │   │   └── 📄 page.tsx (3.35 KB)
+│   │   │   │   └── 📄 page.tsx (4.29 KB)
+│   │   │   └── 📄 page.tsx (4.11 KB)
 │   │   ├── 📁 signup/
-│   │   │   └── 📄 page.tsx (1.58 KB)
+│   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
 │   │   │       └── 📄 page.tsx (6.12 KB)
@@ -125,7 +125,7 @@
 | Total Directories | 20 |
 | Text Files | 30 |
 | Binary Files | 8 |
-| Total Size | 322.76 KB |
+| Total Size | 330.18 KB |
 
 ### 📄 File Types Distribution
 
@@ -254,15 +254,15 @@ export default async function FeedPage() {
 ### <a id="📄-src-app-groups-id-page-tsx"></a>📄 `src/app/groups/[id]/page.tsx`
 
 **File Info:**
-- **Size**: 3.11 KB
+- **Size**: 3.59 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/groups/[id]/page.tsx`
 - **Relative Path**: `src/app/groups/[id]`
 - **Created**: 2026-09-06 10:12:09 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:12:23 (Australia/Sydney / GMT+10:00)
-- **MD5**: `83f68ec803a229f173760d8cb244412e`
-- **SHA256**: `6b67848425a4a01c7ff354a02a8213c428c1807e65666bea9a4165b8eceea7ae`
+- **Modified**: 2026-09-06 10:58:31 (Australia/Sydney / GMT+10:00)
+- **MD5**: `12625e8ce7bc604846ebda026cdec6b5`
+- **SHA256**: `d6cae00e3ba94ecc7fa19f35bae079d19814c822bb026f2999cee286fe1bac86`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -349,32 +349,46 @@ export default function GroupDetailPage({
     }
   }
 
-  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
-      <h1>{groupName}</h1>
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        {groupName}
+      </h1>
 
-      <h2 style={{ fontSize: '1.1rem', marginTop: '1.5rem' }}>Members</h2>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      <h2
+        className="text-sm mb-3 pb-2 border-b"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+      >
+        Members
+      </h2>
+      <div className="mb-8">
         {members.map((m) => (
-          <li key={m.user_id} style={{ padding: '0.5rem 0' }}>
+          <div key={m.user_id} className="py-2">
             {m.profiles?.display_name || m.profiles?.username}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
 
       {isOwner && (
-        <form onSubmit={handleAddMember} style={{ marginTop: '1.5rem' }}>
-          <label>Add member by username</label><br />
+        <form onSubmit={handleAddMember} style={{ fontFamily: 'var(--font-sans)' }}>
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Add member by username</label>
           <input
             type="text"
             value={usernameToAdd}
             onChange={(e) => setUsernameToAdd(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none mb-3"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button type="submit" style={{ padding: '0.5rem 1rem' }}>Add member</button>
+          {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+          <button
+            type="submit"
+            className="px-5 py-2 text-sm"
+            style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+          >
+            Add member
+          </button>
         </form>
       )}
     </main>
@@ -387,15 +401,15 @@ export default function GroupDetailPage({
 ### <a id="📄-src-app-groups-page-tsx"></a>📄 `src/app/groups/page.tsx`
 
 **File Info:**
-- **Size**: 2.97 KB
+- **Size**: 3.42 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/groups/page.tsx`
 - **Relative Path**: `src/app/groups`
 - **Created**: 2026-09-06 10:10:57 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:11:35 (Australia/Sydney / GMT+10:00)
-- **MD5**: `2d4e138a5b7b25bbcf9009def52d8dcb`
-- **SHA256**: `13c31a94b72857e92a87191a64ee2813e30d5d4a2a0839b1e90bf5863b27f4c0`
+- **Modified**: 2026-09-06 10:57:25 (Australia/Sydney / GMT+10:00)
+- **MD5**: `7f5215ab51acb68abb12e7b44543b48b`
+- **SHA256**: `034e04e0e69018bcc77cb205eb9e36e8fe54263386ded4fa4bcc8091890fc351`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -458,7 +472,6 @@ export default function GroupsPage() {
       return
     }
 
-    // Add the owner as a member too, so they count as "in" the group for sharing purposes
     await supabase.from('group_members').insert({
       group_id: newGroup.id,
       user_id: user.id,
@@ -468,40 +481,53 @@ export default function GroupsPage() {
     loadGroups()
   }
 
-  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
-      <h1>Your groups</h1>
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Your groups
+      </h1>
 
-      <form onSubmit={handleCreate} style={{ marginBottom: '2rem' }}>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Group name</label><br />
+      <form onSubmit={handleCreate} className="mb-10 pb-8 border-b" style={{ borderColor: 'var(--color-rule)', fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Group name</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" style={{ padding: '0.5rem 1rem' }}>Create group</button>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Create group
+        </button>
       </form>
 
-      <h2>Existing groups</h2>
-      {groups.length === 0 && <p>No groups yet — create one above.</p>}
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      {groups.length === 0 && (
+        <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          No groups yet — create one above.
+        </p>
+      )}
+      <div>
         {groups.map((group) => (
-          <li
-            key={group.id}
-            style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
-          >
-            <Link href={`/groups/${group.id}`} style={{ fontWeight: 'bold' }}>{group.name}</Link>
-            {group.owner_id === userId && <span style={{ color: '#666' }}> (you own this)</span>}
-          </li>
+          <div key={group.id} className="py-4 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+            <Link href={`/groups/${group.id}`} className="text-lg">{group.name}</Link>
+            {group.owner_id === userId && (
+              <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                (you own this)
+              </span>
+            )}
+          </div>
         ))}
-      </ul>
+      </div>
     </main>
   )
 }
@@ -512,15 +538,15 @@ export default function GroupsPage() {
 ### <a id="📄-src-app-login-page-tsx"></a>📄 `src/app/login/page.tsx`
 
 **File Info:**
-- **Size**: 1.58 KB
+- **Size**: 2.32 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/login/page.tsx`
 - **Relative Path**: `src/app/login`
 - **Created**: 2026-09-05 07:18:23 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-05 07:27:38 (Australia/Sydney / GMT+10:00)
-- **MD5**: `f7b4cb3d374bed3f253dab3985c00e1e`
-- **SHA256**: `843a39ea0566d70e5e6cb2aac3b272676350854d32ee96ef24883cf9ffc388d3`
+- **Modified**: 2026-09-06 10:48:26 (Australia/Sydney / GMT+10:00)
+- **MD5**: `814b4f7152b36a2a66e734c5743c0c36`
+- **SHA256**: `9e763be3f1145444e02e3d3001023c41f8e03d79d149e9fa3894f18f447c4737`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -552,21 +578,45 @@ export default function LoginPage() {
   }
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 400 }}>
-      <h1>Log in to Writemates</h1>
-      <form onSubmit={handleLogin}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Email</label><br />
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required style={{ width: '100%', padding: '0.5rem' }} />
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Log in
+      </h1>
+      <form onSubmit={handleLogin} style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
         </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Password</label><br />
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required style={{ width: '100%', padding: '0.5rem' }} />
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" style={{ padding: '0.5rem 1rem' }}>Log in</button>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Log in
+        </button>
       </form>
-      <p style={{ marginTop: '1rem' }}>Don&apos;t have an account? <a href="/signup">Sign up</a></p>
+      <p className="mt-6 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        Don&apos;t have an account? <a href="/signup">Sign up</a>
+      </p>
     </main>
   )
 }
@@ -577,15 +627,15 @@ export default function LoginPage() {
 ### <a id="📄-src-app-post-new-page-tsx"></a>📄 `src/app/post/new/page.tsx`
 
 **File Info:**
-- **Size**: 2.19 KB
+- **Size**: 5.03 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/post/new/page.tsx`
 - **Relative Path**: `src/app/post/new`
 - **Created**: 2026-09-06 03:15:12 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 03:15:12 (Australia/Sydney / GMT+10:00)
-- **MD5**: `b0fd1a935bc513543519a40e67fb2519`
-- **SHA256**: `102ac26682d023e22cfe86e36d270bfd45a3b1020e315f866c3f788bd9f2c067`
+- **Modified**: 2026-09-06 10:56:40 (Australia/Sydney / GMT+10:00)
+- **MD5**: `27e674130e33354fda294b73b512e4ca`
+- **SHA256**: `415c11b2610e15499f4682492dba3189c0b3334d233756653d0a81f50908175c`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -593,16 +643,39 @@ export default function LoginPage() {
 ```typescript
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+
+type Group = {
+  id: string
+  name: string
+}
 
 export default function NewPostPage() {
   const [content, setContent] = useState('')
   const [linkUrl, setLinkUrl] = useState('')
+  const [visibility, setVisibility] = useState<'everyone' | 'groups'>('everyone')
+  const [groups, setGroups] = useState<Group[]>([])
+  const [selectedGroupIds, setSelectedGroupIds] = useState<string[]>([])
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
+
+  useEffect(() => {
+    async function loadGroups() {
+      const supabase = createClient()
+      const { data } = await supabase.from('groups').select('id, name')
+      setGroups(data || [])
+    }
+    loadGroups()
+  }, [])
+
+  function toggleGroup(groupId: string) {
+    setSelectedGroupIds((prev) =>
+      prev.includes(groupId) ? prev.filter((id) => id !== groupId) : [...prev, groupId]
+    )
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -613,58 +686,118 @@ export default function NewPostPage() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
-    const { error } = await supabase.from('posts').insert({
-      user_id: user.id,
-      type: linkUrl ? 'link' : 'snippet',
-      content: content || null,
-      link_url: linkUrl || null,
-    })
+    const { data: newPost, error: postError } = await supabase
+      .from('posts')
+      .insert({
+        user_id: user.id,
+        type: linkUrl ? 'link' : 'snippet',
+        content: content || null,
+        link_url: linkUrl || null,
+      })
+      .select()
+      .single()
+
+    if (postError) {
+      setSaving(false)
+      setError(postError.message)
+      return
+    }
+
+    if (visibility === 'groups' && selectedGroupIds.length > 0) {
+      const shareRows = selectedGroupIds.map((groupId) => ({
+        post_id: newPost.id,
+        group_id: groupId,
+      }))
+      const { error: shareError } = await supabase.from('post_shares').insert(shareRows)
+      if (shareError) {
+        setSaving(false)
+        setError(`Post created, but sharing failed: ${shareError.message}`)
+        return
+      }
+    }
 
     setSaving(false)
-
-    if (error) {
-      setError(error.message)
-    } else {
-      router.push('/')
-      router.refresh()
-    }
+    router.push('/')
+    router.refresh()
   }
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
-      <h1>Share something</h1>
-      <p style={{ color: '#666', fontSize: '0.9rem' }}>
-        This will be visible to everyone for now — group/individual sharing is coming soon.
-      </p>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Text (a snippet, thought, update...)</label><br />
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Share something
+      </h1>
+      <form onSubmit={handleSubmit} style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Text (a snippet, thought, update...)</label>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={4}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Link (optional — e.g. your Substack post)</label><br />
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Link (optional — e.g. your Substack post)</label>
           <input
             type="url"
             value={linkUrl}
             onChange={(e) => setLinkUrl(e.target.value)}
             placeholder="https://..."
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" disabled={saving} style={{ padding: '0.5rem 1rem' }}>
+
+        <div className="mb-5">
+          <label className="block text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>Who can see this?</label>
+          <label className="mr-4 text-sm">
+            <input
+              type="radio"
+              checked={visibility === 'everyone'}
+              onChange={() => setVisibility('everyone')}
+              className="mr-1"
+            /> Everyone
+          </label>
+          <label className="text-sm">
+            <input
+              type="radio"
+              checked={visibility === 'groups'}
+              onChange={() => setVisibility('groups')}
+              className="mr-1"
+            /> Specific groups
+          </label>
+        </div>
+
+        {visibility === 'groups' && (
+          <div className="mb-5 pl-4">
+            {groups.length === 0 && <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>You don&apos;t have any groups yet.</p>}
+            {groups.map((group) => (
+              <label key={group.id} className="block mb-1 text-sm">
+                <input
+                  type="checkbox"
+                  checked={selectedGroupIds.includes(group.id)}
+                  onChange={() => toggleGroup(group.id)}
+                  className="mr-2"
+                /> {group.name}
+              </label>
+            ))}
+          </div>
+        )}
+
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          disabled={saving}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
           {saving ? 'Posting...' : 'Post'}
         </button>
       </form>
     </main>
   )
 }
-
 ```
 
 ---
@@ -672,15 +805,15 @@ export default function NewPostPage() {
 ### <a id="📄-src-app-profile-edit-page-tsx"></a>📄 `src/app/profile/edit/page.tsx`
 
 **File Info:**
-- **Size**: 3.04 KB
+- **Size**: 3.7 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/profile/edit/page.tsx`
 - **Relative Path**: `src/app/profile/edit`
 - **Created**: 2026-09-05 23:58:11 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-05 23:58:11 (Australia/Sydney / GMT+10:00)
-- **MD5**: `560e643fa0f6f784dd4cdbdfb39d2b06`
-- **SHA256**: `e3da9932c83693ad1357474d03b6813db6a989b5e928e3d803fc3787595cfb33`
+- **Modified**: 2026-09-06 10:55:13 (Australia/Sydney / GMT+10:00)
+- **MD5**: `178c87dbf22a4c889113014029438c18`
+- **SHA256**: `63fd45aa02a1c32229c3e2f216eaafb42071d585fe8b9379f37b3d8c2176846f`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -753,48 +886,57 @@ export default function EditProfilePage() {
     }
   }
 
-  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
-      <h1>Edit your profile</h1>
-      <form onSubmit={handleSave}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Display name</label><br />
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Edit your profile
+      </h1>
+      <form onSubmit={handleSave} style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Display name</label>
           <input
             type="text"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Bio</label><br />
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Bio</label>
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             rows={3}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>What I&apos;ve been working on</label><br />
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>What I&apos;ve been working on</label>
           <textarea
             value={currentWork}
             onChange={(e) => setCurrentWork(e.target.value)}
             rows={4}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" disabled={saving} style={{ padding: '0.5rem 1rem' }}>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          disabled={saving}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
           {saving ? 'Saving...' : 'Save profile'}
         </button>
       </form>
     </main>
   )
 }
-
 ```
 
 ---
@@ -802,15 +944,15 @@ export default function EditProfilePage() {
 ### <a id="📄-src-app-projects-id-page-tsx"></a>📄 `src/app/projects/[id]/page.tsx`
 
 **File Info:**
-- **Size**: 2 KB
+- **Size**: 2.21 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/[id]/page.tsx`
 - **Relative Path**: `src/app/projects/[id]`
 - **Created**: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
-- **MD5**: `d558ad73fe743bc52103864d3c169963`
-- **SHA256**: `1da9fb26cb523ae4247c7a56e22dfdc4e97bb40d19b99b4eb4a531177b13336e`
+- **Modified**: 2026-09-06 10:54:41 (Australia/Sydney / GMT+10:00)
+- **MD5**: `4c1e22239d686dad1c1a85ed7313757e`
+- **SHA256**: `95675a1331d6c491b13de51a821ea1715cb4b55eae1f18ccb8a0b4e3071cf042`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -845,7 +987,6 @@ export default async function ProjectDetailPage({
     .eq('project_id', id)
     .order('recorded_at', { ascending: true })
 
-  // Group by day, keeping the highest count recorded that day
   const dailyMap = new Map<string, number>()
   for (const snap of snapshots || []) {
     const day = new Date(snap.recorded_at).toISOString().split('T')[0]
@@ -864,24 +1005,27 @@ export default async function ProjectDetailPage({
     : null
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 700 }}>
-      <h1>{project.title}</h1>
-      <p>Current word count: {currentWordCount.toLocaleString()}</p>
-      {percentComplete !== null && (
-        <p>{percentComplete}% of {project.goal_word_count?.toLocaleString()} word goal</p>
-      )}
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <h1 className="text-3xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        {project.title}
+      </h1>
+      <p className="mb-8" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        {currentWordCount.toLocaleString()} words
+        {percentComplete !== null && (
+          <> — <span style={{ color: 'var(--color-accent)' }}>{percentComplete}%</span> of {project.goal_word_count?.toLocaleString()} word goal</>
+        )}
+      </p>
 
       {chartData.length > 1 ? (
         <ProgressChart data={chartData} />
       ) : (
-        <p style={{ color: '#666' }}>
+        <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
           Log a few more wordcounts (ideally on different days) to see your progress graph.
         </p>
       )}
     </main>
   )
 }
-
 ```
 
 ---
@@ -889,15 +1033,15 @@ export default async function ProjectDetailPage({
 ### <a id="📄-src-app-projects-log-page-tsx"></a>📄 `src/app/projects/log/page.tsx`
 
 **File Info:**
-- **Size**: 3.77 KB
+- **Size**: 4.29 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/log/page.tsx`
 - **Relative Path**: `src/app/projects/log`
 - **Created**: 2026-09-06 00:08:45 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 03:15:01 (Australia/Sydney / GMT+10:00)
-- **MD5**: `f8e87d30953940f95268b5b58e14583a`
-- **SHA256**: `584bffb463bc11b4f6300a21c055ce30f9d489e7e4b4b691e39ffa58f55bdcf6`
+- **Modified**: 2026-09-06 10:51:50 (Australia/Sydney / GMT+10:00)
+- **MD5**: `9c3b9856d0e58deda5250ddc1622d30c`
+- **SHA256**: `4fba45a955c78a88f189b41561eb75db9cfc66293853366780565e85b958cd32`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -951,7 +1095,6 @@ export default function LogWordcountPage() {
     const wordCountNum = parseInt(wordCount)
     const today = new Date().toISOString().split('T')[0]
 
-    // Save the private snapshot (powers your own graph)
     const { error: snapshotError } = await supabase.from('wordcount_snapshots').insert({
       project_id: projectId,
       user_id: user.id,
@@ -965,7 +1108,6 @@ export default function LogWordcountPage() {
       return
     }
 
-    // Create or update today's public wordcount post for this project
     const { error: postError } = await supabase.from('posts').upsert(
       {
         user_id: user.id,
@@ -988,51 +1130,61 @@ export default function LogWordcountPage() {
     }
   }
 
-  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
 
   if (projects.length === 0) {
     return (
-      <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-        <p>You need to create a project first before logging a wordcount.</p>
+      <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+        <p style={{ color: 'var(--color-ink-muted)' }}>
+          You need to create a project first before logging a wordcount.
+        </p>
       </main>
     )
   }
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
-      <h1>Log your wordcount</h1>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Project</label><br />
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Log your wordcount
+      </h1>
+      <form onSubmit={handleSubmit} style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project</label>
           <select
             value={projectId}
             onChange={(e) => setProjectId(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           >
             {projects.map((p) => (
               <option key={p.id} value={p.id}>{p.title}</option>
             ))}
           </select>
         </div>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Current total word count</label><br />
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Current total word count</label>
           <input
             type="number"
             value={wordCount}
             onChange={(e) => setWordCount(e.target.value)}
             required
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        {message && <p>{message}</p>}
-        <button type="submit" disabled={saving} style={{ padding: '0.5rem 1rem' }}>
+        {message && <p className="mb-4 text-sm" style={{ color: 'var(--color-ink-muted)' }}>{message}</p>}
+        <button
+          type="submit"
+          disabled={saving}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
           {saving ? 'Saving...' : 'Log wordcount'}
         </button>
       </form>
     </main>
   )
 }
-
 ```
 
 ---
@@ -1040,15 +1192,15 @@ export default function LogWordcountPage() {
 ### <a id="📄-src-app-projects-page-tsx"></a>📄 `src/app/projects/page.tsx`
 
 **File Info:**
-- **Size**: 3.35 KB
+- **Size**: 4.11 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/page.tsx`
 - **Relative Path**: `src/app/projects`
 - **Created**: 2026-09-06 00:06:08 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 03:07:01 (Australia/Sydney / GMT+10:00)
-- **MD5**: `c9589f25ee59ecfb5d40df93c19ef8f2`
-- **SHA256**: `43e9b627fc4b11d8d317effabc491a831f0beb97281b248b02c6ebbf17f049ac`
+- **Modified**: 2026-09-06 10:52:18 (Australia/Sydney / GMT+10:00)
+- **MD5**: `5225d0bb6301881a891858157cf1cd81`
+- **SHA256**: `484f7bc7217750e18d5a47026932a852d9877a7c5b8a2274ffe42997bd163640`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1118,56 +1270,72 @@ export default function ProjectsPage() {
     }
   }
 
-  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+  if (loading) return <main className="max-w-2xl mx-auto px-6 py-12">Loading...</main>
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 600 }}>
-      <h1>Your projects</h1>
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <h1 className="text-3xl mb-10" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Your projects
+      </h1>
 
-      <form onSubmit={handleCreate} style={{ marginBottom: '2rem' }}>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Project title</label><br />
+      <form onSubmit={handleCreate} className="mb-12 pb-10 border-b" style={{ borderColor: 'var(--color-rule)', fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        <div style={{ marginBottom: '0.75rem' }}>
-          <label>Goal word count (optional)</label><br />
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Goal word count (optional)</label>
           <input
             type="number"
             value={goalWordCount}
             onChange={(e) => setGoalWordCount(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" style={{ padding: '0.5rem 1rem' }}>Create project</button>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Create project
+        </button>
       </form>
 
-      <h2>Existing projects</h2>
-      {projects.length === 0 && <p>No projects yet — create one above.</p>}
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      {projects.length === 0 && (
+        <p style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-sans)' }}>
+          No projects yet — create one above.
+        </p>
+      )}
+
+      <div>
         {projects.map((project) => (
-          <li
-            key={project.id}
-            style={{ padding: '1rem', border: '1px solid #ddd', borderRadius: '8px', marginBottom: '0.75rem' }}
-          >
-            <Link href={`/projects/${project.id}`} style={{ fontWeight: 'bold' }}>
+          <div key={project.id} className="py-5 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+            <Link href={`/projects/${project.id}`} className="text-lg">
               {project.title}
             </Link>
-            {project.goal_word_count && <span> — goal: {project.goal_word_count.toLocaleString()} words</span>}
-            <div style={{ color: '#666', fontSize: '0.9rem' }}>Status: {project.status}</div>
-          </li>
+            {project.goal_word_count && (
+              <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                goal: {project.goal_word_count.toLocaleString()} words
+              </span>
+            )}
+            <div className="text-sm mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+              {project.status}
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </main>
   )
 }
-
 ```
 
 ---
@@ -1175,15 +1343,15 @@ export default function ProjectsPage() {
 ### <a id="📄-src-app-signup-page-tsx"></a>📄 `src/app/signup/page.tsx`
 
 **File Info:**
-- **Size**: 1.58 KB
+- **Size**: 2.33 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/signup/page.tsx`
 - **Relative Path**: `src/app/signup`
 - **Created**: 2026-09-05 07:17:27 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-05 07:18:10 (Australia/Sydney / GMT+10:00)
-- **MD5**: `102a2929d5e63df5954d141cb0b03616`
-- **SHA256**: `2caf87f3fe23fb15b6363ad52337c5c114b1f37ce1c4c65d30c282144b91f679`
+- **Modified**: 2026-09-06 10:48:54 (Australia/Sydney / GMT+10:00)
+- **MD5**: `b5d30bc098af10f2ff21533345de558c`
+- **SHA256**: `e7464eb065ebfed301a627c375e6634292a597db12d9f4058e62cdf3c7b242a1`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1215,21 +1383,46 @@ export default function SignUpPage() {
   }
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 400 }}>
-      <h1>Sign up for Writemates</h1>
-      <form onSubmit={handleSignUp}>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Email</label><br />
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required style={{ width: '100%', padding: '0.5rem' }} />
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Sign up
+      </h1>
+      <form onSubmit={handleSignUp} style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
         </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <label>Password</label><br />
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} style={{ width: '100%', padding: '0.5rem' }} />
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength={6}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" style={{ padding: '0.5rem 1rem' }}>Sign up</button>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Sign up
+        </button>
       </form>
-      <p style={{ marginTop: '1rem' }}>Already have an account? <a href="/login">Log in</a></p>
+      <p className="mt-6 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        Already have an account? <a href="/login">Log in</a>
+      </p>
     </main>
   )
 }

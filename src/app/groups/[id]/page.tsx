@@ -79,32 +79,46 @@ export default function GroupDetailPage({
     }
   }
 
-  if (loading) return <main style={{ padding: '2rem' }}>Loading...</main>
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif', maxWidth: 500 }}>
-      <h1>{groupName}</h1>
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        {groupName}
+      </h1>
 
-      <h2 style={{ fontSize: '1.1rem', marginTop: '1.5rem' }}>Members</h2>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      <h2
+        className="text-sm mb-3 pb-2 border-b"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+      >
+        Members
+      </h2>
+      <div className="mb-8">
         {members.map((m) => (
-          <li key={m.user_id} style={{ padding: '0.5rem 0' }}>
+          <div key={m.user_id} className="py-2">
             {m.profiles?.display_name || m.profiles?.username}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
 
       {isOwner && (
-        <form onSubmit={handleAddMember} style={{ marginTop: '1.5rem' }}>
-          <label>Add member by username</label><br />
+        <form onSubmit={handleAddMember} style={{ fontFamily: 'var(--font-sans)' }}>
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Add member by username</label>
           <input
             type="text"
             value={usernameToAdd}
             onChange={(e) => setUsernameToAdd(e.target.value)}
-            style={{ width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }}
+            className="w-full py-2 border-b bg-transparent focus:outline-none mb-3"
+            style={{ borderColor: 'var(--color-rule)' }}
           />
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button type="submit" style={{ padding: '0.5rem 1rem' }}>Add member</button>
+          {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+          <button
+            type="submit"
+            className="px-5 py-2 text-sm"
+            style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+          >
+            Add member
+          </button>
         </form>
       )}
     </main>
