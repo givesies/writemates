@@ -158,6 +158,16 @@ export default async function PublicProfilePage({
                     {post.content}
                   </p>
                 )}
+
+                {post.media_url && (
+                  <div className="mt-3">
+                    {post.media_url.match(/\.(mp4|webm|mov)$/i) ? (
+                      <video src={post.media_url} controls className="w-full rounded" />
+                    ) : (
+                      <img src={post.media_url} alt="" className="w-full rounded" />
+                    )}
+                  </div>
+                )}
                 {post.type === 'link' && (
                   <p className="text-lg">
                     {post.content && <span>{post.content} — </span>}

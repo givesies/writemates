@@ -60,6 +60,20 @@ export default async function FeedPage() {
               <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
                 {post.content}
               </p>
+            )}            {post.type === 'snippet' && post.content && (
+              <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
+                {post.content}
+              </p>
+            )}
+
+            {post.media_url && (
+              <div className="mt-3">
+                {post.media_url.match(/\.(mp4|webm|mov)$/i) ? (
+                  <video src={post.media_url} controls className="w-full rounded" />
+                ) : (
+                  <img src={post.media_url} alt="" className="w-full rounded" />
+                )}
+              </div>
             )}
 
             {post.type === 'link' && (

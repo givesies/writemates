@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-07 07:39:31 (Australia/Sydney / GMT+10:00)
+- **Generated On**: 2026-09-07 07:45:44 (Australia/Sydney / GMT+10:00)
 - **Total Files Processed**: 38
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -29,7 +29,7 @@
 ├── 📁 src/
 │   ├── 📁 app/
 │   │   ├── 📁 feed/
-│   │   │   └── 📄 page.tsx (2.39 KB)
+│   │   │   └── 📄 page.tsx (2.95 KB)
 │   │   ├── 📁 groups/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (3.59 KB)
@@ -38,7 +38,7 @@
 │   │   │   └── 📄 page.tsx (2.32 KB)
 │   │   ├── 📁 post/
 │   │   │   └── 📁 new/
-│   │   │       └── 📄 page.tsx (5.03 KB)
+│   │   │       └── 📄 page.tsx (6.04 KB)
 │   │   ├── 📁 profile/
 │   │   │   └── 📁 edit/
 │   │   │       └── 📄 page.tsx (3.7 KB)
@@ -52,7 +52,7 @@
 │   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
-│   │   │       └── 📄 page.tsx (6.12 KB)
+│   │   │       └── 📄 page.tsx (6.52 KB)
 │   │   ├── 📄 favicon.ico (25.32 KB)
 │   │   ├── 📄 globals.css (472 B)
 │   │   ├── 📄 layout.tsx (1.13 KB)
@@ -125,7 +125,7 @@
 | Total Directories | 20 |
 | Text Files | 30 |
 | Binary Files | 8 |
-| Total Size | 330.79 KB |
+| Total Size | 332.77 KB |
 
 ### 📄 File Types Distribution
 
@@ -155,15 +155,15 @@ The following files were not included in the text content:
 ### <a id="📄-src-app-feed-page-tsx"></a>📄 `src/app/feed/page.tsx`
 
 **File Info:**
-- **Size**: 2.39 KB
+- **Size**: 2.95 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/feed/page.tsx`
 - **Relative Path**: `src/app/feed`
 - **Created**: 2026-09-06 09:35:03 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:43:13 (Australia/Sydney / GMT+10:00)
-- **MD5**: `c4a8071967ea31722f752b6c52ed9a33`
-- **SHA256**: `9bb583a045d2e0147602dccbd5ebc6a6cb3c89d12de55e9dccccbb3bbb0433a8`
+- **Modified**: 2026-09-07 07:44:52 (Australia/Sydney / GMT+10:00)
+- **MD5**: `d2530208f8866d731641bf46d13fabdd`
+- **SHA256**: `d08f13853a827f6cda12a5991d477afeee8c013195c5432955aa95e3ca2369d6`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -231,6 +231,20 @@ export default async function FeedPage() {
               <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
                 {post.content}
               </p>
+            )}            {post.type === 'snippet' && post.content && (
+              <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
+                {post.content}
+              </p>
+            )}
+
+            {post.media_url && (
+              <div className="mt-3">
+                {post.media_url.match(/\.(mp4|webm|mov)$/i) ? (
+                  <video src={post.media_url} controls className="w-full rounded" />
+                ) : (
+                  <img src={post.media_url} alt="" className="w-full rounded" />
+                )}
+              </div>
             )}
 
             {post.type === 'link' && (
@@ -627,15 +641,15 @@ export default function LoginPage() {
 ### <a id="📄-src-app-post-new-page-tsx"></a>📄 `src/app/post/new/page.tsx`
 
 **File Info:**
-- **Size**: 5.03 KB
+- **Size**: 6.04 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/post/new/page.tsx`
 - **Relative Path**: `src/app/post/new`
 - **Created**: 2026-09-06 03:15:12 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:56:40 (Australia/Sydney / GMT+10:00)
-- **MD5**: `27e674130e33354fda294b73b512e4ca`
-- **SHA256**: `415c11b2610e15499f4682492dba3189c0b3334d233756653d0a81f50908175c`
+- **Modified**: 2026-09-07 07:43:28 (Australia/Sydney / GMT+10:00)
+- **MD5**: `1078906e61ddbe6b4fefae33712237a9`
+- **SHA256**: `1064f21cc15ca57fdc582cd70cd7b36a06f55cbc4c97d14289eeab6bbbf3ed5c`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -655,6 +669,7 @@ type Group = {
 export default function NewPostPage() {
   const [content, setContent] = useState('')
   const [linkUrl, setLinkUrl] = useState('')
+  const [mediaFile, setMediaFile] = useState<File | null>(null)
   const [visibility, setVisibility] = useState<'everyone' | 'groups'>('everyone')
   const [groups, setGroups] = useState<Group[]>([])
   const [selectedGroupIds, setSelectedGroupIds] = useState<string[]>([])
@@ -686,6 +701,26 @@ export default function NewPostPage() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
+    let mediaUrl: string | null = null
+
+    if (mediaFile) {
+      const fileExt = mediaFile.name.split('.').pop()
+      const filePath = `${user.id}/${Date.now()}.${fileExt}`
+
+      const { error: uploadError } = await supabase.storage
+        .from('post-media')
+        .upload(filePath, mediaFile)
+
+      if (uploadError) {
+        setSaving(false)
+        setError(`Upload failed: ${uploadError.message}`)
+        return
+      }
+
+      const { data: urlData } = supabase.storage.from('post-media').getPublicUrl(filePath)
+      mediaUrl = urlData.publicUrl
+    }
+
     const { data: newPost, error: postError } = await supabase
       .from('posts')
       .insert({
@@ -693,6 +728,7 @@ export default function NewPostPage() {
         type: linkUrl ? 'link' : 'snippet',
         content: content || null,
         link_url: linkUrl || null,
+        media_url: mediaUrl,
       })
       .select()
       .single()
@@ -746,6 +782,15 @@ export default function NewPostPage() {
             placeholder="https://..."
             className="w-full py-2 border-b bg-transparent focus:outline-none"
             style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Image or video (optional)</label>
+          <input
+            type="file"
+            accept="image/*,video/*"
+            onChange={(e) => setMediaFile(e.target.files?.[0] || null)}
+            className="w-full text-sm"
           />
         </div>
 
@@ -1433,15 +1478,15 @@ export default function SignUpPage() {
 ### <a id="📄-src-app-u-username-page-tsx"></a>📄 `src/app/u/[username]/page.tsx`
 
 **File Info:**
-- **Size**: 6.12 KB
+- **Size**: 6.52 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/u/[username]/page.tsx`
 - **Relative Path**: `src/app/u/[username]`
 - **Created**: 2026-09-06 00:00:54 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:46:53 (Australia/Sydney / GMT+10:00)
-- **MD5**: `9869c211b71f4b04740b322275c513aa`
-- **SHA256**: `d29850c00d17fb3c4b2e6ed7a72ebbd215641b84875303c15408a857912b78e3`
+- **Modified**: 2026-09-07 07:45:44 (Australia/Sydney / GMT+10:00)
+- **MD5**: `38aff741b375a8715ca40f4bfec5c18e`
+- **SHA256**: `cbb1ef15e32d9007332a0e027c06b13e0441e6dc17924ff9658076ef67751ad1`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1606,6 +1651,16 @@ export default async function PublicProfilePage({
                   <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
                     {post.content}
                   </p>
+                )}
+
+                {post.media_url && (
+                  <div className="mt-3">
+                    {post.media_url.match(/\.(mp4|webm|mov)$/i) ? (
+                      <video src={post.media_url} controls className="w-full rounded" />
+                    ) : (
+                      <img src={post.media_url} alt="" className="w-full rounded" />
+                    )}
+                  </div>
                 )}
                 {post.type === 'link' && (
                   <p className="text-lg">

@@ -12,6 +12,7 @@ type Group = {
 export default function NewPostPage() {
   const [content, setContent] = useState('')
   const [linkUrl, setLinkUrl] = useState('')
+  const [mediaFile, setMediaFile] = useState<File | null>(null)
   const [visibility, setVisibility] = useState<'everyone' | 'groups'>('everyone')
   const [groups, setGroups] = useState<Group[]>([])
   const [selectedGroupIds, setSelectedGroupIds] = useState<string[]>([])
@@ -43,6 +44,26 @@ export default function NewPostPage() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
+    let mediaUrl: string | null = null
+
+    if (mediaFile) {
+      const fileExt = mediaFile.name.split('.').pop()
+      const filePath = `${user.id}/${Date.now()}.${fileExt}`
+
+      const { error: uploadError } = await supabase.storage
+        .from('post-media')
+        .upload(filePath, mediaFile)
+
+      if (uploadError) {
+        setSaving(false)
+        setError(`Upload failed: ${uploadError.message}`)
+        return
+      }
+
+      const { data: urlData } = supabase.storage.from('post-media').getPublicUrl(filePath)
+      mediaUrl = urlData.publicUrl
+    }
+
     const { data: newPost, error: postError } = await supabase
       .from('posts')
       .insert({
@@ -50,6 +71,7 @@ export default function NewPostPage() {
         type: linkUrl ? 'link' : 'snippet',
         content: content || null,
         link_url: linkUrl || null,
+        media_url: mediaUrl,
       })
       .select()
       .single()
@@ -103,6 +125,15 @@ export default function NewPostPage() {
             placeholder="https://..."
             className="w-full py-2 border-b bg-transparent focus:outline-none"
             style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Image or video (optional)</label>
+          <input
+            type="file"
+            accept="image/*,video/*"
+            onChange={(e) => setMediaFile(e.target.files?.[0] || null)}
+            className="w-full text-sm"
           />
         </div>
 
