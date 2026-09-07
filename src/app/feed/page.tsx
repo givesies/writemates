@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 
 export default async function FeedPage() {
   const supabase = await createClient()
@@ -8,7 +9,7 @@ export default async function FeedPage() {
 
   const { data: posts } = await supabase
     .from('posts')
-    .select('*, profiles(username, display_name), projects(title)')
+    .select('*, profiles(username, display_name, avatar_url), projects(title)')
     .order('updated_at', { ascending: false })
 
   return (
@@ -34,10 +35,19 @@ export default async function FeedPage() {
             style={{ borderColor: 'var(--color-rule)' }}
           >
             <div
-              className="text-sm mb-2"
+              className="flex items-center gap-2 text-sm mb-2"
               style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
             >
-              {post.profiles?.display_name || post.profiles?.username}
+              {post.profiles?.avatar_url && (
+                <img
+                  src={post.profiles.avatar_url}
+                  alt=""
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+              )}
+              <Link href={`/u/${post.profiles?.username}`} style={{ color: 'var(--color-ink-muted)' }}>
+                {post.profiles?.display_name || post.profiles?.username}
+              </Link>
               {' · '}
               {new Date(post.updated_at).toLocaleDateString(undefined, {
                 month: 'short',
@@ -57,10 +67,6 @@ export default async function FeedPage() {
             )}
 
             {post.type === 'snippet' && post.content && (
-              <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
-                {post.content}
-              </p>
-            )}            {post.type === 'snippet' && post.content && (
               <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
                 {post.content}
               </p>

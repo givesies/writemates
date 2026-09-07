@@ -8,6 +8,8 @@ export default function EditProfilePage() {
   const [displayName, setDisplayName] = useState('')
   const [bio, setBio] = useState('')
   const [currentWork, setCurrentWork] = useState('')
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
+  const [avatarFile, setAvatarFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -31,6 +33,7 @@ export default function EditProfilePage() {
         setDisplayName(profile.display_name || '')
         setBio(profile.bio || '')
         setCurrentWork(profile.current_work_description || '')
+        setAvatarUrl(profile.avatar_url || null)
       }
       setLoading(false)
     }
@@ -46,12 +49,33 @@ export default function EditProfilePage() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
+    let newAvatarUrl = avatarUrl
+
+    if (avatarFile) {
+      const fileExt = avatarFile.name.split('.').pop()
+      const filePath = `${user.id}/avatar.${fileExt}`
+
+      const { error: uploadError } = await supabase.storage
+        .from('post-media')
+        .upload(filePath, avatarFile, { upsert: true })
+
+      if (uploadError) {
+        setSaving(false)
+        setError(`Upload failed: ${uploadError.message}`)
+        return
+      }
+
+      const { data: urlData } = supabase.storage.from('post-media').getPublicUrl(filePath)
+      newAvatarUrl = `${urlData.publicUrl}?t=${Date.now()}`
+    }
+
     const { error } = await supabase
       .from('profiles')
       .update({
         display_name: displayName,
         bio: bio,
         current_work_description: currentWork,
+        avatar_url: newAvatarUrl,
       })
       .eq('id', user.id)
 
@@ -73,6 +97,22 @@ export default function EditProfilePage() {
         Edit your profile
       </h1>
       <form onSubmit={handleSave} style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-6">
+          <label className="block text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>Profile photo</label>
+          {avatarUrl && (
+            <img
+              src={avatarUrl}
+              alt=""
+              className="w-20 h-20 rounded-full object-cover mb-3"
+            />
+          )}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
+            className="w-full text-sm"
+          />
+        </div>
         <div className="mb-5">
           <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Display name</label>
           <input

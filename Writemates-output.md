@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-07 07:45:44 (Australia/Sydney / GMT+10:00)
+- **Generated On**: 2026-09-07 08:15:55 (Australia/Sydney / GMT+10:00)
 - **Total Files Processed**: 38
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -29,10 +29,10 @@
 ├── 📁 src/
 │   ├── 📁 app/
 │   │   ├── 📁 feed/
-│   │   │   └── 📄 page.tsx (2.95 KB)
+│   │   │   └── 📄 page.tsx (3.18 KB)
 │   │   ├── 📁 groups/
 │   │   │   ├── 📁 [id]/
-│   │   │   │   └── 📄 page.tsx (3.59 KB)
+│   │   │   │   └── 📄 page.tsx (3.87 KB)
 │   │   │   └── 📄 page.tsx (3.42 KB)
 │   │   ├── 📁 login/
 │   │   │   └── 📄 page.tsx (2.32 KB)
@@ -41,7 +41,7 @@
 │   │   │       └── 📄 page.tsx (6.04 KB)
 │   │   ├── 📁 profile/
 │   │   │   └── 📁 edit/
-│   │   │       └── 📄 page.tsx (3.7 KB)
+│   │   │       └── 📄 page.tsx (5.03 KB)
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (2.21 KB)
@@ -52,14 +52,14 @@
 │   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
-│   │   │       └── 📄 page.tsx (6.52 KB)
+│   │   │       └── 📄 page.tsx (6.8 KB)
 │   │   ├── 📄 favicon.ico (25.32 KB)
 │   │   ├── 📄 globals.css (472 B)
 │   │   ├── 📄 layout.tsx (1.13 KB)
-│   │   └── 📄 page.tsx (614 B)
+│   │   └── 📄 page.tsx (300 B)
 │   ├── 📁 components/
 │   │   ├── 📄 LogoutButton.tsx (454 B)
-│   │   ├── 📄 NavBar.tsx (2.26 KB)
+│   │   ├── 📄 NavBar.tsx (1.64 KB)
 │   │   └── 📄 ProgressChart.tsx (658 B)
 │   ├── 📁 lib/
 │   │   ├── 📁 supabase/
@@ -125,7 +125,7 @@
 | Total Directories | 20 |
 | Text Files | 30 |
 | Binary Files | 8 |
-| Total Size | 332.77 KB |
+| Total Size | 333.96 KB |
 
 ### 📄 File Types Distribution
 
@@ -155,15 +155,15 @@ The following files were not included in the text content:
 ### <a id="📄-src-app-feed-page-tsx"></a>📄 `src/app/feed/page.tsx`
 
 **File Info:**
-- **Size**: 2.95 KB
+- **Size**: 3.18 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/feed/page.tsx`
 - **Relative Path**: `src/app/feed`
 - **Created**: 2026-09-06 09:35:03 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-07 07:44:52 (Australia/Sydney / GMT+10:00)
-- **MD5**: `d2530208f8866d731641bf46d13fabdd`
-- **SHA256**: `d08f13853a827f6cda12a5991d477afeee8c013195c5432955aa95e3ca2369d6`
+- **Modified**: 2026-09-07 08:14:16 (Australia/Sydney / GMT+10:00)
+- **MD5**: `e10f80d43e28da2562757e1aee5e16f1`
+- **SHA256**: `ed6d67f444b87f14f844bc586404f1165ae68abe96985e0cf8f0e417315fc809`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -171,6 +171,7 @@ The following files were not included in the text content:
 ```typescript
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 
 export default async function FeedPage() {
   const supabase = await createClient()
@@ -179,7 +180,7 @@ export default async function FeedPage() {
 
   const { data: posts } = await supabase
     .from('posts')
-    .select('*, profiles(username, display_name), projects(title)')
+    .select('*, profiles(username, display_name, avatar_url), projects(title)')
     .order('updated_at', { ascending: false })
 
   return (
@@ -205,10 +206,19 @@ export default async function FeedPage() {
             style={{ borderColor: 'var(--color-rule)' }}
           >
             <div
-              className="text-sm mb-2"
+              className="flex items-center gap-2 text-sm mb-2"
               style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
             >
-              {post.profiles?.display_name || post.profiles?.username}
+              {post.profiles?.avatar_url && (
+                <img
+                  src={post.profiles.avatar_url}
+                  alt=""
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+              )}
+              <Link href={`/u/${post.profiles?.username}`} style={{ color: 'var(--color-ink-muted)' }}>
+                {post.profiles?.display_name || post.profiles?.username}
+              </Link>
               {' · '}
               {new Date(post.updated_at).toLocaleDateString(undefined, {
                 month: 'short',
@@ -228,10 +238,6 @@ export default async function FeedPage() {
             )}
 
             {post.type === 'snippet' && post.content && (
-              <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
-                {post.content}
-              </p>
-            )}            {post.type === 'snippet' && post.content && (
               <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
                 {post.content}
               </p>
@@ -268,15 +274,15 @@ export default async function FeedPage() {
 ### <a id="📄-src-app-groups-id-page-tsx"></a>📄 `src/app/groups/[id]/page.tsx`
 
 **File Info:**
-- **Size**: 3.59 KB
+- **Size**: 3.87 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/groups/[id]/page.tsx`
 - **Relative Path**: `src/app/groups/[id]`
 - **Created**: 2026-09-06 10:12:09 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:58:31 (Australia/Sydney / GMT+10:00)
-- **MD5**: `12625e8ce7bc604846ebda026cdec6b5`
-- **SHA256**: `d6cae00e3ba94ecc7fa19f35bae079d19814c822bb026f2999cee286fe1bac86`
+- **Modified**: 2026-09-07 08:15:54 (Australia/Sydney / GMT+10:00)
+- **MD5**: `8c287727b2beb13f651a45232d99b15b`
+- **SHA256**: `be5831ddf957292bbd3bd3381ea76c55aa44a5a46cfa53dccf78b6cb84e63d7a`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -290,7 +296,7 @@ import { useRouter } from 'next/navigation'
 
 type Member = {
   user_id: string
-  profiles: { username: string; display_name: string | null }
+  profiles: { username: string; display_name: string | null; avatar_url: string | null }
 }
 
 export default function GroupDetailPage({
@@ -323,7 +329,7 @@ export default function GroupDetailPage({
 
     const { data: memberData } = await supabase
       .from('group_members')
-      .select('user_id, profiles(username, display_name)')
+      .select('user_id, profiles(username, display_name, avatar_url)')
       .eq('group_id', id)
 
     setMembers((memberData as unknown as Member[]) || [])
@@ -379,7 +385,14 @@ export default function GroupDetailPage({
       </h2>
       <div className="mb-8">
         {members.map((m) => (
-          <div key={m.user_id} className="py-2">
+          <div key={m.user_id} className="flex items-center gap-2 py-2">
+            {m.profiles?.avatar_url && (
+              <img
+                src={m.profiles.avatar_url}
+                alt=""
+                className="w-6 h-6 rounded-full object-cover"
+              />
+            )}
             {m.profiles?.display_name || m.profiles?.username}
           </div>
         ))}
@@ -850,15 +863,15 @@ export default function NewPostPage() {
 ### <a id="📄-src-app-profile-edit-page-tsx"></a>📄 `src/app/profile/edit/page.tsx`
 
 **File Info:**
-- **Size**: 3.7 KB
+- **Size**: 5.03 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/profile/edit/page.tsx`
 - **Relative Path**: `src/app/profile/edit`
 - **Created**: 2026-09-05 23:58:11 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:55:13 (Australia/Sydney / GMT+10:00)
-- **MD5**: `178c87dbf22a4c889113014029438c18`
-- **SHA256**: `63fd45aa02a1c32229c3e2f216eaafb42071d585fe8b9379f37b3d8c2176846f`
+- **Modified**: 2026-09-07 08:07:34 (Australia/Sydney / GMT+10:00)
+- **MD5**: `18e4e89ffe6bc841101dc2be19a9c5bc`
+- **SHA256**: `9b4cf00a78d05a1e2f618af6ea5844e846654fc0f577775a068ca3f9c50f19fe`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -874,6 +887,8 @@ export default function EditProfilePage() {
   const [displayName, setDisplayName] = useState('')
   const [bio, setBio] = useState('')
   const [currentWork, setCurrentWork] = useState('')
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
+  const [avatarFile, setAvatarFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -897,6 +912,7 @@ export default function EditProfilePage() {
         setDisplayName(profile.display_name || '')
         setBio(profile.bio || '')
         setCurrentWork(profile.current_work_description || '')
+        setAvatarUrl(profile.avatar_url || null)
       }
       setLoading(false)
     }
@@ -912,12 +928,33 @@ export default function EditProfilePage() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
+    let newAvatarUrl = avatarUrl
+
+    if (avatarFile) {
+      const fileExt = avatarFile.name.split('.').pop()
+      const filePath = `${user.id}/avatar.${fileExt}`
+
+      const { error: uploadError } = await supabase.storage
+        .from('post-media')
+        .upload(filePath, avatarFile, { upsert: true })
+
+      if (uploadError) {
+        setSaving(false)
+        setError(`Upload failed: ${uploadError.message}`)
+        return
+      }
+
+      const { data: urlData } = supabase.storage.from('post-media').getPublicUrl(filePath)
+      newAvatarUrl = `${urlData.publicUrl}?t=${Date.now()}`
+    }
+
     const { error } = await supabase
       .from('profiles')
       .update({
         display_name: displayName,
         bio: bio,
         current_work_description: currentWork,
+        avatar_url: newAvatarUrl,
       })
       .eq('id', user.id)
 
@@ -939,6 +976,22 @@ export default function EditProfilePage() {
         Edit your profile
       </h1>
       <form onSubmit={handleSave} style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-6">
+          <label className="block text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>Profile photo</label>
+          {avatarUrl && (
+            <img
+              src={avatarUrl}
+              alt=""
+              className="w-20 h-20 rounded-full object-cover mb-3"
+            />
+          )}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
+            className="w-full text-sm"
+          />
+        </div>
         <div className="mb-5">
           <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Display name</label>
           <input
@@ -1478,15 +1531,15 @@ export default function SignUpPage() {
 ### <a id="📄-src-app-u-username-page-tsx"></a>📄 `src/app/u/[username]/page.tsx`
 
 **File Info:**
-- **Size**: 6.52 KB
+- **Size**: 6.8 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/u/[username]/page.tsx`
 - **Relative Path**: `src/app/u/[username]`
 - **Created**: 2026-09-06 00:00:54 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-07 07:45:44 (Australia/Sydney / GMT+10:00)
-- **MD5**: `38aff741b375a8715ca40f4bfec5c18e`
-- **SHA256**: `cbb1ef15e32d9007332a0e027c06b13e0441e6dc17924ff9658076ef67751ad1`
+- **Modified**: 2026-09-07 08:10:57 (Australia/Sydney / GMT+10:00)
+- **MD5**: `e96758621e231875909b52f1d5a8db35`
+- **SHA256**: `86c02f5ab6b69ac3c4880b2e2c8e6dacd9330b46f094d23cd6696b2b0668938d`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1535,12 +1588,23 @@ export default async function PublicProfilePage({
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12">
-      <h1 className="text-4xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        {profile.display_name || profile.username}
-      </h1>
-      <p className="mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-        @{profile.username}
-      </p>
+      <div className="flex items-center gap-4">
+        {profile.avatar_url && (
+          <img
+            src={profile.avatar_url}
+            alt=""
+            className="w-16 h-16 rounded-full object-cover"
+          />
+        )}
+        <div>
+          <h1 className="text-4xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+            {profile.display_name || profile.username}
+          </h1>
+          <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+            @{profile.username}
+          </p>
+        </div>
+      </div>
 
       {profile.bio && (
         <p className="mt-6 text-lg" style={{ lineHeight: 1.6 }}>
@@ -1800,15 +1864,15 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
 ### <a id="📄-src-app-page-tsx"></a>📄 `src/app/page.tsx`
 
 **File Info:**
-- **Size**: 614 B
+- **Size**: 300 B
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/page.tsx`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:33:31 (Australia/Sydney / GMT+10:00)
-- **MD5**: `5ff9c94342e82e329cbade106caec4f8`
-- **SHA256**: `414b8fd9478f1458f7992f423a32d6d79a0b2346f262a8200d460408711a42ee`
+- **Modified**: 2026-09-07 07:52:38 (Australia/Sydney / GMT+10:00)
+- **MD5**: `38860c2d498147910f1bb3645bf584b8`
+- **SHA256**: `dcd1ba6f3f0069f570c55422420fae723d073470849382a9a82b07ade958d26b`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1819,28 +1883,14 @@ import { redirect } from 'next/navigation'
 
 export default async function Home() {
   const supabase = await createClient()
-
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
     redirect('/login')
   }
 
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('id', user.id)
-    .single()
-
-  return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1>Welcome to Writemates</h1>
-      <p>Logged in as: {user.email}</p>
-      <p>Username: {profile?.username}</p>
-    </main>
-  )
+  redirect('/feed')
 }
-
 ```
 
 ---
@@ -1896,91 +1946,54 @@ export default function LogoutButton() {
 ### <a id="📄-src-components-navbar-tsx"></a>📄 `src/components/NavBar.tsx`
 
 **File Info:**
-- **Size**: 2.26 KB
+- **Size**: 1.64 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/NavBar.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-06 00:03:47 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-07 07:39:31 (Australia/Sydney / GMT+10:00)
-- **MD5**: `4324deb6a833ad1229eb259d519cc31f`
-- **SHA256**: `2f676ceb188896824aec3d2777fb1f02ec06e65f4abaf4bbd906f33e7b1190d5`
+- **Modified**: 2026-09-07 08:02:36 (Australia/Sydney / GMT+10:00)
+- **MD5**: `a1fa3d3f862e0846d8cc59a9c3378033`
+- **SHA256**: `098fd51cfcbd19e9ab1d08517859214dd1d2bce1ae6eb8d39c7553fc120f46f4`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```typescript
-'use client'
-
-import { useState } from 'react'
 import Link from 'next/link'
 import LogoutButton from '@/components/LogoutButton'
 
 export default function NavBar({ username }: { username: string | null }) {
-  const [open, setOpen] = useState(false)
-
-  const links = username
-    ? [
-        { href: '/feed', label: 'Feed' },
-        { href: '/projects', label: 'Projects' },
-        { href: '/projects/log', label: 'Log wordcount' },
-        { href: '/post/new', label: 'Share' },
-        { href: '/groups', label: 'Groups' },
-        { href: '/profile/edit', label: 'Edit profile' },
-        { href: `/u/${username}`, label: 'Profile' },
-      ]
-    : [
-        { href: '/login', label: 'Log in' },
-        { href: '/signup', label: 'Sign up' },
-      ]
-
   return (
     <nav className="border-b" style={{ borderColor: 'var(--color-rule)' }}>
-<div className="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between gap-8" style={{ fontFamily: 'var(--font-sans)' }}>        <Link
+      <div className="max-w-2xl mx-auto px-6 py-5 flex items-center gap-6" style={{ fontFamily: 'var(--font-sans)' }}>
+        <Link
           href="/"
-          className="text-lg"
+          className="text-lg mr-2"
           style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}
         >
           Writemates
         </Link>
-
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-6">
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm" style={{ color: 'var(--color-ink)' }}>
-              {link.label}
-            </Link>
-          ))}
-          {username && <LogoutButton />}
-        </div>
-
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden text-sm"
-          onClick={() => setOpen(!open)}
-          style={{ color: 'var(--color-ink)' }}
-        >
-          {open ? 'Close' : 'Menu'}
-        </button>
+        {username ? (
+          <>
+            <Link href="/feed" className="text-sm" style={{ color: 'var(--color-ink)' }}>Feed</Link>
+            <Link href="/projects" className="text-sm" style={{ color: 'var(--color-ink)' }}>Projects</Link>
+            <Link href="/projects/log" className="text-sm" style={{ color: 'var(--color-ink)' }}>Log wordcount</Link>
+            <Link href="/post/new" className="text-sm" style={{ color: 'var(--color-ink)' }}>Share</Link>
+            <Link href="/groups" className="text-sm" style={{ color: 'var(--color-ink)' }}>Groups</Link>
+            <Link href="/profile/edit" className="text-sm" style={{ color: 'var(--color-ink)' }}>Edit profile</Link>
+            <Link href={`/u/${username}`} className="text-sm" style={{ color: 'var(--color-ink)' }}>Profile</Link>
+            <div className="ml-auto text-sm">
+              <LogoutButton />
+            </div>
+          </>
+        ) : (
+          <>
+            <Link href="/login" className="text-sm">Log in</Link>
+            <Link href="/signup" className="text-sm">Sign up</Link>
+          </>
+        )}
       </div>
-
-      {/* Mobile dropdown */}
-      {open && (
-        <div className="md:hidden px-6 pb-5 flex flex-col gap-4" style={{ fontFamily: 'var(--font-sans)' }}>
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm"
-              style={{ color: 'var(--color-ink)' }}
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-          {username && <LogoutButton />}
-        </div>
-      )}
     </nav>
   )
 }

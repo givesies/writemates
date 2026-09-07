@@ -41,12 +41,23 @@ export default async function PublicProfilePage({
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12">
-      <h1 className="text-4xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        {profile.display_name || profile.username}
-      </h1>
-      <p className="mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-        @{profile.username}
-      </p>
+      <div className="flex items-center gap-4">
+        {profile.avatar_url && (
+          <img
+            src={profile.avatar_url}
+            alt=""
+            className="w-16 h-16 rounded-full object-cover"
+          />
+        )}
+        <div>
+          <h1 className="text-4xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+            {profile.display_name || profile.username}
+          </h1>
+          <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+            @{profile.username}
+          </p>
+        </div>
+      </div>
 
       {profile.bio && (
         <p className="mt-6 text-lg" style={{ lineHeight: 1.6 }}>

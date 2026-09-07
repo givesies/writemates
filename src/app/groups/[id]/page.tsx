@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 
 type Member = {
   user_id: string
-  profiles: { username: string; display_name: string | null }
+  profiles: { username: string; display_name: string | null; avatar_url: string | null }
 }
 
 export default function GroupDetailPage({
@@ -39,7 +39,7 @@ export default function GroupDetailPage({
 
     const { data: memberData } = await supabase
       .from('group_members')
-      .select('user_id, profiles(username, display_name)')
+      .select('user_id, profiles(username, display_name, avatar_url)')
       .eq('group_id', id)
 
     setMembers((memberData as unknown as Member[]) || [])
@@ -95,7 +95,14 @@ export default function GroupDetailPage({
       </h2>
       <div className="mb-8">
         {members.map((m) => (
-          <div key={m.user_id} className="py-2">
+          <div key={m.user_id} className="flex items-center gap-2 py-2">
+            {m.profiles?.avatar_url && (
+              <img
+                src={m.profiles.avatar_url}
+                alt=""
+                className="w-6 h-6 rounded-full object-cover"
+              />
+            )}
             {m.profiles?.display_name || m.profiles?.username}
           </div>
         ))}
