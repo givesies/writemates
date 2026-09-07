@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-07 08:15:55 (Australia/Sydney / GMT+10:00)
+- **Generated On**: 2026-09-07 08:20:13 (Australia/Sydney / GMT+10:00)
 - **Total Files Processed**: 38
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -41,7 +41,7 @@
 │   │   │       └── 📄 page.tsx (6.04 KB)
 │   │   ├── 📁 profile/
 │   │   │   └── 📁 edit/
-│   │   │       └── 📄 page.tsx (5.03 KB)
+│   │   │       └── 📄 page.tsx (6.27 KB)
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (2.21 KB)
@@ -52,7 +52,7 @@
 │   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
-│   │   │       └── 📄 page.tsx (6.8 KB)
+│   │   │       └── 📄 page.tsx (7.14 KB)
 │   │   ├── 📄 favicon.ico (25.32 KB)
 │   │   ├── 📄 globals.css (472 B)
 │   │   ├── 📄 layout.tsx (1.13 KB)
@@ -125,7 +125,7 @@
 | Total Directories | 20 |
 | Text Files | 30 |
 | Binary Files | 8 |
-| Total Size | 333.96 KB |
+| Total Size | 335.54 KB |
 
 ### 📄 File Types Distribution
 
@@ -863,15 +863,15 @@ export default function NewPostPage() {
 ### <a id="📄-src-app-profile-edit-page-tsx"></a>📄 `src/app/profile/edit/page.tsx`
 
 **File Info:**
-- **Size**: 5.03 KB
+- **Size**: 6.27 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/profile/edit/page.tsx`
 - **Relative Path**: `src/app/profile/edit`
 - **Created**: 2026-09-05 23:58:11 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-07 08:07:34 (Australia/Sydney / GMT+10:00)
-- **MD5**: `18e4e89ffe6bc841101dc2be19a9c5bc`
-- **SHA256**: `9b4cf00a78d05a1e2f618af6ea5844e846654fc0f577775a068ca3f9c50f19fe`
+- **Modified**: 2026-09-07 08:19:28 (Australia/Sydney / GMT+10:00)
+- **MD5**: `bcdc09b09e89a30e3384be909134114b`
+- **SHA256**: `77c657a0f4985fb6824728d91e38aa5cddb8c32943f3cf034d7fdd2a26067367`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -887,6 +887,8 @@ export default function EditProfilePage() {
   const [displayName, setDisplayName] = useState('')
   const [bio, setBio] = useState('')
   const [currentWork, setCurrentWork] = useState('')
+  const [genresWrite, setGenresWrite] = useState('')
+  const [genresRead, setGenresRead] = useState('')
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(true)
@@ -912,6 +914,8 @@ export default function EditProfilePage() {
         setDisplayName(profile.display_name || '')
         setBio(profile.bio || '')
         setCurrentWork(profile.current_work_description || '')
+        setGenresWrite(profile.genres_write || '')
+        setGenresRead(profile.genres_read || '')
         setAvatarUrl(profile.avatar_url || null)
       }
       setLoading(false)
@@ -954,6 +958,8 @@ export default function EditProfilePage() {
         display_name: displayName,
         bio: bio,
         current_work_description: currentWork,
+        genres_write: genresWrite,
+        genres_read: genresRead,
         avatar_url: newAvatarUrl,
       })
       .eq('id', user.id)
@@ -1012,12 +1018,34 @@ export default function EditProfilePage() {
             style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-5">
           <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>What I&apos;ve been working on</label>
           <textarea
             value={currentWork}
             onChange={(e) => setCurrentWork(e.target.value)}
             rows={4}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Genres I write in</label>
+          <input
+            type="text"
+            value={genresWrite}
+            onChange={(e) => setGenresWrite(e.target.value)}
+            placeholder="e.g. literary fiction, sci-fi"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Favorite genres to read</label>
+          <input
+            type="text"
+            value={genresRead}
+            onChange={(e) => setGenresRead(e.target.value)}
+            placeholder="e.g. mystery, fantasy"
             className="w-full py-2 border-b bg-transparent focus:outline-none"
             style={{ borderColor: 'var(--color-rule)' }}
           />
@@ -1531,15 +1559,15 @@ export default function SignUpPage() {
 ### <a id="📄-src-app-u-username-page-tsx"></a>📄 `src/app/u/[username]/page.tsx`
 
 **File Info:**
-- **Size**: 6.8 KB
+- **Size**: 7.14 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/u/[username]/page.tsx`
 - **Relative Path**: `src/app/u/[username]`
 - **Created**: 2026-09-06 00:00:54 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-07 08:10:57 (Australia/Sydney / GMT+10:00)
-- **MD5**: `e96758621e231875909b52f1d5a8db35`
-- **SHA256**: `86c02f5ab6b69ac3c4880b2e2c8e6dacd9330b46f094d23cd6696b2b0668938d`
+- **Modified**: 2026-09-07 08:20:12 (Australia/Sydney / GMT+10:00)
+- **MD5**: `08ca924d283bb827907908e223bf25de`
+- **SHA256**: `cbe1f7278febd12522652cbe108efe7cdc42b9b80f53dfbda72974458f54a14b`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1621,6 +1649,13 @@ export default async function PublicProfilePage({
             Currently working on
           </h2>
           <p className="text-lg" style={{ lineHeight: 1.6 }}>{profile.current_work_description}</p>
+        </div>
+      )}
+
+      {(profile.genres_write || profile.genres_read) && (
+        <div className="mt-6 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          {profile.genres_write && <p>Writes: {profile.genres_write}</p>}
+          {profile.genres_read && <p>Reads: {profile.genres_read}</p>}
         </div>
       )}
 

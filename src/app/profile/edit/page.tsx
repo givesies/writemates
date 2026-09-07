@@ -8,6 +8,8 @@ export default function EditProfilePage() {
   const [displayName, setDisplayName] = useState('')
   const [bio, setBio] = useState('')
   const [currentWork, setCurrentWork] = useState('')
+  const [genresWrite, setGenresWrite] = useState('')
+  const [genresRead, setGenresRead] = useState('')
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(true)
@@ -33,6 +35,8 @@ export default function EditProfilePage() {
         setDisplayName(profile.display_name || '')
         setBio(profile.bio || '')
         setCurrentWork(profile.current_work_description || '')
+        setGenresWrite(profile.genres_write || '')
+        setGenresRead(profile.genres_read || '')
         setAvatarUrl(profile.avatar_url || null)
       }
       setLoading(false)
@@ -75,6 +79,8 @@ export default function EditProfilePage() {
         display_name: displayName,
         bio: bio,
         current_work_description: currentWork,
+        genres_write: genresWrite,
+        genres_read: genresRead,
         avatar_url: newAvatarUrl,
       })
       .eq('id', user.id)
@@ -133,12 +139,34 @@ export default function EditProfilePage() {
             style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-5">
           <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>What I&apos;ve been working on</label>
           <textarea
             value={currentWork}
             onChange={(e) => setCurrentWork(e.target.value)}
             rows={4}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Genres I write in</label>
+          <input
+            type="text"
+            value={genresWrite}
+            onChange={(e) => setGenresWrite(e.target.value)}
+            placeholder="e.g. literary fiction, sci-fi"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Favorite genres to read</label>
+          <input
+            type="text"
+            value={genresRead}
+            onChange={(e) => setGenresRead(e.target.value)}
+            placeholder="e.g. mystery, fantasy"
             className="w-full py-2 border-b bg-transparent focus:outline-none"
             style={{ borderColor: 'var(--color-rule)' }}
           />

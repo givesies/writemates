@@ -77,6 +77,13 @@ export default async function PublicProfilePage({
         </div>
       )}
 
+      {(profile.genres_write || profile.genres_read) && (
+        <div className="mt-6 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          {profile.genres_write && <p>Writes: {profile.genres_write}</p>}
+          {profile.genres_read && <p>Reads: {profile.genres_read}</p>}
+        </div>
+      )}
+
       {projects && projects.length > 0 && (
         <div className="mt-12">
           <h2
