@@ -5,8 +5,8 @@ PROJECT EXPORT FOR LLMs
 PROJECT INFORMATION:
 --------------------------------------------------
 Project Name: Writemates
-Generated On: 2026-09-07 08:20:13 (Australia/Sydney / GMT+10:00)
-Total Files Processed: 38
+Generated On: 2026-09-11 04:29:44 (Australia/Sydney / GMT+10:00)
+Total Files Processed: 39
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
 
@@ -50,6 +50,8 @@ PROJECT STRUCTURE
 │   │   │   ├── 📁 log/
 │   │   │   │   └── 📄 page.tsx (4.29 KB)
 │   │   │   └── 📄 page.tsx (4.11 KB)
+│   │   ├── 📁 settings/
+│   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 signup/
 │   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 u/
@@ -61,7 +63,7 @@ PROJECT STRUCTURE
 │   │   └── 📄 page.tsx (300 B)
 │   ├── 📁 components/
 │   │   ├── 📄 LogoutButton.tsx (454 B)
-│   │   ├── 📄 NavBar.tsx (1.64 KB)
+│   │   ├── 📄 NavBar.tsx (2.64 KB)
 │   │   └── 📄 ProgressChart.tsx (658 B)
 │   ├── 📁 lib/
 │   │   ├── 📁 supabase/
@@ -84,15 +86,15 @@ PROJECT STRUCTURE
 ================================================================================
 PROJECT STATISTICS
 ================================================================================
-Total Files: 38
-Total Directories: 20
-Text Files: 30
+Total Files: 39
+Total Directories: 21
+Text Files: 31
 Binary Files: 8
-Total Size: 335.54 KB
+Total Size: 338.87 KB
 
 FILE TYPES DISTRIBUTION:
 ------------------------------
-.tsx            : 16
+.tsx            : 17
 .ts             : 7
 .svg            : 5
 .md             : 3
@@ -1440,6 +1442,105 @@ export default function ProjectsPage() {
 
 
 ================================================================================
+FILE: src/app/settings/page.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 2.33 KB
+Extension: .tsx
+Language: typescript
+Location: src/app/settings/page.tsx
+Relative Path: src/app/settings
+Created: 2026-09-11 04:24:24 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-11 04:24:45 (Australia/Sydney / GMT+10:00)
+MD5: c7db473e0b804cc5ce9a2f5a0524bf40
+SHA256: 998e60d17c2097d876042774bcdda29cb346ee113abc4b53d583dedcbae15c65
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use client'
+
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+
+export default function SettingsPage() {
+  const [message, setMessage] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [status, setStatus] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setSaving(true)
+    setError(null)
+    setStatus(null)
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { error } = await supabase.from('support_requests').insert({
+      user_id: user.id,
+      message,
+    })
+
+    setSaving(false)
+
+    if (error) {
+      setError(error.message)
+    } else {
+      setStatus('Your message has been sent. We\'ll get back to you soon.')
+      setMessage('')
+    }
+  }
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Settings
+      </h1>
+
+      <h2
+        className="text-sm mb-4 pb-2 border-b"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+      >
+        Contact support
+      </h2>
+
+      <form onSubmit={handleSubmit} style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            What can we help with?
+          </label>
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            rows={5}
+            required
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        {status && <p className="mb-4 text-sm" style={{ color: 'var(--color-accent)' }}>{status}</p>}
+        <button
+          type="submit"
+          disabled={saving}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          {saving ? 'Sending...' : 'Send message'}
+        </button>
+      </form>
+    </main>
+  )
+}
+================================================================================
+
+
+================================================================================
 FILE: src/app/signup/page.tsx
 ================================================================================
 
@@ -1963,53 +2064,100 @@ FILE: src/components/NavBar.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 1.64 KB
+Size: 2.64 KB
 Extension: .tsx
 Language: typescript
 Location: src/components/NavBar.tsx
 Relative Path: src/components
 Created: 2026-09-06 00:03:47 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-07 08:02:36 (Australia/Sydney / GMT+10:00)
-MD5: a1fa3d3f862e0846d8cc59a9c3378033
-SHA256: 098fd51cfcbd19e9ab1d08517859214dd1d2bce1ae6eb8d39c7553fc120f46f4
+Modified: 2026-09-11 04:29:44 (Australia/Sydney / GMT+10:00)
+MD5: 18b7b21db50f28f4b5c3eee6f2b96943
+SHA256: d2bebeff439571b71755b09d88af30cd60cd36e13f529145ceb9025445ba2030
 Encoding: ASCII
 
 FILE CONTENT:
 ----------------------------------------
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
+import { Menu, X } from 'lucide-react'
 import LogoutButton from '@/components/LogoutButton'
 
 export default function NavBar({ username }: { username: string | null }) {
+  const [open, setOpen] = useState(false)
+
+  const links = username
+    ? [
+        { href: '/feed', label: 'Feed' },
+        { href: '/projects', label: 'Projects' },
+        { href: '/projects/log', label: 'Log wordcount' },
+        { href: '/post/new', label: 'Share' },
+        { href: '/groups', label: 'Groups' },
+        { href: '/profile/edit', label: 'Edit profile' },
+        { href: `/u/${username}`, label: 'Profile' },
+        { href: '/settings', label: 'Settings' },
+      ]
+    : [
+        { href: '/login', label: 'Log in' },
+        { href: '/signup', label: 'Sign up' },
+      ]
+
   return (
     <nav className="border-b" style={{ borderColor: 'var(--color-rule)' }}>
-      <div className="max-w-2xl mx-auto px-6 py-5 flex items-center gap-6" style={{ fontFamily: 'var(--font-sans)' }}>
+      <div className="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between gap-8" style={{ fontFamily: 'var(--font-sans)' }}>
         <Link
           href="/"
-          className="text-lg mr-2"
+          className="text-lg flex items-baseline gap-2"
           style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}
         >
           Writemates
+          <span
+            className="text-xs"
+            style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, color: 'var(--color-ink-muted)' }}
+          >
+            beta
+          </span>
         </Link>
-        {username ? (
-          <>
-            <Link href="/feed" className="text-sm" style={{ color: 'var(--color-ink)' }}>Feed</Link>
-            <Link href="/projects" className="text-sm" style={{ color: 'var(--color-ink)' }}>Projects</Link>
-            <Link href="/projects/log" className="text-sm" style={{ color: 'var(--color-ink)' }}>Log wordcount</Link>
-            <Link href="/post/new" className="text-sm" style={{ color: 'var(--color-ink)' }}>Share</Link>
-            <Link href="/groups" className="text-sm" style={{ color: 'var(--color-ink)' }}>Groups</Link>
-            <Link href="/profile/edit" className="text-sm" style={{ color: 'var(--color-ink)' }}>Edit profile</Link>
-            <Link href={`/u/${username}`} className="text-sm" style={{ color: 'var(--color-ink)' }}>Profile</Link>
-            <div className="ml-auto text-sm">
-              <LogoutButton />
-            </div>
-          </>
-        ) : (
-          <>
-            <Link href="/login" className="text-sm">Log in</Link>
-            <Link href="/signup" className="text-sm">Sign up</Link>
-          </>
-        )}
+
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-6">
+          {links.map((link) => (
+            <Link key={link.href} href={link.href} className="text-sm" style={{ color: 'var(--color-ink)' }}>
+              {link.label}
+            </Link>
+          ))}
+          {username && <LogoutButton />}
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden"
+          onClick={() => setOpen(!open)}
+          style={{ color: 'var(--color-ink)' }}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+        >
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
+
+      {/* Mobile dropdown */}
+      {open && (
+        <div className="md:hidden px-6 pb-5 flex flex-col gap-4" style={{ fontFamily: 'var(--font-sans)' }}>
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm"
+              style={{ color: 'var(--color-ink)' }}
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+          {username && <LogoutButton />}
+        </div>
+      )}
     </nav>
   )
 }
