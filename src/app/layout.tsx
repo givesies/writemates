@@ -17,6 +17,11 @@ const workSans = Work_Sans({
 export const metadata: Metadata = {
   title: "Writemates",
   description: "Track your writing progress with fellow writers",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Writemates",
+  },
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {

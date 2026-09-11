@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-11 10:17:59 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 45
+- **Generated On**: 2026-09-11 10:35:44 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 49
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -34,6 +34,10 @@
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (3.87 KB)
 │   │   │   └── 📄 page.tsx (3.42 KB)
+│   │   ├── 📁 icon-192/
+│   │   │   └── 📄 route.tsx (478 B)
+│   │   ├── 📁 icon-512/
+│   │   │   └── 📄 route.tsx (478 B)
 │   │   ├── 📁 login/
 │   │   │   └── 📄 page.tsx (2.32 KB)
 │   │   ├── 📁 post/
@@ -57,9 +61,11 @@
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
 │   │   │       └── 📄 page.tsx (9.99 KB)
+│   │   ├── 📄 apple-icon.tsx (553 B)
 │   │   ├── 📄 favicon.ico (25.32 KB)
 │   │   ├── 📄 globals.css (472 B)
-│   │   ├── 📄 layout.tsx (1.13 KB)
+│   │   ├── 📄 layout.tsx (1.23 KB)
+│   │   ├── 📄 manifest.ts (495 B)
 │   │   └── 📄 page.tsx (300 B)
 │   ├── 📁 components/
 │   │   ├── 📄 ContributionCalendar.tsx (1.34 KB)
@@ -96,6 +102,8 @@
 - [📄 src/app/feed/page.tsx](#📄-src-app-feed-page-tsx)
 - [📄 src/app/groups/[id]/page.tsx](#📄-src-app-groups-id-page-tsx)
 - [📄 src/app/groups/page.tsx](#📄-src-app-groups-page-tsx)
+- [📄 src/app/icon-192/route.tsx](#📄-src-app-icon-192-route-tsx)
+- [📄 src/app/icon-512/route.tsx](#📄-src-app-icon-512-route-tsx)
 - [📄 src/app/login/page.tsx](#📄-src-app-login-page-tsx)
 - [📄 src/app/post/[id]/page.tsx](#📄-src-app-post-id-page-tsx)
 - [📄 src/app/post/new/page.tsx](#📄-src-app-post-new-page-tsx)
@@ -106,8 +114,10 @@
 - [📄 src/app/settings/page.tsx](#📄-src-app-settings-page-tsx)
 - [📄 src/app/signup/page.tsx](#📄-src-app-signup-page-tsx)
 - [📄 src/app/u/[username]/page.tsx](#📄-src-app-u-username-page-tsx)
+- [📄 src/app/apple-icon.tsx](#📄-src-app-apple-icon-tsx)
 - [📄 src/app/globals.css](#📄-src-app-globals-css)
 - [📄 src/app/layout.tsx](#📄-src-app-layout-tsx)
+- [📄 src/app/manifest.ts](#📄-src-app-manifest-ts)
 - [📄 src/app/page.tsx](#📄-src-app-page-tsx)
 - [📄 src/components/ContributionCalendar.tsx](#📄-src-components-contributioncalendar-tsx)
 - [📄 src/components/DailyBarChart.tsx](#📄-src-components-dailybarchart-tsx)
@@ -137,18 +147,18 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 45 |
-| Total Directories | 22 |
-| Text Files | 37 |
+| Total Files | 49 |
+| Total Directories | 24 |
+| Text Files | 41 |
 | Binary Files | 8 |
-| Total Size | 359.21 KB |
+| Total Size | 361.26 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 22 |
-| `.ts` | 8 |
+| `.tsx` | 25 |
+| `.ts` | 9 |
 | `.svg` | 5 |
 | `.md` | 3 |
 | `.json` | 3 |
@@ -593,6 +603,96 @@ export default function GroupsPage() {
         ))}
       </div>
     </main>
+  )
+}
+```
+
+---
+
+### <a id="📄-src-app-icon-192-route-tsx"></a>📄 `src/app/icon-192/route.tsx`
+
+**File Info:**
+- **Size**: 478 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/icon-192/route.tsx`
+- **Relative Path**: `src/app/icon-192`
+- **Created**: 2026-09-11 10:25:10 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-11 10:25:35 (Australia/Sydney / GMT+10:00)
+- **MD5**: `74b4fc4df3308947f2ac991da94819d4`
+- **SHA256**: `e9696420793435313e2a584e1bfda265ef1bc9f38b853d65a8df36e009225552`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { ImageResponse } from 'next/og'
+
+export async function GET() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          fontSize: 100,
+          background: '#33503e',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#fbfaf7',
+          fontWeight: 700,
+        }}
+      >
+        W
+      </div>
+    ),
+    { width: 192, height: 192 }
+  )
+}
+```
+
+---
+
+### <a id="📄-src-app-icon-512-route-tsx"></a>📄 `src/app/icon-512/route.tsx`
+
+**File Info:**
+- **Size**: 478 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/icon-512/route.tsx`
+- **Relative Path**: `src/app/icon-512`
+- **Created**: 2026-09-11 10:25:54 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-11 10:26:20 (Australia/Sydney / GMT+10:00)
+- **MD5**: `34828cf2aaf42b812908b249fc9afe65`
+- **SHA256**: `c9a7111dc70dbcfd927f12de843aa1b195e9f08cc237d23f333f77a8f753a1d7`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { ImageResponse } from 'next/og'
+
+export async function GET() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          fontSize: 280,
+          background: '#33503e',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#fbfaf7',
+          fontWeight: 700,
+        }}
+      >
+        W
+      </div>
+    ),
+    { width: 512, height: 512 }
   )
 }
 ```
@@ -2232,6 +2332,54 @@ export default async function PublicProfilePage({
 
 ---
 
+### <a id="📄-src-app-apple-icon-tsx"></a>📄 `src/app/apple-icon.tsx`
+
+**File Info:**
+- **Size**: 553 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/apple-icon.tsx`
+- **Relative Path**: `src/app`
+- **Created**: 2026-09-11 10:27:23 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-11 10:35:44 (Australia/Sydney / GMT+10:00)
+- **MD5**: `af54ccc15299dc85ab321685038a231c`
+- **SHA256**: `17794b35b1805ff323a0abe0646232e669bdff28c0696656d0991bf655b02034`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { ImageResponse } from 'next/og'
+
+export const size = { width: 180, height: 180 }
+export const contentType = 'image/png'
+
+export default function Icon() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          fontSize: 100,
+          background: '#33503e',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#fbfaf7',
+          fontWeight: 700,
+        }}
+      >
+        W
+      </div>
+    ),
+    { ...size }
+  )
+}
+```
+
+---
+
 ### <a id="📄-src-app-globals-css"></a>📄 `src/app/globals.css`
 
 **File Info:**
@@ -2285,15 +2433,15 @@ button {
 ### <a id="📄-src-app-layout-tsx"></a>📄 `src/app/layout.tsx`
 
 **File Info:**
-- **Size**: 1.13 KB
+- **Size**: 1.23 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/layout.tsx`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:39:00 (Australia/Sydney / GMT+10:00)
-- **MD5**: `096d93669411f5971cdd436a1fb0f613`
-- **SHA256**: `a253d53ce1bc8de9febc076c2843c8fba0c112ef10aea6b65b0a83bdd683623b`
+- **Modified**: 2026-09-11 10:28:44 (Australia/Sydney / GMT+10:00)
+- **MD5**: `45f158beb9a1078810b7cc3ab50bbd5c`
+- **SHA256**: `c7714dc3ebb915278345a7ab3c134a5e211eabe633acd9d3c6f450fb86305217`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2318,6 +2466,11 @@ const workSans = Work_Sans({
 export const metadata: Metadata = {
   title: "Writemates",
   description: "Track your writing progress with fellow writers",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Writemates",
+  },
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
@@ -2342,6 +2495,44 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       </body>
     </html>
   );
+}
+```
+
+---
+
+### <a id="📄-src-app-manifest-ts"></a>📄 `src/app/manifest.ts`
+
+**File Info:**
+- **Size**: 495 B
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `src/app/manifest.ts`
+- **Relative Path**: `src/app`
+- **Created**: 2026-09-11 10:24:30 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-11 10:24:48 (Australia/Sydney / GMT+10:00)
+- **MD5**: `bd38e3e7727b1e1c669682ce8cd47d87`
+- **SHA256**: `98d1da0d812cdd78e35066fc03eb30a343bcc6ec1da608c6345d9a4d3c6d1f00`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { MetadataRoute } from 'next'
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: 'Writemates',
+    short_name: 'Writemates',
+    description: 'Track your writing progress with fellow writers',
+    start_url: '/',
+    display: 'standalone',
+    background_color: '#fbfaf7',
+    theme_color: '#33503e',
+    icons: [
+      { src: '/icon-192', sizes: '192x192', type: 'image/png' },
+      { src: '/icon-512', sizes: '512x512', type: 'image/png' },
+    ],
+  }
 }
 ```
 
