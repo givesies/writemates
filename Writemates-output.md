@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-11 04:48:38 (Australia/Sydney / GMT+10:00)
+- **Generated On**: 2026-09-11 09:50:40 (Australia/Sydney / GMT+10:00)
 - **Total Files Processed**: 42
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -43,7 +43,7 @@
 │   │   │       └── 📄 page.tsx (6.04 KB)
 │   │   ├── 📁 profile/
 │   │   │   └── 📁 edit/
-│   │   │       └── 📄 page.tsx (6.27 KB)
+│   │   │       └── 📄 page.tsx (8.93 KB)
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (2.21 KB)
@@ -56,7 +56,7 @@
 │   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
-│   │   │       └── 📄 page.tsx (8.23 KB)
+│   │   │       └── 📄 page.tsx (9.03 KB)
 │   │   ├── 📄 favicon.ico (25.32 KB)
 │   │   ├── 📄 globals.css (472 B)
 │   │   ├── 📄 layout.tsx (1.13 KB)
@@ -135,7 +135,7 @@
 | Total Directories | 22 |
 | Text Files | 34 |
 | Binary Files | 8 |
-| Total Size | 346.33 KB |
+| Total Size | 349.79 KB |
 
 ### 📄 File Types Distribution
 
@@ -978,15 +978,15 @@ export default function NewPostPage() {
 ### <a id="📄-src-app-profile-edit-page-tsx"></a>📄 `src/app/profile/edit/page.tsx`
 
 **File Info:**
-- **Size**: 6.27 KB
+- **Size**: 8.93 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/profile/edit/page.tsx`
 - **Relative Path**: `src/app/profile/edit`
 - **Created**: 2026-09-05 23:58:11 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-07 08:19:28 (Australia/Sydney / GMT+10:00)
-- **MD5**: `bcdc09b09e89a30e3384be909134114b`
-- **SHA256**: `77c657a0f4985fb6824728d91e38aa5cddb8c32943f3cf034d7fdd2a26067367`
+- **Modified**: 2026-09-11 09:46:39 (Australia/Sydney / GMT+10:00)
+- **MD5**: `70f445b3da1143ae0c2718dbb8e8609a`
+- **SHA256**: `34aebb926709f8374b9460ea87143aaa23e26da3d5250d05652cbc3fe086e7b7`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1004,6 +1004,10 @@ export default function EditProfilePage() {
   const [currentWork, setCurrentWork] = useState('')
   const [genresWrite, setGenresWrite] = useState('')
   const [genresRead, setGenresRead] = useState('')
+  const [substackUrl, setSubstackUrl] = useState('')
+  const [twitterUrl, setTwitterUrl] = useState('')
+  const [instagramUrl, setInstagramUrl] = useState('')
+  const [websiteUrl, setWebsiteUrl] = useState('')
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(true)
@@ -1031,6 +1035,10 @@ export default function EditProfilePage() {
         setCurrentWork(profile.current_work_description || '')
         setGenresWrite(profile.genres_write || '')
         setGenresRead(profile.genres_read || '')
+        setSubstackUrl(profile.substack_url || '')
+        setTwitterUrl(profile.twitter_url || '')
+        setInstagramUrl(profile.instagram_url || '')
+        setWebsiteUrl(profile.website_url || '')
         setAvatarUrl(profile.avatar_url || null)
       }
       setLoading(false)
@@ -1075,6 +1083,10 @@ export default function EditProfilePage() {
         current_work_description: currentWork,
         genres_write: genresWrite,
         genres_read: genresRead,
+        substack_url: substackUrl,
+        twitter_url: twitterUrl,
+        instagram_url: instagramUrl,
+        website_url: websiteUrl,
         avatar_url: newAvatarUrl,
       })
       .eq('id', user.id)
@@ -1165,6 +1177,59 @@ export default function EditProfilePage() {
             style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
+
+        <h2
+          className="text-sm mb-4 pb-2 border-b"
+          style={{ color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+        >
+          Elsewhere on the web
+        </h2>
+
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Substack</label>
+          <input
+            type="url"
+            value={substackUrl}
+            onChange={(e) => setSubstackUrl(e.target.value)}
+            placeholder="https://yourname.substack.com"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Twitter / X</label>
+          <input
+            type="url"
+            value={twitterUrl}
+            onChange={(e) => setTwitterUrl(e.target.value)}
+            placeholder="https://x.com/yourname"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Instagram</label>
+          <input
+            type="url"
+            value={instagramUrl}
+            onChange={(e) => setInstagramUrl(e.target.value)}
+            placeholder="https://instagram.com/yourname"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Website</label>
+          <input
+            type="url"
+            value={websiteUrl}
+            onChange={(e) => setWebsiteUrl(e.target.value)}
+            placeholder="https://yourwebsite.com"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+
         {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
         <button
           type="submit"
@@ -1772,15 +1837,15 @@ export default function SignUpPage() {
 ### <a id="📄-src-app-u-username-page-tsx"></a>📄 `src/app/u/[username]/page.tsx`
 
 **File Info:**
-- **Size**: 8.23 KB
+- **Size**: 9.03 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/u/[username]/page.tsx`
 - **Relative Path**: `src/app/u/[username]`
 - **Created**: 2026-09-06 00:00:54 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 04:48:37 (Australia/Sydney / GMT+10:00)
-- **MD5**: `6fc5663875e0ec13bf2a9d91809217f3`
-- **SHA256**: `89a6687a201af27ef54c1ca50212b8884eda738f5eef00fbe899468737718f01`
+- **Modified**: 2026-09-11 09:50:39 (Australia/Sydney / GMT+10:00)
+- **MD5**: `d805b869b83c341ea1ac77f1ad2127dc`
+- **SHA256**: `9c84dc0e32c85d8b7de524c5f2751633a4798a7e571132b973504b1f74539507`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1900,6 +1965,23 @@ export default async function PublicProfilePage({
         <div className="mt-6 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
           {profile.genres_write && <p>Writes: {profile.genres_write}</p>}
           {profile.genres_read && <p>Reads: {profile.genres_read}</p>}
+        </div>
+      )}
+
+      {(profile.substack_url || profile.twitter_url || profile.instagram_url || profile.website_url) && (
+        <div className="mt-6 flex gap-4 text-sm" style={{ fontFamily: 'var(--font-sans)' }}>
+          {profile.substack_url && (
+            <a href={profile.substack_url} target="_blank" rel="noopener noreferrer">Read my Substack</a>
+          )}
+          {profile.twitter_url && (
+            <a href={profile.twitter_url} target="_blank" rel="noopener noreferrer">Twitter</a>
+          )}
+          {profile.instagram_url && (
+            <a href={profile.instagram_url} target="_blank" rel="noopener noreferrer">Instagram</a>
+          )}
+          {profile.website_url && (
+            <a href={profile.website_url} target="_blank" rel="noopener noreferrer">Website</a>
+          )}
         </div>
       )}
 

@@ -10,6 +10,10 @@ export default function EditProfilePage() {
   const [currentWork, setCurrentWork] = useState('')
   const [genresWrite, setGenresWrite] = useState('')
   const [genresRead, setGenresRead] = useState('')
+  const [substackUrl, setSubstackUrl] = useState('')
+  const [twitterUrl, setTwitterUrl] = useState('')
+  const [instagramUrl, setInstagramUrl] = useState('')
+  const [websiteUrl, setWebsiteUrl] = useState('')
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(true)
@@ -37,6 +41,10 @@ export default function EditProfilePage() {
         setCurrentWork(profile.current_work_description || '')
         setGenresWrite(profile.genres_write || '')
         setGenresRead(profile.genres_read || '')
+        setSubstackUrl(profile.substack_url || '')
+        setTwitterUrl(profile.twitter_url || '')
+        setInstagramUrl(profile.instagram_url || '')
+        setWebsiteUrl(profile.website_url || '')
         setAvatarUrl(profile.avatar_url || null)
       }
       setLoading(false)
@@ -81,6 +89,10 @@ export default function EditProfilePage() {
         current_work_description: currentWork,
         genres_write: genresWrite,
         genres_read: genresRead,
+        substack_url: substackUrl,
+        twitter_url: twitterUrl,
+        instagram_url: instagramUrl,
+        website_url: websiteUrl,
         avatar_url: newAvatarUrl,
       })
       .eq('id', user.id)
@@ -171,6 +183,59 @@ export default function EditProfilePage() {
             style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
+
+        <h2
+          className="text-sm mb-4 pb-2 border-b"
+          style={{ color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+        >
+          Elsewhere on the web
+        </h2>
+
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Substack</label>
+          <input
+            type="url"
+            value={substackUrl}
+            onChange={(e) => setSubstackUrl(e.target.value)}
+            placeholder="https://yourname.substack.com"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Twitter / X</label>
+          <input
+            type="url"
+            value={twitterUrl}
+            onChange={(e) => setTwitterUrl(e.target.value)}
+            placeholder="https://x.com/yourname"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Instagram</label>
+          <input
+            type="url"
+            value={instagramUrl}
+            onChange={(e) => setInstagramUrl(e.target.value)}
+            placeholder="https://instagram.com/yourname"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Website</label>
+          <input
+            type="url"
+            value={websiteUrl}
+            onChange={(e) => setWebsiteUrl(e.target.value)}
+            placeholder="https://yourwebsite.com"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+
         {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
         <button
           type="submit"

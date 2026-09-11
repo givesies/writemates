@@ -115,6 +115,23 @@ export default async function PublicProfilePage({
         </div>
       )}
 
+      {(profile.substack_url || profile.twitter_url || profile.instagram_url || profile.website_url) && (
+        <div className="mt-6 flex gap-4 text-sm" style={{ fontFamily: 'var(--font-sans)' }}>
+          {profile.substack_url && (
+            <a href={profile.substack_url} target="_blank" rel="noopener noreferrer">Read my Substack</a>
+          )}
+          {profile.twitter_url && (
+            <a href={profile.twitter_url} target="_blank" rel="noopener noreferrer">Twitter</a>
+          )}
+          {profile.instagram_url && (
+            <a href={profile.instagram_url} target="_blank" rel="noopener noreferrer">Instagram</a>
+          )}
+          {profile.website_url && (
+            <a href={profile.website_url} target="_blank" rel="noopener noreferrer">Website</a>
+          )}
+        </div>
+      )}
+
       {projects && projects.length > 0 && (
         <div className="mt-12">
           <h2
