@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { buildDailyCumulative } from '@/lib/wordcountStats'
 
 type Project = {
   id: string
@@ -18,6 +19,7 @@ export default function ProjectsPage() {
   const [goalWordCount, setGoalWordCount] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [totalWords, setTotalWords] = useState(0)
   const router = useRouter()
 
   async function loadProjects() {
@@ -33,6 +35,26 @@ export default function ProjectsPage() {
       .order('created_at', { ascending: false })
 
     setProjects(data || [])
+
+    const { data: allSnapshots } = await supabase
+      .from('wordcount_snapshots')
+      .select('word_count, recorded_at, project_id')
+      .eq('user_id', user.id)
+
+    const byProject = new Map<string, typeof allSnapshots>()
+    for (const snap of allSnapshots || []) {
+      const list = byProject.get(snap.project_id) || []
+      list.push(snap)
+      byProject.set(snap.project_id, list)
+    }
+    let total = 0
+    for (const snaps of byProject.values()) {
+      const daily = buildDailyCumulative(snaps!)
+      const values = Array.from(daily.values())
+      if (values.length > 0) total += Math.max(...values)
+    }
+    setTotalWords(total)
+
     setLoading(false)
   }
 
@@ -66,9 +88,14 @@ export default function ProjectsPage() {
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12">
-      <h1 className="text-3xl mb-10" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+      <h1 className="text-3xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
         Your projects
       </h1>
+      {totalWords > 0 && (
+        <p className="mb-10" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          <strong style={{ color: 'var(--color-accent)' }}>{totalWords.toLocaleString()}</strong> words written across all projects
+        </p>
+      )}
 
       <form onSubmit={handleCreate} className="mb-12 pb-10 border-b" style={{ borderColor: 'var(--color-rule)', fontFamily: 'var(--font-sans)' }}>
         <div className="mb-4">
