@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-11 09:50:40 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 42
+- **Generated On**: 2026-09-11 10:05:21 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 44
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -46,7 +46,7 @@
 │   │   │       └── 📄 page.tsx (8.93 KB)
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
-│   │   │   │   └── 📄 page.tsx (2.21 KB)
+│   │   │   │   └── 📄 page.tsx (3.94 KB)
 │   │   │   ├── 📁 log/
 │   │   │   │   └── 📄 page.tsx (4.29 KB)
 │   │   │   └── 📄 page.tsx (4.11 KB)
@@ -56,12 +56,13 @@
 │   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
-│   │   │       └── 📄 page.tsx (9.03 KB)
+│   │   │       └── 📄 page.tsx (9.99 KB)
 │   │   ├── 📄 favicon.ico (25.32 KB)
 │   │   ├── 📄 globals.css (472 B)
 │   │   ├── 📄 layout.tsx (1.13 KB)
 │   │   └── 📄 page.tsx (300 B)
 │   ├── 📁 components/
+│   │   ├── 📄 ContributionCalendar.tsx (1.34 KB)
 │   │   ├── 📄 FollowButton.tsx (1.11 KB)
 │   │   ├── 📄 LogoutButton.tsx (454 B)
 │   │   ├── 📄 NavBar.tsx (2.64 KB)
@@ -72,7 +73,8 @@
 │   │   │   ├── 📄 client.ts (211 B)
 │   │   │   ├── 📄 middleware.ts (907 B)
 │   │   │   └── 📄 server.ts (704 B)
-│   │   └── 📄 supabase.ts (246 B)
+│   │   ├── 📄 supabase.ts (246 B)
+│   │   └── 📄 wordcountStats.ts (3.23 KB)
 │   └── 📄 middleware.ts (336 B)
 ├── 📄 AGENTS.md (678 B)
 ├── 📄 CLAUDE.md (11 B)
@@ -106,6 +108,7 @@
 - [📄 src/app/globals.css](#📄-src-app-globals-css)
 - [📄 src/app/layout.tsx](#📄-src-app-layout-tsx)
 - [📄 src/app/page.tsx](#📄-src-app-page-tsx)
+- [📄 src/components/ContributionCalendar.tsx](#📄-src-components-contributioncalendar-tsx)
 - [📄 src/components/FollowButton.tsx](#📄-src-components-followbutton-tsx)
 - [📄 src/components/LogoutButton.tsx](#📄-src-components-logoutbutton-tsx)
 - [📄 src/components/NavBar.tsx](#📄-src-components-navbar-tsx)
@@ -115,6 +118,7 @@
 - [📄 src/lib/supabase/middleware.ts](#📄-src-lib-supabase-middleware-ts)
 - [📄 src/lib/supabase/server.ts](#📄-src-lib-supabase-server-ts)
 - [📄 src/lib/supabase.ts](#📄-src-lib-supabase-ts)
+- [📄 src/lib/wordcountStats.ts](#📄-src-lib-wordcountstats-ts)
 - [📄 src/middleware.ts](#📄-src-middleware-ts)
 - [📄 AGENTS.md](#📄-agents-md)
 - [📄 CLAUDE.md](#📄-claude-md)
@@ -131,18 +135,18 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 42 |
+| Total Files | 44 |
 | Total Directories | 22 |
-| Text Files | 34 |
+| Text Files | 36 |
 | Binary Files | 8 |
-| Total Size | 349.79 KB |
+| Total Size | 357.05 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 20 |
-| `.ts` | 7 |
+| `.tsx` | 21 |
+| `.ts` | 8 |
 | `.svg` | 5 |
 | `.md` | 3 |
 | `.json` | 3 |
@@ -1250,15 +1254,15 @@ export default function EditProfilePage() {
 ### <a id="📄-src-app-projects-id-page-tsx"></a>📄 `src/app/projects/[id]/page.tsx`
 
 **File Info:**
-- **Size**: 2.21 KB
+- **Size**: 3.94 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/[id]/page.tsx`
 - **Relative Path**: `src/app/projects/[id]`
 - **Created**: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:54:41 (Australia/Sydney / GMT+10:00)
-- **MD5**: `4c1e22239d686dad1c1a85ed7313757e`
-- **SHA256**: `95675a1331d6c491b13de51a821ea1715cb4b55eae1f18ccb8a0b4e3071cf042`
+- **Modified**: 2026-09-11 10:05:20 (Australia/Sydney / GMT+10:00)
+- **MD5**: `9d6d049d1ddcad37763950dd91a85732`
+- **SHA256**: `68a4845aba32636e01646496419ab7291023cbe25b524ccb6bd00feda4e4e978`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1267,6 +1271,15 @@ export default function EditProfilePage() {
 import { createClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import ProgressChart from '@/components/ProgressChart'
+import ContributionCalendar from '@/components/ContributionCalendar'
+import {
+  buildDailyCumulative,
+  buildDailyDeltas,
+  computeStreak,
+  computeBestDay,
+  computeWeeklyComparison,
+  computeProjectedFinish,
+} from '@/lib/wordcountStats'
 
 export default async function ProjectDetailPage({
   params,
@@ -1293,12 +1306,8 @@ export default async function ProjectDetailPage({
     .eq('project_id', id)
     .order('recorded_at', { ascending: true })
 
-  const dailyMap = new Map<string, number>()
-  for (const snap of snapshots || []) {
-    const day = new Date(snap.recorded_at).toISOString().split('T')[0]
-    const existing = dailyMap.get(day) || 0
-    if (snap.word_count > existing) dailyMap.set(day, snap.word_count)
-  }
+  const dailyMap = buildDailyCumulative(snapshots || [])
+  const dailyDeltas = buildDailyDeltas(dailyMap)
 
   const chartData = Array.from(dailyMap.entries()).map(([date, wordCount]) => ({
     date,
@@ -1309,6 +1318,12 @@ export default async function ProjectDetailPage({
   const percentComplete = project.goal_word_count
     ? Math.min(100, Math.round((currentWordCount / project.goal_word_count) * 100))
     : null
+
+  const streak = computeStreak(dailyMap)
+  const bestDay = computeBestDay(dailyDeltas)
+  const { thisWeek, lastWeek } = computeWeeklyComparison(dailyDeltas)
+  const projectedFinish = computeProjectedFinish(dailyDeltas, currentWordCount, project.goal_word_count)
+  const dailyDeltasObj = Object.fromEntries(dailyDeltas)
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12">
@@ -1322,6 +1337,34 @@ export default async function ProjectDetailPage({
         )}
       </p>
 
+      <div
+        className="flex flex-wrap gap-x-8 gap-y-2 mb-8 text-sm"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+      >
+        {streak > 0 && (
+          <span>
+            <strong style={{ color: 'var(--color-accent)' }}>{streak}</strong> day streak
+          </span>
+        )}
+        {bestDay && bestDay.words > 0 && (
+          <span>
+            Best day: <strong style={{ color: 'var(--color-ink)' }}>{bestDay.words.toLocaleString()}</strong> words on{' '}
+            {new Date(bestDay.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+          </span>
+        )}
+        {(thisWeek > 0 || lastWeek > 0) && (
+          <span>
+            This week: <strong style={{ color: 'var(--color-ink)' }}>{thisWeek.toLocaleString()}</strong>
+            {' '}(last week: {lastWeek.toLocaleString()})
+          </span>
+        )}
+        {projectedFinish && (
+          <span>
+            Projected finish: <strong style={{ color: 'var(--color-ink)' }}>{projectedFinish}</strong>
+          </span>
+        )}
+      </div>
+
       {chartData.length > 1 ? (
         <ProgressChart data={chartData} />
       ) : (
@@ -1329,6 +1372,16 @@ export default async function ProjectDetailPage({
           Log a few more wordcounts (ideally on different days) to see your progress graph.
         </p>
       )}
+
+      <div className="mt-10">
+        <h2
+          className="text-sm mb-3"
+          style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+        >
+          Last 90 days
+        </h2>
+        <ContributionCalendar dailyDeltas={dailyDeltasObj} />
+      </div>
     </main>
   )
 }
@@ -1837,15 +1890,15 @@ export default function SignUpPage() {
 ### <a id="📄-src-app-u-username-page-tsx"></a>📄 `src/app/u/[username]/page.tsx`
 
 **File Info:**
-- **Size**: 9.03 KB
+- **Size**: 9.99 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/u/[username]/page.tsx`
 - **Relative Path**: `src/app/u/[username]`
 - **Created**: 2026-09-06 00:00:54 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 09:50:39 (Australia/Sydney / GMT+10:00)
-- **MD5**: `d805b869b83c341ea1ac77f1ad2127dc`
-- **SHA256**: `9c84dc0e32c85d8b7de524c5f2751633a4798a7e571132b973504b1f74539507`
+- **Modified**: 2026-09-11 09:58:54 (Australia/Sydney / GMT+10:00)
+- **MD5**: `09fc24f3637c45db5a8f3a82405fc02f`
+- **SHA256**: `9baf4d9873b492571132525260d553fbb97df7c8d167b62b5953aaeb95b80363`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1854,6 +1907,7 @@ export default function SignUpPage() {
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import FollowButton from '@/components/FollowButton'
+import { buildDailyCumulative, getAuthorTitle } from '@/lib/wordcountStats'
 
 export default async function PublicProfilePage({
   params,
@@ -1909,6 +1963,29 @@ export default async function PublicProfilePage({
     .order('updated_at', { ascending: false })
     .limit(10)
 
+  const { data: allSnapshots } = await supabase
+    .from('wordcount_snapshots')
+    .select('word_count, recorded_at, project_id')
+    .eq('user_id', profile.id)
+
+  const totalWordsAcrossProjects = (() => {
+    const byProject = new Map<string, typeof allSnapshots>()
+    for (const snap of allSnapshots || []) {
+      const list = byProject.get(snap.project_id) || []
+      list.push(snap)
+      byProject.set(snap.project_id, list)
+    }
+    let total = 0
+    for (const snaps of byProject.values()) {
+      const daily = buildDailyCumulative(snaps!)
+      const values = Array.from(daily.values())
+      if (values.length > 0) total += Math.max(...values)
+    }
+    return total
+  })()
+
+  const authorTitle = getAuthorTitle(totalWordsAcrossProjects)
+
   function latestWordCountFor(projectId: string) {
     const wordcountPosts = (posts || []).filter(
       (p) => p.type === 'wordcount' && p.project_id === projectId
@@ -1932,6 +2009,9 @@ export default async function PublicProfilePage({
           </h1>
           <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
             @{profile.username}
+            {totalWordsAcrossProjects > 0 && (
+              <span style={{ color: 'var(--color-accent)' }}> · {authorTitle}</span>
+            )}
           </p>
         </div>
       </div>
@@ -2261,6 +2341,79 @@ export default async function Home() {
 The following files were not included in the text content:
 
 - `src/app/favicon.ico`
+
+### <a id="📄-src-components-contributioncalendar-tsx"></a>📄 `src/components/ContributionCalendar.tsx`
+
+**File Info:**
+- **Size**: 1.34 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/ContributionCalendar.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-11 10:02:01 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-11 10:02:40 (Australia/Sydney / GMT+10:00)
+- **MD5**: `6f6dffa9c34b2185530babd18285759e`
+- **SHA256**: `a6adf2fc6eae2a6c78fcdcf3d99151716f29e8510868e0436b1791e2cf83d9fc`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+export default function ContributionCalendar({
+  dailyDeltas,
+}: {
+  dailyDeltas: Record<string, number>
+}) {
+  const days: { date: string; words: number }[] = []
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  for (let i = 89; i >= 0; i--) {
+    const d = new Date(today)
+    d.setDate(d.getDate() - i)
+    const dateStr = d.toISOString().split('T')[0]
+    days.push({ date: dateStr, words: dailyDeltas[dateStr] || 0 })
+  }
+
+  function intensity(words: number): string {
+    if (words === 0) return 'var(--color-rule)'
+    if (words < 200) return '#c5d4c9'
+    if (words < 500) return '#8fac97'
+    if (words < 1000) return '#5a7d65'
+    return 'var(--color-accent)'
+  }
+
+  const weeks: { date: string; words: number }[][] = []
+  for (let i = 0; i < days.length; i += 7) {
+    weeks.push(days.slice(i, i + 7))
+  }
+
+  return (
+    <div className="flex gap-1">
+      {weeks.map((week, wi) => (
+        <div key={wi} className="flex flex-col gap-1">
+          {week.map((day) => (
+            <div
+              key={day.date}
+              title={`${day.date}: ${day.words.toLocaleString()} words`}
+              style={{
+                width: 10,
+                height: 10,
+                backgroundColor: intensity(day.words),
+                borderRadius: 2,
+              }}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  )
+}
+```
+
+---
 
 ### <a id="📄-src-components-followbutton-tsx"></a>📄 `src/components/FollowButton.tsx`
 
@@ -2762,6 +2915,126 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+```
+
+---
+
+### <a id="📄-src-lib-wordcountstats-ts"></a>📄 `src/lib/wordcountStats.ts`
+
+**File Info:**
+- **Size**: 3.23 KB
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `src/lib/wordcountStats.ts`
+- **Relative Path**: `src/lib`
+- **Created**: 2026-09-11 09:55:22 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-11 09:57:06 (Australia/Sydney / GMT+10:00)
+- **MD5**: `8245f0c51d9e2244707b1fa0d6396502`
+- **SHA256**: `17f23d4b1ee07d8858d92bb1e5e65e1905a6d5bfe04d6a81d414e4c91bca8e93`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+type Snapshot = { word_count: number; recorded_at: string }
+
+export function buildDailyCumulative(snapshots: Snapshot[]): Map<string, number> {
+  const dailyMap = new Map<string, number>()
+  for (const snap of snapshots) {
+    const day = new Date(snap.recorded_at).toISOString().split('T')[0]
+    const existing = dailyMap.get(day) || 0
+    if (snap.word_count > existing) dailyMap.set(day, snap.word_count)
+  }
+  return dailyMap
+}
+
+export function buildDailyDeltas(dailyCumulative: Map<string, number>): Map<string, number> {
+  const days = Array.from(dailyCumulative.keys()).sort()
+  const deltas = new Map<string, number>()
+  let previous: number | null = null
+  for (const day of days) {
+    const total = dailyCumulative.get(day)!
+    deltas.set(day, previous === null ? 0 : Math.max(0, total - previous))
+    previous = total
+  }
+  return deltas
+}
+
+export function computeStreak(dailyCumulative: Map<string, number>): number {
+  const daySet = new Set(dailyCumulative.keys())
+  const cursor = new Date()
+  cursor.setHours(0, 0, 0, 0)
+
+  let dayStr = cursor.toISOString().split('T')[0]
+  if (!daySet.has(dayStr)) {
+    cursor.setDate(cursor.getDate() - 1)
+  }
+
+  let streak = 0
+  for (let i = 0; i < 365; i++) {
+    dayStr = cursor.toISOString().split('T')[0]
+    if (daySet.has(dayStr)) {
+      streak++
+      cursor.setDate(cursor.getDate() - 1)
+    } else {
+      break
+    }
+  }
+  return streak
+}
+
+export function computeBestDay(dailyDeltas: Map<string, number>): { date: string; words: number } | null {
+  let best: { date: string; words: number } | null = null
+  for (const [date, words] of dailyDeltas.entries()) {
+    if (!best || words > best.words) best = { date, words }
+  }
+  return best
+}
+
+export function computeWeeklyComparison(dailyDeltas: Map<string, number>): { thisWeek: number; lastWeek: number } {
+  const now = new Date()
+  let thisWeek = 0
+  let lastWeek = 0
+  for (const [dateStr, words] of dailyDeltas.entries()) {
+    const date = new Date(dateStr)
+    const diffDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24))
+    if (diffDays >= 0 && diffDays < 7) thisWeek += words
+    else if (diffDays >= 7 && diffDays < 14) lastWeek += words
+  }
+  return { thisWeek, lastWeek }
+}
+
+export function computeProjectedFinish(
+  dailyDeltas: Map<string, number>,
+  currentTotal: number,
+  goal: number | null
+): string | null {
+  if (!goal || currentTotal >= goal) return null
+
+  const recentDays = Array.from(dailyDeltas.entries())
+    .sort((a, b) => (a[0] < b[0] ? 1 : -1))
+    .slice(0, 7)
+
+  if (recentDays.length === 0) return null
+
+  const avgDaily = recentDays.reduce((sum, [, words]) => sum + words, 0) / recentDays.length
+  if (avgDaily <= 0) return null
+
+  const daysRemaining = Math.ceil((goal - currentTotal) / avgDaily)
+  const finishDate = new Date()
+  finishDate.setDate(finishDate.getDate() + daysRemaining)
+
+  return finishDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+export function getAuthorTitle(totalWords: number): string {
+  if (totalWords >= 500000) return 'Enid Blyton'
+  if (totalWords >= 100000) return 'Agatha Christie'
+  if (totalWords >= 50000) return 'Stephen King'
+  if (totalWords >= 10000) return 'Hemingway'
+  if (totalWords >= 1000) return 'Wordsmith'
+  return 'Fledgling Scribe'
+}
 ```
 
 ---

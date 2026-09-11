@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import FollowButton from '@/components/FollowButton'
+import { buildDailyCumulative, getAuthorTitle } from '@/lib/wordcountStats'
 
 export default async function PublicProfilePage({
   params,
@@ -56,6 +57,29 @@ export default async function PublicProfilePage({
     .order('updated_at', { ascending: false })
     .limit(10)
 
+  const { data: allSnapshots } = await supabase
+    .from('wordcount_snapshots')
+    .select('word_count, recorded_at, project_id')
+    .eq('user_id', profile.id)
+
+  const totalWordsAcrossProjects = (() => {
+    const byProject = new Map<string, typeof allSnapshots>()
+    for (const snap of allSnapshots || []) {
+      const list = byProject.get(snap.project_id) || []
+      list.push(snap)
+      byProject.set(snap.project_id, list)
+    }
+    let total = 0
+    for (const snaps of byProject.values()) {
+      const daily = buildDailyCumulative(snaps!)
+      const values = Array.from(daily.values())
+      if (values.length > 0) total += Math.max(...values)
+    }
+    return total
+  })()
+
+  const authorTitle = getAuthorTitle(totalWordsAcrossProjects)
+
   function latestWordCountFor(projectId: string) {
     const wordcountPosts = (posts || []).filter(
       (p) => p.type === 'wordcount' && p.project_id === projectId
@@ -79,6 +103,9 @@ export default async function PublicProfilePage({
           </h1>
           <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
             @{profile.username}
+            {totalWordsAcrossProjects > 0 && (
+              <span style={{ color: 'var(--color-accent)' }}> · {authorTitle}</span>
+            )}
           </p>
         </div>
       </div>
