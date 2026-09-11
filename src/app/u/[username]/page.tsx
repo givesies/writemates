@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
+import FollowButton from '@/components/FollowButton'
 
 export default async function PublicProfilePage({
   params,
@@ -9,6 +10,8 @@ export default async function PublicProfilePage({
   const { username } = await params
   const supabase = await createClient()
 
+  const { data: { user: viewer } } = await supabase.auth.getUser()
+
   const { data: profile } = await supabase
     .from('profiles')
     .select('*')
@@ -17,6 +20,27 @@ export default async function PublicProfilePage({
 
   if (!profile) {
     notFound()
+  }
+
+  const { count: followerCount } = await supabase
+    .from('follows')
+    .select('*', { count: 'exact', head: true })
+    .eq('following_id', profile.id)
+
+  const { count: followingCount } = await supabase
+    .from('follows')
+    .select('*', { count: 'exact', head: true })
+    .eq('follower_id', profile.id)
+
+  let isFollowing = false
+  if (viewer && viewer.id !== profile.id) {
+    const { data: existingFollow } = await supabase
+      .from('follows')
+      .select('id')
+      .eq('follower_id', viewer.id)
+      .eq('following_id', profile.id)
+      .maybeSingle()
+    isFollowing = !!existingFollow
   }
 
   const { data: projects } = await supabase
@@ -59,11 +83,18 @@ export default async function PublicProfilePage({
         </div>
       </div>
 
-      {profile.bio && (
-        <p className="mt-6 text-lg" style={{ lineHeight: 1.6 }}>
-          {profile.bio}
-        </p>
-      )}
+      <div
+        className="flex items-center gap-4 mt-4 text-sm"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+      >
+        <span>{followerCount || 0} followers</span>
+        <span>{followingCount || 0} following</span>
+        {viewer && viewer.id !== profile.id && (
+          <FollowButton profileId={profile.id} initialFollowing={isFollowing} />
+        )}
+      </div>
+
+      {profile.bio && <p className="mt-6 text-lg" style={{ lineHeight: 1.6 }}>{profile.bio}</p>}
 
       {profile.current_work_description && (
         <div className="mt-8">

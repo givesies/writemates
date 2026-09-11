@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import PostActions from '@/components/PostActions'
 
 export default async function FeedPage() {
   const supabase = await createClient()
@@ -11,6 +12,19 @@ export default async function FeedPage() {
     .from('posts')
     .select('*, profiles(username, display_name, avatar_url), projects(title)')
     .order('updated_at', { ascending: false })
+
+  const { data: myLikes } = await supabase
+    .from('likes')
+    .select('post_id')
+    .eq('user_id', user.id)
+
+  const likedPostIds = new Set((myLikes || []).map((l) => l.post_id))
+
+  const { data: allLikes } = await supabase.from('likes').select('post_id')
+  const likeCounts = new Map<string, number>()
+  for (const like of allLikes || []) {
+    likeCounts.set(like.post_id, (likeCounts.get(like.post_id) || 0) + 1)
+  }
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12">
@@ -90,6 +104,12 @@ export default async function FeedPage() {
                 </a>
               </p>
             )}
+
+            <PostActions
+              postId={post.id}
+              initialLiked={likedPostIds.has(post.id)}
+              initialLikeCount={likeCounts.get(post.id) || 0}
+            />
           </article>
         ))}
       </div>

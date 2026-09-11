@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-11 04:29:44 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 39
+- **Generated On**: 2026-09-11 04:48:38 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 42
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -29,7 +29,7 @@
 ├── 📁 src/
 │   ├── 📁 app/
 │   │   ├── 📁 feed/
-│   │   │   └── 📄 page.tsx (3.18 KB)
+│   │   │   └── 📄 page.tsx (3.83 KB)
 │   │   ├── 📁 groups/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (3.87 KB)
@@ -37,6 +37,8 @@
 │   │   ├── 📁 login/
 │   │   │   └── 📄 page.tsx (2.32 KB)
 │   │   ├── 📁 post/
+│   │   │   ├── 📁 [id]/
+│   │   │   │   └── 📄 page.tsx (2.15 KB)
 │   │   │   └── 📁 new/
 │   │   │       └── 📄 page.tsx (6.04 KB)
 │   │   ├── 📁 profile/
@@ -54,14 +56,16 @@
 │   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
-│   │   │       └── 📄 page.tsx (7.14 KB)
+│   │   │       └── 📄 page.tsx (8.23 KB)
 │   │   ├── 📄 favicon.ico (25.32 KB)
 │   │   ├── 📄 globals.css (472 B)
 │   │   ├── 📄 layout.tsx (1.13 KB)
 │   │   └── 📄 page.tsx (300 B)
 │   ├── 📁 components/
+│   │   ├── 📄 FollowButton.tsx (1.11 KB)
 │   │   ├── 📄 LogoutButton.tsx (454 B)
 │   │   ├── 📄 NavBar.tsx (2.64 KB)
+│   │   ├── 📄 PostActions.tsx (2.02 KB)
 │   │   └── 📄 ProgressChart.tsx (658 B)
 │   ├── 📁 lib/
 │   │   ├── 📁 supabase/
@@ -75,8 +79,8 @@
 ├── 📄 eslint.config.mjs (465 B)
 ├── 📄 next-env.d.ts (296 B)
 ├── 📄 next.config.ts (133 B)
-├── 📄 package-lock.json (250.51 KB)
-├── 📄 package.json (632 B)
+├── 📄 package-lock.json (250.93 KB)
+├── 📄 package.json (663 B)
 ├── 📄 postcss.config.mjs (94 B)
 ├── 📄 README.md (1.42 KB)
 └── 📄 tsconfig.json (670 B)
@@ -90,6 +94,7 @@
 - [📄 src/app/groups/[id]/page.tsx](#📄-src-app-groups-id-page-tsx)
 - [📄 src/app/groups/page.tsx](#📄-src-app-groups-page-tsx)
 - [📄 src/app/login/page.tsx](#📄-src-app-login-page-tsx)
+- [📄 src/app/post/[id]/page.tsx](#📄-src-app-post-id-page-tsx)
 - [📄 src/app/post/new/page.tsx](#📄-src-app-post-new-page-tsx)
 - [📄 src/app/profile/edit/page.tsx](#📄-src-app-profile-edit-page-tsx)
 - [📄 src/app/projects/[id]/page.tsx](#📄-src-app-projects-id-page-tsx)
@@ -101,8 +106,10 @@
 - [📄 src/app/globals.css](#📄-src-app-globals-css)
 - [📄 src/app/layout.tsx](#📄-src-app-layout-tsx)
 - [📄 src/app/page.tsx](#📄-src-app-page-tsx)
+- [📄 src/components/FollowButton.tsx](#📄-src-components-followbutton-tsx)
 - [📄 src/components/LogoutButton.tsx](#📄-src-components-logoutbutton-tsx)
 - [📄 src/components/NavBar.tsx](#📄-src-components-navbar-tsx)
+- [📄 src/components/PostActions.tsx](#📄-src-components-postactions-tsx)
 - [📄 src/components/ProgressChart.tsx](#📄-src-components-progresschart-tsx)
 - [📄 src/lib/supabase/client.ts](#📄-src-lib-supabase-client-ts)
 - [📄 src/lib/supabase/middleware.ts](#📄-src-lib-supabase-middleware-ts)
@@ -124,17 +131,17 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 39 |
-| Total Directories | 21 |
-| Text Files | 31 |
+| Total Files | 42 |
+| Total Directories | 22 |
+| Text Files | 34 |
 | Binary Files | 8 |
-| Total Size | 338.87 KB |
+| Total Size | 346.33 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 17 |
+| `.tsx` | 20 |
 | `.ts` | 7 |
 | `.svg` | 5 |
 | `.md` | 3 |
@@ -158,15 +165,15 @@ The following files were not included in the text content:
 ### <a id="📄-src-app-feed-page-tsx"></a>📄 `src/app/feed/page.tsx`
 
 **File Info:**
-- **Size**: 3.18 KB
+- **Size**: 3.83 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/feed/page.tsx`
 - **Relative Path**: `src/app/feed`
 - **Created**: 2026-09-06 09:35:03 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-07 08:14:16 (Australia/Sydney / GMT+10:00)
-- **MD5**: `e10f80d43e28da2562757e1aee5e16f1`
-- **SHA256**: `ed6d67f444b87f14f844bc586404f1165ae68abe96985e0cf8f0e417315fc809`
+- **Modified**: 2026-09-11 04:41:28 (Australia/Sydney / GMT+10:00)
+- **MD5**: `0315af50f6fa6c1c0eb1e46a1de258eb`
+- **SHA256**: `76349d430afe6c225d544abbcc471cc1ef0c787349f596856d0205973f21a4c2`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -175,6 +182,7 @@ The following files were not included in the text content:
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import PostActions from '@/components/PostActions'
 
 export default async function FeedPage() {
   const supabase = await createClient()
@@ -185,6 +193,19 @@ export default async function FeedPage() {
     .from('posts')
     .select('*, profiles(username, display_name, avatar_url), projects(title)')
     .order('updated_at', { ascending: false })
+
+  const { data: myLikes } = await supabase
+    .from('likes')
+    .select('post_id')
+    .eq('user_id', user.id)
+
+  const likedPostIds = new Set((myLikes || []).map((l) => l.post_id))
+
+  const { data: allLikes } = await supabase.from('likes').select('post_id')
+  const likeCounts = new Map<string, number>()
+  for (const like of allLikes || []) {
+    likeCounts.set(like.post_id, (likeCounts.get(like.post_id) || 0) + 1)
+  }
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12">
@@ -264,12 +285,19 @@ export default async function FeedPage() {
                 </a>
               </p>
             )}
+
+            <PostActions
+              postId={post.id}
+              initialLiked={likedPostIds.has(post.id)}
+              initialLikeCount={likeCounts.get(post.id) || 0}
+            />
           </article>
         ))}
       </div>
     </main>
   )
 }
+
 ```
 
 ---
@@ -647,6 +675,90 @@ export default function LoginPage() {
       <p className="mt-6 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
         Don&apos;t have an account? <a href="/signup">Sign up</a>
       </p>
+    </main>
+  )
+}
+```
+
+---
+
+### <a id="📄-src-app-post-id-page-tsx"></a>📄 `src/app/post/[id]/page.tsx`
+
+**File Info:**
+- **Size**: 2.15 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/post/[id]/page.tsx`
+- **Relative Path**: `src/app/post/[id]`
+- **Created**: 2026-09-11 04:35:56 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-11 04:36:28 (Australia/Sydney / GMT+10:00)
+- **MD5**: `d175f1257f874581c17bb0b0a9bac83e`
+- **SHA256**: `78f9b00c6ad9907c4fe65a54e4b699efc0c8b4f01dbde9b7298b50564d6bc88f`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { createClient } from '@/lib/supabase/server'
+import { notFound } from 'next/navigation'
+import Link from 'next/link'
+
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const supabase = await createClient()
+
+  const { data: post } = await supabase
+    .from('posts')
+    .select('*, profiles(username, display_name, avatar_url), projects(title)')
+    .eq('id', id)
+    .single()
+
+  if (!post) notFound()
+
+  return (
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <div
+        className="flex items-center gap-2 text-sm mb-2"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+      >
+        {post.profiles?.avatar_url && (
+          <img src={post.profiles.avatar_url} alt="" className="w-8 h-8 rounded-full object-cover" />
+        )}
+        <Link href={`/u/${post.profiles?.username}`} style={{ color: 'var(--color-ink-muted)' }}>
+          {post.profiles?.display_name || post.profiles?.username}
+        </Link>
+        {' · '}
+        {new Date(post.updated_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+      </div>
+
+      {post.type === 'wordcount' && (
+        <p className="text-lg">
+          Wrote <strong style={{ color: 'var(--color-accent)' }}>{post.word_count?.toLocaleString()}</strong> words today
+          {post.projects?.title && <> on <em>{post.projects.title}</em></>}
+        </p>
+      )}
+      {post.type === 'snippet' && post.content && (
+        <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>{post.content}</p>
+      )}
+      {post.type === 'link' && (
+        <p className="text-lg">
+          {post.content && <span>{post.content} — </span>}
+          <a href={post.link_url} target="_blank" rel="noopener noreferrer">{post.link_url}</a>
+        </p>
+      )}
+      {post.media_url && (
+        <div className="mt-3">
+          {post.media_url.match(/\.(mp4|webm|mov)$/i) ? (
+            <video src={post.media_url} controls className="w-full rounded" />
+          ) : (
+            <img src={post.media_url} alt="" className="w-full rounded" />
+          )}
+        </div>
+      )}
     </main>
   )
 }
@@ -1660,15 +1772,15 @@ export default function SignUpPage() {
 ### <a id="📄-src-app-u-username-page-tsx"></a>📄 `src/app/u/[username]/page.tsx`
 
 **File Info:**
-- **Size**: 7.14 KB
+- **Size**: 8.23 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/u/[username]/page.tsx`
 - **Relative Path**: `src/app/u/[username]`
 - **Created**: 2026-09-06 00:00:54 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-07 08:20:12 (Australia/Sydney / GMT+10:00)
-- **MD5**: `08ca924d283bb827907908e223bf25de`
-- **SHA256**: `cbe1f7278febd12522652cbe108efe7cdc42b9b80f53dfbda72974458f54a14b`
+- **Modified**: 2026-09-11 04:48:37 (Australia/Sydney / GMT+10:00)
+- **MD5**: `6fc5663875e0ec13bf2a9d91809217f3`
+- **SHA256**: `89a6687a201af27ef54c1ca50212b8884eda738f5eef00fbe899468737718f01`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1676,6 +1788,7 @@ export default function SignUpPage() {
 ```typescript
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
+import FollowButton from '@/components/FollowButton'
 
 export default async function PublicProfilePage({
   params,
@@ -1685,6 +1798,8 @@ export default async function PublicProfilePage({
   const { username } = await params
   const supabase = await createClient()
 
+  const { data: { user: viewer } } = await supabase.auth.getUser()
+
   const { data: profile } = await supabase
     .from('profiles')
     .select('*')
@@ -1693,6 +1808,27 @@ export default async function PublicProfilePage({
 
   if (!profile) {
     notFound()
+  }
+
+  const { count: followerCount } = await supabase
+    .from('follows')
+    .select('*', { count: 'exact', head: true })
+    .eq('following_id', profile.id)
+
+  const { count: followingCount } = await supabase
+    .from('follows')
+    .select('*', { count: 'exact', head: true })
+    .eq('follower_id', profile.id)
+
+  let isFollowing = false
+  if (viewer && viewer.id !== profile.id) {
+    const { data: existingFollow } = await supabase
+      .from('follows')
+      .select('id')
+      .eq('follower_id', viewer.id)
+      .eq('following_id', profile.id)
+      .maybeSingle()
+    isFollowing = !!existingFollow
   }
 
   const { data: projects } = await supabase
@@ -1735,11 +1871,18 @@ export default async function PublicProfilePage({
         </div>
       </div>
 
-      {profile.bio && (
-        <p className="mt-6 text-lg" style={{ lineHeight: 1.6 }}>
-          {profile.bio}
-        </p>
-      )}
+      <div
+        className="flex items-center gap-4 mt-4 text-sm"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+      >
+        <span>{followerCount || 0} followers</span>
+        <span>{followingCount || 0} following</span>
+        {viewer && viewer.id !== profile.id && (
+          <FollowButton profileId={profile.id} initialFollowing={isFollowing} />
+        )}
+      </div>
+
+      {profile.bio && <p className="mt-6 text-lg" style={{ lineHeight: 1.6 }}>{profile.bio}</p>}
 
       {profile.current_work_description && (
         <div className="mt-8">
@@ -2037,6 +2180,69 @@ The following files were not included in the text content:
 
 - `src/app/favicon.ico`
 
+### <a id="📄-src-components-followbutton-tsx"></a>📄 `src/components/FollowButton.tsx`
+
+**File Info:**
+- **Size**: 1.11 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/FollowButton.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-11 04:45:37 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-11 04:45:53 (Australia/Sydney / GMT+10:00)
+- **MD5**: `88c82bc0a2ae716622a7ce48f5bf14cb`
+- **SHA256**: `81cea0ee7266ba6bd339bb53022350c6b36ec60d4580f21915516f1238933ad9`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+
+export default function FollowButton({
+  profileId,
+  initialFollowing,
+}: {
+  profileId: string
+  initialFollowing: boolean
+}) {
+  const [following, setFollowing] = useState(initialFollowing)
+
+  async function toggleFollow() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    if (following) {
+      await supabase.from('follows').delete().eq('follower_id', user.id).eq('following_id', profileId)
+      setFollowing(false)
+    } else {
+      await supabase.from('follows').insert({ follower_id: user.id, following_id: profileId })
+      setFollowing(true)
+    }
+  }
+
+  return (
+    <button
+      onClick={toggleFollow}
+      className="text-sm px-3 py-1"
+      style={{
+        backgroundColor: following ? 'transparent' : 'var(--color-ink)',
+        color: following ? 'var(--color-ink)' : 'var(--color-paper)',
+        border: following ? '1px solid var(--color-ink)' : 'none',
+      }}
+    >
+      {following ? 'Following' : 'Follow'}
+    </button>
+  )
+}
+```
+
+---
+
 ### <a id="📄-src-components-logoutbutton-tsx"></a>📄 `src/components/LogoutButton.tsx`
 
 **File Info:**
@@ -2178,6 +2384,99 @@ export default function NavBar({ username }: { username: string | null }) {
         </div>
       )}
     </nav>
+  )
+}
+```
+
+---
+
+### <a id="📄-src-components-postactions-tsx"></a>📄 `src/components/PostActions.tsx`
+
+**File Info:**
+- **Size**: 2.02 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/PostActions.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-11 04:34:34 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-11 04:35:35 (Australia/Sydney / GMT+10:00)
+- **MD5**: `074ab5ccef3d74782b0a6ade3d3827fd`
+- **SHA256**: `893dc65a9a4a18f9cb806577444d7af427a21a5cadc50d97303b497c04fefb35`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { Heart, Share2 } from 'lucide-react'
+
+export default function PostActions({
+  postId,
+  initialLiked,
+  initialLikeCount,
+}: {
+  postId: string
+  initialLiked: boolean
+  initialLikeCount: number
+}) {
+  const [liked, setLiked] = useState(initialLiked)
+  const [count, setCount] = useState(initialLikeCount)
+  const [copied, setCopied] = useState(false)
+
+  async function toggleLike() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    if (liked) {
+      await supabase.from('likes').delete().eq('post_id', postId).eq('user_id', user.id)
+      setLiked(false)
+      setCount((c) => c - 1)
+    } else {
+      await supabase.from('likes').insert({ post_id: postId, user_id: user.id })
+      setLiked(true)
+      setCount((c) => c + 1)
+    }
+  }
+
+  async function handleShare() {
+    const url = `${window.location.origin}/post/${postId}`
+    const nav = navigator as Navigator & { share?: (data: { url: string }) => Promise<void> }
+    if (nav.share) {
+      try {
+        await nav.share({ url })
+      } catch {
+        // person cancelled the share sheet, nothing to do
+      }
+    } else {
+      await navigator.clipboard.writeText(url)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
+  return (
+    <div className="flex items-center gap-4 mt-3" style={{ fontFamily: 'var(--font-sans)' }}>
+      <button
+        onClick={toggleLike}
+        className="flex items-center gap-1 text-sm"
+        style={{ color: liked ? 'var(--color-accent)' : 'var(--color-ink-muted)' }}
+      >
+        <Heart size={16} fill={liked ? 'var(--color-accent)' : 'none'} />
+        {count > 0 && count}
+      </button>
+      <button
+        onClick={handleShare}
+        className="flex items-center gap-1 text-sm"
+        style={{ color: 'var(--color-ink-muted)' }}
+      >
+        <Share2 size={16} />
+        {copied ? 'Copied!' : 'Share'}
+      </button>
+    </div>
   )
 }
 ```
@@ -2533,15 +2832,15 @@ export default nextConfig;
 ### <a id="📄-package-lock-json"></a>📄 `package-lock.json`
 
 **File Info:**
-- **Size**: 250.51 KB
+- **Size**: 250.93 KB
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package-lock.json`
 - **Relative Path**: `root`
 - **Created**: 2026-09-03 07:02:03 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 03:06:25 (Australia/Sydney / GMT+10:00)
-- **MD5**: `f3ecdecef8841b2879c4e629d1f05f97`
-- **SHA256**: `e5bb05d527da0cd28442b0f3aa03fa3a47f92f3dec5d3820a3c50a1d884b61cd`
+- **Modified**: 2026-09-11 04:30:56 (Australia/Sydney / GMT+10:00)
+- **MD5**: `62fc53545d7adf5ef0c37922af6ac7b1`
+- **SHA256**: `1c80e11c7f7f443f1b02a99bc4bae2289eb558e823cfd6f0abadd9239c510a2f`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2559,6 +2858,7 @@ export default nextConfig;
       "dependencies": {
         "@supabase/ssr": "^0.12.6",
         "@supabase/supabase-js": "^2.114.0",
+        "lucide-react": "^1.44.0",
         "next": "16.3.4",
         "react": "19.2.8",
         "react-dom": "19.2.8",
@@ -8114,6 +8414,15 @@ export default nextConfig;
         "yallist": "^3.0.2"
       }
     },
+    "node_modules/lucide-react": {
+      "version": "1.44.0",
+      "resolved": "https://registry.npmjs.org/lucide-react/-/lucide-react-1.44.0.tgz",
+      "integrity": "sha512-2egNApH4hX4j/qdCgRublh88+9u3mEhz9iSlW5ckm4kaQEqZbXbMr0l5u5JZLy8nmWRx2dbHGQkEDYz6C9aCgw==",
+      "license": "ISC",
+      "peerDependencies": {
+        "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+      }
+    },
     "node_modules/magic-string": {
       "version": "0.30.21",
       "resolved": "https://registry.npmjs.org/magic-string/-/magic-string-0.30.21.tgz",
@@ -9970,15 +10279,15 @@ export default nextConfig;
 ### <a id="📄-package-json"></a>📄 `package.json`
 
 **File Info:**
-- **Size**: 632 B
+- **Size**: 663 B
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package.json`
 - **Relative Path**: `root`
 - **Created**: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 03:06:25 (Australia/Sydney / GMT+10:00)
-- **MD5**: `7bbd64b88869c53f1debf36b88c9a63d`
-- **SHA256**: `05d1a7f2ef2ac05e1df2349dcc89ed27d1892cee1a90cafe284d95ccdf68712f`
+- **Modified**: 2026-09-11 04:30:56 (Australia/Sydney / GMT+10:00)
+- **MD5**: `4ef45cfca0f6cf5a94343fda8064145e`
+- **SHA256**: `4a6d874e95e9d8fe7217c6eced38e839f5a4aef1f25874ea6fc85eb91f73567c`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -9997,6 +10306,7 @@ export default nextConfig;
   "dependencies": {
     "@supabase/ssr": "^0.12.6",
     "@supabase/supabase-js": "^2.114.0",
+    "lucide-react": "^1.44.0",
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
