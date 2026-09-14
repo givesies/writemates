@@ -1,21 +1,38 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { Heart, Share2 } from 'lucide-react'
+import { Heart, Share2, Trash2 } from 'lucide-react'
 
 export default function PostActions({
   postId,
   initialLiked,
   initialLikeCount,
+  isOwner,
 }: {
   postId: string
   initialLiked: boolean
   initialLikeCount: number
+  isOwner?: boolean
 }) {
   const [liked, setLiked] = useState(initialLiked)
   const [count, setCount] = useState(initialLikeCount)
   const [copied, setCopied] = useState(false)
+  const [deleted, setDeleted] = useState(false)
+  const router = useRouter()
+
+  async function handleDelete() {
+    const confirmed = window.confirm('Delete this post? This can\'t be undone.')
+    if (!confirmed) return
+
+    const supabase = createClient()
+    const { error } = await supabase.from('posts').delete().eq('id', postId)
+    if (!error) {
+      setDeleted(true)
+      router.refresh()
+    }
+  }
 
   async function toggleLike() {
     const supabase = createClient()
@@ -49,6 +66,14 @@ export default function PostActions({
     }
   }
 
+  if (deleted) {
+    return (
+      <p className="mt-3 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        Post deleted.
+      </p>
+    )
+  }
+
   return (
     <div className="flex items-center gap-4 mt-3" style={{ fontFamily: 'var(--font-sans)' }}>
       <button
@@ -67,6 +92,16 @@ export default function PostActions({
         <Share2 size={16} />
         {copied ? 'Copied!' : 'Share'}
       </button>
+      {isOwner && (
+        <button
+          onClick={handleDelete}
+          className="flex items-center gap-1 text-sm ml-auto"
+          style={{ color: 'var(--color-ink-muted)' }}
+        >
+          <Trash2 size={16} />
+          Delete
+        </button>
+      )}
     </div>
   )
 }

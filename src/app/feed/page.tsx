@@ -89,9 +89,19 @@ export default async function FeedPage() {
             {post.media_url && (
               <div className="mt-3">
                 {post.media_url.match(/\.(mp4|webm|mov)$/i) ? (
-                  <video src={post.media_url} controls className="w-full rounded" />
+                  <video
+                    src={post.media_url}
+                    controls
+                    className="w-full rounded"
+                    style={{ maxHeight: 480, objectFit: 'cover' }}
+                  />
                 ) : (
-                  <img src={post.media_url} alt="" className="w-full rounded" />
+                  <img
+                    src={post.media_url}
+                    alt=""
+                    className="w-full rounded"
+                    style={{ maxHeight: 480, objectFit: 'cover' }}
+                  />
                 )}
               </div>
             )}
@@ -109,6 +119,7 @@ export default async function FeedPage() {
               postId={post.id}
               initialLiked={likedPostIds.has(post.id)}
               initialLikeCount={likeCounts.get(post.id) || 0}
+              isOwner={post.user_id === user.id}
             />
           </article>
         ))}

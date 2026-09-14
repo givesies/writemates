@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-11 10:35:44 (Australia/Sydney / GMT+10:00)
+- **Generated On**: 2026-09-14 09:40:56 (Australia/Sydney / GMT+10:00)
 - **Total Files Processed**: 49
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -29,7 +29,7 @@
 ├── 📁 src/
 │   ├── 📁 app/
 │   │   ├── 📁 feed/
-│   │   │   └── 📄 page.tsx (3.83 KB)
+│   │   │   └── 📄 page.tsx (4.16 KB)
 │   │   ├── 📁 groups/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (3.87 KB)
@@ -72,8 +72,8 @@
 │   │   ├── 📄 DailyBarChart.tsx (635 B)
 │   │   ├── 📄 FollowButton.tsx (1.11 KB)
 │   │   ├── 📄 LogoutButton.tsx (454 B)
-│   │   ├── 📄 NavBar.tsx (2.64 KB)
-│   │   ├── 📄 PostActions.tsx (2.02 KB)
+│   │   ├── 📄 NavBar.tsx (2.6 KB)
+│   │   ├── 📄 PostActions.tsx (2.94 KB)
 │   │   └── 📄 ProgressChart.tsx (658 B)
 │   ├── 📁 lib/
 │   │   ├── 📁 supabase/
@@ -151,7 +151,7 @@
 | Total Directories | 24 |
 | Text Files | 41 |
 | Binary Files | 8 |
-| Total Size | 361.26 KB |
+| Total Size | 362.48 KB |
 
 ### 📄 File Types Distribution
 
@@ -181,15 +181,15 @@ The following files were not included in the text content:
 ### <a id="📄-src-app-feed-page-tsx"></a>📄 `src/app/feed/page.tsx`
 
 **File Info:**
-- **Size**: 3.83 KB
+- **Size**: 4.16 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/feed/page.tsx`
 - **Relative Path**: `src/app/feed`
 - **Created**: 2026-09-06 09:35:03 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 04:41:28 (Australia/Sydney / GMT+10:00)
-- **MD5**: `0315af50f6fa6c1c0eb1e46a1de258eb`
-- **SHA256**: `76349d430afe6c225d544abbcc471cc1ef0c787349f596856d0205973f21a4c2`
+- **Modified**: 2026-09-14 09:40:55 (Australia/Sydney / GMT+10:00)
+- **MD5**: `f442ab61c4a539b40784f249ac5adf04`
+- **SHA256**: `a2600f5738f3cdbd437015dc9f826b20bd59d73514ed65a56b0194b432616485`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -286,9 +286,19 @@ export default async function FeedPage() {
             {post.media_url && (
               <div className="mt-3">
                 {post.media_url.match(/\.(mp4|webm|mov)$/i) ? (
-                  <video src={post.media_url} controls className="w-full rounded" />
+                  <video
+                    src={post.media_url}
+                    controls
+                    className="w-full rounded"
+                    style={{ maxHeight: 480, objectFit: 'cover' }}
+                  />
                 ) : (
-                  <img src={post.media_url} alt="" className="w-full rounded" />
+                  <img
+                    src={post.media_url}
+                    alt=""
+                    className="w-full rounded"
+                    style={{ maxHeight: 480, objectFit: 'cover' }}
+                  />
                 )}
               </div>
             )}
@@ -306,6 +316,7 @@ export default async function FeedPage() {
               postId={post.id}
               initialLiked={likedPostIds.has(post.id)}
               initialLikeCount={likeCounts.get(post.id) || 0}
+              isOwner={post.user_id === user.id}
             />
           </article>
         ))}
@@ -1090,9 +1101,9 @@ export default function NewPostPage() {
 - **Location**: `src/app/profile/edit/page.tsx`
 - **Relative Path**: `src/app/profile/edit`
 - **Created**: 2026-09-05 23:58:11 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 09:46:39 (Australia/Sydney / GMT+10:00)
-- **MD5**: `70f445b3da1143ae0c2718dbb8e8609a`
-- **SHA256**: `34aebb926709f8374b9460ea87143aaa23e26da3d5250d05652cbc3fe086e7b7`
+- **Modified**: 2026-09-14 09:37:09 (Australia/Sydney / GMT+10:00)
+- **MD5**: `96934c934565d45955c8f7463a2b3e7b`
+- **SHA256**: `60201a18cea711d1fe943c7b453f24ef5a4199c59dde8789d9b8526d64e033c7`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1242,7 +1253,7 @@ export default function EditProfilePage() {
           />
         </div>
         <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Bio</label>
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>About me</label>
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
@@ -2804,15 +2815,15 @@ export default function LogoutButton() {
 ### <a id="📄-src-components-navbar-tsx"></a>📄 `src/components/NavBar.tsx`
 
 **File Info:**
-- **Size**: 2.64 KB
+- **Size**: 2.6 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/NavBar.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-06 00:03:47 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 04:29:44 (Australia/Sydney / GMT+10:00)
-- **MD5**: `18b7b21db50f28f4b5c3eee6f2b96943`
-- **SHA256**: `d2bebeff439571b71755b09d88af30cd60cd36e13f529145ceb9025445ba2030`
+- **Modified**: 2026-09-14 09:35:14 (Australia/Sydney / GMT+10:00)
+- **MD5**: `f3d6416bc520bea4d988ac6e800d7f04`
+- **SHA256**: `8a1ee8b33c58096c8a7725ed498810c39dac54d5bc459c8386f1734447685c1c`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2830,7 +2841,6 @@ export default function NavBar({ username }: { username: string | null }) {
 
   const links = username
     ? [
-        { href: '/feed', label: 'Feed' },
         { href: '/projects', label: 'Projects' },
         { href: '/projects/log', label: 'Log wordcount' },
         { href: '/post/new', label: 'Share' },
@@ -2909,15 +2919,15 @@ export default function NavBar({ username }: { username: string | null }) {
 ### <a id="📄-src-components-postactions-tsx"></a>📄 `src/components/PostActions.tsx`
 
 **File Info:**
-- **Size**: 2.02 KB
+- **Size**: 2.94 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/PostActions.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-11 04:34:34 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 04:35:35 (Australia/Sydney / GMT+10:00)
-- **MD5**: `074ab5ccef3d74782b0a6ade3d3827fd`
-- **SHA256**: `893dc65a9a4a18f9cb806577444d7af427a21a5cadc50d97303b497c04fefb35`
+- **Modified**: 2026-09-14 09:38:39 (Australia/Sydney / GMT+10:00)
+- **MD5**: `d4ed7907a2b89094445e3a9dd70d3a51`
+- **SHA256**: `77db0da6a9eda5c731315ea09f9bd628084895f9010912ec035ee4eb492956fb`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2926,21 +2936,38 @@ export default function NavBar({ username }: { username: string | null }) {
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { Heart, Share2 } from 'lucide-react'
+import { Heart, Share2, Trash2 } from 'lucide-react'
 
 export default function PostActions({
   postId,
   initialLiked,
   initialLikeCount,
+  isOwner,
 }: {
   postId: string
   initialLiked: boolean
   initialLikeCount: number
+  isOwner?: boolean
 }) {
   const [liked, setLiked] = useState(initialLiked)
   const [count, setCount] = useState(initialLikeCount)
   const [copied, setCopied] = useState(false)
+  const [deleted, setDeleted] = useState(false)
+  const router = useRouter()
+
+  async function handleDelete() {
+    const confirmed = window.confirm('Delete this post? This can\'t be undone.')
+    if (!confirmed) return
+
+    const supabase = createClient()
+    const { error } = await supabase.from('posts').delete().eq('id', postId)
+    if (!error) {
+      setDeleted(true)
+      router.refresh()
+    }
+  }
 
   async function toggleLike() {
     const supabase = createClient()
@@ -2974,6 +3001,14 @@ export default function PostActions({
     }
   }
 
+  if (deleted) {
+    return (
+      <p className="mt-3 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        Post deleted.
+      </p>
+    )
+  }
+
   return (
     <div className="flex items-center gap-4 mt-3" style={{ fontFamily: 'var(--font-sans)' }}>
       <button
@@ -2992,6 +3027,16 @@ export default function PostActions({
         <Share2 size={16} />
         {copied ? 'Copied!' : 'Share'}
       </button>
+      {isOwner && (
+        <button
+          onClick={handleDelete}
+          className="flex items-center gap-1 text-sm ml-auto"
+          style={{ color: 'var(--color-ink-muted)' }}
+        >
+          <Trash2 size={16} />
+          Delete
+        </button>
+      )}
     </div>
   )
 }

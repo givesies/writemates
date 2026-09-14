@@ -142,7 +142,7 @@ export default function EditProfilePage() {
           />
         </div>
         <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Bio</label>
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>About me</label>
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}

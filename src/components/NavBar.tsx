@@ -10,7 +10,6 @@ export default function NavBar({ username }: { username: string | null }) {
 
   const links = username
     ? [
-        { href: '/feed', label: 'Feed' },
         { href: '/projects', label: 'Projects' },
         { href: '/projects/log', label: 'Log wordcount' },
         { href: '/post/new', label: 'Share' },
