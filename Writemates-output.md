@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-14 09:40:56 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 49
+- **Generated On**: 2026-09-14 09:51:25 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 51
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -54,8 +54,10 @@
 │   │   │   ├── 📁 log/
 │   │   │   │   └── 📄 page.tsx (4.29 KB)
 │   │   │   └── 📄 page.tsx (5.14 KB)
+│   │   ├── 📁 search/
+│   │   │   └── 📄 page.tsx (2.66 KB)
 │   │   ├── 📁 settings/
-│   │   │   └── 📄 page.tsx (2.33 KB)
+│   │   │   └── 📄 page.tsx (2.62 KB)
 │   │   ├── 📁 signup/
 │   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 u/
@@ -64,15 +66,16 @@
 │   │   ├── 📄 apple-icon.tsx (553 B)
 │   │   ├── 📄 favicon.ico (25.32 KB)
 │   │   ├── 📄 globals.css (472 B)
-│   │   ├── 📄 layout.tsx (1.23 KB)
+│   │   ├── 📄 layout.tsx (1.34 KB)
 │   │   ├── 📄 manifest.ts (495 B)
 │   │   └── 📄 page.tsx (300 B)
 │   ├── 📁 components/
 │   │   ├── 📄 ContributionCalendar.tsx (1.34 KB)
 │   │   ├── 📄 DailyBarChart.tsx (635 B)
 │   │   ├── 📄 FollowButton.tsx (1.11 KB)
+│   │   ├── 📄 InviteLink.tsx (823 B)
 │   │   ├── 📄 LogoutButton.tsx (454 B)
-│   │   ├── 📄 NavBar.tsx (2.6 KB)
+│   │   ├── 📄 NavBar.tsx (3.09 KB)
 │   │   ├── 📄 PostActions.tsx (2.94 KB)
 │   │   └── 📄 ProgressChart.tsx (658 B)
 │   ├── 📁 lib/
@@ -111,6 +114,7 @@
 - [📄 src/app/projects/[id]/page.tsx](#📄-src-app-projects-id-page-tsx)
 - [📄 src/app/projects/log/page.tsx](#📄-src-app-projects-log-page-tsx)
 - [📄 src/app/projects/page.tsx](#📄-src-app-projects-page-tsx)
+- [📄 src/app/search/page.tsx](#📄-src-app-search-page-tsx)
 - [📄 src/app/settings/page.tsx](#📄-src-app-settings-page-tsx)
 - [📄 src/app/signup/page.tsx](#📄-src-app-signup-page-tsx)
 - [📄 src/app/u/[username]/page.tsx](#📄-src-app-u-username-page-tsx)
@@ -122,6 +126,7 @@
 - [📄 src/components/ContributionCalendar.tsx](#📄-src-components-contributioncalendar-tsx)
 - [📄 src/components/DailyBarChart.tsx](#📄-src-components-dailybarchart-tsx)
 - [📄 src/components/FollowButton.tsx](#📄-src-components-followbutton-tsx)
+- [📄 src/components/InviteLink.tsx](#📄-src-components-invitelink-tsx)
 - [📄 src/components/LogoutButton.tsx](#📄-src-components-logoutbutton-tsx)
 - [📄 src/components/NavBar.tsx](#📄-src-components-navbar-tsx)
 - [📄 src/components/PostActions.tsx](#📄-src-components-postactions-tsx)
@@ -147,17 +152,17 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 49 |
-| Total Directories | 24 |
-| Text Files | 41 |
+| Total Files | 51 |
+| Total Directories | 25 |
+| Text Files | 43 |
 | Binary Files | 8 |
-| Total Size | 362.48 KB |
+| Total Size | 366.84 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 25 |
+| `.tsx` | 27 |
 | `.ts` | 9 |
 | `.svg` | 5 |
 | `.md` | 3 |
@@ -1855,18 +1860,18 @@ export default function ProjectsPage() {
 
 ---
 
-### <a id="📄-src-app-settings-page-tsx"></a>📄 `src/app/settings/page.tsx`
+### <a id="📄-src-app-search-page-tsx"></a>📄 `src/app/search/page.tsx`
 
 **File Info:**
-- **Size**: 2.33 KB
+- **Size**: 2.66 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
-- **Location**: `src/app/settings/page.tsx`
-- **Relative Path**: `src/app/settings`
-- **Created**: 2026-09-11 04:24:24 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 04:24:45 (Australia/Sydney / GMT+10:00)
-- **MD5**: `c7db473e0b804cc5ce9a2f5a0524bf40`
-- **SHA256**: `998e60d17c2097d876042774bcdda29cb346ee113abc4b53d583dedcbae15c65`
+- **Location**: `src/app/search/page.tsx`
+- **Relative Path**: `src/app/search`
+- **Created**: 2026-09-14 09:48:50 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-14 09:49:10 (Australia/Sydney / GMT+10:00)
+- **MD5**: `432799a60617db7d8ed16f10c3e33eec`
+- **SHA256**: `37f331fec41a2b665596da01ef333e4329e5e456bbfec36b3f51ee6a00c65158`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1876,6 +1881,119 @@ export default function ProjectsPage() {
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import Link from 'next/link'
+
+type Profile = {
+  id: string
+  username: string
+  display_name: string | null
+  avatar_url: string | null
+}
+
+export default function SearchPage() {
+  const [query, setQuery] = useState('')
+  const [results, setResults] = useState<Profile[]>([])
+  const [searched, setSearched] = useState(false)
+
+  async function handleSearch(e: React.FormEvent) {
+    e.preventDefault()
+    if (!query.trim()) return
+
+    const supabase = createClient()
+    const { data } = await supabase
+      .from('profiles')
+      .select('id, username, display_name, avatar_url')
+      .or(`username.ilike.%${query}%,display_name.ilike.%${query}%`)
+      .limit(20)
+
+    setResults(data || [])
+    setSearched(true)
+  }
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-16">
+      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Find writers
+      </h1>
+      <form onSubmit={handleSearch} style={{ fontFamily: 'var(--font-sans)' }}>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search by name or username"
+          className="w-full py-2 mb-4 border-b bg-transparent focus:outline-none"
+          style={{ borderColor: 'var(--color-rule)' }}
+        />
+        <button
+          type="submit"
+          className="px-5 py-2 text-sm mb-8"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Search
+        </button>
+      </form>
+
+      {searched && results.length === 0 && (
+        <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          No writers found.
+        </p>
+      )}
+
+      <div>
+        {results.map((profile) => (
+          <Link
+            key={profile.id}
+            href={`/u/${profile.username}`}
+            className="flex items-center gap-3 py-3 border-b"
+            style={{ borderColor: 'var(--color-rule)' }}
+          >
+            {profile.avatar_url && (
+              <img
+                src={profile.avatar_url}
+                alt=""
+                className="w-10 h-10 rounded-full object-cover"
+              />
+            )}
+            <div>
+              <div style={{ fontFamily: 'var(--font-sans)' }}>
+                {profile.display_name || profile.username}
+              </div>
+              <div className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                @{profile.username}
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </main>
+  )
+}
+```
+
+---
+
+### <a id="📄-src-app-settings-page-tsx"></a>📄 `src/app/settings/page.tsx`
+
+**File Info:**
+- **Size**: 2.62 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/settings/page.tsx`
+- **Relative Path**: `src/app/settings`
+- **Created**: 2026-09-11 04:24:24 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-14 09:45:10 (Australia/Sydney / GMT+10:00)
+- **MD5**: `91894e7e50a86d3afa34dad12d789913`
+- **SHA256**: `81e85b48b1466071cd2a5a5689a5a7fc20967b215983c18633d36a087b1883b4`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import InviteLink from '@/components/InviteLink'
 
 export default function SettingsPage() {
   const [message, setMessage] = useState('')
@@ -1916,6 +2034,14 @@ export default function SettingsPage() {
 
       <h2
         className="text-sm mb-4 pb-2 border-b"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+      >
+        Invite friends
+      </h2>
+      <InviteLink />
+
+      <h2
+        className="text-sm mb-4 mt-10 pb-2 border-b"
         style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
       >
         Contact support
@@ -2444,15 +2570,15 @@ button {
 ### <a id="📄-src-app-layout-tsx"></a>📄 `src/app/layout.tsx`
 
 **File Info:**
-- **Size**: 1.23 KB
+- **Size**: 1.34 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/layout.tsx`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 10:28:44 (Australia/Sydney / GMT+10:00)
-- **MD5**: `45f158beb9a1078810b7cc3ab50bbd5c`
-- **SHA256**: `c7714dc3ebb915278345a7ab3c134a5e211eabe633acd9d3c6f450fb86305217`
+- **Modified**: 2026-09-14 09:50:17 (Australia/Sydney / GMT+10:00)
+- **MD5**: `528856c57ccf55ae9ac4f631fa029a20`
+- **SHA256**: `167406ef323e1563de14c0e0616d82ea0de2ae904af1bed4120a27006c12e6c5`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2489,19 +2615,21 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const { data: { user } } = await supabase.auth.getUser()
 
   let username: string | null = null
+  let avatarUrl: string | null = null
   if (user) {
     const { data: profile } = await supabase
       .from('profiles')
-      .select('username')
+      .select('username, avatar_url')
       .eq('id', user.id)
       .single()
     username = profile?.username ?? null
+    avatarUrl = profile?.avatar_url ?? null
   }
 
   return (
     <html lang="en" className={`${sourceSerif.variable} ${workSans.variable}`}>
       <body className="min-h-full flex flex-col">
-        <NavBar username={username} />
+        <NavBar username={username} avatarUrl={avatarUrl} />
         {children}
       </body>
     </html>
@@ -2770,6 +2898,56 @@ export default function FollowButton({
 
 ---
 
+### <a id="📄-src-components-invitelink-tsx"></a>📄 `src/components/InviteLink.tsx`
+
+**File Info:**
+- **Size**: 823 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/InviteLink.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-14 09:45:28 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-14 09:46:03 (Australia/Sydney / GMT+10:00)
+- **MD5**: `3dc6137a5a232a0cd51634d91134b658`
+- **SHA256**: `664ea648e3f8e79cde0493cc5280e91144fde4e63213ebaef695b4f48824ef7e`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useState } from 'react'
+
+export default function InviteLink() {
+  const [copied, setCopied] = useState(false)
+
+  async function handleCopy() {
+    const url = `${window.location.origin}/signup`
+    await navigator.clipboard.writeText(url)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <div className="mb-10" style={{ fontFamily: 'var(--font-sans)' }}>
+      <p className="text-sm mb-3" style={{ color: 'var(--color-ink-muted)' }}>
+        Share this link to invite other writers to Writemates.
+      </p>
+      <button
+        onClick={handleCopy}
+        className="px-5 py-2 text-sm"
+        style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+      >
+        {copied ? 'Copied!' : 'Copy invite link'}
+      </button>
+    </div>
+  )
+}
+```
+
+---
+
 ### <a id="📄-src-components-logoutbutton-tsx"></a>📄 `src/components/LogoutButton.tsx`
 
 **File Info:**
@@ -2815,15 +2993,15 @@ export default function LogoutButton() {
 ### <a id="📄-src-components-navbar-tsx"></a>📄 `src/components/NavBar.tsx`
 
 **File Info:**
-- **Size**: 2.6 KB
+- **Size**: 3.09 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/NavBar.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-06 00:03:47 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-14 09:35:14 (Australia/Sydney / GMT+10:00)
-- **MD5**: `f3d6416bc520bea4d988ac6e800d7f04`
-- **SHA256**: `8a1ee8b33c58096c8a7725ed498810c39dac54d5bc459c8386f1734447685c1c`
+- **Modified**: 2026-09-14 09:51:24 (Australia/Sydney / GMT+10:00)
+- **MD5**: `cc972b463173edb1c7c2b904453bdac5`
+- **SHA256**: `ce665040d05c9d417c77964b05ee36a9740eaa1d281532e865d3e2de1d47148e`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2833,10 +3011,16 @@ export default function LogoutButton() {
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Search } from 'lucide-react'
 import LogoutButton from '@/components/LogoutButton'
 
-export default function NavBar({ username }: { username: string | null }) {
+export default function NavBar({
+  username,
+  avatarUrl,
+}: {
+  username: string | null
+  avatarUrl?: string | null
+}) {
   const [open, setOpen] = useState(false)
 
   const links = username
@@ -2846,7 +3030,6 @@ export default function NavBar({ username }: { username: string | null }) {
         { href: '/post/new', label: 'Share' },
         { href: '/groups', label: 'Groups' },
         { href: '/profile/edit', label: 'Edit profile' },
-        { href: `/u/${username}`, label: 'Profile' },
         { href: '/settings', label: 'Settings' },
       ]
     : [
@@ -2871,30 +3054,43 @@ export default function NavBar({ username }: { username: string | null }) {
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-6">
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm" style={{ color: 'var(--color-ink)' }}>
-              {link.label}
-            </Link>
-          ))}
-          {username && <LogoutButton />}
-        </div>
+        <div className="flex items-center gap-4">
+          {username && (
+            <>
+              <Link href="/search" aria-label="Search" style={{ color: 'var(--color-ink)' }}>
+                <Search size={20} />
+              </Link>
+              <Link href={`/u/${username}`} aria-label="Your profile">
+                {avatarUrl ? (
+                  <img
+                    src={avatarUrl}
+                    alt=""
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                ) : (
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm"
+                    style={{ backgroundColor: 'var(--color-rule)', color: 'var(--color-ink-muted)' }}
+                  >
+                    {username.charAt(0).toUpperCase()}
+                  </div>
+                )}
+              </Link>
+            </>
+          )}
 
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden"
-          onClick={() => setOpen(!open)}
-          style={{ color: 'var(--color-ink)' }}
-          aria-label={open ? 'Close menu' : 'Open menu'}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          <button
+            onClick={() => setOpen(!open)}
+            style={{ color: 'var(--color-ink)' }}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile dropdown */}
       {open && (
-        <div className="md:hidden px-6 pb-5 flex flex-col gap-4" style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="px-6 pb-5 flex flex-col gap-4" style={{ fontFamily: 'var(--font-sans)' }}>
           {links.map((link) => (
             <Link
               key={link.href}

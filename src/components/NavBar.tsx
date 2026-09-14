@@ -2,10 +2,16 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Search } from 'lucide-react'
 import LogoutButton from '@/components/LogoutButton'
 
-export default function NavBar({ username }: { username: string | null }) {
+export default function NavBar({
+  username,
+  avatarUrl,
+}: {
+  username: string | null
+  avatarUrl?: string | null
+}) {
   const [open, setOpen] = useState(false)
 
   const links = username
@@ -15,7 +21,6 @@ export default function NavBar({ username }: { username: string | null }) {
         { href: '/post/new', label: 'Share' },
         { href: '/groups', label: 'Groups' },
         { href: '/profile/edit', label: 'Edit profile' },
-        { href: `/u/${username}`, label: 'Profile' },
         { href: '/settings', label: 'Settings' },
       ]
     : [
@@ -40,30 +45,43 @@ export default function NavBar({ username }: { username: string | null }) {
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-6">
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm" style={{ color: 'var(--color-ink)' }}>
-              {link.label}
-            </Link>
-          ))}
-          {username && <LogoutButton />}
-        </div>
+        <div className="flex items-center gap-4">
+          {username && (
+            <>
+              <Link href="/search" aria-label="Search" style={{ color: 'var(--color-ink)' }}>
+                <Search size={20} />
+              </Link>
+              <Link href={`/u/${username}`} aria-label="Your profile">
+                {avatarUrl ? (
+                  <img
+                    src={avatarUrl}
+                    alt=""
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                ) : (
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm"
+                    style={{ backgroundColor: 'var(--color-rule)', color: 'var(--color-ink-muted)' }}
+                  >
+                    {username.charAt(0).toUpperCase()}
+                  </div>
+                )}
+              </Link>
+            </>
+          )}
 
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden"
-          onClick={() => setOpen(!open)}
-          style={{ color: 'var(--color-ink)' }}
-          aria-label={open ? 'Close menu' : 'Open menu'}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          <button
+            onClick={() => setOpen(!open)}
+            style={{ color: 'var(--color-ink)' }}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile dropdown */}
       {open && (
-        <div className="md:hidden px-6 pb-5 flex flex-col gap-4" style={{ fontFamily: 'var(--font-sans)' }}>
+        <div className="px-6 pb-5 flex flex-col gap-4" style={{ fontFamily: 'var(--font-sans)' }}>
           {links.map((link) => (
             <Link
               key={link.href}

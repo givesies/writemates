@@ -29,19 +29,21 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const { data: { user } } = await supabase.auth.getUser()
 
   let username: string | null = null
+  let avatarUrl: string | null = null
   if (user) {
     const { data: profile } = await supabase
       .from('profiles')
-      .select('username')
+      .select('username, avatar_url')
       .eq('id', user.id)
       .single()
     username = profile?.username ?? null
+    avatarUrl = profile?.avatar_url ?? null
   }
 
   return (
     <html lang="en" className={`${sourceSerif.variable} ${workSans.variable}`}>
       <body className="min-h-full flex flex-col">
-        <NavBar username={username} />
+        <NavBar username={username} avatarUrl={avatarUrl} />
         {children}
       </body>
     </html>

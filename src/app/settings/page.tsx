@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import InviteLink from '@/components/InviteLink'
 
 export default function SettingsPage() {
   const [message, setMessage] = useState('')
@@ -42,6 +43,14 @@ export default function SettingsPage() {
 
       <h2
         className="text-sm mb-4 pb-2 border-b"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+      >
+        Invite friends
+      </h2>
+      <InviteLink />
+
+      <h2
+        className="text-sm mb-4 mt-10 pb-2 border-b"
         style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
       >
         Contact support
