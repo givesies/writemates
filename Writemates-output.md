@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-14 09:51:25 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 51
+- **Generated On**: 2026-09-14 10:13:45 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 55
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -28,6 +28,8 @@
 │   └── 📄 window.svg (385 B)
 ├── 📁 src/
 │   ├── 📁 app/
+│   │   ├── 📁 activity/
+│   │   │   └── 📄 page.tsx (440 B)
 │   │   ├── 📁 feed/
 │   │   │   └── 📄 page.tsx (4.16 KB)
 │   │   ├── 📁 groups/
@@ -54,6 +56,8 @@
 │   │   │   ├── 📁 log/
 │   │   │   │   └── 📄 page.tsx (4.29 KB)
 │   │   │   └── 📄 page.tsx (5.14 KB)
+│   │   ├── 📁 read/
+│   │   │   └── 📄 page.tsx (446 B)
 │   │   ├── 📁 search/
 │   │   │   └── 📄 page.tsx (2.66 KB)
 │   │   ├── 📁 settings/
@@ -62,19 +66,21 @@
 │   │   │   └── 📄 page.tsx (2.33 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
-│   │   │       └── 📄 page.tsx (9.99 KB)
+│   │   │       └── 📄 page.tsx (10.12 KB)
 │   │   ├── 📄 apple-icon.tsx (553 B)
 │   │   ├── 📄 favicon.ico (25.32 KB)
 │   │   ├── 📄 globals.css (472 B)
-│   │   ├── 📄 layout.tsx (1.34 KB)
+│   │   ├── 📄 layout.tsx (1.48 KB)
 │   │   ├── 📄 manifest.ts (495 B)
 │   │   └── 📄 page.tsx (300 B)
 │   ├── 📁 components/
+│   │   ├── 📄 BottomNav.tsx (1.42 KB)
 │   │   ├── 📄 ContributionCalendar.tsx (1.34 KB)
 │   │   ├── 📄 DailyBarChart.tsx (635 B)
 │   │   ├── 📄 FollowButton.tsx (1.11 KB)
 │   │   ├── 📄 InviteLink.tsx (823 B)
 │   │   ├── 📄 LogoutButton.tsx (454 B)
+│   │   ├── 📄 MessageButton.tsx (1.98 KB)
 │   │   ├── 📄 NavBar.tsx (3.09 KB)
 │   │   ├── 📄 PostActions.tsx (2.94 KB)
 │   │   └── 📄 ProgressChart.tsx (658 B)
@@ -102,6 +108,7 @@
 
 **Project Files:**
 
+- [📄 src/app/activity/page.tsx](#📄-src-app-activity-page-tsx)
 - [📄 src/app/feed/page.tsx](#📄-src-app-feed-page-tsx)
 - [📄 src/app/groups/[id]/page.tsx](#📄-src-app-groups-id-page-tsx)
 - [📄 src/app/groups/page.tsx](#📄-src-app-groups-page-tsx)
@@ -114,6 +121,7 @@
 - [📄 src/app/projects/[id]/page.tsx](#📄-src-app-projects-id-page-tsx)
 - [📄 src/app/projects/log/page.tsx](#📄-src-app-projects-log-page-tsx)
 - [📄 src/app/projects/page.tsx](#📄-src-app-projects-page-tsx)
+- [📄 src/app/read/page.tsx](#📄-src-app-read-page-tsx)
 - [📄 src/app/search/page.tsx](#📄-src-app-search-page-tsx)
 - [📄 src/app/settings/page.tsx](#📄-src-app-settings-page-tsx)
 - [📄 src/app/signup/page.tsx](#📄-src-app-signup-page-tsx)
@@ -123,11 +131,13 @@
 - [📄 src/app/layout.tsx](#📄-src-app-layout-tsx)
 - [📄 src/app/manifest.ts](#📄-src-app-manifest-ts)
 - [📄 src/app/page.tsx](#📄-src-app-page-tsx)
+- [📄 src/components/BottomNav.tsx](#📄-src-components-bottomnav-tsx)
 - [📄 src/components/ContributionCalendar.tsx](#📄-src-components-contributioncalendar-tsx)
 - [📄 src/components/DailyBarChart.tsx](#📄-src-components-dailybarchart-tsx)
 - [📄 src/components/FollowButton.tsx](#📄-src-components-followbutton-tsx)
 - [📄 src/components/InviteLink.tsx](#📄-src-components-invitelink-tsx)
 - [📄 src/components/LogoutButton.tsx](#📄-src-components-logoutbutton-tsx)
+- [📄 src/components/MessageButton.tsx](#📄-src-components-messagebutton-tsx)
 - [📄 src/components/NavBar.tsx](#📄-src-components-navbar-tsx)
 - [📄 src/components/PostActions.tsx](#📄-src-components-postactions-tsx)
 - [📄 src/components/ProgressChart.tsx](#📄-src-components-progresschart-tsx)
@@ -152,17 +162,17 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 51 |
-| Total Directories | 25 |
-| Text Files | 43 |
+| Total Files | 55 |
+| Total Directories | 27 |
+| Text Files | 47 |
 | Binary Files | 8 |
-| Total Size | 366.84 KB |
+| Total Size | 371.37 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 27 |
+| `.tsx` | 31 |
 | `.ts` | 9 |
 | `.svg` | 5 |
 | `.md` | 3 |
@@ -182,6 +192,39 @@ The following files were not included in the text content:
 - `public/next.svg`
 - `public/vercel.svg`
 - `public/window.svg`
+
+### <a id="📄-src-app-activity-page-tsx"></a>📄 `src/app/activity/page.tsx`
+
+**File Info:**
+- **Size**: 440 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/activity/page.tsx`
+- **Relative Path**: `src/app/activity`
+- **Created**: 2026-09-14 09:56:15 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-14 09:56:32 (Australia/Sydney / GMT+10:00)
+- **MD5**: `af4dc5cbf5e912d3014bad7cb339e9d4`
+- **SHA256**: `b64568b2eda17b59274b8ea0fbb57d0eba56ba4ccf0e80bc72ecdc122ad565eb`
+- **Encoding**: UTF-8
+
+**File code content:**
+
+```typescript
+export default function ActivityPage() {
+  return (
+    <main className="max-w-2xl mx-auto px-6 py-16 text-center">
+      <h1 className="text-3xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Activity
+      </h1>
+      <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        Coming soon — likes, follows, and shares on your work, all in one place.
+      </p>
+    </main>
+  )
+}
+```
+
+---
 
 ### <a id="📄-src-app-feed-page-tsx"></a>📄 `src/app/feed/page.tsx`
 
@@ -1860,6 +1903,39 @@ export default function ProjectsPage() {
 
 ---
 
+### <a id="📄-src-app-read-page-tsx"></a>📄 `src/app/read/page.tsx`
+
+**File Info:**
+- **Size**: 446 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/read/page.tsx`
+- **Relative Path**: `src/app/read`
+- **Created**: 2026-09-14 09:55:37 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-14 09:55:55 (Australia/Sydney / GMT+10:00)
+- **MD5**: `9bb11195a950ff70fbfd652f389b37b7`
+- **SHA256**: `1ed6a815c27c38e2a2fc8809b19370be78e1e206e5201b22d1e71a8b98859ec2`
+- **Encoding**: UTF-8
+
+**File code content:**
+
+```typescript
+export default function ReadPage() {
+  return (
+    <main className="max-w-2xl mx-auto px-6 py-16 text-center">
+      <h1 className="text-3xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Read
+      </h1>
+      <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        Coming soon — a place to share work-in-progress with beta readers and trade critiques.
+      </p>
+    </main>
+  )
+}
+```
+
+---
+
 ### <a id="📄-src-app-search-page-tsx"></a>📄 `src/app/search/page.tsx`
 
 **File Info:**
@@ -2172,15 +2248,15 @@ export default function SignUpPage() {
 ### <a id="📄-src-app-u-username-page-tsx"></a>📄 `src/app/u/[username]/page.tsx`
 
 **File Info:**
-- **Size**: 9.99 KB
+- **Size**: 10.12 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/u/[username]/page.tsx`
 - **Relative Path**: `src/app/u/[username]`
 - **Created**: 2026-09-06 00:00:54 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 09:58:54 (Australia/Sydney / GMT+10:00)
-- **MD5**: `09fc24f3637c45db5a8f3a82405fc02f`
-- **SHA256**: `9baf4d9873b492571132525260d553fbb97df7c8d167b62b5953aaeb95b80363`
+- **Modified**: 2026-09-14 10:13:44 (Australia/Sydney / GMT+10:00)
+- **MD5**: `ef9d6c890bfe5c7e86e84f8f07374299`
+- **SHA256**: `c994ff6808353b93e8943b23807fac356fe5bf8660fca922efc8d38d86ab7396`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2189,6 +2265,7 @@ export default function SignUpPage() {
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import FollowButton from '@/components/FollowButton'
+import MessageButton from '@/components/MessageButton'
 import { buildDailyCumulative, getAuthorTitle } from '@/lib/wordcountStats'
 
 export default async function PublicProfilePage({
@@ -2305,7 +2382,10 @@ export default async function PublicProfilePage({
         <span>{followerCount || 0} followers</span>
         <span>{followingCount || 0} following</span>
         {viewer && viewer.id !== profile.id && (
-          <FollowButton profileId={profile.id} initialFollowing={isFollowing} />
+          <>
+            <FollowButton profileId={profile.id} initialFollowing={isFollowing} />
+            <MessageButton profileId={profile.id} />
+          </>
         )}
       </div>
 
@@ -2570,15 +2650,15 @@ button {
 ### <a id="📄-src-app-layout-tsx"></a>📄 `src/app/layout.tsx`
 
 **File Info:**
-- **Size**: 1.34 KB
+- **Size**: 1.48 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/layout.tsx`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-14 09:50:17 (Australia/Sydney / GMT+10:00)
-- **MD5**: `528856c57ccf55ae9ac4f631fa029a20`
-- **SHA256**: `167406ef323e1563de14c0e0616d82ea0de2ae904af1bed4120a27006c12e6c5`
+- **Modified**: 2026-09-14 09:59:33 (Australia/Sydney / GMT+10:00)
+- **MD5**: `f5953d8a1ac1f3ad2e6d053dbbca133b`
+- **SHA256**: `bccce2872cb6340df86e357ba13fcce1b96c8723342a7a34101f74b15dd24173`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2589,6 +2669,7 @@ import { Source_Serif_4, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { createClient } from '@/lib/supabase/server'
 import NavBar from '@/components/NavBar'
+import BottomNav from '@/components/BottomNav'
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-serif",
@@ -2630,7 +2711,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${sourceSerif.variable} ${workSans.variable}`}>
       <body className="min-h-full flex flex-col">
         <NavBar username={username} avatarUrl={avatarUrl} />
-        {children}
+        <div style={{ paddingBottom: username ? 72 : 0 }}>{children}</div>
+        {username && <BottomNav />}
       </body>
     </html>
   );
@@ -2716,6 +2798,72 @@ export default async function Home() {
 The following files were not included in the text content:
 
 - `src/app/favicon.ico`
+
+### <a id="📄-src-components-bottomnav-tsx"></a>📄 `src/components/BottomNav.tsx`
+
+**File Info:**
+- **Size**: 1.42 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/BottomNav.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-14 09:58:20 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-14 09:58:36 (Australia/Sydney / GMT+10:00)
+- **MD5**: `154e3c7cf362817ecbf2dfd34025688d`
+- **SHA256**: `066e5c27e0bcb2d485dc2cd5c7276ffa57dfa30e7a130efb38ce41789cee0f60`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { Home, TrendingUp, BookOpen, MessageCircle, Bell } from 'lucide-react'
+
+const tabs = [
+  { href: '/feed', label: 'Home', icon: Home },
+  { href: '/projects', label: 'Progress', icon: TrendingUp },
+  { href: '/read', label: 'Read', icon: BookOpen },
+  { href: '/chat', label: 'Chat', icon: MessageCircle },
+  { href: '/activity', label: 'Activity', icon: Bell },
+]
+
+export default function BottomNav() {
+  const pathname = usePathname()
+
+  return (
+    <nav
+      className="fixed bottom-0 left-0 right-0 border-t z-40"
+      style={{ backgroundColor: 'var(--color-paper)', borderColor: 'var(--color-rule)' }}
+    >
+      <div className="max-w-5xl mx-auto flex items-center justify-around py-2">
+        {tabs.map((tab) => {
+          const active = pathname === tab.href || pathname.startsWith(tab.href + '/')
+          const Icon = tab.icon
+          return (
+            <Link
+              key={tab.href}
+              href={tab.href}
+              className="flex flex-col items-center gap-1 px-3 py-1"
+              style={{
+                fontFamily: 'var(--font-sans)',
+                color: active ? 'var(--color-accent)' : 'var(--color-ink-muted)',
+              }}
+            >
+              <Icon size={22} />
+              <span className="text-xs">{tab.label}</span>
+            </Link>
+          )
+        })}
+      </div>
+    </nav>
+  )
+}
+```
+
+---
 
 ### <a id="📄-src-components-contributioncalendar-tsx"></a>📄 `src/components/ContributionCalendar.tsx`
 
@@ -2983,6 +3131,101 @@ export default function LogoutButton() {
   return (
     <button onClick={handleLogout} style={{ padding: '0.5rem 1rem' }}>
       Log out
+    </button>
+  )
+}
+```
+
+---
+
+### <a id="📄-src-components-messagebutton-tsx"></a>📄 `src/components/MessageButton.tsx`
+
+**File Info:**
+- **Size**: 1.98 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/MessageButton.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-14 10:08:34 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-14 10:08:49 (Australia/Sydney / GMT+10:00)
+- **MD5**: `c607fa04dd43302e1ec523e8ac21ad8a`
+- **SHA256**: `50fe1d60817fb20720d7e643cc4bb1bd40ab76479db673836f1328b9c5991d3c`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase/client'
+
+export default function MessageButton({ profileId }: { profileId: string }) {
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
+
+  async function handleClick() {
+    setLoading(true)
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    // Look for an existing conversation between exactly these two people
+    const { data: myConvos } = await supabase
+      .from('conversation_participants')
+      .select('conversation_id')
+      .eq('user_id', user.id)
+
+    let existingId: string | null = null
+    if (myConvos && myConvos.length > 0) {
+      const { data: theirConvos } = await supabase
+        .from('conversation_participants')
+        .select('conversation_id')
+        .eq('user_id', profileId)
+        .in('conversation_id', myConvos.map((c) => c.conversation_id))
+      if (theirConvos && theirConvos.length > 0) {
+        existingId = theirConvos[0].conversation_id
+      }
+    }
+
+    if (existingId) {
+      router.push(`/chat/${existingId}`)
+      return
+    }
+
+    // No existing conversation — create one
+    const { data: newConvo, error } = await supabase
+      .from('conversations')
+      .insert({})
+      .select()
+      .single()
+
+    if (error || !newConvo) {
+      setLoading(false)
+      return
+    }
+
+    await supabase.from('conversation_participants').insert([
+      { conversation_id: newConvo.id, user_id: user.id },
+      { conversation_id: newConvo.id, user_id: profileId },
+    ])
+
+    router.push(`/chat/${newConvo.id}`)
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      disabled={loading}
+      className="text-sm px-3 py-1"
+      style={{
+        backgroundColor: 'transparent',
+        color: 'var(--color-ink)',
+        border: '1px solid var(--color-ink)',
+      }}
+    >
+      {loading ? '...' : 'Message'}
     </button>
   )
 }

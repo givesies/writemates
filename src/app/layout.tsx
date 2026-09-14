@@ -3,6 +3,7 @@ import { Source_Serif_4, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { createClient } from '@/lib/supabase/server'
 import NavBar from '@/components/NavBar'
+import BottomNav from '@/components/BottomNav'
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-serif",
@@ -44,7 +45,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${sourceSerif.variable} ${workSans.variable}`}>
       <body className="min-h-full flex flex-col">
         <NavBar username={username} avatarUrl={avatarUrl} />
-        {children}
+        <div style={{ paddingBottom: username ? 72 : 0 }}>{children}</div>
+        {username && <BottomNav />}
       </body>
     </html>
   );

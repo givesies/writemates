@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import FollowButton from '@/components/FollowButton'
+import MessageButton from '@/components/MessageButton'
 import { buildDailyCumulative, getAuthorTitle } from '@/lib/wordcountStats'
 
 export default async function PublicProfilePage({
@@ -117,7 +118,10 @@ export default async function PublicProfilePage({
         <span>{followerCount || 0} followers</span>
         <span>{followingCount || 0} following</span>
         {viewer && viewer.id !== profile.id && (
-          <FollowButton profileId={profile.id} initialFollowing={isFollowing} />
+          <>
+            <FollowButton profileId={profile.id} initialFollowing={isFollowing} />
+            <MessageButton profileId={profile.id} />
+          </>
         )}
       </div>
 
