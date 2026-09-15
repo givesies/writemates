@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Home, TrendingUp, BookOpen, MessageCircle, Bell } from 'lucide-react'
+import UnreadChatDot from '@/components/UnreadChatDot'
 
 const tabs = [
   { href: '/feed', label: 'Home', icon: Home },
@@ -34,7 +35,10 @@ export default function BottomNav() {
                 color: active ? 'var(--color-accent)' : 'var(--color-ink-muted)',
               }}
             >
-              <Icon size={22} />
+              <div style={{ position: 'relative' }}>
+                <Icon size={22} />
+                {tab.href === '/chat' && <UnreadChatDot />}
+              </div>
               <span className="text-xs">{tab.label}</span>
             </Link>
           )
