@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-15 14:42:39 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 58
+- **Generated On**: 2026-09-18 01:08:35 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 59
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -29,7 +29,7 @@
 ├── 📁 src/
 │   ├── 📁 app/
 │   │   ├── 📁 activity/
-│   │   │   └── 📄 page.tsx (3.74 KB)
+│   │   │   └── 📄 page.tsx (3.92 KB)
 │   │   ├── 📁 chat/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (4.53 KB)
@@ -56,10 +56,10 @@
 │   │   │       └── 📄 page.tsx (8.93 KB)
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
-│   │   │   │   └── 📄 page.tsx (4.46 KB)
+│   │   │   │   └── 📄 page.tsx (8.34 KB)
 │   │   │   ├── 📁 log/
 │   │   │   │   └── 📄 page.tsx (4.29 KB)
-│   │   │   └── 📄 page.tsx (5.14 KB)
+│   │   │   └── 📄 page.tsx (8.34 KB)
 │   │   ├── 📁 read/
 │   │   │   └── 📄 page.tsx (446 B)
 │   │   ├── 📁 search/
@@ -78,7 +78,7 @@
 │   │   ├── 📄 manifest.ts (495 B)
 │   │   └── 📄 page.tsx (300 B)
 │   ├── 📁 components/
-│   │   ├── 📄 BottomNav.tsx (1.61 KB)
+│   │   ├── 📄 BottomNav.tsx (1.73 KB)
 │   │   ├── 📄 ContributionCalendar.tsx (1.34 KB)
 │   │   ├── 📄 DailyBarChart.tsx (635 B)
 │   │   ├── 📄 FollowButton.tsx (1.11 KB)
@@ -88,6 +88,7 @@
 │   │   ├── 📄 NavBar.tsx (3.09 KB)
 │   │   ├── 📄 PostActions.tsx (2.94 KB)
 │   │   ├── 📄 ProgressChart.tsx (658 B)
+│   │   ├── 📄 UnreadActivityDot.tsx (2.07 KB)
 │   │   └── 📄 UnreadChatDot.tsx (1.59 KB)
 │   ├── 📁 lib/
 │   │   ├── 📁 supabase/
@@ -148,6 +149,7 @@
 - [📄 src/components/NavBar.tsx](#📄-src-components-navbar-tsx)
 - [📄 src/components/PostActions.tsx](#📄-src-components-postactions-tsx)
 - [📄 src/components/ProgressChart.tsx](#📄-src-components-progresschart-tsx)
+- [📄 src/components/UnreadActivityDot.tsx](#📄-src-components-unreadactivitydot-tsx)
 - [📄 src/components/UnreadChatDot.tsx](#📄-src-components-unreadchatdot-tsx)
 - [📄 src/lib/supabase/client.ts](#📄-src-lib-supabase-client-ts)
 - [📄 src/lib/supabase/middleware.ts](#📄-src-lib-supabase-middleware-ts)
@@ -170,17 +172,17 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 58 |
+| Total Files | 59 |
 | Total Directories | 29 |
-| Text Files | 50 |
+| Text Files | 51 |
 | Binary Files | 8 |
-| Total Size | 384.98 KB |
+| Total Size | 394.44 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 34 |
+| `.tsx` | 35 |
 | `.ts` | 9 |
 | `.svg` | 5 |
 | `.md` | 3 |
@@ -204,15 +206,15 @@ The following files were not included in the text content:
 ### <a id="📄-src-app-activity-page-tsx"></a>📄 `src/app/activity/page.tsx`
 
 **File Info:**
-- **Size**: 3.74 KB
+- **Size**: 3.92 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/activity/page.tsx`
 - **Relative Path**: `src/app/activity`
 - **Created**: 2026-09-14 09:56:15 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-15 14:40:40 (Australia/Sydney / GMT+10:00)
-- **MD5**: `7c6a5691dd1ac538ed8224369632a809`
-- **SHA256**: `20a01e787cb7d9df5978c2b9273d875d164e87c4b40b56cf9ce88faed7ca3a07`
+- **Modified**: 2026-09-15 14:51:09 (Australia/Sydney / GMT+10:00)
+- **MD5**: `21b4c5d6e125a08a9985f19c1ba508f8`
+- **SHA256**: `47f7d71950d92b8872bb4409e02717e95539bd483b1f720a0bb5f72650ce055b`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -283,6 +285,12 @@ export default async function ActivityPage() {
   const allActivity = [...likeActivity, ...followActivity].sort(
     (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   )
+
+  // Mark activity as read now that this page has loaded
+  await supabase
+    .from('profiles')
+    .update({ activity_last_read_at: new Date().toISOString() })
+    .eq('id', user.id)
 
   return (
     <main className="max-w-md mx-auto px-6 py-16">
@@ -1851,149 +1859,256 @@ export default function EditProfilePage() {
 ### <a id="📄-src-app-projects-id-page-tsx"></a>📄 `src/app/projects/[id]/page.tsx`
 
 **File Info:**
-- **Size**: 4.46 KB
+- **Size**: 8.34 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/[id]/page.tsx`
 - **Relative Path**: `src/app/projects/[id]`
 - **Created**: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 10:12:12 (Australia/Sydney / GMT+10:00)
-- **MD5**: `e90dd488c81abc9c7445304365e9f8e4`
-- **SHA256**: `a10d3390b162fee17eb6440408707ffaf85252c98a6c7bcf8d1d27c5eb6fd395`
+- **Modified**: 2026-09-17 22:17:37 (Australia/Sydney / GMT+10:00)
+- **MD5**: `07d9ab814584b7372cf4b41f1d6f0c8a`
+- **SHA256**: `fcb68f8c9f3a8824aee71780f05bb847fee1ed943848a59d69dd9da15a31c063`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```typescript
-import { createClient } from '@/lib/supabase/server'
-import { redirect, notFound } from 'next/navigation'
-import ProgressChart from '@/components/ProgressChart'
-import DailyBarChart from '@/components/DailyBarChart'
-import ContributionCalendar from '@/components/ContributionCalendar'
-import {
-  buildDailyCumulative,
-  buildDailyDeltas,
-  computeStreak,
-  computeBestDay,
-  computeWeeklyComparison,
-  computeProjectedFinish,
-} from '@/lib/wordcountStats'
+'use client'
 
-export default async function ProjectDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
-  const { id } = await params
-  const supabase = await createClient()
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { buildDailyCumulative } from '@/lib/wordcountStats'
 
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
+type Project = {
+  id: string
+  title: string
+  goal_word_count: number | null
+  status: string
+  project_type: string
+  draft_stage: string
+  metric_unit: string
+}
 
-  const { data: project } = await supabase
-    .from('projects')
-    .select('*')
-    .eq('id', id)
-    .single()
+const PROJECT_TYPES = [
+  { value: 'book', label: 'Book' },
+  { value: 'screenplay', label: 'Screenplay' },
+  { value: 'article', label: 'Article' },
+  { value: 'short_story', label: 'Short story' },
+  { value: 'thesis', label: 'Thesis' },
+  { value: 'other', label: 'Other' },
+]
 
-  if (!project) notFound()
+const DRAFT_STAGES = [
+  { value: 'first_draft', label: 'First draft', defaultUnit: 'words' },
+  { value: 'editing', label: 'Editing', defaultUnit: 'pages' },
+  { value: 'revision_2', label: 'Second revision', defaultUnit: 'pages' },
+  { value: 'revision_3_plus', label: 'Third revision or later', defaultUnit: 'pages' },
+]
 
-  const { data: snapshots } = await supabase
-    .from('wordcount_snapshots')
-    .select('word_count, recorded_at')
-    .eq('project_id', id)
-    .order('recorded_at', { ascending: true })
+export default function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[]>([])
+  const [title, setTitle] = useState('')
+  const [goalWordCount, setGoalWordCount] = useState('')
+  const [projectType, setProjectType] = useState('book')
+  const [draftStage, setDraftStage] = useState('first_draft')
+  const [metricUnit, setMetricUnit] = useState('words')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [totalWords, setTotalWords] = useState(0)
+  const router = useRouter()
 
-  const dailyMap = buildDailyCumulative(snapshots || [])
-  const dailyDeltas = buildDailyDeltas(dailyMap)
+  async function loadProjects() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      router.push('/login')
+      return
+    }
+    const { data } = await supabase
+      .from('projects')
+      .select('*')
+      .order('created_at', { ascending: false })
 
-  const chartData = Array.from(dailyMap.entries()).map(([date, wordCount]) => ({
-    date,
-    wordCount,
-  }))
+    setProjects(data || [])
 
-  const currentWordCount = chartData.length > 0 ? chartData[chartData.length - 1].wordCount : 0
-  const percentComplete = project.goal_word_count
-    ? Math.min(100, Math.round((currentWordCount / project.goal_word_count) * 100))
-    : null
+    const { data: allSnapshots } = await supabase
+      .from('wordcount_snapshots')
+      .select('word_count, recorded_at, project_id')
+      .eq('user_id', user.id)
 
-  const streak = computeStreak(dailyMap)
-  const bestDay = computeBestDay(dailyDeltas)
-  const { thisWeek, lastWeek } = computeWeeklyComparison(dailyDeltas)
-  const projectedFinish = computeProjectedFinish(dailyDeltas, currentWordCount, project.goal_word_count)
-  const dailyDeltasObj = Object.fromEntries(dailyDeltas)
-  const barChartData = Array.from(dailyDeltas.entries())
-    .filter(([, words]) => words > 0)
-    .map(([date, words]) => ({ date, words }))
+    const byProject = new Map<string, typeof allSnapshots>()
+    for (const snap of allSnapshots || []) {
+      const list = byProject.get(snap.project_id) || []
+      list.push(snap)
+      byProject.set(snap.project_id, list)
+    }
+    let total = 0
+    for (const snaps of byProject.values()) {
+      const daily = buildDailyCumulative(snaps!)
+      const values = Array.from(daily.values())
+      if (values.length > 0) total += Math.max(...values)
+    }
+    setTotalWords(total)
+
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadProjects()
+  }, [])
+
+  function handleStageChange(value: string) {
+    setDraftStage(value)
+    const stage = DRAFT_STAGES.find((s) => s.value === value)
+    if (stage) setMetricUnit(stage.defaultUnit)
+  }
+
+  async function handleCreate(e: React.FormEvent) {
+    e.preventDefault()
+    setError(null)
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { error } = await supabase.from('projects').insert({
+      user_id: user.id,
+      title,
+      goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
+      project_type: projectType,
+      draft_stage: draftStage,
+      metric_unit: metricUnit,
+    })
+
+    if (error) {
+      setError(error.message)
+    } else {
+      setTitle('')
+      setGoalWordCount('')
+      setProjectType('book')
+      setDraftStage('first_draft')
+      setMetricUnit('words')
+      loadProjects()
+    }
+  }
+
+  if (loading) return <main className="max-w-2xl mx-auto px-6 py-12">Loading...</main>
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12">
       <h1 className="text-3xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        {project.title}
+        Your projects
       </h1>
-      <p className="mb-8" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-        {currentWordCount.toLocaleString()} words
-        {percentComplete !== null && (
-          <> — <span style={{ color: 'var(--color-accent)' }}>{percentComplete}%</span> of {project.goal_word_count?.toLocaleString()} word goal</>
-        )}
-      </p>
-
-      <div
-        className="flex flex-wrap gap-x-8 gap-y-2 mb-8 text-sm"
-        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
-      >
-        {streak > 0 && (
-          <span>
-            <strong style={{ color: 'var(--color-accent)' }}>{streak}</strong> day streak
-          </span>
-        )}
-        {bestDay && bestDay.words > 0 && (
-          <span>
-            Best day: <strong style={{ color: 'var(--color-ink)' }}>{bestDay.words.toLocaleString()}</strong> words on{' '}
-            {new Date(bestDay.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
-          </span>
-        )}
-        {(thisWeek > 0 || lastWeek > 0) && (
-          <span>
-            This week: <strong style={{ color: 'var(--color-ink)' }}>{thisWeek.toLocaleString()}</strong>
-            {' '}(last week: {lastWeek.toLocaleString()})
-          </span>
-        )}
-        {projectedFinish && (
-          <span>
-            Projected finish: <strong style={{ color: 'var(--color-ink)' }}>{projectedFinish}</strong>
-          </span>
-        )}
-      </div>
-
-      {chartData.length > 1 ? (
-        <ProgressChart data={chartData} />
-      ) : (
-        <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-          Log a few more wordcounts (ideally on different days) to see your progress graph.
+      {totalWords > 0 && (
+        <p className="mb-10" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          <strong style={{ color: 'var(--color-accent)' }}>{totalWords.toLocaleString()}</strong> words written across all projects
         </p>
       )}
 
-      {barChartData.length > 0 && (
-        <div className="mt-10">
-          <h2
-            className="text-sm mb-3"
-            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
-          >
-            Words per day
-          </h2>
-          <DailyBarChart data={barChartData} />
+      <form onSubmit={handleCreate} className="mb-12 pb-10 border-b" style={{ borderColor: 'var(--color-rule)', fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project title</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
         </div>
+
+        <div className="mb-4 grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project type</label>
+            <select
+              value={projectType}
+              onChange={(e) => setProjectType(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {PROJECT_TYPES.map((t) => (
+                <option key={t.value} value={t.value}>{t.label}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Stage</label>
+            <select
+              value={draftStage}
+              onChange={(e) => handleStageChange(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {DRAFT_STAGES.map((s) => (
+                <option key={s.value} value={s.value}>{s.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Tracking unit
+          </label>
+          <select
+            value={metricUnit}
+            onChange={(e) => setMetricUnit(e.target.value)}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          >
+            <option value="words">Words</option>
+            <option value="pages">Pages</option>
+          </select>
+        </div>
+
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Goal ({metricUnit === 'words' ? 'word count' : 'page count'}, optional)
+          </label>
+          <input
+            type="number"
+            value={goalWordCount}
+            onChange={(e) => setGoalWordCount(e.target.value)}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Create project
+        </button>
+      </form>
+
+      {projects.length === 0 && (
+        <p style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-sans)' }}>
+          No projects yet — create one above.
+        </p>
       )}
 
-      <div className="mt-10">
-        <h2
-          className="text-sm mb-3"
-          style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
-        >
-          Last 90 days
-        </h2>
-        <ContributionCalendar dailyDeltas={dailyDeltasObj} />
+      <div>
+        {projects.map((project) => (
+          <div key={project.id} className="py-5 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+            <Link href={`/projects/${project.id}`} className="text-lg">
+              {project.title}
+            </Link>
+            {project.goal_word_count && (
+              <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                goal: {project.goal_word_count.toLocaleString()} {project.metric_unit || 'words'}
+              </span>
+            )}
+            <div className="text-sm mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+              {(PROJECT_TYPES.find((t) => t.value === project.project_type)?.label) || 'Book'}
+              {' · '}
+              {(DRAFT_STAGES.find((s) => s.value === project.draft_stage)?.label) || 'First draft'}
+            </div>
+          </div>
+        ))}
       </div>
     </main>
   )
@@ -2164,15 +2279,15 @@ export default function LogWordcountPage() {
 ### <a id="📄-src-app-projects-page-tsx"></a>📄 `src/app/projects/page.tsx`
 
 **File Info:**
-- **Size**: 5.14 KB
+- **Size**: 8.34 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/page.tsx`
 - **Relative Path**: `src/app/projects`
 - **Created**: 2026-09-06 00:06:08 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 10:17:59 (Australia/Sydney / GMT+10:00)
-- **MD5**: `0c0fe3e90d6ab75129070b82e62bb87b`
-- **SHA256**: `9f33c9a8067dc39fe79f28fe6976309073d25d5596df219de5730d0255761a3f`
+- **Modified**: 2026-09-18 01:08:34 (Australia/Sydney / GMT+10:00)
+- **MD5**: `07d9ab814584b7372cf4b41f1d6f0c8a`
+- **SHA256**: `fcb68f8c9f3a8824aee71780f05bb847fee1ed943848a59d69dd9da15a31c063`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2191,12 +2306,34 @@ type Project = {
   title: string
   goal_word_count: number | null
   status: string
+  project_type: string
+  draft_stage: string
+  metric_unit: string
 }
+
+const PROJECT_TYPES = [
+  { value: 'book', label: 'Book' },
+  { value: 'screenplay', label: 'Screenplay' },
+  { value: 'article', label: 'Article' },
+  { value: 'short_story', label: 'Short story' },
+  { value: 'thesis', label: 'Thesis' },
+  { value: 'other', label: 'Other' },
+]
+
+const DRAFT_STAGES = [
+  { value: 'first_draft', label: 'First draft', defaultUnit: 'words' },
+  { value: 'editing', label: 'Editing', defaultUnit: 'pages' },
+  { value: 'revision_2', label: 'Second revision', defaultUnit: 'pages' },
+  { value: 'revision_3_plus', label: 'Third revision or later', defaultUnit: 'pages' },
+]
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [title, setTitle] = useState('')
   const [goalWordCount, setGoalWordCount] = useState('')
+  const [projectType, setProjectType] = useState('book')
+  const [draftStage, setDraftStage] = useState('first_draft')
+  const [metricUnit, setMetricUnit] = useState('words')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [totalWords, setTotalWords] = useState(0)
@@ -2242,6 +2379,12 @@ export default function ProjectsPage() {
     loadProjects()
   }, [])
 
+  function handleStageChange(value: string) {
+    setDraftStage(value)
+    const stage = DRAFT_STAGES.find((s) => s.value === value)
+    if (stage) setMetricUnit(stage.defaultUnit)
+  }
+
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
@@ -2253,6 +2396,9 @@ export default function ProjectsPage() {
       user_id: user.id,
       title,
       goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
+      project_type: projectType,
+      draft_stage: draftStage,
+      metric_unit: metricUnit,
     })
 
     if (error) {
@@ -2260,6 +2406,9 @@ export default function ProjectsPage() {
     } else {
       setTitle('')
       setGoalWordCount('')
+      setProjectType('book')
+      setDraftStage('first_draft')
+      setMetricUnit('words')
       loadProjects()
     }
   }
@@ -2289,8 +2438,55 @@ export default function ProjectsPage() {
             style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
+
+        <div className="mb-4 grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project type</label>
+            <select
+              value={projectType}
+              onChange={(e) => setProjectType(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {PROJECT_TYPES.map((t) => (
+                <option key={t.value} value={t.value}>{t.label}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Stage</label>
+            <select
+              value={draftStage}
+              onChange={(e) => handleStageChange(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {DRAFT_STAGES.map((s) => (
+                <option key={s.value} value={s.value}>{s.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Tracking unit
+          </label>
+          <select
+            value={metricUnit}
+            onChange={(e) => setMetricUnit(e.target.value)}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          >
+            <option value="words">Words</option>
+            <option value="pages">Pages</option>
+          </select>
+        </div>
+
         <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Goal word count (optional)</label>
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Goal ({metricUnit === 'words' ? 'word count' : 'page count'}, optional)
+          </label>
           <input
             type="number"
             value={goalWordCount}
@@ -2323,11 +2519,13 @@ export default function ProjectsPage() {
             </Link>
             {project.goal_word_count && (
               <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-                goal: {project.goal_word_count.toLocaleString()} words
+                goal: {project.goal_word_count.toLocaleString()} {project.metric_unit || 'words'}
               </span>
             )}
             <div className="text-sm mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-              {project.status}
+              {(PROJECT_TYPES.find((t) => t.value === project.project_type)?.label) || 'Book'}
+              {' · '}
+              {(DRAFT_STAGES.find((s) => s.value === project.draft_stage)?.label) || 'First draft'}
             </div>
           </div>
         ))}
@@ -3238,15 +3436,15 @@ The following files were not included in the text content:
 ### <a id="📄-src-components-bottomnav-tsx"></a>📄 `src/components/BottomNav.tsx`
 
 **File Info:**
-- **Size**: 1.61 KB
+- **Size**: 1.73 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/BottomNav.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-14 09:58:20 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-15 14:35:13 (Australia/Sydney / GMT+10:00)
-- **MD5**: `9cdc1c42d6490abebc23908da4cdb06e`
-- **SHA256**: `69e26d830ec44b353fc65adff3974e24bb7a092f6592a37c8630f216efb9dfb5`
+- **Modified**: 2026-09-15 14:53:39 (Australia/Sydney / GMT+10:00)
+- **MD5**: `8a6c2b96c3f40f8ee09669ccea5b5f71`
+- **SHA256**: `ba11f2347a42d3e23d72273e21c5aa00a4757d41c54bd06543c20ec3f02af1c8`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -3258,6 +3456,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Home, TrendingUp, BookOpen, MessageCircle, Bell } from 'lucide-react'
 import UnreadChatDot from '@/components/UnreadChatDot'
+import UnreadActivityDot from '@/components/UnreadActivityDot'
 
 const tabs = [
   { href: '/feed', label: 'Home', icon: Home },
@@ -3292,6 +3491,7 @@ export default function BottomNav() {
               <div style={{ position: 'relative' }}>
                 <Icon size={22} />
                 {tab.href === '/chat' && <UnreadChatDot />}
+                {tab.href === '/activity' && <UnreadActivityDot />}
               </div>
               <span className="text-xs">{tab.label}</span>
             </Link>
@@ -3965,6 +4165,114 @@ export default function ProgressChart({ data }: { data: DataPoint[] }) {
   )
 }
 
+```
+
+---
+
+### <a id="📄-src-components-unreadactivitydot-tsx"></a>📄 `src/components/UnreadActivityDot.tsx`
+
+**File Info:**
+- **Size**: 2.07 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/UnreadActivityDot.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-15 14:51:51 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-15 14:52:22 (Australia/Sydney / GMT+10:00)
+- **MD5**: `1af114b084092fb60b86a4d7dca562f7`
+- **SHA256**: `24e931743e82a647cba3f48d70eb3e9b00d5d7666f0e3d3c4b28e4fe58e8b2ab`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+
+export default function UnreadActivityDot() {
+  const [hasUnread, setHasUnread] = useState(false)
+
+  useEffect(() => {
+    const supabase = createClient()
+    let interval: ReturnType<typeof setInterval>
+
+    async function check() {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('activity_last_read_at')
+        .eq('id', user.id)
+        .single()
+
+      if (!profile) return
+      const lastRead = new Date(profile.activity_last_read_at)
+
+      const { data: myPosts } = await supabase
+        .from('posts')
+        .select('id')
+        .eq('user_id', user.id)
+
+      const myPostIds = (myPosts || []).map((p) => p.id)
+
+      let unread = false
+
+      if (myPostIds.length > 0) {
+        const { data: recentLike } = await supabase
+          .from('likes')
+          .select('created_at')
+          .in('post_id', myPostIds)
+          .neq('user_id', user.id)
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle()
+
+        if (recentLike && new Date(recentLike.created_at) > lastRead) {
+          unread = true
+        }
+      }
+
+      if (!unread) {
+        const { data: recentFollow } = await supabase
+          .from('follows')
+          .select('created_at')
+          .eq('following_id', user.id)
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle()
+
+        if (recentFollow && new Date(recentFollow.created_at) > lastRead) {
+          unread = true
+        }
+      }
+
+      setHasUnread(unread)
+    }
+
+    check()
+    interval = setInterval(check, 15000)
+    return () => clearInterval(interval)
+  }, [])
+
+  if (!hasUnread) return null
+
+  return (
+    <span
+      style={{
+        position: 'absolute',
+        top: -2,
+        right: -2,
+        width: 8,
+        height: 8,
+        borderRadius: '50%',
+        backgroundColor: 'var(--color-accent)',
+      }}
+    />
+  )
+}
 ```
 
 ---

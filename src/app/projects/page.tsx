@@ -11,12 +11,34 @@ type Project = {
   title: string
   goal_word_count: number | null
   status: string
+  project_type: string
+  draft_stage: string
+  metric_unit: string
 }
+
+const PROJECT_TYPES = [
+  { value: 'book', label: 'Book' },
+  { value: 'screenplay', label: 'Screenplay' },
+  { value: 'article', label: 'Article' },
+  { value: 'short_story', label: 'Short story' },
+  { value: 'thesis', label: 'Thesis' },
+  { value: 'other', label: 'Other' },
+]
+
+const DRAFT_STAGES = [
+  { value: 'first_draft', label: 'First draft', defaultUnit: 'words' },
+  { value: 'editing', label: 'Editing', defaultUnit: 'pages' },
+  { value: 'revision_2', label: 'Second revision', defaultUnit: 'pages' },
+  { value: 'revision_3_plus', label: 'Third revision or later', defaultUnit: 'pages' },
+]
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [title, setTitle] = useState('')
   const [goalWordCount, setGoalWordCount] = useState('')
+  const [projectType, setProjectType] = useState('book')
+  const [draftStage, setDraftStage] = useState('first_draft')
+  const [metricUnit, setMetricUnit] = useState('words')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [totalWords, setTotalWords] = useState(0)
@@ -62,6 +84,12 @@ export default function ProjectsPage() {
     loadProjects()
   }, [])
 
+  function handleStageChange(value: string) {
+    setDraftStage(value)
+    const stage = DRAFT_STAGES.find((s) => s.value === value)
+    if (stage) setMetricUnit(stage.defaultUnit)
+  }
+
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
@@ -73,6 +101,9 @@ export default function ProjectsPage() {
       user_id: user.id,
       title,
       goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
+      project_type: projectType,
+      draft_stage: draftStage,
+      metric_unit: metricUnit,
     })
 
     if (error) {
@@ -80,6 +111,9 @@ export default function ProjectsPage() {
     } else {
       setTitle('')
       setGoalWordCount('')
+      setProjectType('book')
+      setDraftStage('first_draft')
+      setMetricUnit('words')
       loadProjects()
     }
   }
@@ -109,8 +143,55 @@ export default function ProjectsPage() {
             style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
+
+        <div className="mb-4 grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project type</label>
+            <select
+              value={projectType}
+              onChange={(e) => setProjectType(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {PROJECT_TYPES.map((t) => (
+                <option key={t.value} value={t.value}>{t.label}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Stage</label>
+            <select
+              value={draftStage}
+              onChange={(e) => handleStageChange(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {DRAFT_STAGES.map((s) => (
+                <option key={s.value} value={s.value}>{s.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Tracking unit
+          </label>
+          <select
+            value={metricUnit}
+            onChange={(e) => setMetricUnit(e.target.value)}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          >
+            <option value="words">Words</option>
+            <option value="pages">Pages</option>
+          </select>
+        </div>
+
         <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Goal word count (optional)</label>
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Goal ({metricUnit === 'words' ? 'word count' : 'page count'}, optional)
+          </label>
           <input
             type="number"
             value={goalWordCount}
@@ -143,11 +224,13 @@ export default function ProjectsPage() {
             </Link>
             {project.goal_word_count && (
               <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-                goal: {project.goal_word_count.toLocaleString()} words
+                goal: {project.goal_word_count.toLocaleString()} {project.metric_unit || 'words'}
               </span>
             )}
             <div className="text-sm mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-              {project.status}
+              {(PROJECT_TYPES.find((t) => t.value === project.project_type)?.label) || 'Book'}
+              {' · '}
+              {(DRAFT_STAGES.find((s) => s.value === project.draft_stage)?.label) || 'First draft'}
             </div>
           </div>
         ))}

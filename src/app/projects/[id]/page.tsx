@@ -1,132 +1,239 @@
-import { createClient } from '@/lib/supabase/server'
-import { redirect, notFound } from 'next/navigation'
-import ProgressChart from '@/components/ProgressChart'
-import DailyBarChart from '@/components/DailyBarChart'
-import ContributionCalendar from '@/components/ContributionCalendar'
-import {
-  buildDailyCumulative,
-  buildDailyDeltas,
-  computeStreak,
-  computeBestDay,
-  computeWeeklyComparison,
-  computeProjectedFinish,
-} from '@/lib/wordcountStats'
+'use client'
 
-export default async function ProjectDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
-  const { id } = await params
-  const supabase = await createClient()
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { buildDailyCumulative } from '@/lib/wordcountStats'
 
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
+type Project = {
+  id: string
+  title: string
+  goal_word_count: number | null
+  status: string
+  project_type: string
+  draft_stage: string
+  metric_unit: string
+}
 
-  const { data: project } = await supabase
-    .from('projects')
-    .select('*')
-    .eq('id', id)
-    .single()
+const PROJECT_TYPES = [
+  { value: 'book', label: 'Book' },
+  { value: 'screenplay', label: 'Screenplay' },
+  { value: 'article', label: 'Article' },
+  { value: 'short_story', label: 'Short story' },
+  { value: 'thesis', label: 'Thesis' },
+  { value: 'other', label: 'Other' },
+]
 
-  if (!project) notFound()
+const DRAFT_STAGES = [
+  { value: 'first_draft', label: 'First draft', defaultUnit: 'words' },
+  { value: 'editing', label: 'Editing', defaultUnit: 'pages' },
+  { value: 'revision_2', label: 'Second revision', defaultUnit: 'pages' },
+  { value: 'revision_3_plus', label: 'Third revision or later', defaultUnit: 'pages' },
+]
 
-  const { data: snapshots } = await supabase
-    .from('wordcount_snapshots')
-    .select('word_count, recorded_at')
-    .eq('project_id', id)
-    .order('recorded_at', { ascending: true })
+export default function ProjectsPage() {
+  const [projects, setProjects] = useState<Project[]>([])
+  const [title, setTitle] = useState('')
+  const [goalWordCount, setGoalWordCount] = useState('')
+  const [projectType, setProjectType] = useState('book')
+  const [draftStage, setDraftStage] = useState('first_draft')
+  const [metricUnit, setMetricUnit] = useState('words')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [totalWords, setTotalWords] = useState(0)
+  const router = useRouter()
 
-  const dailyMap = buildDailyCumulative(snapshots || [])
-  const dailyDeltas = buildDailyDeltas(dailyMap)
+  async function loadProjects() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      router.push('/login')
+      return
+    }
+    const { data } = await supabase
+      .from('projects')
+      .select('*')
+      .order('created_at', { ascending: false })
 
-  const chartData = Array.from(dailyMap.entries()).map(([date, wordCount]) => ({
-    date,
-    wordCount,
-  }))
+    setProjects(data || [])
 
-  const currentWordCount = chartData.length > 0 ? chartData[chartData.length - 1].wordCount : 0
-  const percentComplete = project.goal_word_count
-    ? Math.min(100, Math.round((currentWordCount / project.goal_word_count) * 100))
-    : null
+    const { data: allSnapshots } = await supabase
+      .from('wordcount_snapshots')
+      .select('word_count, recorded_at, project_id')
+      .eq('user_id', user.id)
 
-  const streak = computeStreak(dailyMap)
-  const bestDay = computeBestDay(dailyDeltas)
-  const { thisWeek, lastWeek } = computeWeeklyComparison(dailyDeltas)
-  const projectedFinish = computeProjectedFinish(dailyDeltas, currentWordCount, project.goal_word_count)
-  const dailyDeltasObj = Object.fromEntries(dailyDeltas)
-  const barChartData = Array.from(dailyDeltas.entries())
-    .filter(([, words]) => words > 0)
-    .map(([date, words]) => ({ date, words }))
+    const byProject = new Map<string, typeof allSnapshots>()
+    for (const snap of allSnapshots || []) {
+      const list = byProject.get(snap.project_id) || []
+      list.push(snap)
+      byProject.set(snap.project_id, list)
+    }
+    let total = 0
+    for (const snaps of byProject.values()) {
+      const daily = buildDailyCumulative(snaps!)
+      const values = Array.from(daily.values())
+      if (values.length > 0) total += Math.max(...values)
+    }
+    setTotalWords(total)
+
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadProjects()
+  }, [])
+
+  function handleStageChange(value: string) {
+    setDraftStage(value)
+    const stage = DRAFT_STAGES.find((s) => s.value === value)
+    if (stage) setMetricUnit(stage.defaultUnit)
+  }
+
+  async function handleCreate(e: React.FormEvent) {
+    e.preventDefault()
+    setError(null)
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { error } = await supabase.from('projects').insert({
+      user_id: user.id,
+      title,
+      goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
+      project_type: projectType,
+      draft_stage: draftStage,
+      metric_unit: metricUnit,
+    })
+
+    if (error) {
+      setError(error.message)
+    } else {
+      setTitle('')
+      setGoalWordCount('')
+      setProjectType('book')
+      setDraftStage('first_draft')
+      setMetricUnit('words')
+      loadProjects()
+    }
+  }
+
+  if (loading) return <main className="max-w-2xl mx-auto px-6 py-12">Loading...</main>
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12">
       <h1 className="text-3xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        {project.title}
+        Your projects
       </h1>
-      <p className="mb-8" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-        {currentWordCount.toLocaleString()} words
-        {percentComplete !== null && (
-          <> — <span style={{ color: 'var(--color-accent)' }}>{percentComplete}%</span> of {project.goal_word_count?.toLocaleString()} word goal</>
-        )}
-      </p>
-
-      <div
-        className="flex flex-wrap gap-x-8 gap-y-2 mb-8 text-sm"
-        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
-      >
-        {streak > 0 && (
-          <span>
-            <strong style={{ color: 'var(--color-accent)' }}>{streak}</strong> day streak
-          </span>
-        )}
-        {bestDay && bestDay.words > 0 && (
-          <span>
-            Best day: <strong style={{ color: 'var(--color-ink)' }}>{bestDay.words.toLocaleString()}</strong> words on{' '}
-            {new Date(bestDay.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
-          </span>
-        )}
-        {(thisWeek > 0 || lastWeek > 0) && (
-          <span>
-            This week: <strong style={{ color: 'var(--color-ink)' }}>{thisWeek.toLocaleString()}</strong>
-            {' '}(last week: {lastWeek.toLocaleString()})
-          </span>
-        )}
-        {projectedFinish && (
-          <span>
-            Projected finish: <strong style={{ color: 'var(--color-ink)' }}>{projectedFinish}</strong>
-          </span>
-        )}
-      </div>
-
-      {chartData.length > 1 ? (
-        <ProgressChart data={chartData} />
-      ) : (
-        <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-          Log a few more wordcounts (ideally on different days) to see your progress graph.
+      {totalWords > 0 && (
+        <p className="mb-10" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          <strong style={{ color: 'var(--color-accent)' }}>{totalWords.toLocaleString()}</strong> words written across all projects
         </p>
       )}
 
-      {barChartData.length > 0 && (
-        <div className="mt-10">
-          <h2
-            className="text-sm mb-3"
-            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
-          >
-            Words per day
-          </h2>
-          <DailyBarChart data={barChartData} />
+      <form onSubmit={handleCreate} className="mb-12 pb-10 border-b" style={{ borderColor: 'var(--color-rule)', fontFamily: 'var(--font-sans)' }}>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project title</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
         </div>
+
+        <div className="mb-4 grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project type</label>
+            <select
+              value={projectType}
+              onChange={(e) => setProjectType(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {PROJECT_TYPES.map((t) => (
+                <option key={t.value} value={t.value}>{t.label}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Stage</label>
+            <select
+              value={draftStage}
+              onChange={(e) => handleStageChange(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {DRAFT_STAGES.map((s) => (
+                <option key={s.value} value={s.value}>{s.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Tracking unit
+          </label>
+          <select
+            value={metricUnit}
+            onChange={(e) => setMetricUnit(e.target.value)}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          >
+            <option value="words">Words</option>
+            <option value="pages">Pages</option>
+          </select>
+        </div>
+
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Goal ({metricUnit === 'words' ? 'word count' : 'page count'}, optional)
+          </label>
+          <input
+            type="number"
+            value={goalWordCount}
+            onChange={(e) => setGoalWordCount(e.target.value)}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        <button
+          type="submit"
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Create project
+        </button>
+      </form>
+
+      {projects.length === 0 && (
+        <p style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-sans)' }}>
+          No projects yet — create one above.
+        </p>
       )}
 
-      <div className="mt-10">
-        <h2
-          className="text-sm mb-3"
-          style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
-        >
-          Last 90 days
-        </h2>
-        <ContributionCalendar dailyDeltas={dailyDeltasObj} />
+      <div>
+        {projects.map((project) => (
+          <div key={project.id} className="py-5 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+            <Link href={`/projects/${project.id}`} className="text-lg">
+              {project.title}
+            </Link>
+            {project.goal_word_count && (
+              <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                goal: {project.goal_word_count.toLocaleString()} {project.metric_unit || 'words'}
+              </span>
+            )}
+            <div className="text-sm mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+              {(PROJECT_TYPES.find((t) => t.value === project.project_type)?.label) || 'Book'}
+              {' · '}
+              {(DRAFT_STAGES.find((s) => s.value === project.draft_stage)?.label) || 'First draft'}
+            </div>
+          </div>
+        ))}
       </div>
     </main>
   )

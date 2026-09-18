@@ -64,6 +64,12 @@ export default async function ActivityPage() {
     (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   )
 
+  // Mark activity as read now that this page has loaded
+  await supabase
+    .from('profiles')
+    .update({ activity_last_read_at: new Date().toISOString() })
+    .eq('id', user.id)
+
   return (
     <main className="max-w-md mx-auto px-6 py-16">
       <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
