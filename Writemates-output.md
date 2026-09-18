@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-18 01:08:35 (Australia/Sydney / GMT+10:00)
+- **Generated On**: 2026-09-18 04:01:41 (Australia/Sydney / GMT+10:00)
 - **Total Files Processed**: 59
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -78,7 +78,7 @@
 │   │   ├── 📄 manifest.ts (495 B)
 │   │   └── 📄 page.tsx (300 B)
 │   ├── 📁 components/
-│   │   ├── 📄 BottomNav.tsx (1.73 KB)
+│   │   ├── 📄 BottomNav.tsx (4.24 KB)
 │   │   ├── 📄 ContributionCalendar.tsx (1.34 KB)
 │   │   ├── 📄 DailyBarChart.tsx (635 B)
 │   │   ├── 📄 FollowButton.tsx (1.11 KB)
@@ -176,7 +176,7 @@
 | Total Directories | 29 |
 | Text Files | 51 |
 | Binary Files | 8 |
-| Total Size | 394.44 KB |
+| Total Size | 396.95 KB |
 
 ### 📄 File Types Distribution
 
@@ -3436,15 +3436,15 @@ The following files were not included in the text content:
 ### <a id="📄-src-components-bottomnav-tsx"></a>📄 `src/components/BottomNav.tsx`
 
 **File Info:**
-- **Size**: 1.73 KB
+- **Size**: 4.24 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/BottomNav.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-14 09:58:20 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-15 14:53:39 (Australia/Sydney / GMT+10:00)
-- **MD5**: `8a6c2b96c3f40f8ee09669ccea5b5f71`
-- **SHA256**: `ba11f2347a42d3e23d72273e21c5aa00a4757d41c54bd06543c20ec3f02af1c8`
+- **Modified**: 2026-09-18 04:01:40 (Australia/Sydney / GMT+10:00)
+- **MD5**: `82b2c12c81e5dd94fdfefefe711d5447`
+- **SHA256**: `bbb62f05286d5a07f8f730e52ff7e488afb0617e4e264da55e8856fda91e0500`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -3452,53 +3452,130 @@ The following files were not included in the text content:
 ```typescript
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, TrendingUp, BookOpen, MessageCircle, Bell } from 'lucide-react'
+import { Home, Users, Library, Bell, Plus, X, PenLine, FolderPlus, Share2, Upload } from 'lucide-react'
 import UnreadChatDot from '@/components/UnreadChatDot'
 import UnreadActivityDot from '@/components/UnreadActivityDot'
 
 const tabs = [
-  { href: '/feed', label: 'Home', icon: Home },
-  { href: '/projects', label: 'Progress', icon: TrendingUp },
-  { href: '/read', label: 'Read', icon: BookOpen },
-  { href: '/chat', label: 'Chat', icon: MessageCircle },
+  { href: '/feed', label: 'Today', icon: Home },
+  { href: '/chat', label: 'Mates', icon: Users },
+  { href: '/projects', label: 'Library', icon: Library },
   { href: '/activity', label: 'Activity', icon: Bell },
+]
+
+const actions = [
+  { href: '/projects/log', label: 'Log wordcount', icon: PenLine },
+  { href: '/projects', label: 'New project', icon: FolderPlus },
+  { href: '/post/new', label: 'Share a post', icon: Share2 },
+  { href: '/read', label: 'Upload work-in-progress', icon: Upload },
 ]
 
 export default function BottomNav() {
   const pathname = usePathname()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav
-      className="fixed bottom-0 left-0 right-0 border-t z-40"
-      style={{ backgroundColor: 'var(--color-paper)', borderColor: 'var(--color-rule)' }}
-    >
-      <div className="max-w-5xl mx-auto flex items-center justify-around py-2">
-        {tabs.map((tab) => {
-          const active = pathname === tab.href || pathname.startsWith(tab.href + '/')
-          const Icon = tab.icon
-          return (
-            <Link
-              key={tab.href}
-              href={tab.href}
-              className="flex flex-col items-center gap-1 px-3 py-1"
-              style={{
-                fontFamily: 'var(--font-sans)',
-                color: active ? 'var(--color-accent)' : 'var(--color-ink-muted)',
-              }}
-            >
-              <div style={{ position: 'relative' }}>
-                <Icon size={22} />
-                {tab.href === '/chat' && <UnreadChatDot />}
-                {tab.href === '/activity' && <UnreadActivityDot />}
-              </div>
-              <span className="text-xs">{tab.label}</span>
-            </Link>
-          )
-        })}
-      </div>
-    </nav>
+    <>
+      {menuOpen && (
+        <div
+          onClick={() => setMenuOpen(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0,0,0,0.3)',
+            zIndex: 45,
+          }}
+        />
+      )}
+
+      {menuOpen && (
+        <div
+          className="fixed bottom-24 left-1/2 rounded-2xl overflow-hidden"
+          style={{
+            transform: 'translateX(-50%)',
+            backgroundColor: 'var(--color-paper)',
+            border: '1px solid var(--color-rule)',
+            zIndex: 46,
+            width: '85%',
+            maxWidth: 320,
+            fontFamily: 'var(--font-sans)',
+          }}
+        >
+          {actions.map((action) => {
+            const Icon = action.icon
+            return (
+              <Link
+                key={action.href}
+                href={action.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-3 px-5 py-4 border-b"
+                style={{ borderColor: 'var(--color-rule)', color: 'var(--color-ink)' }}
+              >
+                <Icon size={18} style={{ color: 'var(--color-accent)' }} />
+                <span className="text-sm">{action.label}</span>
+              </Link>
+            )
+          })}
+        </div>
+      )}
+
+      <nav
+        className="fixed bottom-0 left-0 right-0 border-t z-40"
+        style={{ backgroundColor: 'var(--color-paper)', borderColor: 'var(--color-rule)' }}
+      >
+        <div className="max-w-5xl mx-auto" style={{ position: 'relative' }}>
+          <div className="flex items-center justify-around py-2">
+            {tabs.map((tab) => {
+              const active = pathname === tab.href || pathname.startsWith(tab.href + '/')
+              const Icon = tab.icon
+              return (
+                <Link
+                  key={tab.href}
+                  href={tab.href}
+                  className="flex flex-col items-center gap-1 px-3 py-1"
+                  style={{
+                    fontFamily: 'var(--font-sans)',
+                    color: active ? 'var(--color-accent)' : 'var(--color-ink-muted)',
+                  }}
+                >
+                  <div style={{ position: 'relative' }}>
+                    <Icon size={22} />
+                    {tab.href === '/chat' && <UnreadChatDot />}
+                    {tab.href === '/activity' && <UnreadActivityDot />}
+                  </div>
+                  <span className="text-xs">{tab.label}</span>
+                </Link>
+              )
+            })}
+          </div>
+
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Close menu' : 'Open create menu'}
+            style={{
+              position: 'absolute',
+              top: -26,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: 48,
+              height: 48,
+              borderRadius: '50%',
+              backgroundColor: 'var(--color-accent)',
+              color: 'var(--color-paper)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '3px solid var(--color-paper)',
+            }}
+          >
+            {menuOpen ? <X size={22} /> : <Plus size={22} />}
+          </button>
+        </div>
+      </nav>
+    </>
   )
 }
 ```
