@@ -71,22 +71,53 @@ export function computeProjectedFinish(
   currentTotal: number,
   goal: number | null
 ): string | null {
-  if (!goal || currentTotal >= goal) return null
+  const details = computeProjectedFinishDetails(dailyDeltas, currentTotal, goal)
+  return details.finishDateLabel
+}
 
-  const recentDays = Array.from(dailyDeltas.entries())
-    .sort((a, b) => (a[0] < b[0] ? 1 : -1))
-    .slice(0, 7)
+export function computeProjectedFinishDetails(
+  dailyDeltas: Map<string, number>,
+  currentTotal: number,
+  goal: number | null
+): { finishDateLabel: string | null; daysRemaining: number | null; writingDaysPerWeek: number } {
+  if (!goal || currentTotal >= goal) {
+    return { finishDateLabel: null, daysRemaining: 0, writingDaysPerWeek: 0 }
+  }
 
-  if (recentDays.length === 0) return null
+  const writingDays = Array.from(dailyDeltas.entries())
+    .filter(([, words]) => words > 0)
+    .sort((a, b) => (a[0] < b[0] ? -1 : 1))
 
-  const avgDaily = recentDays.reduce((sum, [, words]) => sum + words, 0) / recentDays.length
-  if (avgDaily <= 0) return null
+  if (writingDays.length === 0) {
+    return { finishDateLabel: null, daysRemaining: null, writingDaysPerWeek: 0 }
+  }
 
-  const daysRemaining = Math.ceil((goal - currentTotal) / avgDaily)
+  // Use up to the most recent 30 writing days as a representative recent pace
+  const recent = writingDays.slice(-30)
+  const avgWordsPerWritingDay = recent.reduce((sum, [, words]) => sum + words, 0) / recent.length
+
+  if (avgWordsPerWritingDay <= 0) {
+    return { finishDateLabel: null, daysRemaining: null, writingDaysPerWeek: 0 }
+  }
+
+  // How many days a week do they actually write? Based on the calendar span these entries cover
+  const firstDate = new Date(recent[0][0])
+  const lastDate = new Date(recent[recent.length - 1][0])
+  const spanDays = Math.max(1, Math.round((lastDate.getTime() - firstDate.getTime()) / 86400000) + 1)
+  const writingDaysPerWeek = Math.min(7, (recent.length / spanDays) * 7)
+
+  const wordsRemaining = goal - currentTotal
+  const writingDaysNeeded = wordsRemaining / avgWordsPerWritingDay
+  const calendarDaysNeeded = Math.max(1, Math.ceil(writingDaysNeeded / (writingDaysPerWeek / 7)))
+
   const finishDate = new Date()
-  finishDate.setDate(finishDate.getDate() + daysRemaining)
+  finishDate.setDate(finishDate.getDate() + calendarDaysNeeded)
 
-  return finishDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
+  return {
+    finishDateLabel: finishDate.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' }),
+    daysRemaining: calendarDaysNeeded,
+    writingDaysPerWeek: Math.round(writingDaysPerWeek * 10) / 10,
+  }
 }
 
 export function getAuthorTitle(totalWords: number): string {
