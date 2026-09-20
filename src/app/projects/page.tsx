@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { Pencil } from 'lucide-react'
 import { buildDailyCumulative } from '@/lib/wordcountStats'
 import DeleteProjectButton from '@/components/DeleteProjectButton'
 
@@ -41,6 +42,7 @@ export default function ProjectsPage() {
   const [draftStage, setDraftStage] = useState('first_draft')
   const [metricUnit, setMetricUnit] = useState('words')
   const [loading, setLoading] = useState(true)
+  const [creating, setCreating] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [totalWords, setTotalWords] = useState(0)
   const router = useRouter()
@@ -94,28 +96,30 @@ export default function ProjectsPage() {
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
+    setCreating(true)
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
-    const { error } = await supabase.from('projects').insert({
-      user_id: user.id,
-      title,
-      goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
-      project_type: projectType,
-      draft_stage: draftStage,
-      metric_unit: metricUnit,
-    })
+    const { data, error } = await supabase
+      .from('projects')
+      .insert({
+        user_id: user.id,
+        title,
+        goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
+        project_type: projectType,
+        draft_stage: draftStage,
+        metric_unit: metricUnit,
+      })
+      .select()
+      .single()
+
+    setCreating(false)
 
     if (error) {
       setError(error.message)
-    } else {
-      setTitle('')
-      setGoalWordCount('')
-      setProjectType('book')
-      setDraftStage('first_draft')
-      setMetricUnit('words')
-      loadProjects()
+    } else if (data) {
+      router.push(`/projects/${data.id}/backfill`)
     }
   }
 
@@ -208,10 +212,11 @@ export default function ProjectsPage() {
         {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
         <button
           type="submit"
+          disabled={creating}
           className="px-5 py-2 text-sm"
           style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
         >
-          Create project
+          {creating ? 'Creating...' : 'Create project'}
         </button>
       </form>
 
@@ -228,11 +233,21 @@ export default function ProjectsPage() {
               <Link href={`/projects/${project.id}`} className="text-lg">
                 {project.title}
               </Link>
-              <DeleteProjectButton
-                projectId={project.id}
-                title={project.title}
-                onDeleted={() => handleProjectDeleted(project.id)}
-              />
+              <div className="flex items-center gap-3">
+                <Link
+                  href={`/projects/${project.id}/edit`}
+                  aria-label={`Edit ${project.title}`}
+                  title="Edit project"
+                  style={{ color: 'var(--color-ink-muted)' }}
+                >
+                  <Pencil size={16} />
+                </Link>
+                <DeleteProjectButton
+                  projectId={project.id}
+                  title={project.title}
+                  onDeleted={() => handleProjectDeleted(project.id)}
+                />
+              </div>
             </div>
             {project.goal_word_count && (
               <span className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>

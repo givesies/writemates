@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
+import { Pencil, History } from 'lucide-react'
 import ProgressChart from '@/components/ProgressChart'
 import DailyBarChart from '@/components/DailyBarChart'
 import ContributionCalendar from '@/components/ContributionCalendar'
@@ -69,11 +70,20 @@ export default async function ProjectDetailPage({
         </h1>
         <div className="flex items-center gap-4">
           <Link
-            href={`/projects/${id}/backfill`}
-            className="text-sm"
-            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
+            href={`/projects/${id}/edit`}
+            aria-label="Edit project"
+            title="Edit project"
+            style={{ color: 'var(--color-ink-muted)' }}
           >
-            Backfill past progress
+            <Pencil size={17} />
+          </Link>
+          <Link
+            href={`/projects/${id}/backfill`}
+            aria-label="Backfill past progress"
+            title="Backfill past progress"
+            style={{ color: 'var(--color-ink-muted)' }}
+          >
+            <History size={17} />
           </Link>
           <DeleteProjectButton projectId={id} title={project.title} />
         </div>
