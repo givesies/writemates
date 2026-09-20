@@ -5,8 +5,8 @@ PROJECT EXPORT FOR LLMs
 PROJECT INFORMATION:
 --------------------------------------------------
 Project Name: Writemates
-Generated On: 2026-09-19 03:35:23 (Australia/Sydney / GMT+10:00)
-Total Files Processed: 63
+Generated On: 2026-09-20 23:11:30 (Australia/Sydney / GMT+10:00)
+Total Files Processed: 65
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
 
@@ -48,6 +48,10 @@ PROJECT STRUCTURE
 │   │   │   └── 📄 route.tsx (478 B)
 │   │   ├── 📁 login/
 │   │   │   └── 📄 page.tsx (2.32 KB)
+│   │   ├── 📁 onboarding/
+│   │   │   ├── 📁 new-project/
+│   │   │   │   └── 📄 page.tsx (5.02 KB)
+│   │   │   └── 📄 page.tsx (1.15 KB)
 │   │   ├── 📁 post/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (2.15 KB)
@@ -59,8 +63,8 @@ PROJECT STRUCTURE
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   ├── 📁 backfill/
-│   │   │   │   │   └── 📄 page.tsx (4.78 KB)
-│   │   │   │   └── 📄 page.tsx (6.43 KB)
+│   │   │   │   │   └── 📄 page.tsx (6.65 KB)
+│   │   │   │   └── 📄 page.tsx (4.78 KB)
 │   │   │   ├── 📁 log/
 │   │   │   │   └── 📄 page.tsx (4.29 KB)
 │   │   │   └── 📄 page.tsx (8.34 KB)
@@ -71,7 +75,7 @@ PROJECT STRUCTURE
 │   │   ├── 📁 settings/
 │   │   │   └── 📄 page.tsx (2.62 KB)
 │   │   ├── 📁 signup/
-│   │   │   └── 📄 page.tsx (2.33 KB)
+│   │   │   └── 📄 page.tsx (2.34 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
 │   │   │       └── 📄 page.tsx (10.12 KB)
@@ -100,7 +104,7 @@ PROJECT STRUCTURE
 │   │   │   ├── 📄 client.ts (211 B)
 │   │   │   ├── 📄 middleware.ts (907 B)
 │   │   │   └── 📄 server.ts (704 B)
-│   │   ├── 📄 backfill.ts (1.45 KB)
+│   │   ├── 📄 backfill.ts (2.51 KB)
 │   │   ├── 📄 insights.ts (1016 B)
 │   │   ├── 📄 supabase.ts (246 B)
 │   │   └── 📄 wordcountStats.ts (4.58 KB)
@@ -119,15 +123,15 @@ PROJECT STRUCTURE
 ================================================================================
 PROJECT STATISTICS
 ================================================================================
-Total Files: 63
-Total Directories: 30
-Text Files: 55
+Total Files: 65
+Total Directories: 32
+Text Files: 57
 Binary Files: 8
-Total Size: 410.18 KB
+Total Size: 417.65 KB
 
 FILE TYPES DISTRIBUTION:
 ------------------------------
-.tsx            : 37
+.tsx            : 39
 .ts             : 11
 .svg            : 5
 .md             : 3
@@ -1374,6 +1378,233 @@ export default function LoginPage() {
 
 
 ================================================================================
+FILE: src/app/onboarding/new-project/page.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 5.02 KB
+Extension: .tsx
+Language: typescript
+Location: src/app/onboarding/new-project/page.tsx
+Relative Path: src/app/onboarding/new-project
+Created: 2026-09-20 23:06:59 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-20 23:06:59 (Australia/Sydney / GMT+10:00)
+MD5: 98f27f431eb190a01ea30f17c365de2a
+SHA256: eb51a10584aca0bebbd90562b4ec812e702f5567ffa3a2b9fc83ceda36c65ad1
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use client'
+
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+
+const PROJECT_TYPES = [
+  { value: 'book', label: 'Book' },
+  { value: 'screenplay', label: 'Screenplay' },
+  { value: 'article', label: 'Article' },
+  { value: 'short_story', label: 'Short story' },
+  { value: 'thesis', label: 'Thesis' },
+  { value: 'other', label: 'Other' },
+]
+
+const DRAFT_STAGES = [
+  { value: 'first_draft', label: 'First draft', defaultUnit: 'words' },
+  { value: 'editing', label: 'Editing', defaultUnit: 'pages' },
+  { value: 'revision_2', label: 'Second revision', defaultUnit: 'pages' },
+  { value: 'revision_3_plus', label: 'Third revision or later', defaultUnit: 'pages' },
+]
+
+export default function OnboardingNewProjectPage() {
+  const [title, setTitle] = useState('')
+  const [projectType, setProjectType] = useState('book')
+  const [draftStage, setDraftStage] = useState('first_draft')
+  const [metricUnit, setMetricUnit] = useState('words')
+  const [goalWordCount, setGoalWordCount] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  function handleStageChange(value: string) {
+    setDraftStage(value)
+    const stage = DRAFT_STAGES.find((s) => s.value === value)
+    if (stage) setMetricUnit(stage.defaultUnit)
+  }
+
+  async function handleCreate(e: React.FormEvent) {
+    e.preventDefault()
+    setSaving(true)
+    setError(null)
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { data, error } = await supabase
+      .from('projects')
+      .insert({
+        user_id: user.id,
+        title,
+        project_type: projectType,
+        draft_stage: draftStage,
+        metric_unit: metricUnit,
+        goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
+      })
+      .select()
+      .single()
+
+    setSaving(false)
+
+    if (error) {
+      setError(error.message)
+    } else if (data) {
+      router.push(`/projects/${data.id}/backfill`)
+    }
+  }
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+      <h1 className="text-2xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Tell us about your project
+      </h1>
+      <p className="text-sm mb-8" style={{ color: 'var(--color-ink-muted)' }}>
+        You can always add more projects later.
+      </p>
+
+      <form onSubmit={handleCreate}>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project title</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+
+        <div className="mb-4 grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project type</label>
+            <select
+              value={projectType}
+              onChange={(e) => setProjectType(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {PROJECT_TYPES.map((t) => (
+                <option key={t.value} value={t.value}>{t.label}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Stage</label>
+            <select
+              value={draftStage}
+              onChange={(e) => handleStageChange(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {DRAFT_STAGES.map((s) => (
+                <option key={s.value} value={s.value}>{s.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Goal ({metricUnit === 'words' ? 'word count' : 'page count'}, optional)
+          </label>
+          <input
+            type="number"
+            value={goalWordCount}
+            onChange={(e) => setGoalWordCount(e.target.value)}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+
+        <button
+          type="submit"
+          disabled={saving}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          {saving ? 'Creating...' : 'Continue'}
+        </button>
+      </form>
+    </main>
+  )
+}
+
+================================================================================
+
+
+================================================================================
+FILE: src/app/onboarding/page.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 1.15 KB
+Extension: .tsx
+Language: typescript
+Location: src/app/onboarding/page.tsx
+Relative Path: src/app/onboarding
+Created: 2026-09-20 23:06:00 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-20 23:06:00 (Australia/Sydney / GMT+10:00)
+MD5: 00d0fea6eeac1f79a9bc306fbcd0427b
+SHA256: 090e58645f9bc48c948550764c3d0d5589e662a205df5482dab494ef15d75d77
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use client'
+
+import { useRouter } from 'next/navigation'
+
+export default function OnboardingWelcomePage() {
+  const router = useRouter()
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-20 text-center" style={{ fontFamily: 'var(--font-sans)' }}>
+      <h1 className="text-3xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Welcome to Writemates
+      </h1>
+      <p className="mb-10" style={{ color: 'var(--color-ink-muted)' }}>
+        Want to add your current project, so we can start tracking your progress?
+      </p>
+      <div className="flex flex-col gap-3">
+        <button
+          onClick={() => router.push('/onboarding/new-project')}
+          className="px-5 py-3 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Yes, let&apos;s do it
+        </button>
+        <button
+          onClick={() => router.push('/feed')}
+          className="px-5 py-3 text-sm"
+          style={{ backgroundColor: 'transparent', color: 'var(--color-ink-muted)', border: '1px solid var(--color-rule)' }}
+        >
+          Maybe later
+        </button>
+      </div>
+    </main>
+  )
+}
+
+================================================================================
+
+
+================================================================================
 FILE: src/app/post/[id]/page.tsx
 ================================================================================
 
@@ -1947,15 +2178,226 @@ FILE: src/app/projects/[id]/backfill/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 4.78 KB
+Size: 6.65 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/projects/[id]/backfill/page.tsx
 Relative Path: src/app/projects/[id]/backfill
 Created: 2026-09-18 04:12:57 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-19 03:35:23 (Australia/Sydney / GMT+10:00)
-MD5: 139cf4351767c157b4c66baf0552217c
-SHA256: cb0ef857bf2c67f547ec212b414d327466408c6e7fe05d9aadbfedbbc92c017a
+Modified: 2026-09-20 23:11:29 (Australia/Sydney / GMT+10:00)
+MD5: 15882b925e784ddc8184982c59c1893b
+SHA256: 228e55211a145d9e1065694bb19ddefe348c56e850155a108a7164dcca15ba16
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use client'
+
+import { useState, use } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
+
+export default function BackfillPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
+  const [text, setText] = useState('')
+  const [anchor, setAnchor] = useState('')
+  const [parsed, setParsed] = useState<BackfillEntry[]>([])
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [saved, setSaved] = useState(false)
+  const router = useRouter()
+
+  function handleParse() {
+    setParsed(parseBackfillText(text))
+    setError(null)
+  }
+
+  async function handleSave() {
+    if (parsed.length === 0) return
+    setSaving(true)
+    setError(null)
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    let running = 0
+    const cumulative: { date: string; total: number }[] = []
+    for (const entry of parsed) {
+      running += entry.delta
+      cumulative.push({ date: entry.date, total: running })
+    }
+
+    const anchorValue = anchor ? parseInt(anchor.replace(/,/g, ''), 10) : null
+    if (anchorValue !== null && !isNaN(anchorValue)) {
+      const offset = anchorValue - cumulative[cumulative.length - 1].total
+      for (const c of cumulative) c.total = Math.max(0, c.total + offset)
+    }
+
+    const { data: existing } = await supabase
+      .from('wordcount_snapshots')
+      .select('id, recorded_at')
+      .eq('project_id', id)
+
+    const backfillDateSet = new Set(cumulative.map((c) => c.date))
+    const idsToDelete = (existing || [])
+      .filter((row) => backfillDateSet.has(new Date(row.recorded_at).toISOString().split('T')[0]))
+      .map((row) => row.id)
+
+    if (idsToDelete.length > 0) {
+      await supabase.from('wordcount_snapshots').delete().in('id', idsToDelete)
+    }
+
+    const rows = cumulative.map((c) => ({
+      project_id: id,
+      user_id: user.id,
+      word_count: c.total,
+      source: 'backfill',
+      recorded_at: `${c.date}T12:00:00`,
+    }))
+
+    const { error } = await supabase.from('wordcount_snapshots').insert(rows)
+    setSaving(false)
+
+    if (error) {
+      setError(error.message)
+    } else {
+      setSaved(true)
+    }
+  }
+
+  if (saved) {
+    return (
+      <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+        <h1 className="text-2xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          Backfilled
+        </h1>
+        <p className="mb-6" style={{ color: 'var(--color-ink-muted)' }}>
+          {parsed.length} days added to your history. Your graphs and finish date will reflect them now.
+        </p>
+        <button
+          onClick={() => router.push(`/projects/${id}`)}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Back to project
+        </button>
+      </main>
+    )
+  }
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+      <h1 className="text-2xl mb-3" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Backfill past progress
+      </h1>
+
+      <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+        To import your writing history from Scrivener:
+      </p>
+      <ol className="text-sm mb-4 pl-5" style={{ color: 'var(--color-ink-muted)', listStyle: 'decimal' }}>
+        <li className="mb-1">Click <strong>Project</strong> in the top bar</li>
+        <li className="mb-1">Click <strong>Writing History</strong></li>
+        <li className="mb-1">Click <strong>Export</strong></li>
+        <li>Open the file, copy the two date and word-count columns, and paste them below</li>
+      </ol>
+
+      <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+        Re-pasting data for a day you&apos;ve already backfilled will overwrite it, not add to it.
+      </p>
+
+      <button
+        onClick={() => router.push(`/projects/${id}`)}
+        className="text-sm mb-6"
+        style={{ color: 'var(--color-ink-muted)', textDecoration: 'underline' }}
+      >
+        Skip for now
+      </button>
+
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        rows={8}
+        placeholder="Paste your Scrivener writing history here..."
+        className="w-full p-3 mb-4 rounded border focus:outline-none"
+        style={{ borderColor: 'var(--color-rule)', backgroundColor: 'transparent' }}
+      />
+
+      <button
+        onClick={handleParse}
+        className="px-5 py-2 text-sm mb-6"
+        style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+      >
+        Preview
+      </button>
+
+      {parsed.length > 0 && (
+        <div className="mb-6">
+          <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+            Found {parsed.length} days:
+          </p>
+          <div className="rounded border mb-4" style={{ borderColor: 'var(--color-rule)', maxHeight: 220, overflowY: 'auto' }}>
+            {parsed.map((p) => (
+              <div
+                key={p.date}
+                className="flex justify-between px-3 py-2 text-sm border-b"
+                style={{ borderColor: 'var(--color-rule)' }}
+              >
+                <span>{new Date(p.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                <span style={{ color: p.delta < 0 ? '#a33' : 'var(--color-ink)' }}>
+                  {p.delta > 0 ? '+' : ''}{p.delta.toLocaleString()}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Your total word count as of your most recent entry above (optional, but recommended so your history lines up with reality)
+          </label>
+          <input
+            type="number"
+            value={anchor}
+            onChange={(e) => setAnchor(e.target.value)}
+            placeholder="e.g. 34000"
+            className="w-full py-2 mb-4 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+
+          {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
+
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="px-5 py-2 text-sm"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+          >
+            {saving ? 'Saving...' : `Save ${parsed.length} days`}
+          </button>
+        </div>
+      )}
+    </main>
+  )
+}
+
+================================================================================
+
+
+================================================================================
+FILE: src/app/projects/[id]/page.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 4.78 KB
+Extension: .tsx
+Language: typescript
+Location: src/app/projects/[id]/page.tsx
+Relative Path: src/app/projects/[id]
+Created: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-20 02:30:37 (Australia/Sydney / GMT+10:00)
+MD5: d620151c19445a6e489114f28bb38b35
+SHA256: e6110d23c30d1ce84dcfc3caf60ac14b75c46e09cb765af16e2780183140fa6b
 Encoding: ASCII
 
 FILE CONTENT:
@@ -2103,208 +2545,7 @@ export default async function ProjectDetailPage({
     </main>
   )
 }
-================================================================================
 
-
-================================================================================
-FILE: src/app/projects/[id]/page.tsx
-================================================================================
-
-FILE INFORMATION:
-----------------------------------------
-Size: 6.43 KB
-Extension: .tsx
-Language: typescript
-Location: src/app/projects/[id]/page.tsx
-Relative Path: src/app/projects/[id]
-Created: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-19 03:29:40 (Australia/Sydney / GMT+10:00)
-MD5: 1a9dfba75cfd06c41f2e6e4a5a31dffd
-SHA256: 2583af86403dd8fe388e98b6c484e6ec979ba64f0cffe5bb3f99009ca6e60eaa
-Encoding: ASCII
-
-FILE CONTENT:
-----------------------------------------
-'use client'
-
-import { useState, use } from 'react'
-import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
-import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
-
-export default function BackfillPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params)
-  const [text, setText] = useState('')
-  const [anchor, setAnchor] = useState('')
-  const [parsed, setParsed] = useState<BackfillEntry[]>([])
-  const [saving, setSaving] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [saved, setSaved] = useState(false)
-  const router = useRouter()
-
-  function handleParse() {
-    setParsed(parseBackfillText(text))
-    setError(null)
-  }
-
-  async function handleSave() {
-    if (parsed.length === 0) return
-    setSaving(true)
-    setError(null)
-
-    const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return
-
-    let running = 0
-    const cumulative: { date: string; total: number }[] = []
-    for (const entry of parsed) {
-      running += entry.delta
-      cumulative.push({ date: entry.date, total: running })
-    }
-
-    const anchorValue = anchor ? parseInt(anchor.replace(/,/g, ''), 10) : null
-    if (anchorValue !== null && !isNaN(anchorValue)) {
-      const offset = anchorValue - cumulative[cumulative.length - 1].total
-      for (const c of cumulative) c.total = Math.max(0, c.total + offset)
-    }
-
-    const { data: existing } = await supabase
-      .from('wordcount_snapshots')
-      .select('id, recorded_at')
-      .eq('project_id', id)
-
-    const backfillDateSet = new Set(cumulative.map((c) => c.date))
-    const idsToDelete = (existing || [])
-      .filter((row) => backfillDateSet.has(new Date(row.recorded_at).toISOString().split('T')[0]))
-      .map((row) => row.id)
-
-    if (idsToDelete.length > 0) {
-      await supabase.from('wordcount_snapshots').delete().in('id', idsToDelete)
-    }
-
-    const rows = cumulative.map((c) => ({
-      project_id: id,
-      user_id: user.id,
-      word_count: c.total,
-      source: 'backfill',
-      recorded_at: `${c.date}T12:00:00`,
-    }))
-
-    const { error } = await supabase.from('wordcount_snapshots').insert(rows)
-    setSaving(false)
-
-    if (error) {
-      setError(error.message)
-    } else {
-      setSaved(true)
-    }
-  }
-
-  if (saved) {
-    return (
-      <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
-        <h1 className="text-2xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-          Backfilled
-        </h1>
-        <p className="mb-6" style={{ color: 'var(--color-ink-muted)' }}>
-          {parsed.length} days added to your history. Your graphs and finish date will reflect them now.
-        </p>
-        <button
-          onClick={() => router.push(`/projects/${id}`)}
-          className="px-5 py-2 text-sm"
-          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
-        >
-          Back to project
-        </button>
-      </main>
-    )
-  }
-
-  return (
-    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
-      <h1 className="text-2xl mb-3" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        Backfill past progress
-      </h1>
-
-      <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
-        To import your writing history from Scrivener:
-      </p>
-      <ol className="text-sm mb-4 pl-5" style={{ color: 'var(--color-ink-muted)', listStyle: 'decimal' }}>
-        <li className="mb-1">Click <strong>Project</strong> in the top bar</li>
-        <li className="mb-1">Click <strong>Writing History</strong></li>
-        <li className="mb-1">Click <strong>Export</strong></li>
-        <li>Open the file, copy the two date and word-count columns, and paste them below</li>
-      </ol>
-
-      <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
-        Re-pasting data for a day you&apos;ve already backfilled will overwrite it, not add to it.
-      </p>
-
-      <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        rows={8}
-        placeholder="Paste your Scrivener writing history here..."
-        className="w-full p-3 mb-4 rounded border focus:outline-none"
-        style={{ borderColor: 'var(--color-rule)', backgroundColor: 'transparent' }}
-      />
-
-      <button
-        onClick={handleParse}
-        className="px-5 py-2 text-sm mb-6"
-        style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
-      >
-        Preview
-      </button>
-
-      {parsed.length > 0 && (
-        <div className="mb-6">
-          <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
-            Found {parsed.length} days:
-          </p>
-          <div className="rounded border mb-4" style={{ borderColor: 'var(--color-rule)', maxHeight: 220, overflowY: 'auto' }}>
-            {parsed.map((p) => (
-              <div
-                key={p.date}
-                className="flex justify-between px-3 py-2 text-sm border-b"
-                style={{ borderColor: 'var(--color-rule)' }}
-              >
-                <span>{new Date(p.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                <span style={{ color: p.delta < 0 ? '#a33' : 'var(--color-ink)' }}>
-                  {p.delta > 0 ? '+' : ''}{p.delta.toLocaleString()}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-            Your total word count as of your most recent entry above (optional, but recommended so your history lines up with reality)
-          </label>
-          <input
-            type="number"
-            value={anchor}
-            onChange={(e) => setAnchor(e.target.value)}
-            placeholder="e.g. 34000"
-            className="w-full py-2 mb-4 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-
-          {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
-
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="px-5 py-2 text-sm"
-            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
-          >
-            {saving ? 'Saving...' : `Save ${parsed.length} days`}
-          </button>
-        </div>
-      )}
-    </main>
-  )
-}
 ================================================================================
 
 
@@ -2991,15 +3232,15 @@ FILE: src/app/signup/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 2.33 KB
+Size: 2.34 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/signup/page.tsx
 Relative Path: src/app/signup
 Created: 2026-09-05 07:17:27 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-06 10:48:54 (Australia/Sydney / GMT+10:00)
-MD5: b5d30bc098af10f2ff21533345de558c
-SHA256: e7464eb065ebfed301a627c375e6634292a597db12d9f4058e62cdf3c7b242a1
+Modified: 2026-09-20 23:07:52 (Australia/Sydney / GMT+10:00)
+MD5: 5ea014eeedf5a13e2cefe1516c3c0836
+SHA256: 1ab6d554463f12895a664e2d05b7b5138524b8e74ec01bfb0e52917a5fc2f83a
 Encoding: ASCII
 
 FILE CONTENT:
@@ -3024,7 +3265,7 @@ export default function SignUpPage() {
     if (error) {
       setError(error.message)
     } else {
-      router.push('/')
+      router.push('/onboarding')
       router.refresh()
     }
   }
@@ -4837,20 +5078,24 @@ FILE: src/lib/backfill.ts
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 1.45 KB
+Size: 2.51 KB
 Extension: .ts
 Language: typescript
 Location: src/lib/backfill.ts
 Relative Path: src/lib
 Created: 2026-09-18 04:11:56 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-18 05:05:56 (Australia/Sydney / GMT+10:00)
-MD5: c9f358efd1cf392ff1aa6ea3bf95c607
-SHA256: d927716ddb3c4e747f42cee224bada3ea33d84b15c80985d72f7a880cd3936f1
-Encoding: ASCII
+Modified: 2026-09-20 02:54:46 (Australia/Sydney / GMT+10:00)
+MD5: 9a7957954dab50d1a98b4826ea3c709c
+SHA256: 191e035485b59531a6198a8e66ac6d69cd6a1e89598735e7f558423cf87e30a4
+Encoding: UTF-8
 
 FILE CONTENT:
 ----------------------------------------
 export type BackfillEntry = { date: string; delta: number }
+
+function toUTCDateOnly(d: Date): Date {
+  return new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()))
+}
 
 function parseDate(raw: string): Date | null {
   const trimmed = raw.trim()
@@ -4860,16 +5105,37 @@ function parseDate(raw: string): Date | null {
     const day = parseInt(numMatch[1], 10)
     const month = parseInt(numMatch[2], 10)
     const year = parseInt(numMatch[3], 10)
-    const d = new Date(year, month - 1, day)
+    const d = new Date(Date.UTC(year, month - 1, day))
     if (!isNaN(d.getTime())) return d
   }
 
   const native = new Date(trimmed)
-  if (!isNaN(native.getTime())) return native
+  if (!isNaN(native.getTime())) return toUTCDateOnly(native)
 
   const withYear = new Date(`${trimmed} ${new Date().getFullYear()}`)
-  if (!isNaN(withYear.getTime())) return withYear
+  if (!isNaN(withYear.getTime())) return toUTCDateOnly(withYear)
 
+  return null
+}
+
+function splitDateAndCount(line: string): [string, string] | null {
+  // Prefer a tab, since that's what pasting from Scrivener/Excel/Numbers uses —
+  // this way, commas inside the number itself (like 12,751) are left alone
+  if (line.includes('\t')) {
+    const idx = line.indexOf('\t')
+    return [line.slice(0, idx), line.slice(idx + 1)]
+  }
+  // Next, a run of multiple spaces (another common column separator)
+  const spaceMatch = line.match(/\s{2,}/)
+  if (spaceMatch && spaceMatch.index !== undefined) {
+    return [line.slice(0, spaceMatch.index), line.slice(spaceMatch.index + spaceMatch[0].length)]
+  }
+  // Last resort: a single comma, like "Sep 1, 500" — split only at the FIRST
+  // comma, so a thousands separator later in the number isn't treated as a break
+  const commaIdx = line.indexOf(',')
+  if (commaIdx !== -1) {
+    return [line.slice(0, commaIdx), line.slice(commaIdx + 1)]
+  }
   return null
 }
 
@@ -4878,13 +5144,14 @@ export function parseBackfillText(text: string): BackfillEntry[] {
   const results: BackfillEntry[] = []
 
   for (const line of lines) {
-    const parts = line.split(/\t|,|\s{2,}/).map((p) => p.trim()).filter(Boolean)
-    if (parts.length < 2) continue
+    const split = splitDateAndCount(line)
+    if (!split) continue
 
-    const date = parseDate(parts[0])
+    const [datePart, countPart] = split
+    const date = parseDate(datePart.trim())
     if (!date) continue
 
-    const delta = parseInt(parts[1].replace(/,/g, ''), 10)
+    const delta = parseInt(countPart.trim().replace(/,/g, ''), 10)
     if (isNaN(delta)) continue
 
     results.push({ date: date.toISOString().split('T')[0], delta })
@@ -4899,6 +5166,7 @@ export function parseBackfillText(text: string): BackfillEntry[] {
     .map(([date, delta]) => ({ date, delta }))
     .sort((a, b) => (a.date < b.date ? -1 : 1))
 }
+
 ================================================================================
 
 

@@ -114,6 +114,14 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
         Re-pasting data for a day you&apos;ve already backfilled will overwrite it, not add to it.
       </p>
 
+      <button
+        onClick={() => router.push(`/projects/${id}`)}
+        className="text-sm mb-6"
+        style={{ color: 'var(--color-ink-muted)', textDecoration: 'underline' }}
+      >
+        Skip for now
+      </button>
+
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
