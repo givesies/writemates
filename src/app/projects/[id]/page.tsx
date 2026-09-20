@@ -4,6 +4,7 @@ import Link from 'next/link'
 import ProgressChart from '@/components/ProgressChart'
 import DailyBarChart from '@/components/DailyBarChart'
 import ContributionCalendar from '@/components/ContributionCalendar'
+import DeleteProjectButton from '@/components/DeleteProjectButton'
 import {
   buildDailyCumulative,
   buildDailyDeltas,
@@ -66,13 +67,16 @@ export default async function ProjectDetailPage({
         <h1 className="text-3xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
           {project.title}
         </h1>
-        <Link
-          href={`/projects/${id}/backfill`}
-          className="text-sm"
-          style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
-        >
-          Backfill past progress
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href={`/projects/${id}/backfill`}
+            className="text-sm"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
+          >
+            Backfill past progress
+          </Link>
+          <DeleteProjectButton projectId={id} title={project.title} />
+        </div>
       </div>
       <p className="mb-8" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
         {currentWordCount.toLocaleString()} words

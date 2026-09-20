@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { buildDailyCumulative } from '@/lib/wordcountStats'
+import DeleteProjectButton from '@/components/DeleteProjectButton'
 
 type Project = {
   id: string
@@ -118,6 +119,10 @@ export default function ProjectsPage() {
     }
   }
 
+  function handleProjectDeleted(id: string) {
+    setProjects((prev) => prev.filter((p) => p.id !== id))
+  }
+
   if (loading) return <main className="max-w-2xl mx-auto px-6 py-12">Loading...</main>
 
   return (
@@ -219,11 +224,18 @@ export default function ProjectsPage() {
       <div>
         {projects.map((project) => (
           <div key={project.id} className="py-5 border-b" style={{ borderColor: 'var(--color-rule)' }}>
-            <Link href={`/projects/${project.id}`} className="text-lg">
-              {project.title}
-            </Link>
+            <div className="flex items-center justify-between">
+              <Link href={`/projects/${project.id}`} className="text-lg">
+                {project.title}
+              </Link>
+              <DeleteProjectButton
+                projectId={project.id}
+                title={project.title}
+                onDeleted={() => handleProjectDeleted(project.id)}
+              />
+            </div>
             {project.goal_word_count && (
-              <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+              <span className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
                 goal: {project.goal_word_count.toLocaleString()} {project.metric_unit || 'words'}
               </span>
             )}

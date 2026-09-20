@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-20 23:11:30 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 65
+- **Generated On**: 2026-09-20 23:21:40 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 66
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -62,10 +62,10 @@
 │   │   │   ├── 📁 [id]/
 │   │   │   │   ├── 📁 backfill/
 │   │   │   │   │   └── 📄 page.tsx (6.65 KB)
-│   │   │   │   └── 📄 page.tsx (4.78 KB)
+│   │   │   │   └── 📄 page.tsx (5 KB)
 │   │   │   ├── 📁 log/
 │   │   │   │   └── 📄 page.tsx (4.29 KB)
-│   │   │   └── 📄 page.tsx (8.34 KB)
+│   │   │   └── 📄 page.tsx (8.57 KB)
 │   │   ├── 📁 read/
 │   │   │   └── 📄 page.tsx (446 B)
 │   │   ├── 📁 search/
@@ -87,6 +87,7 @@
 │   │   ├── 📄 BottomNav.tsx (4.24 KB)
 │   │   ├── 📄 ContributionCalendar.tsx (1.34 KB)
 │   │   ├── 📄 DailyBarChart.tsx (635 B)
+│   │   ├── 📄 DeleteProjectButton.tsx (1.03 KB)
 │   │   ├── 📄 FollowButton.tsx (1.11 KB)
 │   │   ├── 📄 InviteLink.tsx (823 B)
 │   │   ├── 📄 LogoutButton.tsx (454 B)
@@ -154,6 +155,7 @@
 - [📄 src/components/BottomNav.tsx](#📄-src-components-bottomnav-tsx)
 - [📄 src/components/ContributionCalendar.tsx](#📄-src-components-contributioncalendar-tsx)
 - [📄 src/components/DailyBarChart.tsx](#📄-src-components-dailybarchart-tsx)
+- [📄 src/components/DeleteProjectButton.tsx](#📄-src-components-deleteprojectbutton-tsx)
 - [📄 src/components/FollowButton.tsx](#📄-src-components-followbutton-tsx)
 - [📄 src/components/InviteLink.tsx](#📄-src-components-invitelink-tsx)
 - [📄 src/components/LogoutButton.tsx](#📄-src-components-logoutbutton-tsx)
@@ -187,17 +189,17 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 65 |
+| Total Files | 66 |
 | Total Directories | 32 |
-| Text Files | 57 |
+| Text Files | 58 |
 | Binary Files | 8 |
-| Total Size | 417.65 KB |
+| Total Size | 419.12 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 39 |
+| `.tsx` | 40 |
 | `.ts` | 11 |
 | `.svg` | 5 |
 | `.md` | 3 |
@@ -2230,7 +2232,7 @@ export default function EditProfilePage() {
 - **Location**: `src/app/projects/[id]/backfill/page.tsx`
 - **Relative Path**: `src/app/projects/[id]/backfill`
 - **Created**: 2026-09-18 04:12:57 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-20 23:11:29 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-20 23:12:43 (Australia/Sydney / GMT+10:00)
 - **MD5**: `15882b925e784ddc8184982c59c1893b`
 - **SHA256**: `228e55211a145d9e1065694bb19ddefe348c56e850155a108a7164dcca15ba16`
 - **Encoding**: ASCII
@@ -2434,15 +2436,15 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
 ### <a id="📄-src-app-projects-id-page-tsx"></a>📄 `src/app/projects/[id]/page.tsx`
 
 **File Info:**
-- **Size**: 4.78 KB
+- **Size**: 5 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/[id]/page.tsx`
 - **Relative Path**: `src/app/projects/[id]`
 - **Created**: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-20 02:30:37 (Australia/Sydney / GMT+10:00)
-- **MD5**: `d620151c19445a6e489114f28bb38b35`
-- **SHA256**: `e6110d23c30d1ce84dcfc3caf60ac14b75c46e09cb765af16e2780183140fa6b`
+- **Modified**: 2026-09-20 23:17:45 (Australia/Sydney / GMT+10:00)
+- **MD5**: `fb63efa3a0959107cc085c2484b44ecb`
+- **SHA256**: `4818f6bc6861805f61a52892f03f1745a12d8c8a154e2e9c0b9fa89760f41a8b`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2454,6 +2456,7 @@ import Link from 'next/link'
 import ProgressChart from '@/components/ProgressChart'
 import DailyBarChart from '@/components/DailyBarChart'
 import ContributionCalendar from '@/components/ContributionCalendar'
+import DeleteProjectButton from '@/components/DeleteProjectButton'
 import {
   buildDailyCumulative,
   buildDailyDeltas,
@@ -2516,13 +2519,16 @@ export default async function ProjectDetailPage({
         <h1 className="text-3xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
           {project.title}
         </h1>
-        <Link
-          href={`/projects/${id}/backfill`}
-          className="text-sm"
-          style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
-        >
-          Backfill past progress
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href={`/projects/${id}/backfill`}
+            className="text-sm"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
+          >
+            Backfill past progress
+          </Link>
+          <DeleteProjectButton projectId={id} title={project.title} />
+        </div>
       </div>
       <p className="mb-8" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
         {currentWordCount.toLocaleString()} words
@@ -2758,15 +2764,15 @@ export default function LogWordcountPage() {
 ### <a id="📄-src-app-projects-page-tsx"></a>📄 `src/app/projects/page.tsx`
 
 **File Info:**
-- **Size**: 8.34 KB
+- **Size**: 8.57 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/page.tsx`
 - **Relative Path**: `src/app/projects`
 - **Created**: 2026-09-06 00:06:08 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-18 01:08:34 (Australia/Sydney / GMT+10:00)
-- **MD5**: `07d9ab814584b7372cf4b41f1d6f0c8a`
-- **SHA256**: `fcb68f8c9f3a8824aee71780f05bb847fee1ed943848a59d69dd9da15a31c063`
+- **Modified**: 2026-09-20 23:20:44 (Australia/Sydney / GMT+10:00)
+- **MD5**: `763be6ba128569d692cee404bca35429`
+- **SHA256**: `b025c3603458b23064dd756fcd39a43002d44e846262a8f6f91e8cbdc5ee5f02`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2779,6 +2785,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { buildDailyCumulative } from '@/lib/wordcountStats'
+import DeleteProjectButton from '@/components/DeleteProjectButton'
 
 type Project = {
   id: string
@@ -2993,11 +3000,14 @@ export default function ProjectsPage() {
       <div>
         {projects.map((project) => (
           <div key={project.id} className="py-5 border-b" style={{ borderColor: 'var(--color-rule)' }}>
-            <Link href={`/projects/${project.id}`} className="text-lg">
-              {project.title}
-            </Link>
+            <div className="flex items-center justify-between">
+              <Link href={`/projects/${project.id}`} className="text-lg">
+                {project.title}
+              </Link>
+              <DeleteProjectButton projectId={project.id} title={project.title} />
+            </div>
             {project.goal_word_count && (
-              <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+              <span className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
                 goal: {project.goal_word_count.toLocaleString()} {project.metric_unit || 'words'}
               </span>
             )}
@@ -3012,6 +3022,7 @@ export default function ProjectsPage() {
     </main>
   )
 }
+
 ```
 
 ---
@@ -4173,6 +4184,66 @@ export default function DailyBarChart({ data }: { data: DataPoint[] }) {
         </BarChart>
       </ResponsiveContainer>
     </div>
+  )
+}
+```
+
+---
+
+### <a id="📄-src-components-deleteprojectbutton-tsx"></a>📄 `src/components/DeleteProjectButton.tsx`
+
+**File Info:**
+- **Size**: 1.03 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/DeleteProjectButton.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-20 23:16:47 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-20 23:21:39 (Australia/Sydney / GMT+10:00)
+- **MD5**: `4306c95f58be63a6b62b1acafc6d5a2c`
+- **SHA256**: `24cdc5ca4c02913e0506971ed326a4d37b455629de5cd2a48457dd044b933f0b`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase/client'
+import { MinusCircle } from 'lucide-react'
+
+export default function DeleteProjectButton({ projectId, title }: { projectId: string; title: string }) {
+  const [deleting, setDeleting] = useState(false)
+  const router = useRouter()
+
+  async function handleDelete() {
+    const confirmed = window.confirm(
+      `Delete "${title}"? This removes the project and all its logged progress. This can't be undone.`
+    )
+    if (!confirmed) return
+
+    setDeleting(true)
+    const supabase = createClient()
+    const { error } = await supabase.from('projects').delete().eq('id', projectId)
+    setDeleting(false)
+
+    if (!error) {
+      router.push('/projects')
+      router.refresh()
+    }
+  }
+
+  return (
+    <button
+      onClick={handleDelete}
+      disabled={deleting}
+      aria-label={`Delete ${title}`}
+      style={{ color: 'var(--color-ink-muted)' }}
+    >
+      <MinusCircle size={18} />
+    </button>
   )
 }
 ```
