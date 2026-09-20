@@ -112,8 +112,11 @@ export default function TodayPage() {
       setDaysRemaining(details.daysRemaining)
       setWritingDaysPerWeek(details.writingDaysPerWeek)
 
+      const snapshotDates = Array.from(dailyMap.keys()).sort()
+      const earliestSnapshotDate = snapshotDates.length > 0 ? new Date(snapshotDates[0]) : null
       const created = new Date(project.created_at)
-      setDaysSinceStart(Math.max(1, Math.floor((now.getTime() - created.getTime()) / 86400000) + 1))
+      const startDate = earliestSnapshotDate && earliestSnapshotDate < created ? earliestSnapshotDate : created
+      setDaysSinceStart(Math.max(1, Math.floor((now.getTime() - startDate.getTime()) / 86400000) + 1))
 
       const days: { day: string; words: number }[] = []
       for (let i = 6; i >= 0; i--) {

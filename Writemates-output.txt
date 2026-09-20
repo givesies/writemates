@@ -5,8 +5,8 @@ PROJECT EXPORT FOR LLMs
 PROJECT INFORMATION:
 --------------------------------------------------
 Project Name: Writemates
-Generated On: 2026-09-18 04:09:06 (Australia/Sydney / GMT+10:00)
-Total Files Processed: 61
+Generated On: 2026-09-19 03:35:23 (Australia/Sydney / GMT+10:00)
+Total Files Processed: 63
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
 
@@ -37,7 +37,7 @@ PROJECT STRUCTURE
 │   │   │   │   └── 📄 page.tsx (4.53 KB)
 │   │   │   └── 📄 page.tsx (3.99 KB)
 │   │   ├── 📁 feed/
-│   │   │   └── 📄 page.tsx (9.72 KB)
+│   │   │   └── 📄 page.tsx (9.99 KB)
 │   │   ├── 📁 groups/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (3.87 KB)
@@ -58,7 +58,9 @@ PROJECT STRUCTURE
 │   │   │       └── 📄 page.tsx (8.93 KB)
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
-│   │   │   │   └── 📄 page.tsx (8.34 KB)
+│   │   │   │   ├── 📁 backfill/
+│   │   │   │   │   └── 📄 page.tsx (4.78 KB)
+│   │   │   │   └── 📄 page.tsx (6.43 KB)
 │   │   │   ├── 📁 log/
 │   │   │   │   └── 📄 page.tsx (4.29 KB)
 │   │   │   └── 📄 page.tsx (8.34 KB)
@@ -98,6 +100,7 @@ PROJECT STRUCTURE
 │   │   │   ├── 📄 client.ts (211 B)
 │   │   │   ├── 📄 middleware.ts (907 B)
 │   │   │   └── 📄 server.ts (704 B)
+│   │   ├── 📄 backfill.ts (1.45 KB)
 │   │   ├── 📄 insights.ts (1016 B)
 │   │   ├── 📄 supabase.ts (246 B)
 │   │   └── 📄 wordcountStats.ts (4.58 KB)
@@ -116,16 +119,16 @@ PROJECT STRUCTURE
 ================================================================================
 PROJECT STATISTICS
 ================================================================================
-Total Files: 61
-Total Directories: 29
-Text Files: 53
+Total Files: 63
+Total Directories: 30
+Text Files: 55
 Binary Files: 8
-Total Size: 405.6 KB
+Total Size: 410.18 KB
 
 FILE TYPES DISTRIBUTION:
 ------------------------------
-.tsx            : 36
-.ts             : 10
+.tsx            : 37
+.ts             : 11
 .svg            : 5
 .md             : 3
 .json           : 3
@@ -624,15 +627,15 @@ FILE: src/app/feed/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 9.72 KB
+Size: 9.99 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/feed/page.tsx
 Relative Path: src/app/feed
 Created: 2026-09-06 09:35:03 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-18 04:09:06 (Australia/Sydney / GMT+10:00)
-MD5: 1373bd8f9242074d8927d87da870af4e
-SHA256: 2aacfe49c784e28b9fb21305d3a0fdcb1335b351490edbf2e4ba0842eb1ede13
+Modified: 2026-09-18 05:16:04 (Australia/Sydney / GMT+10:00)
+MD5: 002a8dcb8429c5b4910fbc4213bbc30b
+SHA256: e153f2e409af0fd6cb98da2b4c41ae9c445119d5b2e6fcc073b6fbbb6bdc9ad5
 Encoding: ASCII
 
 FILE CONTENT:
@@ -751,8 +754,11 @@ export default function TodayPage() {
       setDaysRemaining(details.daysRemaining)
       setWritingDaysPerWeek(details.writingDaysPerWeek)
 
+      const snapshotDates = Array.from(dailyMap.keys()).sort()
+      const earliestSnapshotDate = snapshotDates.length > 0 ? new Date(snapshotDates[0]) : null
       const created = new Date(project.created_at)
-      setDaysSinceStart(Math.max(1, Math.floor((now.getTime() - created.getTime()) / 86400000) + 1))
+      const startDate = earliestSnapshotDate && earliestSnapshotDate < created ? earliestSnapshotDate : created
+      setDaysSinceStart(Math.max(1, Math.floor((now.getTime() - startDate.getTime()) / 86400000) + 1))
 
       const days: { day: string; words: number }[] = []
       for (let i = 6; i >= 0; i--) {
@@ -1936,261 +1942,366 @@ export default function EditProfilePage() {
 
 
 ================================================================================
+FILE: src/app/projects/[id]/backfill/page.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 4.78 KB
+Extension: .tsx
+Language: typescript
+Location: src/app/projects/[id]/backfill/page.tsx
+Relative Path: src/app/projects/[id]/backfill
+Created: 2026-09-18 04:12:57 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-19 03:35:23 (Australia/Sydney / GMT+10:00)
+MD5: 139cf4351767c157b4c66baf0552217c
+SHA256: cb0ef857bf2c67f547ec212b414d327466408c6e7fe05d9aadbfedbbc92c017a
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+import { createClient } from '@/lib/supabase/server'
+import { redirect, notFound } from 'next/navigation'
+import Link from 'next/link'
+import ProgressChart from '@/components/ProgressChart'
+import DailyBarChart from '@/components/DailyBarChart'
+import ContributionCalendar from '@/components/ContributionCalendar'
+import {
+  buildDailyCumulative,
+  buildDailyDeltas,
+  computeStreak,
+  computeBestDay,
+  computeWeeklyComparison,
+  computeProjectedFinish,
+} from '@/lib/wordcountStats'
+
+export default async function ProjectDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const supabase = await createClient()
+
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login')
+
+  const { data: project } = await supabase
+    .from('projects')
+    .select('*')
+    .eq('id', id)
+    .single()
+
+  if (!project) notFound()
+
+  const { data: snapshots } = await supabase
+    .from('wordcount_snapshots')
+    .select('word_count, recorded_at')
+    .eq('project_id', id)
+    .order('recorded_at', { ascending: true })
+
+  const dailyMap = buildDailyCumulative(snapshots || [])
+  const dailyDeltas = buildDailyDeltas(dailyMap)
+
+  const chartData = Array.from(dailyMap.entries()).map(([date, wordCount]) => ({
+    date,
+    wordCount,
+  }))
+
+  const currentWordCount = chartData.length > 0 ? chartData[chartData.length - 1].wordCount : 0
+  const percentComplete = project.goal_word_count
+    ? Math.min(100, Math.round((currentWordCount / project.goal_word_count) * 100))
+    : null
+
+  const streak = computeStreak(dailyMap)
+  const bestDay = computeBestDay(dailyDeltas)
+  const { thisWeek, lastWeek } = computeWeeklyComparison(dailyDeltas)
+  const projectedFinish = computeProjectedFinish(dailyDeltas, currentWordCount, project.goal_word_count)
+  const dailyDeltasObj = Object.fromEntries(dailyDeltas)
+  const barChartData = Array.from(dailyDeltas.entries())
+    .filter(([, words]) => words > 0)
+    .map(([date, words]) => ({ date, words }))
+
+  return (
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <div className="flex items-center justify-between mb-2">
+        <h1 className="text-3xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          {project.title}
+        </h1>
+        <Link
+          href={`/projects/${id}/backfill`}
+          className="text-sm"
+          style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
+        >
+          Backfill past progress
+        </Link>
+      </div>
+      <p className="mb-8" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        {currentWordCount.toLocaleString()} words
+        {percentComplete !== null && (
+          <> — <span style={{ color: 'var(--color-accent)' }}>{percentComplete}%</span> of {project.goal_word_count?.toLocaleString()} word goal</>
+        )}
+      </p>
+
+      <div
+        className="flex flex-wrap gap-x-8 gap-y-2 mb-8 text-sm"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+      >
+        {streak > 0 && (
+          <span>
+            <strong style={{ color: 'var(--color-accent)' }}>{streak}</strong> day streak
+          </span>
+        )}
+        {bestDay && bestDay.words > 0 && (
+          <span>
+            Best day: <strong style={{ color: 'var(--color-ink)' }}>{bestDay.words.toLocaleString()}</strong> words on{' '}
+            {new Date(bestDay.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+          </span>
+        )}
+        {(thisWeek > 0 || lastWeek > 0) && (
+          <span>
+            This week: <strong style={{ color: 'var(--color-ink)' }}>{thisWeek.toLocaleString()}</strong>
+            {' '}(last week: {lastWeek.toLocaleString()})
+          </span>
+        )}
+        {projectedFinish && (
+          <span>
+            Projected finish: <strong style={{ color: 'var(--color-ink)' }}>{projectedFinish}</strong>
+          </span>
+        )}
+      </div>
+
+      {chartData.length > 1 ? (
+        <ProgressChart data={chartData} />
+      ) : (
+        <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          Log a few more wordcounts (ideally on different days) to see your progress graph.
+        </p>
+      )}
+
+      {barChartData.length > 0 && (
+        <div className="mt-10">
+          <h2
+            className="text-sm mb-3"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+          >
+            Words per day
+          </h2>
+          <DailyBarChart data={barChartData} />
+        </div>
+      )}
+
+      <div className="mt-10">
+        <h2
+          className="text-sm mb-3"
+          style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+        >
+          Last 90 days
+        </h2>
+        <ContributionCalendar dailyDeltas={dailyDeltasObj} />
+      </div>
+    </main>
+  )
+}
+================================================================================
+
+
+================================================================================
 FILE: src/app/projects/[id]/page.tsx
 ================================================================================
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 8.34 KB
+Size: 6.43 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/projects/[id]/page.tsx
 Relative Path: src/app/projects/[id]
 Created: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-17 22:17:37 (Australia/Sydney / GMT+10:00)
-MD5: 07d9ab814584b7372cf4b41f1d6f0c8a
-SHA256: fcb68f8c9f3a8824aee71780f05bb847fee1ed943848a59d69dd9da15a31c063
+Modified: 2026-09-19 03:29:40 (Australia/Sydney / GMT+10:00)
+MD5: 1a9dfba75cfd06c41f2e6e4a5a31dffd
+SHA256: 2583af86403dd8fe388e98b6c484e6ec979ba64f0cffe5bb3f99009ca6e60eaa
 Encoding: ASCII
 
 FILE CONTENT:
 ----------------------------------------
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState, use } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { buildDailyCumulative } from '@/lib/wordcountStats'
+import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
 
-type Project = {
-  id: string
-  title: string
-  goal_word_count: number | null
-  status: string
-  project_type: string
-  draft_stage: string
-  metric_unit: string
-}
-
-const PROJECT_TYPES = [
-  { value: 'book', label: 'Book' },
-  { value: 'screenplay', label: 'Screenplay' },
-  { value: 'article', label: 'Article' },
-  { value: 'short_story', label: 'Short story' },
-  { value: 'thesis', label: 'Thesis' },
-  { value: 'other', label: 'Other' },
-]
-
-const DRAFT_STAGES = [
-  { value: 'first_draft', label: 'First draft', defaultUnit: 'words' },
-  { value: 'editing', label: 'Editing', defaultUnit: 'pages' },
-  { value: 'revision_2', label: 'Second revision', defaultUnit: 'pages' },
-  { value: 'revision_3_plus', label: 'Third revision or later', defaultUnit: 'pages' },
-]
-
-export default function ProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>([])
-  const [title, setTitle] = useState('')
-  const [goalWordCount, setGoalWordCount] = useState('')
-  const [projectType, setProjectType] = useState('book')
-  const [draftStage, setDraftStage] = useState('first_draft')
-  const [metricUnit, setMetricUnit] = useState('words')
-  const [loading, setLoading] = useState(true)
+export default function BackfillPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
+  const [text, setText] = useState('')
+  const [anchor, setAnchor] = useState('')
+  const [parsed, setParsed] = useState<BackfillEntry[]>([])
+  const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [totalWords, setTotalWords] = useState(0)
+  const [saved, setSaved] = useState(false)
   const router = useRouter()
 
-  async function loadProjects() {
-    const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) {
-      router.push('/login')
-      return
-    }
-    const { data } = await supabase
-      .from('projects')
-      .select('*')
-      .order('created_at', { ascending: false })
-
-    setProjects(data || [])
-
-    const { data: allSnapshots } = await supabase
-      .from('wordcount_snapshots')
-      .select('word_count, recorded_at, project_id')
-      .eq('user_id', user.id)
-
-    const byProject = new Map<string, typeof allSnapshots>()
-    for (const snap of allSnapshots || []) {
-      const list = byProject.get(snap.project_id) || []
-      list.push(snap)
-      byProject.set(snap.project_id, list)
-    }
-    let total = 0
-    for (const snaps of byProject.values()) {
-      const daily = buildDailyCumulative(snaps!)
-      const values = Array.from(daily.values())
-      if (values.length > 0) total += Math.max(...values)
-    }
-    setTotalWords(total)
-
-    setLoading(false)
-  }
-
-  useEffect(() => {
-    loadProjects()
-  }, [])
-
-  function handleStageChange(value: string) {
-    setDraftStage(value)
-    const stage = DRAFT_STAGES.find((s) => s.value === value)
-    if (stage) setMetricUnit(stage.defaultUnit)
-  }
-
-  async function handleCreate(e: React.FormEvent) {
-    e.preventDefault()
+  function handleParse() {
+    setParsed(parseBackfillText(text))
     setError(null)
+  }
+
+  async function handleSave() {
+    if (parsed.length === 0) return
+    setSaving(true)
+    setError(null)
+
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
-    const { error } = await supabase.from('projects').insert({
+    let running = 0
+    const cumulative: { date: string; total: number }[] = []
+    for (const entry of parsed) {
+      running += entry.delta
+      cumulative.push({ date: entry.date, total: running })
+    }
+
+    const anchorValue = anchor ? parseInt(anchor.replace(/,/g, ''), 10) : null
+    if (anchorValue !== null && !isNaN(anchorValue)) {
+      const offset = anchorValue - cumulative[cumulative.length - 1].total
+      for (const c of cumulative) c.total = Math.max(0, c.total + offset)
+    }
+
+    const { data: existing } = await supabase
+      .from('wordcount_snapshots')
+      .select('id, recorded_at')
+      .eq('project_id', id)
+
+    const backfillDateSet = new Set(cumulative.map((c) => c.date))
+    const idsToDelete = (existing || [])
+      .filter((row) => backfillDateSet.has(new Date(row.recorded_at).toISOString().split('T')[0]))
+      .map((row) => row.id)
+
+    if (idsToDelete.length > 0) {
+      await supabase.from('wordcount_snapshots').delete().in('id', idsToDelete)
+    }
+
+    const rows = cumulative.map((c) => ({
+      project_id: id,
       user_id: user.id,
-      title,
-      goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
-      project_type: projectType,
-      draft_stage: draftStage,
-      metric_unit: metricUnit,
-    })
+      word_count: c.total,
+      source: 'backfill',
+      recorded_at: `${c.date}T12:00:00`,
+    }))
+
+    const { error } = await supabase.from('wordcount_snapshots').insert(rows)
+    setSaving(false)
 
     if (error) {
       setError(error.message)
     } else {
-      setTitle('')
-      setGoalWordCount('')
-      setProjectType('book')
-      setDraftStage('first_draft')
-      setMetricUnit('words')
-      loadProjects()
+      setSaved(true)
     }
   }
 
-  if (loading) return <main className="max-w-2xl mx-auto px-6 py-12">Loading...</main>
-
-  return (
-    <main className="max-w-2xl mx-auto px-6 py-12">
-      <h1 className="text-3xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        Your projects
-      </h1>
-      {totalWords > 0 && (
-        <p className="mb-10" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-          <strong style={{ color: 'var(--color-accent)' }}>{totalWords.toLocaleString()}</strong> words written across all projects
+  if (saved) {
+    return (
+      <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+        <h1 className="text-2xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          Backfilled
+        </h1>
+        <p className="mb-6" style={{ color: 'var(--color-ink-muted)' }}>
+          {parsed.length} days added to your history. Your graphs and finish date will reflect them now.
         </p>
-      )}
-
-      <form onSubmit={handleCreate} className="mb-12 pb-10 border-b" style={{ borderColor: 'var(--color-rule)', fontFamily: 'var(--font-sans)' }}>
-        <div className="mb-4">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project title</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-
-        <div className="mb-4 grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project type</label>
-            <select
-              value={projectType}
-              onChange={(e) => setProjectType(e.target.value)}
-              className="w-full py-2 border-b bg-transparent focus:outline-none"
-              style={{ borderColor: 'var(--color-rule)' }}
-            >
-              {PROJECT_TYPES.map((t) => (
-                <option key={t.value} value={t.value}>{t.label}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Stage</label>
-            <select
-              value={draftStage}
-              onChange={(e) => handleStageChange(e.target.value)}
-              className="w-full py-2 border-b bg-transparent focus:outline-none"
-              style={{ borderColor: 'var(--color-rule)' }}
-            >
-              {DRAFT_STAGES.map((s) => (
-                <option key={s.value} value={s.value}>{s.label}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-            Tracking unit
-          </label>
-          <select
-            value={metricUnit}
-            onChange={(e) => setMetricUnit(e.target.value)}
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          >
-            <option value="words">Words</option>
-            <option value="pages">Pages</option>
-          </select>
-        </div>
-
-        <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-            Goal ({metricUnit === 'words' ? 'word count' : 'page count'}, optional)
-          </label>
-          <input
-            type="number"
-            value={goalWordCount}
-            onChange={(e) => setGoalWordCount(e.target.value)}
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
         <button
-          type="submit"
+          onClick={() => router.push(`/projects/${id}`)}
           className="px-5 py-2 text-sm"
           style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
         >
-          Create project
+          Back to project
         </button>
-      </form>
+      </main>
+    )
+  }
 
-      {projects.length === 0 && (
-        <p style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-sans)' }}>
-          No projects yet — create one above.
-        </p>
-      )}
+  return (
+    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+      <h1 className="text-2xl mb-3" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Backfill past progress
+      </h1>
 
-      <div>
-        {projects.map((project) => (
-          <div key={project.id} className="py-5 border-b" style={{ borderColor: 'var(--color-rule)' }}>
-            <Link href={`/projects/${project.id}`} className="text-lg">
-              {project.title}
-            </Link>
-            {project.goal_word_count && (
-              <span className="text-sm ml-2" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-                goal: {project.goal_word_count.toLocaleString()} {project.metric_unit || 'words'}
-              </span>
-            )}
-            <div className="text-sm mt-1" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-              {(PROJECT_TYPES.find((t) => t.value === project.project_type)?.label) || 'Book'}
-              {' · '}
-              {(DRAFT_STAGES.find((s) => s.value === project.draft_stage)?.label) || 'First draft'}
-            </div>
+      <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+        To import your writing history from Scrivener:
+      </p>
+      <ol className="text-sm mb-4 pl-5" style={{ color: 'var(--color-ink-muted)', listStyle: 'decimal' }}>
+        <li className="mb-1">Click <strong>Project</strong> in the top bar</li>
+        <li className="mb-1">Click <strong>Writing History</strong></li>
+        <li className="mb-1">Click <strong>Export</strong></li>
+        <li>Open the file, copy the two date and word-count columns, and paste them below</li>
+      </ol>
+
+      <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+        Re-pasting data for a day you&apos;ve already backfilled will overwrite it, not add to it.
+      </p>
+
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        rows={8}
+        placeholder="Paste your Scrivener writing history here..."
+        className="w-full p-3 mb-4 rounded border focus:outline-none"
+        style={{ borderColor: 'var(--color-rule)', backgroundColor: 'transparent' }}
+      />
+
+      <button
+        onClick={handleParse}
+        className="px-5 py-2 text-sm mb-6"
+        style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+      >
+        Preview
+      </button>
+
+      {parsed.length > 0 && (
+        <div className="mb-6">
+          <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+            Found {parsed.length} days:
+          </p>
+          <div className="rounded border mb-4" style={{ borderColor: 'var(--color-rule)', maxHeight: 220, overflowY: 'auto' }}>
+            {parsed.map((p) => (
+              <div
+                key={p.date}
+                className="flex justify-between px-3 py-2 text-sm border-b"
+                style={{ borderColor: 'var(--color-rule)' }}
+              >
+                <span>{new Date(p.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                <span style={{ color: p.delta < 0 ? '#a33' : 'var(--color-ink)' }}>
+                  {p.delta > 0 ? '+' : ''}{p.delta.toLocaleString()}
+                </span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Your total word count as of your most recent entry above (optional, but recommended so your history lines up with reality)
+          </label>
+          <input
+            type="number"
+            value={anchor}
+            onChange={(e) => setAnchor(e.target.value)}
+            placeholder="e.g. 34000"
+            className="w-full py-2 mb-4 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+
+          {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
+
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="px-5 py-2 text-sm"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+          >
+            {saving ? 'Saving...' : `Save ${parsed.length} days`}
+          </button>
+        </div>
+      )}
     </main>
   )
 }
@@ -4716,6 +4827,77 @@ export async function createClient() {
       },
     }
   )
+}
+================================================================================
+
+
+================================================================================
+FILE: src/lib/backfill.ts
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 1.45 KB
+Extension: .ts
+Language: typescript
+Location: src/lib/backfill.ts
+Relative Path: src/lib
+Created: 2026-09-18 04:11:56 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-18 05:05:56 (Australia/Sydney / GMT+10:00)
+MD5: c9f358efd1cf392ff1aa6ea3bf95c607
+SHA256: d927716ddb3c4e747f42cee224bada3ea33d84b15c80985d72f7a880cd3936f1
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+export type BackfillEntry = { date: string; delta: number }
+
+function parseDate(raw: string): Date | null {
+  const trimmed = raw.trim()
+
+  const numMatch = trimmed.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/)
+  if (numMatch) {
+    const day = parseInt(numMatch[1], 10)
+    const month = parseInt(numMatch[2], 10)
+    const year = parseInt(numMatch[3], 10)
+    const d = new Date(year, month - 1, day)
+    if (!isNaN(d.getTime())) return d
+  }
+
+  const native = new Date(trimmed)
+  if (!isNaN(native.getTime())) return native
+
+  const withYear = new Date(`${trimmed} ${new Date().getFullYear()}`)
+  if (!isNaN(withYear.getTime())) return withYear
+
+  return null
+}
+
+export function parseBackfillText(text: string): BackfillEntry[] {
+  const lines = text.split('\n').map((l) => l.trim()).filter(Boolean)
+  const results: BackfillEntry[] = []
+
+  for (const line of lines) {
+    const parts = line.split(/\t|,|\s{2,}/).map((p) => p.trim()).filter(Boolean)
+    if (parts.length < 2) continue
+
+    const date = parseDate(parts[0])
+    if (!date) continue
+
+    const delta = parseInt(parts[1].replace(/,/g, ''), 10)
+    if (isNaN(delta)) continue
+
+    results.push({ date: date.toISOString().split('T')[0], delta })
+  }
+
+  const byDate = new Map<string, number>()
+  for (const r of results) {
+    byDate.set(r.date, (byDate.get(r.date) || 0) + r.delta)
+  }
+
+  return Array.from(byDate.entries())
+    .map(([date, delta]) => ({ date, delta }))
+    .sort((a, b) => (a.date < b.date ? -1 : 1))
 }
 ================================================================================
 
