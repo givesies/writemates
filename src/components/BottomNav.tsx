@@ -3,14 +3,14 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Users, Library, Bell, Plus, X, PenLine, FolderPlus, Share2, Upload } from 'lucide-react'
+import { LayoutDashboard, Newspaper, Users, Bell, Plus, X, PenLine, FolderPlus, Share2, Upload, Timer } from 'lucide-react'
 import UnreadChatDot from '@/components/UnreadChatDot'
 import UnreadActivityDot from '@/components/UnreadActivityDot'
 
 const tabs = [
-  { href: '/feed', label: 'Today', icon: Home },
+  { href: '/today', label: 'Today', icon: LayoutDashboard },
+  { href: '/feed', label: 'Feed', icon: Newspaper },
   { href: '/chat', label: 'Mates', icon: Users },
-  { href: '/projects', label: 'Library', icon: Library },
   { href: '/activity', label: 'Activity', icon: Bell },
 ]
 
@@ -18,6 +18,7 @@ const actions = [
   { href: '/projects/log', label: 'Log wordcount', icon: PenLine },
   { href: '/projects', label: 'New project', icon: FolderPlus },
   { href: '/post/new', label: 'Share a post', icon: Share2 },
+  { href: '/sprints', label: 'Start a sprint', icon: Timer },
   { href: '/read', label: 'Upload work-in-progress', icon: Upload },
 ]
 

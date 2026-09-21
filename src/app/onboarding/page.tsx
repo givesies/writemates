@@ -22,7 +22,7 @@ export default function OnboardingWelcomePage() {
           Yes, let&apos;s do it
         </button>
         <button
-          onClick={() => router.push('/feed')}
+          onClick={() => router.push('/today')}
           className="px-5 py-3 text-sm"
           style={{ backgroundColor: 'transparent', color: 'var(--color-ink-muted)', border: '1px solid var(--color-rule)' }}
         >

@@ -76,8 +76,8 @@ export default function LogWordcountPage() {
     if (postError) {
       setMessage(`Snapshot saved, but post update failed: ${postError.message}`)
     } else {
-      setMessage('Wordcount logged and today\'s post updated!')
-      setWordCount('')
+      router.push('/today')
+      router.refresh()
     }
   }
 
@@ -94,11 +94,11 @@ export default function LogWordcountPage() {
   }
 
   return (
-    <main className="max-w-md mx-auto px-6 py-16">
+    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
       <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
         Log your wordcount
       </h1>
-      <form onSubmit={handleSubmit} style={{ fontFamily: 'var(--font-sans)' }}>
+      <form onSubmit={handleSubmit}>
         <div className="mb-5">
           <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project</label>
           <select
@@ -123,7 +123,7 @@ export default function LogWordcountPage() {
             style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
-        {message && <p className="mb-4 text-sm" style={{ color: 'var(--color-ink-muted)' }}>{message}</p>}
+        {message && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{message}</p>}
         <button
           type="submit"
           disabled={saving}

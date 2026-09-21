@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --color-ink: #23201b;
-  --color-ink-muted: #6b6b63;
-  --color-paper: #fbfaf7;
-  --color-paper-raised: #f4f2ec;
-  --color-rule: #e5e2da;
-  --color-accent: #33503e;
+  --color-ink: #1c2027;
+  --color-ink-muted: #6b7280;
+  --color-paper: #ffffff;
+  --color-paper-raised: #f4f6fb;
+  --color-rule: #e2e6ee;
+  --color-accent: #3556c9;
 }
 
 body {
