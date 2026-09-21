@@ -3,10 +3,10 @@
 :root {
   --color-ink: #1c2027;
   --color-ink-muted: #6b7280;
-  --color-paper: #ffffff;
-  --color-paper-raised: #f4f6fb;
-  --color-rule: #e2e6ee;
-  --color-accent: #3556c9;
+  --color-paper: #fffdf6;
+  --color-paper-raised: #e3eafb;
+  --color-rule: #e4e7f0;
+  --color-accent: #1747e0;
 }
 
 body {

@@ -6,13 +6,13 @@ export async function GET() {
       <div
         style={{
           fontSize: 280,
-          background: '#33503e',
+          background: '#1747e0',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#fbfaf7',
+          color: '#fffdf6',
           fontWeight: 700,
         }}
       >

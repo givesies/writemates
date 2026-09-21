@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Track your writing progress with fellow writers',
     start_url: '/',
     display: 'standalone',
-    background_color: '#fbfaf7',
-    theme_color: '#33503e',
+    background_color: '#fffdf6',
+    theme_color: '#1747e0',
     icons: [
       { src: '/icon-192', sizes: '192x192', type: 'image/png' },
       { src: '/icon-512', sizes: '512x512', type: 'image/png' },

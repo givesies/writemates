@@ -9,7 +9,7 @@ export default function Loading() {
           fontFamily: 'var(--font-serif)',
           fontWeight: 600,
           fontSize: '2.5rem',
-          color: 'var(--color-ink)',
+          color: 'var(--color-accent)',
           marginBottom: '0.5rem',
         }}
       >
