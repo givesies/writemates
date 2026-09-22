@@ -79,44 +79,54 @@ export function computeProjectedFinishDetails(
   dailyDeltas: Map<string, number>,
   currentTotal: number,
   goal: number | null
-): { finishDateLabel: string | null; daysRemaining: number | null; writingDaysPerWeek: number } {
-  if (!goal || currentTotal >= goal) {
-    return { finishDateLabel: null, daysRemaining: 0, writingDaysPerWeek: 0 }
+): {
+  finishDateLabel: string | null
+  daysRemaining: number | null
+  writingDaysPerWeek: number
+  avgPerCalendarDay: number
+} {
+  const allDates = Array.from(dailyDeltas.keys()).sort()
+
+  if (allDates.length === 0 || currentTotal <= 0) {
+    return { finishDateLabel: null, daysRemaining: null, writingDaysPerWeek: 0, avgPerCalendarDay: 0 }
   }
 
-  const writingDays = Array.from(dailyDeltas.entries())
-    .filter(([, words]) => words > 0)
-    .sort((a, b) => (a[0] < b[0] ? -1 : 1))
+  // Simple, motivating pace: total words written over every calendar day since
+  // you started, not just the days you happened to write — so any new entry
+  // directly moves the average, rather than being diluted or ignored.
+  const firstDate = new Date(allDates[0])
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const daysSinceStart = Math.max(1, Math.round((today.getTime() - firstDate.getTime()) / 86400000) + 1)
 
-  if (writingDays.length === 0) {
-    return { finishDateLabel: null, daysRemaining: null, writingDaysPerWeek: 0 }
+  const avgPerCalendarDay = currentTotal / daysSinceStart
+
+  const writingDays = allDates.filter((d) => (dailyDeltas.get(d) || 0) > 0)
+  const writingDaysPerWeek = writingDays.length > 0
+    ? Math.min(7, (writingDays.length / daysSinceStart) * 7)
+    : 0
+  const roundedWritingDaysPerWeek = Math.round(writingDaysPerWeek * 10) / 10
+
+  if (!goal || currentTotal >= goal || avgPerCalendarDay <= 0) {
+    return {
+      finishDateLabel: null,
+      daysRemaining: goal && currentTotal >= goal ? 0 : null,
+      writingDaysPerWeek: roundedWritingDaysPerWeek,
+      avgPerCalendarDay,
+    }
   }
-
-  // Use up to the most recent 30 writing days as a representative recent pace
-  const recent = writingDays.slice(-30)
-  const avgWordsPerWritingDay = recent.reduce((sum, [, words]) => sum + words, 0) / recent.length
-
-  if (avgWordsPerWritingDay <= 0) {
-    return { finishDateLabel: null, daysRemaining: null, writingDaysPerWeek: 0 }
-  }
-
-  // How many days a week do they actually write? Based on the calendar span these entries cover
-  const firstDate = new Date(recent[0][0])
-  const lastDate = new Date(recent[recent.length - 1][0])
-  const spanDays = Math.max(1, Math.round((lastDate.getTime() - firstDate.getTime()) / 86400000) + 1)
-  const writingDaysPerWeek = Math.min(7, (recent.length / spanDays) * 7)
 
   const wordsRemaining = goal - currentTotal
-  const writingDaysNeeded = wordsRemaining / avgWordsPerWritingDay
-  const calendarDaysNeeded = Math.max(1, Math.ceil(writingDaysNeeded / (writingDaysPerWeek / 7)))
+  const daysRemaining = Math.max(1, Math.ceil(wordsRemaining / avgPerCalendarDay))
 
   const finishDate = new Date()
-  finishDate.setDate(finishDate.getDate() + calendarDaysNeeded)
+  finishDate.setDate(finishDate.getDate() + daysRemaining)
 
   return {
     finishDateLabel: finishDate.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' }),
-    daysRemaining: calendarDaysNeeded,
-    writingDaysPerWeek: Math.round(writingDaysPerWeek * 10) / 10,
+    daysRemaining,
+    writingDaysPerWeek: roundedWritingDaysPerWeek,
+    avgPerCalendarDay,
   }
 }
 

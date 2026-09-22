@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import { ArrowUp, ArrowDown } from 'lucide-react'
 import {
   buildDailyCumulative,
   buildDailyDeltas,
   computeProjectedFinishDetails,
-  computeStreak,
 } from '@/lib/wordcountStats'
 import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
@@ -29,6 +29,31 @@ const DRAFT_STAGE_LABELS: Record<string, string> = {
   revision_3_plus: 'revision',
 }
 
+function Delta({
+  value,
+  upLabel,
+  downLabel,
+  goodWhen,
+}: {
+  value: number
+  upLabel: string
+  downLabel: string
+  goodWhen: 'up' | 'down'
+}) {
+  if (value === 0) return null
+  const isUp = value > 0
+  const isGood = goodWhen === 'up' ? isUp : !isUp
+  return (
+    <div
+      className="flex items-center gap-1 mt-1"
+      style={{ fontSize: 11, color: isGood ? 'var(--color-accent)' : 'var(--color-ink-muted)' }}
+    >
+      {isUp ? <ArrowUp size={11} /> : <ArrowDown size={11} />}
+      <span>{Math.abs(value).toLocaleString()} {isUp ? upLabel : downLabel}</span>
+    </div>
+  )
+}
+
 export default function TodayPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [selectedId, setSelectedId] = useState<string | null>(null)
@@ -38,10 +63,14 @@ export default function TodayPage() {
   const [currentTotal, setCurrentTotal] = useState(0)
   const [percent, setPercent] = useState<number | null>(null)
   const [todayCount, setTodayCount] = useState(0)
+  const [todayDelta, setTodayDelta] = useState(0)
   const [weekCount, setWeekCount] = useState(0)
-  const [avgPerWritingDay, setAvgPerWritingDay] = useState(0)
+  const [weekDelta, setWeekDelta] = useState(0)
+  const [avgPerDay, setAvgPerDay] = useState(0)
+  const [avgDelta, setAvgDelta] = useState(0)
   const [finishDateLabel, setFinishDateLabel] = useState<string | null>(null)
   const [daysRemaining, setDaysRemaining] = useState<number | null>(null)
+  const [daysRemainingDelta, setDaysRemainingDelta] = useState(0)
   const [writingDaysPerWeek, setWritingDaysPerWeek] = useState(0)
   const [daysSinceStart, setDaysSinceStart] = useState(0)
   const [chartData, setChartData] = useState<{ day: string; words: number }[]>([])
@@ -93,28 +122,49 @@ export default function TodayPage() {
       setPercent(project.goal_word_count ? Math.min(100, Math.round((total / project.goal_word_count) * 100)) : null)
 
       const todayStr = new Date().toISOString().split('T')[0]
-      setTodayCount(dailyDeltas.get(todayStr) || 0)
+      const yesterday = new Date()
+      yesterday.setDate(yesterday.getDate() - 1)
+      const yesterdayStr = yesterday.toISOString().split('T')[0]
+
+      const todayWords = dailyDeltas.get(todayStr) || 0
+      const yesterdayWords = dailyDeltas.get(yesterdayStr) || 0
+      setTodayCount(todayWords)
+      setTodayDelta(todayWords - yesterdayWords)
 
       const now = new Date()
       let week = 0
+      let lastWeek = 0
       for (const [dateStr, words] of dailyDeltas.entries()) {
         const diffDays = Math.floor((now.getTime() - new Date(dateStr).getTime()) / 86400000)
         if (diffDays >= 0 && diffDays < 7) week += words
+        else if (diffDays >= 7 && diffDays < 14) lastWeek += words
       }
       setWeekCount(week)
-
-      const writingDeltas = Array.from(dailyDeltas.values()).filter((w) => w > 0)
-      const avg = writingDeltas.length > 0 ? writingDeltas.reduce((a, b) => a + b, 0) / writingDeltas.length : 0
-      setAvgPerWritingDay(avg)
+      setWeekDelta(week - lastWeek)
 
       const details = computeProjectedFinishDetails(dailyDeltas, total, project.goal_word_count)
       setFinishDateLabel(details.finishDateLabel)
       setDaysRemaining(details.daysRemaining)
       setWritingDaysPerWeek(details.writingDaysPerWeek)
+      setAvgPerDay(details.avgPerCalendarDay)
 
+      const dailyMapExclToday = new Map(dailyMap)
+      dailyMapExclToday.delete(todayStr)
+      const dailyDeltasExclToday = buildDailyDeltas(dailyMapExclToday)
+      const valuesExcl = Array.from(dailyMapExclToday.values())
+      const totalExcl = valuesExcl.length > 0 ? valuesExcl[valuesExcl.length - 1] : 0
+      const detailsExcl = computeProjectedFinishDetails(dailyDeltasExclToday, totalExcl, project.goal_word_count)
+
+      if (details.daysRemaining !== null && detailsExcl.daysRemaining !== null) {
+        setDaysRemainingDelta(detailsExcl.daysRemaining - details.daysRemaining)
+      } else {
+        setDaysRemainingDelta(0)
+      }
+      setAvgDelta(Math.round(details.avgPerCalendarDay - detailsExcl.avgPerCalendarDay))
+
+      const created = new Date(project.created_at)
       const snapshotDates = Array.from(dailyMap.keys()).sort()
       const earliestSnapshotDate = snapshotDates.length > 0 ? new Date(snapshotDates[0]) : null
-      const created = new Date(project.created_at)
       const startDate = earliestSnapshotDate && earliestSnapshotDate < created ? earliestSnapshotDate : created
       setDaysSinceStart(Math.max(1, Math.floor((now.getTime() - startDate.getTime()) / 86400000) + 1))
 
@@ -129,7 +179,7 @@ export default function TodayPage() {
       setChartData(days)
       setChartAverage(days.reduce((sum, d) => sum + d.words, 0) / 7)
 
-      setInsight(computeInsight(avg, details.daysRemaining))
+      setInsight(computeInsight(details.avgPerCalendarDay, details.daysRemaining))
       setBannerDismissed(false)
     }
     loadStats()
@@ -169,6 +219,17 @@ export default function TodayPage() {
         </select>
       )}
 
+      {project?.goal_word_count && (
+        <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>
+          <strong style={{ color: 'var(--color-ink)' }}>{currentTotal.toLocaleString()}</strong>
+          {' / '}
+          {project.goal_word_count.toLocaleString()} {unit}
+          {percent !== null && (
+            <> — <span style={{ color: 'var(--color-accent)' }}>{percent}%</span></>
+          )}
+        </p>
+      )}
+
       {!bannerDismissed && (
         <div
           className="rounded-lg mb-6 relative"
@@ -190,6 +251,7 @@ export default function TodayPage() {
               <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
                 {finishDateLabel}
               </p>
+              <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
             </>
           ) : (
             <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
@@ -205,24 +267,28 @@ export default function TodayPage() {
           <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
             {daysRemaining !== null ? `${daysRemaining} days` : '—'}
           </p>
+          <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
         </div>
         <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
           <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Today</p>
           <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
             {todayCount.toLocaleString()} {unit}
           </p>
+          <Delta value={todayDelta} upLabel="more than yesterday" downLabel="fewer than yesterday" goodWhen="up" />
         </div>
         <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
           <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>This week</p>
           <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
             {weekCount.toLocaleString()} {unit}
           </p>
+          <Delta value={weekDelta} upLabel="more than last week" downLabel="less than last week" goodWhen="up" />
         </div>
         <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
           <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Daily average</p>
           <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-            {Math.round(avgPerWritingDay).toLocaleString()} {unit}
+            {Math.round(avgPerDay).toLocaleString()} {unit}
           </p>
+          <Delta value={avgDelta} upLabel="higher since today" downLabel="lower since today" goodWhen="up" />
         </div>
       </div>
 

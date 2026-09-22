@@ -4,6 +4,7 @@ import "./globals.css";
 import { createClient } from '@/lib/supabase/server'
 import NavBar from '@/components/NavBar'
 import BottomNav from '@/components/BottomNav'
+import SplashScreen from '@/components/SplashScreen'
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-serif",
@@ -44,6 +45,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${sourceSerif.variable} ${workSans.variable}`}>
       <body className="min-h-full flex flex-col">
+        <SplashScreen />
         <NavBar username={username} avatarUrl={avatarUrl} />
         <div style={{ paddingBottom: username ? 72 : 0 }}>{children}</div>
         {username && <BottomNav />}
