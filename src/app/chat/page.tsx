@@ -103,21 +103,25 @@ export default function ChatListPage() {
           <Link
             key={c.id}
             href={`/chat/${c.id}`}
-            className="flex items-center gap-3 py-4 border-b"
-            style={{ borderColor: 'var(--color-rule)' }}
+            className="flex items-center gap-3 mb-3 rounded-lg"
+            style={{
+              border: '1px solid var(--color-rule)',
+              backgroundColor: 'var(--color-paper)',
+              padding: '0.85rem 1rem',
+            }}
           >
             {c.other?.avatar_url ? (
-              <img src={c.other.avatar_url} alt="" className="w-10 h-10 rounded-full object-cover" />
+              <img src={c.other.avatar_url} alt="" className="w-11 h-11 rounded-full object-cover" />
             ) : (
               <div
-                className="w-10 h-10 rounded-full flex items-center justify-center text-sm"
-                style={{ backgroundColor: 'var(--color-rule)', color: 'var(--color-ink-muted)' }}
+                className="w-11 h-11 rounded-full flex items-center justify-center text-sm"
+                style={{ backgroundColor: 'var(--color-paper-raised)', color: 'var(--color-ink-muted)' }}
               >
                 {c.other?.username?.charAt(0).toUpperCase() || '?'}
               </div>
             )}
             <div className="flex-1 min-w-0">
-              <div style={{ fontFamily: 'var(--font-sans)' }}>
+              <div className="text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink)' }}>
                 {c.other?.display_name || c.other?.username || 'Unknown'}
               </div>
               {c.last && (

@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { Heart, UserPlus } from 'lucide-react'
 
 type LikeActivity = {
   type: 'like'
@@ -20,7 +21,6 @@ export default async function ActivityPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  // My own posts, so we can find likes on them
   const { data: myPosts } = await supabase
     .from('posts')
     .select('id, content, type')
@@ -64,7 +64,6 @@ export default async function ActivityPage() {
     (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   )
 
-  // Mark activity as read now that this page has loaded
   await supabase
     .from('profiles')
     .update({ activity_last_read_at: new Date().toISOString() })
@@ -86,22 +85,47 @@ export default async function ActivityPage() {
         {allActivity.map((item, i) => {
           const name = item.actor?.display_name || item.actor?.username || 'Someone'
           return (
-            <div key={i} className="py-4 border-b" style={{ borderColor: 'var(--color-rule)', fontFamily: 'var(--font-sans)' }}>
-              {item.type === 'like' && (
-                <p>
-                  <Link href={`/u/${item.actor?.username}`} style={{ fontWeight: 600 }}>{name}</Link>
-                  {' '}liked your post
-                  {item.post_content && <span style={{ color: 'var(--color-ink-muted)' }}> — &ldquo;{item.post_content.slice(0, 40)}{item.post_content.length > 40 ? '...' : ''}&rdquo;</span>}
+            <div
+              key={i}
+              className="flex items-start gap-3 mb-3 rounded-lg"
+              style={{
+                border: '1px solid var(--color-rule)',
+                backgroundColor: 'var(--color-paper)',
+                padding: '0.9rem 1rem',
+                fontFamily: 'var(--font-sans)',
+              }}
+            >
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: 'var(--color-paper-raised)' }}
+              >
+                {item.type === 'like' ? (
+                  <Heart size={15} style={{ color: 'var(--color-accent)' }} />
+                ) : (
+                  <UserPlus size={15} style={{ color: 'var(--color-accent)' }} />
+                )}
+              </div>
+              <div className="flex-1 min-w-0">
+                {item.type === 'like' && (
+                  <p className="text-sm">
+                    <Link href={`/u/${item.actor?.username}`} style={{ fontWeight: 600, color: 'var(--color-ink)' }}>{name}</Link>
+                    {' '}liked your post
+                    {item.post_content && (
+                      <span style={{ color: 'var(--color-ink-muted)' }}>
+                        {' '}— &ldquo;{item.post_content.slice(0, 40)}{item.post_content.length > 40 ? '...' : ''}&rdquo;
+                      </span>
+                    )}
+                  </p>
+                )}
+                {item.type === 'follow' && (
+                  <p className="text-sm">
+                    <Link href={`/u/${item.actor?.username}`} style={{ fontWeight: 600, color: 'var(--color-ink)' }}>{name}</Link>
+                    {' '}started following you
+                  </p>
+                )}
+                <p className="text-xs mt-1" style={{ color: 'var(--color-ink-muted)' }}>
+                  {new Date(item.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                 </p>
-              )}
-              {item.type === 'follow' && (
-                <p>
-                  <Link href={`/u/${item.actor?.username}`} style={{ fontWeight: 600 }}>{name}</Link>
-                  {' '}started following you
-                </p>
-              )}
-              <div className="text-sm mt-1" style={{ color: 'var(--color-ink-muted)' }}>
-                {new Date(item.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
               </div>
             </div>
           )

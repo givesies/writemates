@@ -26,4 +26,16 @@ a:hover {
 
 button {
   font-family: var(--font-sans), sans-serif;
+  transition: transform 100ms ease, filter 100ms ease, opacity 100ms ease;
+}
+
+button:active {
+  transform: scale(0.97);
+  filter: brightness(0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button:active {
+    transform: none;
+  }
 }

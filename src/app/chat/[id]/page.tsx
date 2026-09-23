@@ -3,6 +3,8 @@
 import { useEffect, useState, useRef, use } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { ChevronLeft } from 'lucide-react'
 
 type Message = {
   id: string
@@ -67,7 +69,6 @@ export default function ChatThreadPage({
 
     load()
 
-    // Set up the live-update connection synchronously, so it's only ever created once per mount
     const channel = supabase
       .channel(`messages-${id}`)
       .on(
@@ -107,12 +108,17 @@ export default function ChatThreadPage({
   if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
 
   return (
-    <main className="max-w-md mx-auto px-6 py-8 flex flex-col" style={{ minHeight: '70vh' }}>
-      <h1 className="text-2xl mb-6" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        {otherName}
-      </h1>
+    <main className="max-w-md mx-auto px-6 py-6 flex flex-col" style={{ minHeight: '80vh' }}>
+      <div className="flex items-center gap-2 mb-4 pb-3" style={{ borderBottom: '1px solid var(--color-rule)' }}>
+        <Link href="/chat" aria-label="Back to chats" style={{ color: 'var(--color-ink-muted)' }}>
+          <ChevronLeft size={20} />
+        </Link>
+        <h1 className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          {otherName}
+        </h1>
+      </div>
 
-      <div className="flex-1 overflow-y-auto mb-4">
+      <div className="flex-1 overflow-y-auto mb-4 px-1">
         {messages.map((m) => {
           const mine = m.sender_id === userId
           return (
@@ -133,19 +139,22 @@ export default function ChatThreadPage({
         <div ref={bottomRef} />
       </div>
 
-      <form onSubmit={handleSend} className="flex gap-2" style={{ fontFamily: 'var(--font-sans)' }}>
+      <form
+        onSubmit={handleSend}
+        className="flex gap-2 items-center rounded-full"
+        style={{ fontFamily: 'var(--font-sans)', border: '1px solid var(--color-rule)', padding: '0.35rem 0.35rem 0.35rem 1rem' }}
+      >
         <input
           type="text"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Write a message..."
-          className="flex-1 py-2 px-3 border-b bg-transparent focus:outline-none"
-          style={{ borderColor: 'var(--color-rule)' }}
+          className="flex-1 py-1 bg-transparent focus:outline-none text-sm"
         />
         <button
           type="submit"
-          className="px-4 py-2 text-sm"
-          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+          className="px-4 py-2 text-sm rounded-full"
+          style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
         >
           Send
         </button>

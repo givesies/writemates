@@ -24,45 +24,64 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="max-w-md mx-auto px-6 py-16">
-      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        Log in
-      </h1>
-      <form onSubmit={handleLogin} style={{ fontFamily: 'var(--font-sans)' }}>
-        <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
-        <button
-          type="submit"
-          className="px-5 py-2 text-sm"
-          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+    <main
+      className="flex flex-col items-center justify-center px-6"
+      style={{ minHeight: '100vh' }}
+    >
+      <div className="text-center mb-10">
+        <h1
+          style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, fontSize: '2.25rem', color: 'var(--color-accent)' }}
         >
+          Writemates
+        </h1>
+        <p className="mt-1" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--color-ink-muted)' }}>
+          Where Writers Grow Together
+        </p>
+      </div>
+
+      <div
+        className="w-full max-w-sm rounded-xl"
+        style={{ border: '1px solid var(--color-rule)', backgroundColor: 'var(--color-paper)', padding: '2rem' }}
+      >
+        <h2 className="text-xl mb-6" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
           Log in
-        </button>
-      </form>
-      <p className="mt-6 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-        Don&apos;t have an account? <a href="/signup">Sign up</a>
-      </p>
+        </h2>
+        <form onSubmit={handleLogin} style={{ fontFamily: 'var(--font-sans)' }}>
+          <div className="mb-5">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+          <button
+            type="submit"
+            className="w-full py-2.5 text-sm rounded-lg"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+          >
+            Log in
+          </button>
+        </form>
+        <p className="mt-6 text-sm text-center" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          Don&apos;t have an account? <a href="/signup" style={{ color: 'var(--color-accent)' }}>Sign up</a>
+        </p>
+      </div>
     </main>
   )
 }

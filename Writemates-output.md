@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `Writemates`
-- **Generated On**: 2026-09-20 23:21:40 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 66
+- **Generated On**: 2026-09-23 03:43:54 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 75
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -30,31 +30,34 @@
 │   ├── 📁 app/
 │   │   ├── 📁 activity/
 │   │   │   └── 📄 page.tsx (3.92 KB)
+│   │   ├── 📁 api/
+│   │   │   └── 📁 link-preview/
+│   │   │       └── 📄 route.ts (1.58 KB)
 │   │   ├── 📁 chat/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (4.53 KB)
 │   │   │   └── 📄 page.tsx (3.99 KB)
 │   │   ├── 📁 feed/
-│   │   │   └── 📄 page.tsx (9.99 KB)
+│   │   │   └── 📄 page.tsx (9.04 KB)
 │   │   ├── 📁 groups/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (3.87 KB)
 │   │   │   └── 📄 page.tsx (3.42 KB)
 │   │   ├── 📁 icon-192/
-│   │   │   └── 📄 route.tsx (478 B)
+│   │   │   └── 📄 route.tsx (479 B)
 │   │   ├── 📁 icon-512/
-│   │   │   └── 📄 route.tsx (478 B)
+│   │   │   └── 📄 route.tsx (479 B)
 │   │   ├── 📁 login/
 │   │   │   └── 📄 page.tsx (2.32 KB)
 │   │   ├── 📁 onboarding/
 │   │   │   ├── 📁 new-project/
 │   │   │   │   └── 📄 page.tsx (5.02 KB)
-│   │   │   └── 📄 page.tsx (1.15 KB)
+│   │   │   └── 📄 page.tsx (1.16 KB)
 │   │   ├── 📁 post/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (2.15 KB)
 │   │   │   └── 📁 new/
-│   │   │       └── 📄 page.tsx (6.04 KB)
+│   │   │       └── 📄 page.tsx (6.7 KB)
 │   │   ├── 📁 profile/
 │   │   │   └── 📁 edit/
 │   │   │       └── 📄 page.tsx (8.93 KB)
@@ -62,10 +65,12 @@
 │   │   │   ├── 📁 [id]/
 │   │   │   │   ├── 📁 backfill/
 │   │   │   │   │   └── 📄 page.tsx (6.65 KB)
-│   │   │   │   └── 📄 page.tsx (5 KB)
+│   │   │   │   ├── 📁 edit/
+│   │   │   │   │   └── 📄 page.tsx (5.95 KB)
+│   │   │   │   └── 📄 page.tsx (5.31 KB)
 │   │   │   ├── 📁 log/
-│   │   │   │   └── 📄 page.tsx (4.29 KB)
-│   │   │   └── 📄 page.tsx (8.57 KB)
+│   │   │   │   └── 📄 page.tsx (11.51 KB)
+│   │   │   └── 📄 page.tsx (9.33 KB)
 │   │   ├── 📁 read/
 │   │   │   └── 📄 page.tsx (446 B)
 │   │   ├── 📁 search/
@@ -74,20 +79,31 @@
 │   │   │   └── 📄 page.tsx (2.62 KB)
 │   │   ├── 📁 signup/
 │   │   │   └── 📄 page.tsx (2.34 KB)
+│   │   ├── 📁 sprints/
+│   │   │   ├── 📁 [id]/
+│   │   │   │   └── 📄 page.tsx (12.33 KB)
+│   │   │   ├── 📁 proposals/
+│   │   │   │   └── 📁 [id]/
+│   │   │   │       └── 📄 page.tsx (9.75 KB)
+│   │   │   └── 📄 page.tsx (6.56 KB)
+│   │   ├── 📁 today/
+│   │   │   └── 📄 page.tsx (12.75 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
 │   │   │       └── 📄 page.tsx (10.12 KB)
-│   │   ├── 📄 apple-icon.tsx (553 B)
+│   │   ├── 📄 apple-icon.tsx (554 B)
 │   │   ├── 📄 favicon.ico (25.32 KB)
-│   │   ├── 📄 globals.css (472 B)
-│   │   ├── 📄 layout.tsx (1.48 KB)
-│   │   ├── 📄 manifest.ts (495 B)
-│   │   └── 📄 page.tsx (300 B)
+│   │   ├── 📄 globals.css (473 B)
+│   │   ├── 📄 layout.tsx (1.56 KB)
+│   │   ├── 📄 loading.tsx (674 B)
+│   │   ├── 📄 manifest.ts (496 B)
+│   │   └── 📄 page.tsx (302 B)
 │   ├── 📁 components/
-│   │   ├── 📄 BottomNav.tsx (4.24 KB)
+│   │   ├── 📄 BottomNav.tsx (4.33 KB)
 │   │   ├── 📄 ContributionCalendar.tsx (1.34 KB)
 │   │   ├── 📄 DailyBarChart.tsx (635 B)
-│   │   ├── 📄 DeleteProjectButton.tsx (1.03 KB)
+│   │   ├── 📄 DeleteProjectButton.tsx (2.74 KB)
+│   │   ├── 📄 FeedFilterSwitcher.tsx (575 B)
 │   │   ├── 📄 FollowButton.tsx (1.11 KB)
 │   │   ├── 📄 InviteLink.tsx (823 B)
 │   │   ├── 📄 LogoutButton.tsx (454 B)
@@ -95,6 +111,7 @@
 │   │   ├── 📄 NavBar.tsx (3.09 KB)
 │   │   ├── 📄 PostActions.tsx (2.94 KB)
 │   │   ├── 📄 ProgressChart.tsx (658 B)
+│   │   ├── 📄 SplashScreen.tsx (1.22 KB)
 │   │   ├── 📄 UnreadActivityDot.tsx (2.07 KB)
 │   │   ├── 📄 UnreadChatDot.tsx (1.59 KB)
 │   │   └── 📄 WeeklyChart.tsx (763 B)
@@ -106,7 +123,7 @@
 │   │   ├── 📄 backfill.ts (2.51 KB)
 │   │   ├── 📄 insights.ts (1016 B)
 │   │   ├── 📄 supabase.ts (246 B)
-│   │   └── 📄 wordcountStats.ts (4.58 KB)
+│   │   └── 📄 wordcountStats.ts (4.66 KB)
 │   └── 📄 middleware.ts (336 B)
 ├── 📄 AGENTS.md (678 B)
 ├── 📄 CLAUDE.md (11 B)
@@ -125,6 +142,7 @@
 **Project Files:**
 
 - [📄 src/app/activity/page.tsx](#📄-src-app-activity-page-tsx)
+- [📄 src/app/api/link-preview/route.ts](#📄-src-app-api-link-preview-route-ts)
 - [📄 src/app/chat/[id]/page.tsx](#📄-src-app-chat-id-page-tsx)
 - [📄 src/app/chat/page.tsx](#📄-src-app-chat-page-tsx)
 - [📄 src/app/feed/page.tsx](#📄-src-app-feed-page-tsx)
@@ -139,6 +157,7 @@
 - [📄 src/app/post/new/page.tsx](#📄-src-app-post-new-page-tsx)
 - [📄 src/app/profile/edit/page.tsx](#📄-src-app-profile-edit-page-tsx)
 - [📄 src/app/projects/[id]/backfill/page.tsx](#📄-src-app-projects-id-backfill-page-tsx)
+- [📄 src/app/projects/[id]/edit/page.tsx](#📄-src-app-projects-id-edit-page-tsx)
 - [📄 src/app/projects/[id]/page.tsx](#📄-src-app-projects-id-page-tsx)
 - [📄 src/app/projects/log/page.tsx](#📄-src-app-projects-log-page-tsx)
 - [📄 src/app/projects/page.tsx](#📄-src-app-projects-page-tsx)
@@ -146,16 +165,22 @@
 - [📄 src/app/search/page.tsx](#📄-src-app-search-page-tsx)
 - [📄 src/app/settings/page.tsx](#📄-src-app-settings-page-tsx)
 - [📄 src/app/signup/page.tsx](#📄-src-app-signup-page-tsx)
+- [📄 src/app/sprints/[id]/page.tsx](#📄-src-app-sprints-id-page-tsx)
+- [📄 src/app/sprints/proposals/[id]/page.tsx](#📄-src-app-sprints-proposals-id-page-tsx)
+- [📄 src/app/sprints/page.tsx](#📄-src-app-sprints-page-tsx)
+- [📄 src/app/today/page.tsx](#📄-src-app-today-page-tsx)
 - [📄 src/app/u/[username]/page.tsx](#📄-src-app-u-username-page-tsx)
 - [📄 src/app/apple-icon.tsx](#📄-src-app-apple-icon-tsx)
 - [📄 src/app/globals.css](#📄-src-app-globals-css)
 - [📄 src/app/layout.tsx](#📄-src-app-layout-tsx)
+- [📄 src/app/loading.tsx](#📄-src-app-loading-tsx)
 - [📄 src/app/manifest.ts](#📄-src-app-manifest-ts)
 - [📄 src/app/page.tsx](#📄-src-app-page-tsx)
 - [📄 src/components/BottomNav.tsx](#📄-src-components-bottomnav-tsx)
 - [📄 src/components/ContributionCalendar.tsx](#📄-src-components-contributioncalendar-tsx)
 - [📄 src/components/DailyBarChart.tsx](#📄-src-components-dailybarchart-tsx)
 - [📄 src/components/DeleteProjectButton.tsx](#📄-src-components-deleteprojectbutton-tsx)
+- [📄 src/components/FeedFilterSwitcher.tsx](#📄-src-components-feedfilterswitcher-tsx)
 - [📄 src/components/FollowButton.tsx](#📄-src-components-followbutton-tsx)
 - [📄 src/components/InviteLink.tsx](#📄-src-components-invitelink-tsx)
 - [📄 src/components/LogoutButton.tsx](#📄-src-components-logoutbutton-tsx)
@@ -163,6 +188,7 @@
 - [📄 src/components/NavBar.tsx](#📄-src-components-navbar-tsx)
 - [📄 src/components/PostActions.tsx](#📄-src-components-postactions-tsx)
 - [📄 src/components/ProgressChart.tsx](#📄-src-components-progresschart-tsx)
+- [📄 src/components/SplashScreen.tsx](#📄-src-components-splashscreen-tsx)
 - [📄 src/components/UnreadActivityDot.tsx](#📄-src-components-unreadactivitydot-tsx)
 - [📄 src/components/UnreadChatDot.tsx](#📄-src-components-unreadchatdot-tsx)
 - [📄 src/components/WeeklyChart.tsx](#📄-src-components-weeklychart-tsx)
@@ -189,18 +215,18 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 66 |
-| Total Directories | 32 |
-| Text Files | 58 |
+| Total Files | 75 |
+| Total Directories | 40 |
+| Text Files | 67 |
 | Binary Files | 8 |
-| Total Size | 419.12 KB |
+| Total Size | 480.46 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 40 |
-| `.ts` | 11 |
+| `.tsx` | 48 |
+| `.ts` | 12 |
 | `.svg` | 5 |
 | `.md` | 3 |
 | `.json` | 3 |
@@ -349,6 +375,75 @@ export default async function ActivityPage() {
     </main>
   )
 }
+```
+
+---
+
+### <a id="📄-src-app-api-link-preview-route-ts"></a>📄 `src/app/api/link-preview/route.ts`
+
+**File Info:**
+- **Size**: 1.58 KB
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `src/app/api/link-preview/route.ts`
+- **Relative Path**: `src/app/api/link-preview`
+- **Created**: 2026-09-23 03:37:12 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-23 03:37:12 (Australia/Sydney / GMT+10:00)
+- **MD5**: `5dde57d0f8ec6a4eaeadb17105ce774b`
+- **SHA256**: `d82e01102e5c62c5e765315e0e5477daba028711700a32ed0a026dcda5cc69c0`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+import { NextRequest, NextResponse } from 'next/server'
+
+function extractMeta(html: string, name: string): string | null {
+  const patterns = [
+    new RegExp(`<meta[^>]+(?:property|name)=["']${name}["'][^>]+content=["']([^"']*)["']`, 'i'),
+    new RegExp(`<meta[^>]+content=["']([^"']*)["'][^>]+(?:property|name)=["']${name}["']`, 'i'),
+  ]
+  for (const pattern of patterns) {
+    const match = html.match(pattern)
+    if (match) return match[1]
+  }
+  return null
+}
+
+export async function GET(request: NextRequest) {
+  const url = request.nextUrl.searchParams.get('url')
+
+  if (!url) {
+    return NextResponse.json({ title: null, description: null, image: null })
+  }
+
+  try {
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; WritematesBot/1.0)' },
+      signal: AbortSignal.timeout(5000),
+    })
+    const html = await res.text()
+
+    let title = extractMeta(html, 'og:title') || extractMeta(html, 'twitter:title')
+    if (!title) {
+      const titleMatch = html.match(/<title[^>]*>([^<]*)<\/title>/i)
+      title = titleMatch ? titleMatch[1].trim() : null
+    }
+
+    const description = extractMeta(html, 'og:description') || extractMeta(html, 'description')
+
+    let image = extractMeta(html, 'og:image') || extractMeta(html, 'twitter:image')
+    if (image && !image.startsWith('http')) {
+      const origin = new URL(url).origin
+      image = image.startsWith('/') ? origin + image : origin + '/' + image
+    }
+
+    return NextResponse.json({ title, description, image })
+  } catch {
+    return NextResponse.json({ title: null, description: null, image: null })
+  }
+}
+
 ```
 
 ---
@@ -690,275 +785,257 @@ export default function ChatListPage() {
 ### <a id="📄-src-app-feed-page-tsx"></a>📄 `src/app/feed/page.tsx`
 
 **File Info:**
-- **Size**: 9.99 KB
+- **Size**: 9.04 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/feed/page.tsx`
 - **Relative Path**: `src/app/feed`
-- **Created**: 2026-09-06 09:35:03 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-18 05:16:04 (Australia/Sydney / GMT+10:00)
-- **MD5**: `002a8dcb8429c5b4910fbc4213bbc30b`
-- **SHA256**: `e153f2e409af0fd6cb98da2b4c41ae9c445119d5b2e6fcc073b6fbbb6bdc9ad5`
+- **Created**: 2026-09-23 03:33:14 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-23 03:43:54 (Australia/Sydney / GMT+10:00)
+- **MD5**: `c0ea5d7244f95340ddad4dc58701cdcb`
+- **SHA256**: `ae54c17b1c84f4dc6fa4036a8c646bbe0feb2f8d685b3bd3577ef2d11dd6802d`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```typescript
-'use client'
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
+import Link from 'next/link'
+import { PenLine, ExternalLink } from 'lucide-react'
+import PostActions from '@/components/PostActions'
+import FeedFilterSwitcher from '@/components/FeedFilterSwitcher'
 
-import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
-import {
-  buildDailyCumulative,
-  buildDailyDeltas,
-  computeProjectedFinishDetails,
-  computeStreak,
-} from '@/lib/wordcountStats'
-import { computeInsight, type Insight } from '@/lib/insights'
-import WeeklyChart from '@/components/WeeklyChart'
+export default async function FeedPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ view?: string }>
+}) {
+  const { view: viewParam } = await searchParams
+  const view = viewParam === 'groups' ? 'groups' : 'public'
 
-type Project = {
-  id: string
-  title: string
-  project_type: string
-  draft_stage: string
-  metric_unit: string
-  goal_word_count: number | null
-  created_at: string
-}
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login')
 
-const DRAFT_STAGE_LABELS: Record<string, string> = {
-  first_draft: 'first draft',
-  editing: 'edit',
-  revision_2: 'second revision',
-  revision_3_plus: 'revision',
-}
+  let posts: any[] = []
+  let inNoGroups = false
 
-export default function TodayPage() {
-  const [projects, setProjects] = useState<Project[]>([])
-  const [selectedId, setSelectedId] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [bannerDismissed, setBannerDismissed] = useState(false)
+  if (view === 'groups') {
+    const { data: myGroups } = await supabase
+      .from('group_members')
+      .select('group_id')
+      .eq('user_id', user.id)
 
-  const [currentTotal, setCurrentTotal] = useState(0)
-  const [percent, setPercent] = useState<number | null>(null)
-  const [todayCount, setTodayCount] = useState(0)
-  const [weekCount, setWeekCount] = useState(0)
-  const [avgPerWritingDay, setAvgPerWritingDay] = useState(0)
-  const [finishDateLabel, setFinishDateLabel] = useState<string | null>(null)
-  const [daysRemaining, setDaysRemaining] = useState<number | null>(null)
-  const [writingDaysPerWeek, setWritingDaysPerWeek] = useState(0)
-  const [daysSinceStart, setDaysSinceStart] = useState(0)
-  const [chartData, setChartData] = useState<{ day: string; words: number }[]>([])
-  const [chartAverage, setChartAverage] = useState(0)
-  const [insight, setInsight] = useState<Insight | null>(null)
+    const groupIds = (myGroups || []).map((g) => g.group_id)
 
-  const router = useRouter()
+    if (groupIds.length === 0) {
+      inNoGroups = true
+    } else {
+      const { data: members } = await supabase
+        .from('group_members')
+        .select('user_id')
+        .in('group_id', groupIds)
 
-  useEffect(() => {
-    async function loadProjects() {
-      const supabase = createClient()
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) {
-        router.push('/login')
-        return
-      }
+      const memberIds = Array.from(new Set((members || []).map((m) => m.user_id)))
+
       const { data } = await supabase
-        .from('projects')
-        .select('*')
-        .order('created_at', { ascending: false })
+        .from('posts')
+        .select('*, profiles(username, display_name, avatar_url), projects(title)')
+        .in('user_id', memberIds)
+        .order('updated_at', { ascending: false })
 
-      setProjects(data || [])
-      if (data && data.length > 0) setSelectedId(data[0].id)
-      setLoading(false)
+      posts = data || []
     }
-    loadProjects()
-  }, [router])
+  } else {
+    const { data } = await supabase
+      .from('posts')
+      .select('*, profiles(username, display_name, avatar_url), projects(title)')
+      .order('updated_at', { ascending: false })
 
-  useEffect(() => {
-    if (!selectedId) return
-
-    async function loadStats() {
-      const supabase = createClient()
-      const project = projects.find((p) => p.id === selectedId)
-      if (!project) return
-
-      const { data: snapshots } = await supabase
-        .from('wordcount_snapshots')
-        .select('word_count, recorded_at')
-        .eq('project_id', selectedId)
-        .order('recorded_at', { ascending: true })
-
-      const dailyMap = buildDailyCumulative(snapshots || [])
-      const dailyDeltas = buildDailyDeltas(dailyMap)
-
-      const values = Array.from(dailyMap.values())
-      const total = values.length > 0 ? values[values.length - 1] : 0
-      setCurrentTotal(total)
-      setPercent(project.goal_word_count ? Math.min(100, Math.round((total / project.goal_word_count) * 100)) : null)
-
-      const todayStr = new Date().toISOString().split('T')[0]
-      setTodayCount(dailyDeltas.get(todayStr) || 0)
-
-      const now = new Date()
-      let week = 0
-      for (const [dateStr, words] of dailyDeltas.entries()) {
-        const diffDays = Math.floor((now.getTime() - new Date(dateStr).getTime()) / 86400000)
-        if (diffDays >= 0 && diffDays < 7) week += words
-      }
-      setWeekCount(week)
-
-      const writingDeltas = Array.from(dailyDeltas.values()).filter((w) => w > 0)
-      const avg = writingDeltas.length > 0 ? writingDeltas.reduce((a, b) => a + b, 0) / writingDeltas.length : 0
-      setAvgPerWritingDay(avg)
-
-      const details = computeProjectedFinishDetails(dailyDeltas, total, project.goal_word_count)
-      setFinishDateLabel(details.finishDateLabel)
-      setDaysRemaining(details.daysRemaining)
-      setWritingDaysPerWeek(details.writingDaysPerWeek)
-
-      const snapshotDates = Array.from(dailyMap.keys()).sort()
-      const earliestSnapshotDate = snapshotDates.length > 0 ? new Date(snapshotDates[0]) : null
-      const created = new Date(project.created_at)
-      const startDate = earliestSnapshotDate && earliestSnapshotDate < created ? earliestSnapshotDate : created
-      setDaysSinceStart(Math.max(1, Math.floor((now.getTime() - startDate.getTime()) / 86400000) + 1))
-
-      const days: { day: string; words: number }[] = []
-      for (let i = 6; i >= 0; i--) {
-        const d = new Date()
-        d.setDate(d.getDate() - i)
-        const dateStr = d.toISOString().split('T')[0]
-        const label = d.toLocaleDateString(undefined, { weekday: 'short' })
-        days.push({ day: label, words: dailyDeltas.get(dateStr) || 0 })
-      }
-      setChartData(days)
-      setChartAverage(days.reduce((sum, d) => sum + d.words, 0) / 7)
-
-      setInsight(computeInsight(avg, details.daysRemaining))
-      setBannerDismissed(false)
-    }
-    loadStats()
-  }, [selectedId, projects])
-
-  if (loading) return <main className="max-w-2xl mx-auto px-6 py-12">Loading...</main>
-
-  if (projects.length === 0) {
-    return (
-      <main className="max-w-2xl mx-auto px-6 py-12" style={{ fontFamily: 'var(--font-sans)' }}>
-        <h1 className="text-3xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-          Today
-        </h1>
-        <p style={{ color: 'var(--color-ink-muted)' }}>
-          Create your first project using the + button below to see your progress here.
-        </p>
-      </main>
-    )
+    posts = data || []
   }
 
-  const project = projects.find((p) => p.id === selectedId)
-  const unit = project?.metric_unit || 'words'
-  const stageLabel = DRAFT_STAGE_LABELS[project?.draft_stage || 'first_draft'] || 'draft'
+  const { data: myLikes } = await supabase
+    .from('likes')
+    .select('post_id')
+    .eq('user_id', user.id)
+
+  const likedPostIds = new Set((myLikes || []).map((l) => l.post_id))
+
+  const { data: allLikes } = await supabase.from('likes').select('post_id')
+  const likeCounts = new Map<string, number>()
+  for (const like of allLikes || []) {
+    likeCounts.set(like.post_id, (likeCounts.get(like.post_id) || 0) + 1)
+  }
 
   return (
-    <main className="max-w-2xl mx-auto px-6 py-12" style={{ fontFamily: 'var(--font-sans)' }}>
-      {projects.length > 1 && (
-        <select
-          value={selectedId || ''}
-          onChange={(e) => setSelectedId(e.target.value)}
-          className="mb-4 text-sm bg-transparent border-b py-1 focus:outline-none"
-          style={{ borderColor: 'var(--color-rule)', color: 'var(--color-ink-muted)' }}
-        >
-          {projects.map((p) => (
-            <option key={p.id} value={p.id}>{p.title}</option>
-          ))}
-        </select>
-      )}
-
-      {!bannerDismissed && (
-        <div
-          className="rounded-lg mb-6 relative"
-          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
-        >
-          <button
-            onClick={() => setBannerDismissed(true)}
-            aria-label="Dismiss"
-            className="absolute text-sm"
-            style={{ top: 10, right: 12, color: 'var(--color-ink-muted)' }}
-          >
-            ✕
-          </button>
-          {finishDateLabel ? (
-            <>
-              <p className="text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-                Keep it up. Your projected finish date for your {stageLabel} of {project?.title} is
-              </p>
-              <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
-                {finishDateLabel}
-              </p>
-            </>
-          ) : (
-            <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
-              Log a few {unit} to see your projected finish date.
-            </p>
-          )}
-        </div>
-      )}
-
-      <div className="grid grid-cols-2 gap-3 mb-6">
-        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
-          <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Time to completion</p>
-          <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-            {daysRemaining !== null ? `${daysRemaining} days` : '—'}
-          </p>
-        </div>
-        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
-          <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Today</p>
-          <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-            {todayCount.toLocaleString()} {unit}
-          </p>
-        </div>
-        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
-          <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>This week</p>
-          <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-            {weekCount.toLocaleString()} {unit}
-          </p>
-        </div>
-        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
-          <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Daily average</p>
-          <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-            {Math.round(avgPerWritingDay).toLocaleString()} {unit}
-          </p>
-        </div>
+    <main className="max-w-2xl mx-auto px-6 py-12">
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-3xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          {view === 'groups' ? 'Groups Feed' : 'Public Feed'}
+        </h1>
+        <FeedFilterSwitcher initialView={view} />
       </div>
 
-      {chartData.some((d) => d.words > 0) && (
-        <div className="mb-6">
-          <WeeklyChart data={chartData} average={chartAverage} />
-        </div>
+      {inNoGroups && (
+        <p style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-sans)' }}>
+          You&apos;re not in any groups yet — <Link href="/groups">join or create one</Link> to see their feed.
+        </p>
       )}
 
-      <p className="text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-        You&apos;ve been working on {project?.title} for {daysSinceStart} day{daysSinceStart === 1 ? '' : 's'}.
-      </p>
-      <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>
-        You write {writingDaysPerWeek > 0 ? writingDaysPerWeek : 0} day{writingDaysPerWeek === 1 ? '' : 's'} a week on average.
-      </p>
-
-      {insight && (
-        <div
-          className="rounded-lg flex items-start gap-3"
-          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
-        >
-          <div className="flex-1">
-            <p className="text-sm mb-1" style={{ fontWeight: 600, color: 'var(--color-accent)' }}>{insight.title}</p>
-            <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>{insight.body}</p>
-          </div>
-        </div>
+      {!inNoGroups && posts.length === 0 && (
+        <p style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-sans)' }}>
+          No posts yet.
+        </p>
       )}
+
+      <div>
+        {posts.map((post) => {
+          const isVideo = Boolean(post.media_url && post.media_url.match(/\.(mp4|webm|mov)$/i))
+          const authorName = post.profiles?.display_name || post.profiles?.username || '?'
+          let linkDomain = ''
+          if (post.link_url) {
+            try {
+              linkDomain = new URL(post.link_url).hostname.replace('www.', '')
+            } catch {
+              linkDomain = post.link_url
+            }
+          }
+
+          return (
+            <article
+              key={post.id}
+              className="mb-6 overflow-hidden"
+              style={{ border: '1px solid var(--color-rule)', borderRadius: 14, backgroundColor: 'var(--color-paper)' }}
+            >
+              {post.media_url && isVideo && (
+                <video
+                  src={post.media_url}
+                  controls
+                  className="w-full"
+                  style={{ maxHeight: 420, objectFit: 'cover', display: 'block' }}
+                />
+              )}
+
+              {post.media_url && !isVideo && (
+                <img
+                  src={post.media_url}
+                  alt=""
+                  className="w-full"
+                  style={{ maxHeight: 420, objectFit: 'cover', display: 'block' }}
+                />
+              )}
+
+              <div className="p-5" style={{ fontFamily: 'var(--font-sans)' }}>
+                <div className="flex items-center gap-3 mb-3">
+                  {post.profiles?.avatar_url ? (
+                    <img src={post.profiles.avatar_url} alt="" className="w-9 h-9 rounded-full object-cover" />
+                  ) : (
+                    <div
+                      className="w-9 h-9 rounded-full flex items-center justify-center text-sm"
+                      style={{ backgroundColor: 'var(--color-paper-raised)', color: 'var(--color-ink-muted)' }}
+                    >
+                      {authorName.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <Link href={`/u/${post.profiles?.username}`} className="text-sm font-semibold block" style={{ color: 'var(--color-ink)' }}>
+                      {authorName}
+                    </Link>
+                    <p className="text-xs" style={{ color: 'var(--color-ink-muted)' }}>
+                      {new Date(post.updated_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                      {post.projects?.title ? ' · ' + post.projects.title : ''}
+                    </p>
+                  </div>
+                </div>
+
+                {post.type === 'wordcount' && (
+                  <div
+                    className="flex items-center gap-3 rounded-lg mb-1"
+                    style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem 1rem' }}
+                  >
+                    <PenLine size={18} style={{ color: 'var(--color-accent)' }} />
+                    <p className="text-base">
+                      Wrote <strong style={{ color: 'var(--color-accent)' }}>{post.word_count?.toLocaleString()}</strong> words today
+                    </p>
+                  </div>
+                )}
+
+                {post.type === 'snippet' && post.content && (
+                  <p style={{ whiteSpace: 'pre-wrap', fontFamily: 'var(--font-serif)', fontSize: '1.15rem', lineHeight: 1.5 }}>
+                    {post.content}
+                  </p>
+                )}
+
+                {post.type === 'link' && post.link_url && (
+                  <div>
+                    {post.content && <p className="mb-3">{post.content}</p>}
+                    
+                      href={post.link_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block overflow-hidden"
+                      style={{ border: '1px solid var(--color-rule)', borderRadius: 10 }}
+                    >
+                      {post.link_image_url && (
+                        <img
+                          src={post.link_image_url}
+                          alt=""
+                          className="w-full"
+                          style={{ maxHeight: 260, objectFit: 'cover', display: 'block' }}
+                        />
+                      )}
+                      <div className="p-3">
+                        {post.link_title ? (
+                          <>
+                            <p className="text-sm font-semibold mb-1" style={{ color: 'var(--color-ink)' }}>
+                              {post.link_title}
+                            </p>
+                            {post.link_description && (
+                              <p
+                                className="text-sm mb-2"
+                                style={{
+                                  color: 'var(--color-ink-muted)',
+                                  display: '-webkit-box',
+                                  WebkitLineClamp: 2,
+                                  WebkitBoxOrient: 'vertical',
+                                  overflow: 'hidden',
+                                }}
+                              >
+                                {post.link_description}
+                              </p>
+                            )}
+                          </>
+                        ) : (
+                          <p className="text-sm mb-2" style={{ color: 'var(--color-ink)' }}>{post.link_url}</p>
+                        )}
+                        <div className="flex items-center gap-1 text-xs" style={{ color: 'var(--color-ink-muted)' }}>
+                          <ExternalLink size={12} />
+                          <span>{linkDomain}</span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                )}
+
+                <div className="mt-3 pt-3" style={{ borderTop: '1px solid var(--color-rule)' }}>
+                  <PostActions
+                    postId={post.id}
+                    initialLiked={likedPostIds.has(post.id)}
+                    initialLikeCount={likeCounts.get(post.id) || 0}
+                    isOwner={post.user_id === user.id}
+                  />
+                </div>
+              </div>
+            </article>
+          )
+        })}
+      </div>
     </main>
   )
 }
+
 ```
 
 ---
@@ -1257,15 +1334,15 @@ export default function GroupsPage() {
 ### <a id="📄-src-app-icon-192-route-tsx"></a>📄 `src/app/icon-192/route.tsx`
 
 **File Info:**
-- **Size**: 478 B
+- **Size**: 479 B
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/icon-192/route.tsx`
 - **Relative Path**: `src/app/icon-192`
 - **Created**: 2026-09-11 10:25:10 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 10:25:35 (Australia/Sydney / GMT+10:00)
-- **MD5**: `74b4fc4df3308947f2ac991da94819d4`
-- **SHA256**: `e9696420793435313e2a584e1bfda265ef1bc9f38b853d65a8df36e009225552`
+- **Modified**: 2026-09-21 04:40:52 (Australia/Sydney / GMT+10:00)
+- **MD5**: `599bbbd6229bad2494fe12557a6e4285`
+- **SHA256**: `67005267441b62ee4a577eb929fcb0ccdc269843f73d575feffeb9645b6c010c`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1279,13 +1356,13 @@ export async function GET() {
       <div
         style={{
           fontSize: 100,
-          background: '#33503e',
+          background: '#1747e0',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#fbfaf7',
+          color: '#fffdf6',
           fontWeight: 700,
         }}
       >
@@ -1295,6 +1372,7 @@ export async function GET() {
     { width: 192, height: 192 }
   )
 }
+
 ```
 
 ---
@@ -1302,15 +1380,15 @@ export async function GET() {
 ### <a id="📄-src-app-icon-512-route-tsx"></a>📄 `src/app/icon-512/route.tsx`
 
 **File Info:**
-- **Size**: 478 B
+- **Size**: 479 B
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/icon-512/route.tsx`
 - **Relative Path**: `src/app/icon-512`
 - **Created**: 2026-09-11 10:25:54 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 10:26:20 (Australia/Sydney / GMT+10:00)
-- **MD5**: `34828cf2aaf42b812908b249fc9afe65`
-- **SHA256**: `c9a7111dc70dbcfd927f12de843aa1b195e9f08cc237d23f333f77a8f753a1d7`
+- **Modified**: 2026-09-21 04:40:52 (Australia/Sydney / GMT+10:00)
+- **MD5**: `bfc4a5b8ec956a25d5bd07c125d07994`
+- **SHA256**: `48e08d929dbe5e7a52b43aca53dd8163dd408b7f7c9a807c7d11d8736b4119b4`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1324,13 +1402,13 @@ export async function GET() {
       <div
         style={{
           fontSize: 280,
-          background: '#33503e',
+          background: '#1747e0',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#fbfaf7',
+          color: '#fffdf6',
           fontWeight: 700,
         }}
       >
@@ -1340,6 +1418,7 @@ export async function GET() {
     { width: 512, height: 512 }
   )
 }
+
 ```
 
 ---
@@ -1605,15 +1684,15 @@ export default function OnboardingNewProjectPage() {
 ### <a id="📄-src-app-onboarding-page-tsx"></a>📄 `src/app/onboarding/page.tsx`
 
 **File Info:**
-- **Size**: 1.15 KB
+- **Size**: 1.16 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/onboarding/page.tsx`
 - **Relative Path**: `src/app/onboarding`
 - **Created**: 2026-09-20 23:06:00 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-20 23:06:00 (Australia/Sydney / GMT+10:00)
-- **MD5**: `00d0fea6eeac1f79a9bc306fbcd0427b`
-- **SHA256**: `090e58645f9bc48c948550764c3d0d5589e662a205df5482dab494ef15d75d77`
+- **Modified**: 2026-09-21 03:33:28 (Australia/Sydney / GMT+10:00)
+- **MD5**: `74aec1ac436da529c0dff6917c80b4a4`
+- **SHA256**: `d8f67f0858364a81be0295a8af159bf370e0012ee9f482665ae0661a5403a66e`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1643,7 +1722,7 @@ export default function OnboardingWelcomePage() {
           Yes, let&apos;s do it
         </button>
         <button
-          onClick={() => router.push('/feed')}
+          onClick={() => router.push('/today')}
           className="px-5 py-3 text-sm"
           style={{ backgroundColor: 'transparent', color: 'var(--color-ink-muted)', border: '1px solid var(--color-rule)' }}
         >
@@ -1745,15 +1824,15 @@ export default async function PostPage({
 ### <a id="📄-src-app-post-new-page-tsx"></a>📄 `src/app/post/new/page.tsx`
 
 **File Info:**
-- **Size**: 6.04 KB
+- **Size**: 6.7 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/post/new/page.tsx`
 - **Relative Path**: `src/app/post/new`
 - **Created**: 2026-09-06 03:15:12 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-07 07:43:28 (Australia/Sydney / GMT+10:00)
-- **MD5**: `1078906e61ddbe6b4fefae33712237a9`
-- **SHA256**: `1064f21cc15ca57fdc582cd70cd7b36a06f55cbc4c97d14289eeab6bbbf3ed5c`
+- **Modified**: 2026-09-23 03:38:05 (Australia/Sydney / GMT+10:00)
+- **MD5**: `fb06ccfcfb767a06ab2aeee493978491`
+- **SHA256**: `b9eb8d5df0bd024b2bdea3bc601bae6faf0c4772829f27a09b70d4a936b32123`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1825,6 +1904,22 @@ export default function NewPostPage() {
       mediaUrl = urlData.publicUrl
     }
 
+    let linkTitle: string | null = null
+    let linkDescription: string | null = null
+    let linkImageUrl: string | null = null
+
+    if (linkUrl) {
+      try {
+        const previewRes = await fetch(`/api/link-preview?url=${encodeURIComponent(linkUrl)}`)
+        const preview = await previewRes.json()
+        linkTitle = preview.title || null
+        linkDescription = preview.description || null
+        linkImageUrl = preview.image || null
+      } catch {
+        // preview fetch failed — post still goes through with just the raw link
+      }
+    }
+
     const { data: newPost, error: postError } = await supabase
       .from('posts')
       .insert({
@@ -1832,6 +1927,9 @@ export default function NewPostPage() {
         type: linkUrl ? 'link' : 'snippet',
         content: content || null,
         link_url: linkUrl || null,
+        link_title: linkTitle,
+        link_description: linkDescription,
+        link_image_url: linkImageUrl,
         media_url: mediaUrl,
       })
       .select()
@@ -1947,6 +2045,7 @@ export default function NewPostPage() {
     </main>
   )
 }
+
 ```
 
 ---
@@ -2433,18 +2532,221 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
 
 ---
 
+### <a id="📄-src-app-projects-id-edit-page-tsx"></a>📄 `src/app/projects/[id]/edit/page.tsx`
+
+**File Info:**
+- **Size**: 5.95 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/projects/[id]/edit/page.tsx`
+- **Relative Path**: `src/app/projects/[id]/edit`
+- **Created**: 2026-09-20 23:27:52 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-20 23:27:52 (Australia/Sydney / GMT+10:00)
+- **MD5**: `739558d43ff84fe83e904fe51935bd73`
+- **SHA256**: `f1d1e4331d0a72a98f40231897e2ebe358da588760b5719e8160bfbd26be27ce`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState, use } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+
+const PROJECT_TYPES = [
+  { value: 'book', label: 'Book' },
+  { value: 'screenplay', label: 'Screenplay' },
+  { value: 'article', label: 'Article' },
+  { value: 'short_story', label: 'Short story' },
+  { value: 'thesis', label: 'Thesis' },
+  { value: 'other', label: 'Other' },
+]
+
+const DRAFT_STAGES = [
+  { value: 'first_draft', label: 'First draft' },
+  { value: 'editing', label: 'Editing' },
+  { value: 'revision_2', label: 'Second revision' },
+  { value: 'revision_3_plus', label: 'Third revision or later' },
+]
+
+export default function EditProjectPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = use(params)
+  const [title, setTitle] = useState('')
+  const [projectType, setProjectType] = useState('book')
+  const [draftStage, setDraftStage] = useState('first_draft')
+  const [metricUnit, setMetricUnit] = useState('words')
+  const [goalWordCount, setGoalWordCount] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    async function loadProject() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        router.push('/login')
+        return
+      }
+      const { data: project } = await supabase
+        .from('projects')
+        .select('*')
+        .eq('id', id)
+        .single()
+
+      if (project) {
+        setTitle(project.title || '')
+        setProjectType(project.project_type || 'book')
+        setDraftStage(project.draft_stage || 'first_draft')
+        setMetricUnit(project.metric_unit || 'words')
+        setGoalWordCount(project.goal_word_count ? String(project.goal_word_count) : '')
+      }
+      setLoading(false)
+    }
+    loadProject()
+  }, [id, router])
+
+  async function handleSave(e: React.FormEvent) {
+    e.preventDefault()
+    setSaving(true)
+    setError(null)
+
+    const supabase = createClient()
+    const { error } = await supabase
+      .from('projects')
+      .update({
+        title,
+        project_type: projectType,
+        draft_stage: draftStage,
+        metric_unit: metricUnit,
+        goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
+      })
+      .eq('id', id)
+
+    setSaving(false)
+
+    if (error) {
+      setError(error.message)
+    } else {
+      router.push(`/projects/${id}`)
+      router.refresh()
+    }
+  }
+
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+      <h1 className="text-2xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Edit project
+      </h1>
+
+      <form onSubmit={handleSave}>
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project title</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+
+        <div className="mb-4 grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project type</label>
+            <select
+              value={projectType}
+              onChange={(e) => setProjectType(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {PROJECT_TYPES.map((t) => (
+                <option key={t.value} value={t.value}>{t.label}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Stage</label>
+            <select
+              value={draftStage}
+              onChange={(e) => setDraftStage(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {DRAFT_STAGES.map((s) => (
+                <option key={s.value} value={s.value}>{s.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Tracking unit</label>
+          <select
+            value={metricUnit}
+            onChange={(e) => setMetricUnit(e.target.value)}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          >
+            <option value="words">Words</option>
+            <option value="pages">Pages</option>
+          </select>
+        </div>
+
+        <div className="mb-6">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Goal ({metricUnit === 'words' ? 'word count' : 'page count'}, optional)
+          </label>
+          <input
+            type="number"
+            value={goalWordCount}
+            onChange={(e) => setGoalWordCount(e.target.value)}
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+
+        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+
+        <button
+          type="submit"
+          disabled={saving}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          {saving ? 'Saving...' : 'Save changes'}
+        </button>
+      </form>
+    </main>
+  )
+}
+
+```
+
+---
+
 ### <a id="📄-src-app-projects-id-page-tsx"></a>📄 `src/app/projects/[id]/page.tsx`
 
 **File Info:**
-- **Size**: 5 KB
+- **Size**: 5.31 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/[id]/page.tsx`
 - **Relative Path**: `src/app/projects/[id]`
 - **Created**: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-20 23:17:45 (Australia/Sydney / GMT+10:00)
-- **MD5**: `fb63efa3a0959107cc085c2484b44ecb`
-- **SHA256**: `4818f6bc6861805f61a52892f03f1745a12d8c8a154e2e9c0b9fa89760f41a8b`
+- **Modified**: 2026-09-20 23:41:07 (Australia/Sydney / GMT+10:00)
+- **MD5**: `6595b0ab51a952b3dac367f0c679537d`
+- **SHA256**: `56dff21e1943e045e6f8e984ab91272fc4be945879a3e63bcc20a233e21f1c0a`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2453,6 +2755,7 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
 import { createClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
+import { Pencil, History } from 'lucide-react'
 import ProgressChart from '@/components/ProgressChart'
 import DailyBarChart from '@/components/DailyBarChart'
 import ContributionCalendar from '@/components/ContributionCalendar'
@@ -2521,11 +2824,20 @@ export default async function ProjectDetailPage({
         </h1>
         <div className="flex items-center gap-4">
           <Link
-            href={`/projects/${id}/backfill`}
-            className="text-sm"
-            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
+            href={`/projects/${id}/edit`}
+            aria-label="Edit project"
+            title="Edit project"
+            style={{ color: 'var(--color-ink-muted)' }}
           >
-            Backfill past progress
+            <Pencil size={17} />
+          </Link>
+          <Link
+            href={`/projects/${id}/backfill`}
+            aria-label="Backfill past progress"
+            title="Backfill past progress"
+            style={{ color: 'var(--color-ink-muted)' }}
+          >
+            <History size={17} />
           </Link>
           <DeleteProjectButton projectId={id} title={project.title} />
         </div>
@@ -2605,15 +2917,15 @@ export default async function ProjectDetailPage({
 ### <a id="📄-src-app-projects-log-page-tsx"></a>📄 `src/app/projects/log/page.tsx`
 
 **File Info:**
-- **Size**: 4.29 KB
+- **Size**: 11.51 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/log/page.tsx`
 - **Relative Path**: `src/app/projects/log`
 - **Created**: 2026-09-06 00:08:45 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:51:50 (Australia/Sydney / GMT+10:00)
-- **MD5**: `9c3b9856d0e58deda5250ddc1622d30c`
-- **SHA256**: `4fba45a955c78a88f189b41561eb75db9cfc66293853366780565e85b958cd32`
+- **Modified**: 2026-09-23 03:21:25 (Australia/Sydney / GMT+10:00)
+- **MD5**: `8e7713ff27859dceef882aea5511ed86`
+- **SHA256**: `16817f9cd961ad0a445189bdb0707a5faafdbb0d8f4d0743d67eee162d5ddb9d`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2624,19 +2936,30 @@ export default async function ProjectDetailPage({
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import { buildDailyCumulative, buildDailyDeltas } from '@/lib/wordcountStats'
+import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
 
 type Project = {
   id: string
   title: string
+  metric_unit: string
 }
 
 export default function LogWordcountPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [projectId, setProjectId] = useState('')
-  const [wordCount, setWordCount] = useState('')
+  const [currentTotal, setCurrentTotal] = useState(0)
+  const [delta, setDelta] = useState('')
   const [loading, setLoading] = useState(true)
+  const [loadingTotal, setLoadingTotal] = useState(false)
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
+
+  const [showMultiDay, setShowMultiDay] = useState(false)
+  const [multiDayText, setMultiDayText] = useState('')
+  const [parsedDays, setParsedDays] = useState<BackfillEntry[]>([])
+  const [savingMulti, setSavingMulti] = useState(false)
+
   const router = useRouter()
 
   useEffect(() => {
@@ -2647,13 +2970,59 @@ export default function LogWordcountPage() {
         router.push('/login')
         return
       }
-      const { data } = await supabase.from('projects').select('id, title')
+      const { data } = await supabase.from('projects').select('id, title, metric_unit')
       setProjects(data || [])
       if (data && data.length > 0) setProjectId(data[0].id)
       setLoading(false)
     }
     loadProjects()
   }, [router])
+
+  useEffect(() => {
+    if (!projectId) return
+    async function loadCurrentTotal() {
+      setLoadingTotal(true)
+      const supabase = createClient()
+      const { data: snapshots } = await supabase
+        .from('wordcount_snapshots')
+        .select('word_count, recorded_at')
+        .eq('project_id', projectId)
+        .order('recorded_at', { ascending: true })
+
+      const dailyMap = buildDailyCumulative(snapshots || [])
+      const values = Array.from(dailyMap.values())
+      setCurrentTotal(values.length > 0 ? values[values.length - 1] : 0)
+      setLoadingTotal(false)
+    }
+    loadCurrentTotal()
+  }, [projectId])
+
+  async function refreshTodaysPost(supabase: ReturnType<typeof createClient>, userId: string) {
+    const today = new Date().toISOString().split('T')[0]
+    const { data: allSnapshots } = await supabase
+      .from('wordcount_snapshots')
+      .select('word_count, recorded_at')
+      .eq('project_id', projectId)
+      .order('recorded_at', { ascending: true })
+
+    const dailyMap = buildDailyCumulative(allSnapshots || [])
+    const dailyDeltas = buildDailyDeltas(dailyMap)
+    const todaysTotal = dailyDeltas.get(today) || 0
+
+    if (todaysTotal > 0) {
+      await supabase.from('posts').upsert(
+        {
+          user_id: userId,
+          project_id: projectId,
+          type: 'wordcount',
+          word_count: todaysTotal,
+          entry_date: today,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: 'user_id,project_id,entry_date,type' }
+      )
+    }
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -2664,13 +3033,19 @@ export default function LogWordcountPage() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
-    const wordCountNum = parseInt(wordCount)
-    const today = new Date().toISOString().split('T')[0]
+    const deltaNum = parseInt(delta.replace(/,/g, ''), 10)
+    if (isNaN(deltaNum)) {
+      setSaving(false)
+      setMessage('Enter a number')
+      return
+    }
+
+    const newTotal = Math.max(0, currentTotal + deltaNum)
 
     const { error: snapshotError } = await supabase.from('wordcount_snapshots').insert({
       project_id: projectId,
       user_id: user.id,
-      word_count: wordCountNum,
+      word_count: newTotal,
       source: 'manual',
     })
 
@@ -2680,26 +3055,69 @@ export default function LogWordcountPage() {
       return
     }
 
-    const { error: postError } = await supabase.from('posts').upsert(
-      {
-        user_id: user.id,
-        project_id: projectId,
-        type: 'wordcount',
-        word_count: wordCountNum,
-        entry_date: today,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: 'user_id,project_id,entry_date,type' }
-    )
+    await refreshTodaysPost(supabase, user.id)
 
     setSaving(false)
+    router.push('/today')
+    router.refresh()
+  }
 
-    if (postError) {
-      setMessage(`Snapshot saved, but post update failed: ${postError.message}`)
-    } else {
-      setMessage('Wordcount logged and today\'s post updated!')
-      setWordCount('')
+  function handleParseMultiDay() {
+    setParsedDays(parseBackfillText(multiDayText))
+  }
+
+  async function handleSaveMultiDay() {
+    if (parsedDays.length === 0) return
+    setSavingMulti(true)
+    setMessage(null)
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const sorted = [...parsedDays].sort((a, b) => (a.date < b.date ? -1 : 1))
+    let running = currentTotal
+    const cumulative: { date: string; total: number }[] = []
+    for (const entry of sorted) {
+      running += entry.delta
+      cumulative.push({ date: entry.date, total: Math.max(0, running) })
     }
+
+    const { data: existing } = await supabase
+      .from('wordcount_snapshots')
+      .select('id, recorded_at')
+      .eq('project_id', projectId)
+
+    const dateSet = new Set(cumulative.map((c) => c.date))
+    const idsToDelete = (existing || [])
+      .filter((row) => dateSet.has(new Date(row.recorded_at).toISOString().split('T')[0]))
+      .map((row) => row.id)
+
+    if (idsToDelete.length > 0) {
+      await supabase.from('wordcount_snapshots').delete().in('id', idsToDelete)
+    }
+
+    const rows = cumulative.map((c) => ({
+      project_id: projectId,
+      user_id: user.id,
+      word_count: c.total,
+      source: 'manual',
+      recorded_at: `${c.date}T12:00:00`,
+    }))
+
+    const { error } = await supabase.from('wordcount_snapshots').insert(rows)
+
+    if (error) {
+      setSavingMulti(false)
+      setMessage(error.message)
+      return
+    }
+
+    await refreshTodaysPost(supabase, user.id)
+
+    setSavingMulti(false)
+    router.push('/today')
+    router.refresh()
   }
 
   if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
@@ -2708,55 +3126,160 @@ export default function LogWordcountPage() {
     return (
       <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
         <p style={{ color: 'var(--color-ink-muted)' }}>
-          You need to create a project first before logging a wordcount.
+          You need to create a project first before logging your writing.
         </p>
       </main>
     )
   }
 
+  const project = projects.find((p) => p.id === projectId)
+  const unit = project?.metric_unit || 'words'
+
   return (
-    <main className="max-w-md mx-auto px-6 py-16">
-      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        Log your wordcount
+    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+      <h1 className="text-3xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Add today&apos;s words
       </h1>
-      <form onSubmit={handleSubmit} style={{ fontFamily: 'var(--font-sans)' }}>
-        <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project</label>
-          <select
-            value={projectId}
-            onChange={(e) => setProjectId(e.target.value)}
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          >
-            {projects.map((p) => (
-              <option key={p.id} value={p.id}>{p.title}</option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-6">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Current total word count</label>
-          <input
-            type="number"
-            value={wordCount}
-            onChange={(e) => setWordCount(e.target.value)}
-            required
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        {message && <p className="mb-4 text-sm" style={{ color: 'var(--color-ink-muted)' }}>{message}</p>}
-        <button
-          type="submit"
-          disabled={saving}
-          className="px-5 py-2 text-sm"
-          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+      <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>
+        Tell us how much you wrote — we&apos;ll add it to your total.
+      </p>
+
+      <div className="mb-5">
+        <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Project</label>
+        <select
+          value={projectId}
+          onChange={(e) => setProjectId(e.target.value)}
+          className="w-full py-2 border-b bg-transparent focus:outline-none"
+          style={{ borderColor: 'var(--color-rule)' }}
         >
-          {saving ? 'Saving...' : 'Log wordcount'}
-        </button>
-      </form>
+          {projects.map((p) => (
+            <option key={p.id} value={p.id}>{p.title}</option>
+          ))}
+        </select>
+      </div>
+
+      <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+        Current total: {loadingTotal ? '...' : <strong style={{ color: 'var(--color-ink)' }}>{currentTotal.toLocaleString()} {unit}</strong>}
+      </p>
+
+      {!showMultiDay ? (
+        <>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-2">
+              <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+                How many {unit} did you write today?
+              </label>
+              <input
+                type="number"
+                value={delta}
+                onChange={(e) => setDelta(e.target.value)}
+                required
+                placeholder="e.g. 500"
+                className="w-full py-2 border-b bg-transparent focus:outline-none"
+                style={{ borderColor: 'var(--color-rule)' }}
+              />
+            </div>
+            <p className="text-xs mb-6" style={{ color: 'var(--color-ink-muted)' }}>
+              Cut some text instead? Enter a negative number.
+            </p>
+
+            {message && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{message}</p>}
+            <button
+              type="submit"
+              disabled={saving || loadingTotal}
+              className="px-5 py-2 text-sm"
+              style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+            >
+              {saving ? 'Saving...' : 'Add to total'}
+            </button>
+          </form>
+
+          <button
+            onClick={() => setShowMultiDay(true)}
+            className="text-sm mt-6"
+            style={{ color: 'var(--color-accent)' }}
+          >
+            Missed a few days? Add multiple days at once
+          </button>
+        </>
+      ) : (
+        <div>
+          <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+            Paste one line per missed day. Each number is how many {unit} you wrote that day — for example:
+          </p>
+          <pre
+            className="text-sm mb-4 p-3 rounded"
+            style={{ backgroundColor: 'var(--color-paper-raised)', color: 'var(--color-ink-muted)' }}
+          >
+{`Sep 20, 500
+Sep 21, 300
+Sep 22, 800`}
+          </pre>
+
+          <textarea
+            value={multiDayText}
+            onChange={(e) => setMultiDayText(e.target.value)}
+            rows={6}
+            placeholder="Paste your missed days here..."
+            className="w-full p-3 mb-4 rounded border focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)', backgroundColor: 'transparent' }}
+          />
+
+          <div className="flex gap-3 mb-6">
+            <button
+              onClick={handleParseMultiDay}
+              className="px-4 py-2 text-sm"
+              style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+            >
+              Preview
+            </button>
+            <button
+              onClick={() => { setShowMultiDay(false); setParsedDays([]); setMultiDayText('') }}
+              className="px-4 py-2 text-sm"
+              style={{ color: 'var(--color-ink-muted)' }}
+            >
+              Back to single day
+            </button>
+          </div>
+
+          {parsedDays.length > 0 && (
+            <div className="mb-6">
+              <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+                Found {parsedDays.length} days:
+              </p>
+              <div className="rounded border mb-4" style={{ borderColor: 'var(--color-rule)' }}>
+                {parsedDays.map((p) => (
+                  <div
+                    key={p.date}
+                    className="flex justify-between px-3 py-2 text-sm border-b"
+                    style={{ borderColor: 'var(--color-rule)' }}
+                  >
+                    <span>{new Date(p.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}</span>
+                    <span style={{ color: p.delta < 0 ? '#a33' : 'var(--color-ink)' }}>
+                      {p.delta > 0 ? '+' : ''}{p.delta.toLocaleString()}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {message && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{message}</p>}
+
+              <button
+                onClick={handleSaveMultiDay}
+                disabled={savingMulti}
+                className="px-5 py-2 text-sm"
+                style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+              >
+                {savingMulti ? 'Saving...' : `Add ${parsedDays.length} days`}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </main>
   )
 }
+
 ```
 
 ---
@@ -2764,15 +3287,15 @@ export default function LogWordcountPage() {
 ### <a id="📄-src-app-projects-page-tsx"></a>📄 `src/app/projects/page.tsx`
 
 **File Info:**
-- **Size**: 8.57 KB
+- **Size**: 9.33 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/projects/page.tsx`
 - **Relative Path**: `src/app/projects`
 - **Created**: 2026-09-06 00:06:08 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-20 23:20:44 (Australia/Sydney / GMT+10:00)
-- **MD5**: `763be6ba128569d692cee404bca35429`
-- **SHA256**: `b025c3603458b23064dd756fcd39a43002d44e846262a8f6f91e8cbdc5ee5f02`
+- **Modified**: 2026-09-20 23:43:35 (Australia/Sydney / GMT+10:00)
+- **MD5**: `f28e1e8cc1b5e2f5ae4b6cc063f51ac9`
+- **SHA256**: `0a0f7e957ba9f46eb09b61ed303c854d0eee73284a4d54efd89e1f22ca245ccf`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2784,6 +3307,7 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { Pencil } from 'lucide-react'
 import { buildDailyCumulative } from '@/lib/wordcountStats'
 import DeleteProjectButton from '@/components/DeleteProjectButton'
 
@@ -2821,6 +3345,7 @@ export default function ProjectsPage() {
   const [draftStage, setDraftStage] = useState('first_draft')
   const [metricUnit, setMetricUnit] = useState('words')
   const [loading, setLoading] = useState(true)
+  const [creating, setCreating] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [totalWords, setTotalWords] = useState(0)
   const router = useRouter()
@@ -2874,29 +3399,35 @@ export default function ProjectsPage() {
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
+    setCreating(true)
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
-    const { error } = await supabase.from('projects').insert({
-      user_id: user.id,
-      title,
-      goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
-      project_type: projectType,
-      draft_stage: draftStage,
-      metric_unit: metricUnit,
-    })
+    const { data, error } = await supabase
+      .from('projects')
+      .insert({
+        user_id: user.id,
+        title,
+        goal_word_count: goalWordCount ? parseInt(goalWordCount) : null,
+        project_type: projectType,
+        draft_stage: draftStage,
+        metric_unit: metricUnit,
+      })
+      .select()
+      .single()
+
+    setCreating(false)
 
     if (error) {
       setError(error.message)
-    } else {
-      setTitle('')
-      setGoalWordCount('')
-      setProjectType('book')
-      setDraftStage('first_draft')
-      setMetricUnit('words')
-      loadProjects()
+    } else if (data) {
+      router.push(`/projects/${data.id}/backfill`)
     }
+  }
+
+  function handleProjectDeleted(id: string) {
+    setProjects((prev) => prev.filter((p) => p.id !== id))
   }
 
   if (loading) return <main className="max-w-2xl mx-auto px-6 py-12">Loading...</main>
@@ -2984,10 +3515,11 @@ export default function ProjectsPage() {
         {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
         <button
           type="submit"
+          disabled={creating}
           className="px-5 py-2 text-sm"
           style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
         >
-          Create project
+          {creating ? 'Creating...' : 'Create project'}
         </button>
       </form>
 
@@ -3004,7 +3536,21 @@ export default function ProjectsPage() {
               <Link href={`/projects/${project.id}`} className="text-lg">
                 {project.title}
               </Link>
-              <DeleteProjectButton projectId={project.id} title={project.title} />
+              <div className="flex items-center gap-3">
+                <Link
+                  href={`/projects/${project.id}/edit`}
+                  aria-label={`Edit ${project.title}`}
+                  title="Edit project"
+                  style={{ color: 'var(--color-ink-muted)' }}
+                >
+                  <Pencil size={16} />
+                </Link>
+                <DeleteProjectButton
+                  projectId={project.id}
+                  title={project.title}
+                  onDeleted={() => handleProjectDeleted(project.id)}
+                />
+              </div>
             </div>
             {project.goal_word_count && (
               <span className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
@@ -3369,6 +3915,1267 @@ export default function SignUpPage() {
 
 ---
 
+### <a id="📄-src-app-sprints-id-page-tsx"></a>📄 `src/app/sprints/[id]/page.tsx`
+
+**File Info:**
+- **Size**: 12.33 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/sprints/[id]/page.tsx`
+- **Relative Path**: `src/app/sprints/[id]`
+- **Created**: 2026-09-20 23:47:45 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-21 03:22:09 (Australia/Sydney / GMT+10:00)
+- **MD5**: `6ac6bbb0906c2e3b1034bf913d6daf0b`
+- **SHA256**: `3ee02493bf3d95433307e05eeb0ac1096ff5cf069c773dc419fa49c24de46d4f`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState, use } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+import { buildDailyCumulative } from '@/lib/wordcountStats'
+
+type Participant = {
+  user_id: string
+  project_id: string | null
+  start_wordcount: number | null
+  end_wordcount: number | null
+  profiles: { username: string; display_name: string | null; avatar_url: string | null } | null
+}
+
+type Project = { id: string; title: string }
+
+export default function SprintViewPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = use(params)
+  const [userId, setUserId] = useState<string | null>(null)
+  const [groupName, setGroupName] = useState('')
+  const [durationMinutes, setDurationMinutes] = useState(0)
+  const [startsAt, setStartsAt] = useState<string | null>(null)
+  const [participants, setParticipants] = useState<Participant[]>([])
+  const [myProjects, setMyProjects] = useState<Project[]>([])
+  const [selectedProjectId, setSelectedProjectId] = useState('')
+  const [endCountInput, setEndCountInput] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [now, setNow] = useState(Date.now())
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  async function load() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      router.push('/login')
+      return
+    }
+    setUserId(user.id)
+
+    const { data: sprint } = await supabase
+      .from('sprints')
+      .select('duration_minutes, starts_at, groups(name)')
+      .eq('id', id)
+      .single()
+
+    if (sprint) {
+      setDurationMinutes(sprint.duration_minutes)
+      setStartsAt(sprint.starts_at)
+      const g = sprint.groups as unknown as { name: string } | null
+      setGroupName(g?.name || 'Sprint')
+    }
+
+    const { data: participantData } = await supabase
+      .from('sprint_participants')
+      .select('user_id, project_id, start_wordcount, end_wordcount, profiles(username, display_name, avatar_url)')
+      .eq('sprint_id', id)
+
+    setParticipants((participantData as unknown as Participant[]) || [])
+
+    const { data: projects } = await supabase.from('projects').select('id, title').eq('user_id', user.id)
+    setMyProjects(projects || [])
+    if (projects && projects.length > 0) setSelectedProjectId(projects[0].id)
+
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    load()
+    const interval = setInterval(load, 10000)
+    return () => clearInterval(interval)
+  }, [id])
+
+  useEffect(() => {
+    const tick = setInterval(() => setNow(Date.now()), 1000)
+    return () => clearInterval(tick)
+  }, [])
+
+  const me = participants.find((p) => p.user_id === userId)
+  const startsAtMs = startsAt ? new Date(startsAt).getTime() : 0
+  const endsAtMs = startsAtMs + durationMinutes * 60000
+  const hasStarted = startsAt !== null && now >= startsAtMs
+  const isOver = startsAt !== null && now >= endsAtMs
+
+  const untilStartMs = Math.max(0, startsAtMs - now)
+  const untilStartMinutes = Math.floor(untilStartMs / 60000)
+  const untilStartSeconds = Math.floor((untilStartMs % 60000) / 1000)
+
+  const remainingMs = Math.max(0, endsAtMs - now)
+  const minutesLeft = Math.floor(remainingMs / 60000)
+  const secondsLeft = Math.floor((remainingMs % 60000) / 1000)
+
+  async function handleJoin() {
+    if (!selectedProjectId || !userId) return
+    setError(null)
+
+    const supabase = createClient()
+    const { data: snapshots } = await supabase
+      .from('wordcount_snapshots')
+      .select('word_count, recorded_at')
+      .eq('project_id', selectedProjectId)
+
+    const dailyMap = buildDailyCumulative(snapshots || [])
+    const values = Array.from(dailyMap.values())
+    const currentTotal = values.length > 0 ? values[values.length - 1] : 0
+
+    const { error } = await supabase.from('sprint_participants').insert({
+      sprint_id: id,
+      user_id: userId,
+      project_id: selectedProjectId,
+      start_wordcount: currentTotal,
+    })
+
+    if (error) {
+      setError(error.message)
+    } else {
+      load()
+    }
+  }
+
+  async function handleLogEnd() {
+    if (!me || !endCountInput) return
+    setError(null)
+
+    const supabase = createClient()
+    const endCount = parseInt(endCountInput.replace(/,/g, ''), 10)
+    if (isNaN(endCount)) return
+
+    await supabase
+      .from('sprint_participants')
+      .update({ end_wordcount: endCount })
+      .eq('sprint_id', id)
+      .eq('user_id', userId)
+
+    if (me.project_id) {
+      const today = new Date().toISOString().split('T')[0]
+      await supabase.from('wordcount_snapshots').insert({
+        project_id: me.project_id,
+        user_id: userId,
+        word_count: endCount,
+        source: 'sprint',
+      })
+      await supabase.from('posts').upsert(
+        {
+          user_id: userId,
+          project_id: me.project_id,
+          type: 'wordcount',
+          word_count: endCount,
+          entry_date: today,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: 'user_id,project_id,entry_date,type' }
+      )
+    }
+
+    load()
+  }
+
+  function initials(name: string) {
+    return name.charAt(0).toUpperCase()
+  }
+
+  async function handleShare() {
+    if (!me || me.end_wordcount === null || me.start_wordcount === null) return
+    const words = me.end_wordcount - me.start_wordcount
+    const text = `I just wrote ${words.toLocaleString()} words in a Writemates sprint!`
+    const nav = navigator as Navigator & { share?: (data: { text: string }) => Promise<void> }
+    if (nav.share) {
+      try {
+        await nav.share({ text })
+      } catch {
+        // cancelled, nothing to do
+      }
+    } else {
+      await navigator.clipboard.writeText(text)
+    }
+  }
+
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
+
+  const myWords = me && me.end_wordcount !== null && me.start_wordcount !== null
+    ? me.end_wordcount - me.start_wordcount
+    : null
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+      <h1 className="text-2xl mb-6" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        {groupName}
+      </h1>
+
+      {!hasStarted && (
+        <div
+          className="rounded-lg text-center mb-6"
+          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '1.5rem' }}
+        >
+          <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+            {groupName} · {durationMinutes} minute sprint
+          </p>
+          <p className="text-lg mb-1">
+            {startsAt && new Date(startsAt).toLocaleString(undefined, { weekday: 'short', hour: 'numeric', minute: '2-digit' })}
+          </p>
+          <p className="text-2xl mb-3" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
+            starts in {untilStartMinutes}:{untilStartSeconds.toString().padStart(2, '0')}
+          </p>
+          <div className="flex justify-center gap-2 mb-2">
+            {participants.map((p) => (
+              <div
+                key={p.user_id}
+                className="w-8 h-8 rounded-full flex items-center justify-center text-xs"
+                style={{
+                  backgroundColor: 'var(--color-paper)',
+                  border: '2px solid var(--color-accent)',
+                  color: 'var(--color-accent)',
+                  overflow: 'hidden',
+                }}
+              >
+                {p.profiles?.avatar_url ? (
+                  <img src={p.profiles.avatar_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  initials(p.profiles?.display_name || p.profiles?.username || '?')
+                )}
+              </div>
+            ))}
+          </div>
+          <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
+            {participants.length} mate{participants.length === 1 ? ' is' : 's are'} in
+          </p>
+        </div>
+      )}
+
+      {hasStarted && !isOver && (
+        <div
+          className="rounded-lg text-center mb-6"
+          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '1.5rem' }}
+        >
+          <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+            {groupName} · sprinting together
+          </p>
+          <p className="text-3xl mb-3" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
+            {minutesLeft}:{secondsLeft.toString().padStart(2, '0')}
+          </p>
+          <div className="flex justify-center gap-2 mb-2">
+            {participants.map((p) => (
+              <div
+                key={p.user_id}
+                className="w-8 h-8 rounded-full flex items-center justify-center text-xs"
+                style={{
+                  backgroundColor: 'var(--color-paper)',
+                  border: '2px solid var(--color-accent)',
+                  color: 'var(--color-accent)',
+                  overflow: 'hidden',
+                }}
+              >
+                {p.profiles?.avatar_url ? (
+                  <img src={p.profiles.avatar_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  initials(p.profiles?.display_name || p.profiles?.username || '?')
+                )}
+              </div>
+            ))}
+          </div>
+          <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
+            {participants.length} mate{participants.length === 1 ? ' is' : 's are'} writing right now
+          </p>
+        </div>
+      )}
+
+      {isOver && (
+        <div
+          className="rounded-lg text-center mb-6"
+          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '1.5rem' }}
+        >
+          <p className="text-lg mb-2">
+            {participants.length} mate{participants.length === 1 ? '' : 's'} just wrote together for {durationMinutes} minutes.
+          </p>
+          {myWords !== null ? (
+            <>
+              <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+                You wrote {myWords.toLocaleString()} words. Only you can see that.
+              </p>
+              <button
+                onClick={handleShare}
+                className="px-4 py-2 text-sm"
+                style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+              >
+                Share if you like
+              </button>
+            </>
+          ) : me ? (
+            <div className="mt-4 text-left">
+              <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+                What&apos;s your total word count now?
+              </label>
+              <input
+                type="number"
+                value={endCountInput}
+                onChange={(e) => setEndCountInput(e.target.value)}
+                className="w-full py-2 mb-3 border-b bg-transparent focus:outline-none"
+                style={{ borderColor: 'var(--color-rule)' }}
+              />
+              <button
+                onClick={handleLogEnd}
+                className="px-4 py-2 text-sm"
+                style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+              >
+                Log my count
+              </button>
+            </div>
+          ) : null}
+        </div>
+      )}
+
+      <p className="text-sm text-center mb-6" style={{ color: 'var(--color-ink-muted)' }}>
+        No scores, no ranking. Just time at the desk, together.
+      </p>
+
+      {!me && myProjects.length > 0 && !isOver && (
+        <div>
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+            Which project are you sprinting on?
+          </label>
+          <select
+            value={selectedProjectId}
+            onChange={(e) => setSelectedProjectId(e.target.value)}
+            className="w-full py-2 mb-3 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          >
+            {myProjects.map((p) => (
+              <option key={p.id} value={p.id}>{p.title}</option>
+            ))}
+          </select>
+          {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
+          <button
+            onClick={handleJoin}
+            className="w-full px-5 py-2 text-sm"
+            style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+          >
+            {hasStarted ? 'Join sprint' : "I'm in"}
+          </button>
+        </div>
+      )}
+    </main>
+  )
+}
+
+```
+
+---
+
+### <a id="📄-src-app-sprints-proposals-id-page-tsx"></a>📄 `src/app/sprints/proposals/[id]/page.tsx`
+
+**File Info:**
+- **Size**: 9.75 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/sprints/proposals/[id]/page.tsx`
+- **Relative Path**: `src/app/sprints/proposals/[id]`
+- **Created**: 2026-09-21 03:18:07 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-21 03:18:07 (Australia/Sydney / GMT+10:00)
+- **MD5**: `b1fcbe74c910b452b8da0911f602de54`
+- **SHA256**: `4907d104f27c6c38bf431f47ca152f742b3d2c68adb3e327c2931ff30eeb164f`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState, use } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+
+type Option = {
+  id: string
+  start_time: string
+  suggested_by: string
+}
+
+type Vote = {
+  option_id: string
+  user_id: string
+  profiles: { username: string; display_name: string | null; avatar_url: string | null } | null
+}
+
+export default function SprintProposalPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = use(params)
+  const [userId, setUserId] = useState<string | null>(null)
+  const [groupName, setGroupName] = useState('')
+  const [durationMinutes, setDurationMinutes] = useState(0)
+  const [creatorId, setCreatorId] = useState<string | null>(null)
+  const [status, setStatus] = useState('voting')
+  const [resolvedSprintId, setResolvedSprintId] = useState<string | null>(null)
+  const [options, setOptions] = useState<Option[]>([])
+  const [votes, setVotes] = useState<Vote[]>([])
+  const [suggesting, setSuggesting] = useState(false)
+  const [newTimeLocal, setNewTimeLocal] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [finalizing, setFinalizing] = useState(false)
+  const router = useRouter()
+
+  async function load() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      router.push('/login')
+      return
+    }
+    setUserId(user.id)
+
+    const { data: proposal } = await supabase
+      .from('sprint_proposals')
+      .select('duration_minutes, creator_id, status, resolved_sprint_id, groups(name)')
+      .eq('id', id)
+      .single()
+
+    if (proposal) {
+      setDurationMinutes(proposal.duration_minutes)
+      setCreatorId(proposal.creator_id)
+      setStatus(proposal.status)
+      setResolvedSprintId(proposal.resolved_sprint_id)
+      const g = proposal.groups as unknown as { name: string } | null
+      setGroupName(g?.name || 'Sprint')
+
+      if (proposal.status === 'resolved' && proposal.resolved_sprint_id) {
+        router.push(`/sprints/${proposal.resolved_sprint_id}`)
+        return
+      }
+    }
+
+    const { data: optionData } = await supabase
+      .from('sprint_time_options')
+      .select('id, start_time, suggested_by')
+      .eq('proposal_id', id)
+      .order('start_time', { ascending: true })
+
+    setOptions(optionData || [])
+
+    const { data: voteData } = await supabase
+      .from('sprint_time_votes')
+      .select('option_id, user_id, profiles(username, display_name, avatar_url)')
+      .eq('proposal_id', id)
+
+    setVotes((voteData as unknown as Vote[]) || [])
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    load()
+    const interval = setInterval(load, 8000)
+    return () => clearInterval(interval)
+  }, [id])
+
+  function votesFor(optionId: string) {
+    return votes.filter((v) => v.option_id === optionId)
+  }
+
+  function myVote() {
+    return votes.find((v) => v.user_id === userId)
+  }
+
+  async function handleVote(optionId: string) {
+    if (!userId) return
+    const supabase = createClient()
+
+    const existing = myVote()
+    if (existing) {
+      await supabase
+        .from('sprint_time_votes')
+        .update({ option_id: optionId })
+        .eq('proposal_id', id)
+        .eq('user_id', userId)
+    } else {
+      await supabase.from('sprint_time_votes').insert({
+        proposal_id: id,
+        option_id: optionId,
+        user_id: userId,
+      })
+    }
+    load()
+  }
+
+  async function handleSuggest() {
+    if (!newTimeLocal || !userId) return
+    const supabase = createClient()
+    const startTime = new Date(newTimeLocal).toISOString()
+
+    await supabase.from('sprint_time_options').insert({
+      proposal_id: id,
+      start_time: startTime,
+      suggested_by: userId,
+    })
+
+    setSuggesting(false)
+    setNewTimeLocal('')
+    load()
+  }
+
+  function leadingOption(): Option | null {
+    if (options.length === 0) return null
+    let best = options[0]
+    let bestCount = votesFor(options[0].id).length
+    for (const opt of options.slice(1)) {
+      const count = votesFor(opt.id).length
+      if (count > bestCount) {
+        best = opt
+        bestCount = count
+      }
+    }
+    return best
+  }
+
+  async function handleFinalize() {
+    const leading = leadingOption()
+    if (!leading || !userId) return
+    setFinalizing(true)
+
+    const supabase = createClient()
+
+    const { data: proposal } = await supabase
+      .from('sprint_proposals')
+      .select('group_id')
+      .eq('id', id)
+      .single()
+
+    if (!proposal) {
+      setFinalizing(false)
+      return
+    }
+
+    const { data: sprint, error } = await supabase
+      .from('sprints')
+      .insert({
+        group_id: proposal.group_id,
+        creator_id: userId,
+        duration_minutes: durationMinutes,
+        starts_at: leading.start_time,
+      })
+      .select()
+      .single()
+
+    if (error || !sprint) {
+      setFinalizing(false)
+      return
+    }
+
+    await supabase
+      .from('sprint_proposals')
+      .update({ status: 'resolved', resolved_sprint_id: sprint.id })
+      .eq('id', id)
+
+    router.push(`/sprints/${sprint.id}`)
+  }
+
+  function initials(name: string) {
+    return name.charAt(0).toUpperCase()
+  }
+
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
+
+  const leading = leadingOption()
+  const isCreator = userId === creatorId
+  const mine = myVote()
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+      <p className="text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+        {groupName} · {durationMinutes} minute sprint
+      </p>
+      <h1 className="text-2xl mb-6" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        When should we sprint?
+      </h1>
+
+      <div className="mb-4">
+        {options.map((option) => {
+          const optionVotes = votesFor(option.id)
+          const isMine = mine?.option_id === option.id
+          return (
+            <div
+              key={option.id}
+              className="flex items-center justify-between py-3 px-3 mb-2"
+              style={{ backgroundColor: 'var(--color-paper-raised)', borderRadius: 8 }}
+            >
+              <div>
+                <p className="text-sm">
+                  {new Date(option.start_time).toLocaleString(undefined, {
+                    weekday: 'short',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                  })}
+                </p>
+                <div className="flex gap-1 mt-1">
+                  {optionVotes.slice(0, 5).map((v) => (
+                    <div
+                      key={v.user_id}
+                      className="w-5 h-5 rounded-full flex items-center justify-center text-xs"
+                      style={{ backgroundColor: 'var(--color-rule)', overflow: 'hidden' }}
+                    >
+                      {v.profiles?.avatar_url ? (
+                        <img src={v.profiles.avatar_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      ) : (
+                        initials(v.profiles?.display_name || v.profiles?.username || '?')
+                      )}
+                    </div>
+                  ))}
+                  {optionVotes.length === 0 && (
+                    <span className="text-xs" style={{ color: 'var(--color-ink-muted)' }}>No votes yet</span>
+                  )}
+                </div>
+              </div>
+              <button
+                onClick={() => handleVote(option.id)}
+                className="text-sm px-3 py-1"
+                style={
+                  isMine
+                    ? { backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)', borderRadius: 6 }
+                    : { border: '1px solid var(--color-rule)', color: 'var(--color-ink-muted)', borderRadius: 6 }
+                }
+              >
+                {isMine ? 'Voted' : 'Vote'}
+              </button>
+            </div>
+          )
+        })}
+      </div>
+
+      {!suggesting ? (
+        <button
+          onClick={() => setSuggesting(true)}
+          className="w-full text-sm py-2 mb-6"
+          style={{ border: '1px dashed var(--color-rule)', color: 'var(--color-ink-muted)', borderRadius: 8 }}
+        >
+          + Suggest a different time
+        </button>
+      ) : (
+        <div className="mb-6">
+          <input
+            type="datetime-local"
+            value={newTimeLocal}
+            onChange={(e) => setNewTimeLocal(e.target.value)}
+            className="w-full py-2 mb-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+          <div className="flex gap-2">
+            <button
+              onClick={handleSuggest}
+              className="text-sm px-4 py-2"
+              style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+            >
+              Add time
+            </button>
+            <button
+              onClick={() => setSuggesting(false)}
+              className="text-sm px-4 py-2"
+              style={{ color: 'var(--color-ink-muted)' }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
+      {isCreator && leading && (
+        <div className="pt-5" style={{ borderTop: '0.5px solid var(--color-rule)' }}>
+          <p className="text-xs mb-2" style={{ color: 'var(--color-ink-muted)' }}>You created this poll</p>
+          <button
+            onClick={handleFinalize}
+            disabled={finalizing}
+            className="w-full text-sm py-3"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)', borderRadius: 8 }}
+          >
+            {finalizing ? 'Finalizing...' : `Finalize: ${new Date(leading.start_time).toLocaleString(undefined, { weekday: 'short', hour: 'numeric', minute: '2-digit' })}`}
+          </button>
+        </div>
+      )}
+    </main>
+  )
+}
+
+```
+
+---
+
+### <a id="📄-src-app-sprints-page-tsx"></a>📄 `src/app/sprints/page.tsx`
+
+**File Info:**
+- **Size**: 6.56 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/sprints/page.tsx`
+- **Relative Path**: `src/app/sprints`
+- **Created**: 2026-09-20 23:46:55 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-21 03:14:58 (Australia/Sydney / GMT+10:00)
+- **MD5**: `ff075ae8ed3b14191df0ab0b4a17b92d`
+- **SHA256**: `43b81e5afd49597bf433c38e39473bc9478c5fd4040bb44fe5c9ba5e83605018`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+
+type Group = { id: string; name: string }
+type Proposal = { id: string; group_id: string; duration_minutes: number; status: string; groups: { name: string } | null }
+
+const DURATIONS = [15, 25, 45, 60]
+
+function defaultDateTimeLocal() {
+  const d = new Date(Date.now() + 15 * 60000)
+  d.setSeconds(0, 0)
+  const offset = d.getTimezoneOffset()
+  const local = new Date(d.getTime() - offset * 60000)
+  return local.toISOString().slice(0, 16)
+}
+
+export default function SprintsListPage() {
+  const [groups, setGroups] = useState<Group[]>([])
+  const [proposals, setProposals] = useState<Proposal[]>([])
+  const [selectedGroupId, setSelectedGroupId] = useState('')
+  const [duration, setDuration] = useState(25)
+  const [whenLocal, setWhenLocal] = useState(defaultDateTimeLocal())
+  const [loading, setLoading] = useState(true)
+  const [starting, setStarting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
+
+  async function load() {
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      router.push('/login')
+      return
+    }
+
+    const { data: groupData } = await supabase.from('groups').select('id, name')
+    setGroups(groupData || [])
+    if (groupData && groupData.length > 0) setSelectedGroupId(groupData[0].id)
+
+    const { data: proposalData } = await supabase
+      .from('sprint_proposals')
+      .select('id, group_id, duration_minutes, status, groups(name)')
+      .order('created_at', { ascending: false })
+      .limit(20)
+
+    setProposals((proposalData as unknown as Proposal[]) || [])
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    load()
+  }, [])
+
+  async function handlePropose(e: React.FormEvent) {
+    e.preventDefault()
+    if (!selectedGroupId) return
+    setStarting(true)
+    setError(null)
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { data: proposal, error: proposalError } = await supabase
+      .from('sprint_proposals')
+      .insert({
+        group_id: selectedGroupId,
+        creator_id: user.id,
+        duration_minutes: duration,
+      })
+      .select()
+      .single()
+
+    if (proposalError || !proposal) {
+      setStarting(false)
+      setError(proposalError?.message || 'Something went wrong')
+      return
+    }
+
+    const startsAt = new Date(whenLocal).toISOString()
+
+    const { error: optionError } = await supabase.from('sprint_time_options').insert({
+      proposal_id: proposal.id,
+      start_time: startsAt,
+      suggested_by: user.id,
+    })
+
+    setStarting(false)
+
+    if (optionError) {
+      setError(optionError.message)
+    } else {
+      router.push(`/sprints/proposals/${proposal.id}`)
+    }
+  }
+
+  if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+      <h1 className="text-3xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        Sprints
+      </h1>
+      <p className="text-sm mb-8" style={{ color: 'var(--color-ink-muted)' }}>
+        No scores, no ranking. Just time at the desk, together.
+      </p>
+
+      {groups.length === 0 ? (
+        <p className="text-sm mb-10" style={{ color: 'var(--color-ink-muted)' }}>
+          You need a group before you can propose a sprint — create one in Groups first.
+        </p>
+      ) : (
+        <form onSubmit={handlePropose} className="mb-10 pb-8 border-b" style={{ borderColor: 'var(--color-rule)' }}>
+          <div className="mb-4">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Group</label>
+            <select
+              value={selectedGroupId}
+              onChange={(e) => setSelectedGroupId(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {groups.map((g) => (
+                <option key={g.id} value={g.id}>{g.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Duration</label>
+            <select
+              value={duration}
+              onChange={(e) => setDuration(parseInt(e.target.value))}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              {DURATIONS.map((d) => (
+                <option key={d} value={d}>{d} minutes</option>
+              ))}
+            </select>
+          </div>
+          <div className="mb-5">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Suggested time</label>
+            <input
+              type="datetime-local"
+              value={whenLocal}
+              onChange={(e) => setWhenLocal(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+          <button
+            type="submit"
+            disabled={starting}
+            className="px-5 py-2 text-sm"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+          >
+            {starting ? 'Proposing...' : 'Propose sprint'}
+          </button>
+        </form>
+      )}
+
+      {proposals.length > 0 && (
+        <div>
+          <h2 className="text-sm mb-3" style={{ color: 'var(--color-ink-muted)' }}>Recent sprints</h2>
+          {proposals.map((proposal) => (
+            <Link
+              key={proposal.id}
+              href={proposal.status === 'voting' ? `/sprints/proposals/${proposal.id}` : `/sprints/${proposal.id}`}
+              className="flex items-center justify-between py-3 border-b"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              <span>{proposal.groups?.name || 'Sprint'} · {proposal.duration_minutes}m</span>
+              <span className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
+                {proposal.status === 'voting' ? 'Voting' : proposal.status === 'resolved' ? 'Scheduled' : proposal.status}
+              </span>
+            </Link>
+          ))}
+        </div>
+      )}
+    </main>
+  )
+}
+
+```
+
+---
+
+### <a id="📄-src-app-today-page-tsx"></a>📄 `src/app/today/page.tsx`
+
+**File Info:**
+- **Size**: 12.75 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/today/page.tsx`
+- **Relative Path**: `src/app/today`
+- **Created**: 2026-09-21 03:31:07 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-22 00:55:21 (Australia/Sydney / GMT+10:00)
+- **MD5**: `7b86e460f43e9c18bf3fced627226143`
+- **SHA256**: `4cdde9a914bc8d945ef7adcf1e29c19361ae7398142c7d247db5016306f7d566`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+import { ArrowUp, ArrowDown } from 'lucide-react'
+import {
+  buildDailyCumulative,
+  buildDailyDeltas,
+  computeProjectedFinishDetails,
+} from '@/lib/wordcountStats'
+import { computeInsight, type Insight } from '@/lib/insights'
+import WeeklyChart from '@/components/WeeklyChart'
+
+type Project = {
+  id: string
+  title: string
+  project_type: string
+  draft_stage: string
+  metric_unit: string
+  goal_word_count: number | null
+  created_at: string
+}
+
+const DRAFT_STAGE_LABELS: Record<string, string> = {
+  first_draft: 'first draft',
+  editing: 'edit',
+  revision_2: 'second revision',
+  revision_3_plus: 'revision',
+}
+
+function Delta({
+  value,
+  upLabel,
+  downLabel,
+  goodWhen,
+}: {
+  value: number
+  upLabel: string
+  downLabel: string
+  goodWhen: 'up' | 'down'
+}) {
+  if (value === 0) return null
+  const isUp = value > 0
+  const isGood = goodWhen === 'up' ? isUp : !isUp
+  return (
+    <div
+      className="flex items-center gap-1 mt-1"
+      style={{ fontSize: 11, color: isGood ? 'var(--color-accent)' : 'var(--color-ink-muted)' }}
+    >
+      {isUp ? <ArrowUp size={11} /> : <ArrowDown size={11} />}
+      <span>{Math.abs(value).toLocaleString()} {isUp ? upLabel : downLabel}</span>
+    </div>
+  )
+}
+
+export default function TodayPage() {
+  const [projects, setProjects] = useState<Project[]>([])
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [bannerDismissed, setBannerDismissed] = useState(false)
+
+  const [currentTotal, setCurrentTotal] = useState(0)
+  const [percent, setPercent] = useState<number | null>(null)
+  const [todayCount, setTodayCount] = useState(0)
+  const [todayDelta, setTodayDelta] = useState(0)
+  const [weekCount, setWeekCount] = useState(0)
+  const [weekDelta, setWeekDelta] = useState(0)
+  const [avgPerDay, setAvgPerDay] = useState(0)
+  const [avgDelta, setAvgDelta] = useState(0)
+  const [finishDateLabel, setFinishDateLabel] = useState<string | null>(null)
+  const [daysRemaining, setDaysRemaining] = useState<number | null>(null)
+  const [daysRemainingDelta, setDaysRemainingDelta] = useState(0)
+  const [writingDaysPerWeek, setWritingDaysPerWeek] = useState(0)
+  const [daysSinceStart, setDaysSinceStart] = useState(0)
+  const [chartData, setChartData] = useState<{ day: string; words: number }[]>([])
+  const [chartAverage, setChartAverage] = useState(0)
+  const [insight, setInsight] = useState<Insight | null>(null)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    async function loadProjects() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) {
+        router.push('/login')
+        return
+      }
+      const { data } = await supabase
+        .from('projects')
+        .select('*')
+        .order('created_at', { ascending: false })
+
+      setProjects(data || [])
+      if (data && data.length > 0) setSelectedId(data[0].id)
+      setLoading(false)
+    }
+    loadProjects()
+  }, [router])
+
+  useEffect(() => {
+    if (!selectedId) return
+
+    async function loadStats() {
+      const supabase = createClient()
+      const project = projects.find((p) => p.id === selectedId)
+      if (!project) return
+
+      const { data: snapshots } = await supabase
+        .from('wordcount_snapshots')
+        .select('word_count, recorded_at')
+        .eq('project_id', selectedId)
+        .order('recorded_at', { ascending: true })
+
+      const dailyMap = buildDailyCumulative(snapshots || [])
+      const dailyDeltas = buildDailyDeltas(dailyMap)
+
+      const values = Array.from(dailyMap.values())
+      const total = values.length > 0 ? values[values.length - 1] : 0
+      setCurrentTotal(total)
+      setPercent(project.goal_word_count ? Math.min(100, Math.round((total / project.goal_word_count) * 100)) : null)
+
+      const todayStr = new Date().toISOString().split('T')[0]
+      const yesterday = new Date()
+      yesterday.setDate(yesterday.getDate() - 1)
+      const yesterdayStr = yesterday.toISOString().split('T')[0]
+
+      const todayWords = dailyDeltas.get(todayStr) || 0
+      const yesterdayWords = dailyDeltas.get(yesterdayStr) || 0
+      setTodayCount(todayWords)
+      setTodayDelta(todayWords - yesterdayWords)
+
+      const now = new Date()
+      let week = 0
+      let lastWeek = 0
+      for (const [dateStr, words] of dailyDeltas.entries()) {
+        const diffDays = Math.floor((now.getTime() - new Date(dateStr).getTime()) / 86400000)
+        if (diffDays >= 0 && diffDays < 7) week += words
+        else if (diffDays >= 7 && diffDays < 14) lastWeek += words
+      }
+      setWeekCount(week)
+      setWeekDelta(week - lastWeek)
+
+      const details = computeProjectedFinishDetails(dailyDeltas, total, project.goal_word_count)
+      setFinishDateLabel(details.finishDateLabel)
+      setDaysRemaining(details.daysRemaining)
+      setWritingDaysPerWeek(details.writingDaysPerWeek)
+      setAvgPerDay(details.avgPerCalendarDay)
+
+      const dailyMapExclToday = new Map(dailyMap)
+      dailyMapExclToday.delete(todayStr)
+      const dailyDeltasExclToday = buildDailyDeltas(dailyMapExclToday)
+      const valuesExcl = Array.from(dailyMapExclToday.values())
+      const totalExcl = valuesExcl.length > 0 ? valuesExcl[valuesExcl.length - 1] : 0
+      const detailsExcl = computeProjectedFinishDetails(dailyDeltasExclToday, totalExcl, project.goal_word_count)
+
+      if (details.daysRemaining !== null && detailsExcl.daysRemaining !== null) {
+        setDaysRemainingDelta(detailsExcl.daysRemaining - details.daysRemaining)
+      } else {
+        setDaysRemainingDelta(0)
+      }
+      setAvgDelta(Math.round(details.avgPerCalendarDay - detailsExcl.avgPerCalendarDay))
+
+      const created = new Date(project.created_at)
+      const snapshotDates = Array.from(dailyMap.keys()).sort()
+      const earliestSnapshotDate = snapshotDates.length > 0 ? new Date(snapshotDates[0]) : null
+      const startDate = earliestSnapshotDate && earliestSnapshotDate < created ? earliestSnapshotDate : created
+      setDaysSinceStart(Math.max(1, Math.floor((now.getTime() - startDate.getTime()) / 86400000) + 1))
+
+      const days: { day: string; words: number }[] = []
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date()
+        d.setDate(d.getDate() - i)
+        const dateStr = d.toISOString().split('T')[0]
+        const label = d.toLocaleDateString(undefined, { weekday: 'short' })
+        days.push({ day: label, words: dailyDeltas.get(dateStr) || 0 })
+      }
+      setChartData(days)
+      setChartAverage(days.reduce((sum, d) => sum + d.words, 0) / 7)
+
+      setInsight(computeInsight(details.avgPerCalendarDay, details.daysRemaining))
+      setBannerDismissed(false)
+    }
+    loadStats()
+  }, [selectedId, projects])
+
+  if (loading) return <main className="max-w-2xl mx-auto px-6 py-12">Loading...</main>
+
+  if (projects.length === 0) {
+    return (
+      <main className="max-w-2xl mx-auto px-6 py-12" style={{ fontFamily: 'var(--font-sans)' }}>
+        <h1 className="text-3xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          Today
+        </h1>
+        <p style={{ color: 'var(--color-ink-muted)' }}>
+          Create your first project using the + button below to see your progress here.
+        </p>
+      </main>
+    )
+  }
+
+  const project = projects.find((p) => p.id === selectedId)
+  const unit = project?.metric_unit || 'words'
+  const stageLabel = DRAFT_STAGE_LABELS[project?.draft_stage || 'first_draft'] || 'draft'
+
+  return (
+    <main className="max-w-2xl mx-auto px-6 py-12" style={{ fontFamily: 'var(--font-sans)' }}>
+      {projects.length > 1 && (
+        <select
+          value={selectedId || ''}
+          onChange={(e) => setSelectedId(e.target.value)}
+          className="mb-4 text-sm bg-transparent border-b py-1 focus:outline-none"
+          style={{ borderColor: 'var(--color-rule)', color: 'var(--color-ink-muted)' }}
+        >
+          {projects.map((p) => (
+            <option key={p.id} value={p.id}>{p.title}</option>
+          ))}
+        </select>
+      )}
+
+      {project?.goal_word_count && (
+        <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>
+          <strong style={{ color: 'var(--color-ink)' }}>{currentTotal.toLocaleString()}</strong>
+          {' / '}
+          {project.goal_word_count.toLocaleString()} {unit}
+          {percent !== null && (
+            <> — <span style={{ color: 'var(--color-accent)' }}>{percent}%</span></>
+          )}
+        </p>
+      )}
+
+      {!bannerDismissed && (
+        <div
+          className="rounded-lg mb-6 relative"
+          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
+        >
+          <button
+            onClick={() => setBannerDismissed(true)}
+            aria-label="Dismiss"
+            className="absolute text-sm"
+            style={{ top: 10, right: 12, color: 'var(--color-ink-muted)' }}
+          >
+            ✕
+          </button>
+          {finishDateLabel ? (
+            <>
+              <p className="text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+                Keep it up. Your projected finish date for your {stageLabel} of {project?.title} is
+              </p>
+              <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
+                {finishDateLabel}
+              </p>
+              <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
+            </>
+          ) : (
+            <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
+              Log a few {unit} to see your projected finish date.
+            </p>
+          )}
+        </div>
+      )}
+
+      <div className="grid grid-cols-2 gap-3 mb-6">
+        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
+          <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Time to completion</p>
+          <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+            {daysRemaining !== null ? `${daysRemaining} days` : '—'}
+          </p>
+          <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
+        </div>
+        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
+          <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Today</p>
+          <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+            {todayCount.toLocaleString()} {unit}
+          </p>
+          <Delta value={todayDelta} upLabel="more than yesterday" downLabel="fewer than yesterday" goodWhen="up" />
+        </div>
+        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
+          <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>This week</p>
+          <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+            {weekCount.toLocaleString()} {unit}
+          </p>
+          <Delta value={weekDelta} upLabel="more than last week" downLabel="less than last week" goodWhen="up" />
+        </div>
+        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
+          <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Daily average</p>
+          <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+            {Math.round(avgPerDay).toLocaleString()} {unit}
+          </p>
+          <Delta value={avgDelta} upLabel="higher since today" downLabel="lower since today" goodWhen="up" />
+        </div>
+      </div>
+
+      {chartData.some((d) => d.words > 0) && (
+        <div className="mb-6">
+          <WeeklyChart data={chartData} average={chartAverage} />
+        </div>
+      )}
+
+      <p className="text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+        You&apos;ve been working on {project?.title} for {daysSinceStart} day{daysSinceStart === 1 ? '' : 's'}.
+      </p>
+      <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>
+        You write {writingDaysPerWeek > 0 ? writingDaysPerWeek : 0} day{writingDaysPerWeek === 1 ? '' : 's'} a week on average.
+      </p>
+
+      {insight && (
+        <div
+          className="rounded-lg flex items-start gap-3"
+          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
+        >
+          <div className="flex-1">
+            <p className="text-sm mb-1" style={{ fontWeight: 600, color: 'var(--color-accent)' }}>{insight.title}</p>
+            <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>{insight.body}</p>
+          </div>
+        </div>
+      )}
+    </main>
+  )
+}
+
+```
+
+---
+
 ### <a id="📄-src-app-u-username-page-tsx"></a>📄 `src/app/u/[username]/page.tsx`
 
 **File Info:**
@@ -3676,15 +5483,15 @@ export default async function PublicProfilePage({
 ### <a id="📄-src-app-apple-icon-tsx"></a>📄 `src/app/apple-icon.tsx`
 
 **File Info:**
-- **Size**: 553 B
+- **Size**: 554 B
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/apple-icon.tsx`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-11 10:27:23 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 10:35:44 (Australia/Sydney / GMT+10:00)
-- **MD5**: `af54ccc15299dc85ab321685038a231c`
-- **SHA256**: `17794b35b1805ff323a0abe0646232e669bdff28c0696656d0991bf655b02034`
+- **Modified**: 2026-09-21 04:40:52 (Australia/Sydney / GMT+10:00)
+- **MD5**: `97b7567de56c6f1866a2ad963fa396b5`
+- **SHA256**: `47ac4c793fe5da36a2231a873d6cd37869017e58087f856072c4b9dc59ab7dbb`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -3701,13 +5508,13 @@ export default function Icon() {
       <div
         style={{
           fontSize: 100,
-          background: '#33503e',
+          background: '#1747e0',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#fbfaf7',
+          color: '#fffdf6',
           fontWeight: 700,
         }}
       >
@@ -3717,6 +5524,7 @@ export default function Icon() {
     { ...size }
   )
 }
+
 ```
 
 ---
@@ -3724,15 +5532,15 @@ export default function Icon() {
 ### <a id="📄-src-app-globals-css"></a>📄 `src/app/globals.css`
 
 **File Info:**
-- **Size**: 472 B
+- **Size**: 473 B
 - **Extension**: `.css`
 - **Language**: `css`
 - **Location**: `src/app/globals.css`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-03 07:01:04 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-06 10:39:31 (Australia/Sydney / GMT+10:00)
-- **MD5**: `570e713d39a7b916a635937352550a68`
-- **SHA256**: `68480cffa0e089c2632010ac5fdf5f52403af58c6ac4ae122a2feb81cc9671b2`
+- **Modified**: 2026-09-21 04:40:22 (Australia/Sydney / GMT+10:00)
+- **MD5**: `76e88c4d6054b1a619166ec040758556`
+- **SHA256**: `6d89a6cbe3206f44e66f396d11c3834a139a75f3b682443793e55d0c07f725b4`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -3741,12 +5549,12 @@ export default function Icon() {
 @import "tailwindcss";
 
 :root {
-  --color-ink: #23201b;
-  --color-ink-muted: #6b6b63;
-  --color-paper: #fbfaf7;
-  --color-paper-raised: #f4f2ec;
-  --color-rule: #e5e2da;
-  --color-accent: #33503e;
+  --color-ink: #1c2027;
+  --color-ink-muted: #6b7280;
+  --color-paper: #fffdf6;
+  --color-paper-raised: #e3eafb;
+  --color-rule: #e4e7f0;
+  --color-accent: #1747e0;
 }
 
 body {
@@ -3767,6 +5575,7 @@ a:hover {
 button {
   font-family: var(--font-sans), sans-serif;
 }
+
 ```
 
 ---
@@ -3774,15 +5583,15 @@ button {
 ### <a id="📄-src-app-layout-tsx"></a>📄 `src/app/layout.tsx`
 
 **File Info:**
-- **Size**: 1.48 KB
+- **Size**: 1.56 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/layout.tsx`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-14 09:59:33 (Australia/Sydney / GMT+10:00)
-- **MD5**: `f5953d8a1ac1f3ad2e6d053dbbca133b`
-- **SHA256**: `bccce2872cb6340df86e357ba13fcce1b96c8723342a7a34101f74b15dd24173`
+- **Modified**: 2026-09-22 01:00:26 (Australia/Sydney / GMT+10:00)
+- **MD5**: `7a3745189d7d42f5069021ba789b2b75`
+- **SHA256**: `b747fcc2315016cb429033f1064b064a0e5ca822a9671dc365be59c175c1af97`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -3794,6 +5603,7 @@ import "./globals.css";
 import { createClient } from '@/lib/supabase/server'
 import NavBar from '@/components/NavBar'
 import BottomNav from '@/components/BottomNav'
+import SplashScreen from '@/components/SplashScreen'
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-serif",
@@ -3834,6 +5644,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${sourceSerif.variable} ${workSans.variable}`}>
       <body className="min-h-full flex flex-col">
+        <SplashScreen />
         <NavBar username={username} avatarUrl={avatarUrl} />
         <div style={{ paddingBottom: username ? 72 : 0 }}>{children}</div>
         {username && <BottomNav />}
@@ -3841,6 +5652,58 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     </html>
   );
 }
+
+```
+
+---
+
+### <a id="📄-src-app-loading-tsx"></a>📄 `src/app/loading.tsx`
+
+**File Info:**
+- **Size**: 674 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/loading.tsx`
+- **Relative Path**: `src/app`
+- **Created**: 2026-09-21 04:32:40 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-21 04:40:35 (Australia/Sydney / GMT+10:00)
+- **MD5**: `31cc7ce6baa9891d9a18dfd44c58218f`
+- **SHA256**: `4c9ea06c13a9d1667ba520bce89a252c59e7a255082bbe50ab726cd8704ee61e`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+export default function Loading() {
+  return (
+    <div
+      className="flex flex-col items-center justify-center"
+      style={{ minHeight: '100vh', backgroundColor: 'var(--color-paper)' }}
+    >
+      <h1
+        style={{
+          fontFamily: 'var(--font-serif)',
+          fontWeight: 600,
+          fontSize: '2.5rem',
+          color: 'var(--color-accent)',
+          marginBottom: '0.5rem',
+        }}
+      >
+        Writemates
+      </h1>
+      <p
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: '0.95rem',
+          color: 'var(--color-ink-muted)',
+        }}
+      >
+        Where Writers Grow Together
+      </p>
+    </div>
+  )
+}
+
 ```
 
 ---
@@ -3848,15 +5711,15 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
 ### <a id="📄-src-app-manifest-ts"></a>📄 `src/app/manifest.ts`
 
 **File Info:**
-- **Size**: 495 B
+- **Size**: 496 B
 - **Extension**: `.ts`
 - **Language**: `typescript`
 - **Location**: `src/app/manifest.ts`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-11 10:24:30 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-11 10:24:48 (Australia/Sydney / GMT+10:00)
-- **MD5**: `bd38e3e7727b1e1c669682ce8cd47d87`
-- **SHA256**: `98d1da0d812cdd78e35066fc03eb30a343bcc6ec1da608c6345d9a4d3c6d1f00`
+- **Modified**: 2026-09-21 04:40:52 (Australia/Sydney / GMT+10:00)
+- **MD5**: `b6e4abac73240977cd12d4fecec6884c`
+- **SHA256**: `b6b0f6acea0a87dd051f993bee61eea3a808f10f7c181f339e889d6723fbc947`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -3871,14 +5734,15 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Track your writing progress with fellow writers',
     start_url: '/',
     display: 'standalone',
-    background_color: '#fbfaf7',
-    theme_color: '#33503e',
+    background_color: '#fffdf6',
+    theme_color: '#1747e0',
     icons: [
       { src: '/icon-192', sizes: '192x192', type: 'image/png' },
       { src: '/icon-512', sizes: '512x512', type: 'image/png' },
     ],
   }
 }
+
 ```
 
 ---
@@ -3886,15 +5750,15 @@ export default function manifest(): MetadataRoute.Manifest {
 ### <a id="📄-src-app-page-tsx"></a>📄 `src/app/page.tsx`
 
 **File Info:**
-- **Size**: 300 B
+- **Size**: 302 B
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/page.tsx`
 - **Relative Path**: `src/app`
 - **Created**: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-07 07:52:38 (Australia/Sydney / GMT+10:00)
-- **MD5**: `38860c2d498147910f1bb3645bf584b8`
-- **SHA256**: `dcd1ba6f3f0069f570c55422420fae723d073470849382a9a82b07ade958d26b`
+- **Modified**: 2026-09-21 03:32:54 (Australia/Sydney / GMT+10:00)
+- **MD5**: `91e28f6fef162a56d876a0da763058e0`
+- **SHA256**: `64b0f769a7462b755d433997fee418ec9bfdd92d02e5a99751f8e43e96950a19`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -3911,8 +5775,9 @@ export default async function Home() {
     redirect('/login')
   }
 
-  redirect('/feed')
+  redirect('/today')
 }
+
 ```
 
 ---
@@ -3926,15 +5791,15 @@ The following files were not included in the text content:
 ### <a id="📄-src-components-bottomnav-tsx"></a>📄 `src/components/BottomNav.tsx`
 
 **File Info:**
-- **Size**: 4.24 KB
+- **Size**: 4.33 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/BottomNav.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-14 09:58:20 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-18 04:01:40 (Australia/Sydney / GMT+10:00)
-- **MD5**: `82b2c12c81e5dd94fdfefefe711d5447`
-- **SHA256**: `bbb62f05286d5a07f8f730e52ff7e488afb0617e4e264da55e8856fda91e0500`
+- **Modified**: 2026-09-21 03:32:27 (Australia/Sydney / GMT+10:00)
+- **MD5**: `ae1e286709082741157fbe051ac7b124`
+- **SHA256**: `1e6378df706d92552d8de3b7aa7bade536058c715a591d3ab55d1748eea5a7a3`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -3945,14 +5810,14 @@ The following files were not included in the text content:
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Users, Library, Bell, Plus, X, PenLine, FolderPlus, Share2, Upload } from 'lucide-react'
+import { LayoutDashboard, Newspaper, Users, Bell, Plus, X, PenLine, FolderPlus, Share2, Upload, Timer } from 'lucide-react'
 import UnreadChatDot from '@/components/UnreadChatDot'
 import UnreadActivityDot from '@/components/UnreadActivityDot'
 
 const tabs = [
-  { href: '/feed', label: 'Today', icon: Home },
+  { href: '/today', label: 'Today', icon: LayoutDashboard },
+  { href: '/feed', label: 'Feed', icon: Newspaper },
   { href: '/chat', label: 'Mates', icon: Users },
-  { href: '/projects', label: 'Library', icon: Library },
   { href: '/activity', label: 'Activity', icon: Bell },
 ]
 
@@ -3960,6 +5825,7 @@ const actions = [
   { href: '/projects/log', label: 'Log wordcount', icon: PenLine },
   { href: '/projects', label: 'New project', icon: FolderPlus },
   { href: '/post/new', label: 'Share a post', icon: Share2 },
+  { href: '/sprints', label: 'Start a sprint', icon: Timer },
   { href: '/read', label: 'Upload work-in-progress', icon: Upload },
 ]
 
@@ -4068,6 +5934,7 @@ export default function BottomNav() {
     </>
   )
 }
+
 ```
 
 ---
@@ -4193,15 +6060,15 @@ export default function DailyBarChart({ data }: { data: DataPoint[] }) {
 ### <a id="📄-src-components-deleteprojectbutton-tsx"></a>📄 `src/components/DeleteProjectButton.tsx`
 
 **File Info:**
-- **Size**: 1.03 KB
+- **Size**: 2.74 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/DeleteProjectButton.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-20 23:16:47 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-20 23:21:39 (Australia/Sydney / GMT+10:00)
-- **MD5**: `4306c95f58be63a6b62b1acafc6d5a2c`
-- **SHA256**: `24cdc5ca4c02913e0506971ed326a4d37b455629de5cd2a48457dd044b933f0b`
+- **Modified**: 2026-09-20 23:25:28 (Australia/Sydney / GMT+10:00)
+- **MD5**: `d0c828bcfbcfb8352f51066a4d7b9b9e`
+- **SHA256**: `797123199e07067b4798f96becbef6b5b68075f1e926513620fba72f126449ea`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -4214,38 +6081,140 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { MinusCircle } from 'lucide-react'
 
-export default function DeleteProjectButton({ projectId, title }: { projectId: string; title: string }) {
+export default function DeleteProjectButton({
+  projectId,
+  title,
+  onDeleted,
+}: {
+  projectId: string
+  title: string
+  onDeleted?: () => void
+}) {
+  const [confirming, setConfirming] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const router = useRouter()
 
   async function handleDelete() {
-    const confirmed = window.confirm(
-      `Delete "${title}"? This removes the project and all its logged progress. This can't be undone.`
-    )
-    if (!confirmed) return
-
     setDeleting(true)
     const supabase = createClient()
     const { error } = await supabase.from('projects').delete().eq('id', projectId)
     setDeleting(false)
+    setConfirming(false)
 
     if (!error) {
-      router.push('/projects')
-      router.refresh()
+      if (onDeleted) {
+        onDeleted()
+      } else {
+        router.push('/projects')
+        router.refresh()
+      }
     }
   }
 
   return (
-    <button
-      onClick={handleDelete}
-      disabled={deleting}
-      aria-label={`Delete ${title}`}
-      style={{ color: 'var(--color-ink-muted)' }}
-    >
-      <MinusCircle size={18} />
-    </button>
+    <>
+      <button
+        onClick={() => setConfirming(true)}
+        aria-label={`Delete ${title}`}
+        style={{ color: 'var(--color-ink-muted)' }}
+      >
+        <MinusCircle size={18} />
+      </button>
+
+      {confirming && (
+        <div
+          onClick={() => setConfirming(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0,0,0,0.3)',
+            zIndex: 50,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: 'var(--color-paper)',
+              border: '1px solid var(--color-rule)',
+              borderRadius: 12,
+              padding: '1.5rem',
+              maxWidth: 320,
+              width: '85%',
+              fontFamily: 'var(--font-sans)',
+            }}
+          >
+            <p className="text-sm mb-1" style={{ fontWeight: 600 }}>Delete &ldquo;{title}&rdquo;?</p>
+            <p className="text-sm mb-5" style={{ color: 'var(--color-ink-muted)' }}>
+              This removes the project and all its logged progress. This can&apos;t be undone.
+            </p>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setConfirming(false)}
+                className="text-sm px-4 py-2"
+                style={{ color: 'var(--color-ink-muted)' }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={deleting}
+                className="text-sm px-4 py-2"
+                style={{ backgroundColor: '#a33', color: '#fff', borderRadius: 6 }}
+              >
+                {deleting ? 'Deleting...' : 'Delete'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
+
+```
+
+---
+
+### <a id="📄-src-components-feedfilterswitcher-tsx"></a>📄 `src/components/FeedFilterSwitcher.tsx`
+
+**File Info:**
+- **Size**: 575 B
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/FeedFilterSwitcher.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-23 03:34:41 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-23 03:34:41 (Australia/Sydney / GMT+10:00)
+- **MD5**: `118da39f79481c354f13378ed4af12a4`
+- **SHA256**: `d90e9e782fe9f49f12e134a84b648f843dd9af2f3b98474c224e0721ba3cb2e5`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useRouter } from 'next/navigation'
+
+export default function FeedFilterSwitcher({ initialView }: { initialView: string }) {
+  const router = useRouter()
+
+  return (
+    <select
+      value={initialView}
+      onChange={(e) => router.push(`/feed?view=${e.target.value}`)}
+      className="text-sm bg-transparent border-b py-1 focus:outline-none"
+      style={{ borderColor: 'var(--color-rule)', color: 'var(--color-ink-muted)' }}
+    >
+      <option value="public">Public feed</option>
+      <option value="groups">My groups</option>
+    </select>
+  )
+}
+
 ```
 
 ---
@@ -4788,6 +6757,85 @@ export default function ProgressChart({ data }: { data: DataPoint[] }) {
           <Line type="monotone" dataKey="wordCount" stroke="#333" strokeWidth={2} dot={false} />
         </LineChart>
       </ResponsiveContainer>
+    </div>
+  )
+}
+
+```
+
+---
+
+### <a id="📄-src-components-splashscreen-tsx"></a>📄 `src/components/SplashScreen.tsx`
+
+**File Info:**
+- **Size**: 1.22 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/components/SplashScreen.tsx`
+- **Relative Path**: `src/components`
+- **Created**: 2026-09-22 00:59:27 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-22 00:59:27 (Australia/Sydney / GMT+10:00)
+- **MD5**: `c0c5a75f6db15f24ed92476af8ee8548`
+- **SHA256**: `fb60f120e169ecf40dc4c455f8c6a01fccc450455a9437bf4ba5409d8e614f8c`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useEffect, useState } from 'react'
+
+export default function SplashScreen() {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const alreadyShown = sessionStorage.getItem('wm_splash_shown')
+    if (alreadyShown) return
+
+    setVisible(true)
+    const timer = setTimeout(() => {
+      setVisible(false)
+      sessionStorage.setItem('wm_splash_shown', '1')
+    }, 900)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (!visible) return null
+
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 9999,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'var(--color-paper)',
+      }}
+    >
+      <h1
+        style={{
+          fontFamily: 'var(--font-serif)',
+          fontWeight: 600,
+          fontSize: '2.5rem',
+          color: 'var(--color-accent)',
+          marginBottom: '0.5rem',
+        }}
+      >
+        Writemates
+      </h1>
+      <p
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: '0.95rem',
+          color: 'var(--color-ink-muted)',
+        }}
+      >
+        Where Writers Grow Together
+      </p>
     </div>
   )
 }
@@ -5339,15 +7387,15 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 ### <a id="📄-src-lib-wordcountstats-ts"></a>📄 `src/lib/wordcountStats.ts`
 
 **File Info:**
-- **Size**: 4.58 KB
+- **Size**: 4.66 KB
 - **Extension**: `.ts`
 - **Language**: `typescript`
 - **Location**: `src/lib/wordcountStats.ts`
 - **Relative Path**: `src/lib`
 - **Created**: 2026-09-11 09:55:22 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-18 04:04:25 (Australia/Sydney / GMT+10:00)
-- **MD5**: `a4b076f270f0e0b37f266a4b1d90af59`
-- **SHA256**: `51882b6a5545629e1ebc66e34fc9a6162d805dff9cd5ae79584e1119a27f6478`
+- **Modified**: 2026-09-22 00:51:19 (Australia/Sydney / GMT+10:00)
+- **MD5**: `2ff654c1d1cce89165b7dd09ade8ba23`
+- **SHA256**: `e3a4b0d2a1e809579c909ba9d0b1393062b165ce45db3eaffc085cd5b8786262`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -5434,44 +7482,54 @@ export function computeProjectedFinishDetails(
   dailyDeltas: Map<string, number>,
   currentTotal: number,
   goal: number | null
-): { finishDateLabel: string | null; daysRemaining: number | null; writingDaysPerWeek: number } {
-  if (!goal || currentTotal >= goal) {
-    return { finishDateLabel: null, daysRemaining: 0, writingDaysPerWeek: 0 }
+): {
+  finishDateLabel: string | null
+  daysRemaining: number | null
+  writingDaysPerWeek: number
+  avgPerCalendarDay: number
+} {
+  const allDates = Array.from(dailyDeltas.keys()).sort()
+
+  if (allDates.length === 0 || currentTotal <= 0) {
+    return { finishDateLabel: null, daysRemaining: null, writingDaysPerWeek: 0, avgPerCalendarDay: 0 }
   }
 
-  const writingDays = Array.from(dailyDeltas.entries())
-    .filter(([, words]) => words > 0)
-    .sort((a, b) => (a[0] < b[0] ? -1 : 1))
+  // Simple, motivating pace: total words written over every calendar day since
+  // you started, not just the days you happened to write — so any new entry
+  // directly moves the average, rather than being diluted or ignored.
+  const firstDate = new Date(allDates[0])
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const daysSinceStart = Math.max(1, Math.round((today.getTime() - firstDate.getTime()) / 86400000) + 1)
 
-  if (writingDays.length === 0) {
-    return { finishDateLabel: null, daysRemaining: null, writingDaysPerWeek: 0 }
+  const avgPerCalendarDay = currentTotal / daysSinceStart
+
+  const writingDays = allDates.filter((d) => (dailyDeltas.get(d) || 0) > 0)
+  const writingDaysPerWeek = writingDays.length > 0
+    ? Math.min(7, (writingDays.length / daysSinceStart) * 7)
+    : 0
+  const roundedWritingDaysPerWeek = Math.round(writingDaysPerWeek * 10) / 10
+
+  if (!goal || currentTotal >= goal || avgPerCalendarDay <= 0) {
+    return {
+      finishDateLabel: null,
+      daysRemaining: goal && currentTotal >= goal ? 0 : null,
+      writingDaysPerWeek: roundedWritingDaysPerWeek,
+      avgPerCalendarDay,
+    }
   }
-
-  // Use up to the most recent 30 writing days as a representative recent pace
-  const recent = writingDays.slice(-30)
-  const avgWordsPerWritingDay = recent.reduce((sum, [, words]) => sum + words, 0) / recent.length
-
-  if (avgWordsPerWritingDay <= 0) {
-    return { finishDateLabel: null, daysRemaining: null, writingDaysPerWeek: 0 }
-  }
-
-  // How many days a week do they actually write? Based on the calendar span these entries cover
-  const firstDate = new Date(recent[0][0])
-  const lastDate = new Date(recent[recent.length - 1][0])
-  const spanDays = Math.max(1, Math.round((lastDate.getTime() - firstDate.getTime()) / 86400000) + 1)
-  const writingDaysPerWeek = Math.min(7, (recent.length / spanDays) * 7)
 
   const wordsRemaining = goal - currentTotal
-  const writingDaysNeeded = wordsRemaining / avgWordsPerWritingDay
-  const calendarDaysNeeded = Math.max(1, Math.ceil(writingDaysNeeded / (writingDaysPerWeek / 7)))
+  const daysRemaining = Math.max(1, Math.ceil(wordsRemaining / avgPerCalendarDay))
 
   const finishDate = new Date()
-  finishDate.setDate(finishDate.getDate() + calendarDaysNeeded)
+  finishDate.setDate(finishDate.getDate() + daysRemaining)
 
   return {
     finishDateLabel: finishDate.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' }),
-    daysRemaining: calendarDaysNeeded,
-    writingDaysPerWeek: Math.round(writingDaysPerWeek * 10) / 10,
+    daysRemaining,
+    writingDaysPerWeek: roundedWritingDaysPerWeek,
+    avgPerCalendarDay,
   }
 }
 
@@ -5483,6 +7541,7 @@ export function getAuthorTitle(totalWords: number): string {
   if (totalWords >= 1000) return 'Wordsmith'
   return 'Fledgling Scribe'
 }
+
 ```
 
 ---

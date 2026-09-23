@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Source_Serif_4, Work_Sans } from "next/font/google";
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 import { createClient } from '@/lib/supabase/server'
 import NavBar from '@/components/NavBar'
@@ -49,6 +50,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <NavBar username={username} avatarUrl={avatarUrl} />
         <div style={{ paddingBottom: username ? 72 : 0 }}>{children}</div>
         {username && <BottomNav />}
+        <Analytics />
       </body>
     </html>
   );

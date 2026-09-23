@@ -64,6 +64,22 @@ export default function NewPostPage() {
       mediaUrl = urlData.publicUrl
     }
 
+    let linkTitle: string | null = null
+    let linkDescription: string | null = null
+    let linkImageUrl: string | null = null
+
+    if (linkUrl) {
+      try {
+        const previewRes = await fetch(`/api/link-preview?url=${encodeURIComponent(linkUrl)}`)
+        const preview = await previewRes.json()
+        linkTitle = preview.title || null
+        linkDescription = preview.description || null
+        linkImageUrl = preview.image || null
+      } catch {
+        // preview fetch failed — post still goes through with just the raw link
+      }
+    }
+
     const { data: newPost, error: postError } = await supabase
       .from('posts')
       .insert({
@@ -71,6 +87,9 @@ export default function NewPostPage() {
         type: linkUrl ? 'link' : 'snippet',
         content: content || null,
         link_url: linkUrl || null,
+        link_title: linkTitle,
+        link_description: linkDescription,
+        link_image_url: linkImageUrl,
         media_url: mediaUrl,
       })
       .select()

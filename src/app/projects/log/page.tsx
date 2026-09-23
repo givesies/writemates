@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { buildDailyCumulative, buildDailyDeltas } from '@/lib/wordcountStats'
 import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
+import { getRandomQuote, type Quote } from '@/lib/quotes'
 
 type Project = {
   id: string
@@ -26,6 +27,8 @@ export default function LogWordcountPage() {
   const [multiDayText, setMultiDayText] = useState('')
   const [parsedDays, setParsedDays] = useState<BackfillEntry[]>([])
   const [savingMulti, setSavingMulti] = useState(false)
+
+  const [quote, setQuote] = useState<Quote | null>(null)
 
   const router = useRouter()
 
@@ -125,8 +128,7 @@ export default function LogWordcountPage() {
     await refreshTodaysPost(supabase, user.id)
 
     setSaving(false)
-    router.push('/today')
-    router.refresh()
+    setQuote(getRandomQuote())
   }
 
   function handleParseMultiDay() {
@@ -183,11 +185,33 @@ export default function LogWordcountPage() {
     await refreshTodaysPost(supabase, user.id)
 
     setSavingMulti(false)
-    router.push('/today')
-    router.refresh()
+    setQuote(getRandomQuote())
   }
 
   if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
+
+  if (quote) {
+    return (
+      <main className="max-w-md mx-auto px-6 py-16 text-center" style={{ fontFamily: 'var(--font-sans)' }}>
+        <p
+          className="mb-4"
+          style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', lineHeight: 1.5, color: 'var(--color-ink)' }}
+        >
+          &ldquo;{quote.text}&rdquo;
+        </p>
+        <p className="text-sm mb-10" style={{ color: 'var(--color-ink-muted)' }}>
+          — {quote.author}
+        </p>
+        <button
+          onClick={() => { router.push('/today'); router.refresh() }}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Continue to Today
+        </button>
+      </main>
+    )
+  }
 
   if (projects.length === 0) {
     return (

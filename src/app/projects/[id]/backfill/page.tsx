@@ -7,17 +7,19 @@ import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
 
 export default function BackfillPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
+  const [step, setStep] = useState<'input' | 'review' | 'done'>('input')
   const [text, setText] = useState('')
   const [anchor, setAnchor] = useState('')
   const [parsed, setParsed] = useState<BackfillEntry[]>([])
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [saved, setSaved] = useState(false)
   const router = useRouter()
 
   function handleParse() {
-    setParsed(parseBackfillText(text))
+    const result = parseBackfillText(text)
+    setParsed(result)
     setError(null)
+    if (result.length > 0) setStep('review')
   }
 
   async function handleSave() {
@@ -70,11 +72,11 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
     if (error) {
       setError(error.message)
     } else {
-      setSaved(true)
+      setStep('done')
     }
   }
 
-  if (saved) {
+  if (step === 'done') {
     return (
       <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
         <h1 className="text-2xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
@@ -90,6 +92,66 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
         >
           Back to project
         </button>
+      </main>
+    )
+  }
+
+  if (step === 'review') {
+    return (
+      <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+        <h1 className="text-2xl mb-3" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          Found {parsed.length} days
+        </h1>
+        <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+          Here&apos;s what we&apos;ll add. Re-adding a day you&apos;ve already backfilled will overwrite it, not stack on top.
+        </p>
+
+        <div className="rounded border mb-4" style={{ borderColor: 'var(--color-rule)', maxHeight: 320, overflowY: 'auto' }}>
+          {parsed.map((p) => (
+            <div
+              key={p.date}
+              className="flex justify-between px-3 py-2 text-sm border-b"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              <span>{new Date(p.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+              <span style={{ color: p.delta < 0 ? '#a33' : 'var(--color-ink)' }}>
+                {p.delta > 0 ? '+' : ''}{p.delta.toLocaleString()}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+          Your total word count as of your most recent entry above (optional, but recommended so your history lines up with reality)
+        </label>
+        <input
+          type="number"
+          value={anchor}
+          onChange={(e) => setAnchor(e.target.value)}
+          placeholder="e.g. 34000"
+          className="w-full py-2 mb-4 border-b bg-transparent focus:outline-none"
+          style={{ borderColor: 'var(--color-rule)' }}
+        />
+
+        {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
+
+        <div className="flex gap-3">
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="px-5 py-2 text-sm"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+          >
+            {saving ? 'Saving...' : `Save ${parsed.length} days`}
+          </button>
+          <button
+            onClick={() => setStep('input')}
+            className="px-5 py-2 text-sm"
+            style={{ color: 'var(--color-ink-muted)' }}
+          >
+            Back
+          </button>
+        </div>
       </main>
     )
   }
@@ -110,10 +172,6 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
         <li>Open the file, copy the two date and word-count columns, and paste them below</li>
       </ol>
 
-      <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
-        Re-pasting data for a day you&apos;ve already backfilled will overwrite it, not add to it.
-      </p>
-
       <button
         onClick={() => router.push(`/projects/${id}`)}
         className="text-sm mb-6"
@@ -131,58 +189,19 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
         style={{ borderColor: 'var(--color-rule)', backgroundColor: 'transparent' }}
       />
 
+      {parsed.length === 0 && text.trim().length > 0 && (
+        <p className="text-sm mb-4" style={{ color: '#a33' }}>
+          Couldn&apos;t find any valid date/word-count lines in that text — check the format and try again.
+        </p>
+      )}
+
       <button
         onClick={handleParse}
-        className="px-5 py-2 text-sm mb-6"
+        className="px-5 py-2 text-sm"
         style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
       >
         Preview
       </button>
-
-      {parsed.length > 0 && (
-        <div className="mb-6">
-          <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
-            Found {parsed.length} days:
-          </p>
-          <div className="rounded border mb-4" style={{ borderColor: 'var(--color-rule)', maxHeight: 220, overflowY: 'auto' }}>
-            {parsed.map((p) => (
-              <div
-                key={p.date}
-                className="flex justify-between px-3 py-2 text-sm border-b"
-                style={{ borderColor: 'var(--color-rule)' }}
-              >
-                <span>{new Date(p.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                <span style={{ color: p.delta < 0 ? '#a33' : 'var(--color-ink)' }}>
-                  {p.delta > 0 ? '+' : ''}{p.delta.toLocaleString()}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-            Your total word count as of your most recent entry above (optional, but recommended so your history lines up with reality)
-          </label>
-          <input
-            type="number"
-            value={anchor}
-            onChange={(e) => setAnchor(e.target.value)}
-            placeholder="e.g. 34000"
-            className="w-full py-2 mb-4 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-
-          {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
-
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="px-5 py-2 text-sm"
-            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
-          >
-            {saving ? 'Saving...' : `Save ${parsed.length} days`}
-          </button>
-        </div>
-      )}
     </main>
   )
 }

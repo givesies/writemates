@@ -6,6 +6,10 @@ import { useRouter } from 'next/navigation'
 
 export default function EditProfilePage() {
   const [displayName, setDisplayName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [occupation, setOccupation] = useState('')
+  const [bookTitle, setBookTitle] = useState('')
   const [bio, setBio] = useState('')
   const [currentWork, setCurrentWork] = useState('')
   const [genresWrite, setGenresWrite] = useState('')
@@ -37,6 +41,10 @@ export default function EditProfilePage() {
 
       if (profile) {
         setDisplayName(profile.display_name || '')
+        setFirstName(profile.first_name || '')
+        setLastName(profile.last_name || '')
+        setOccupation(profile.occupation || '')
+        setBookTitle(profile.book_title || '')
         setBio(profile.bio || '')
         setCurrentWork(profile.current_work_description || '')
         setGenresWrite(profile.genres_write || '')
@@ -85,6 +93,10 @@ export default function EditProfilePage() {
       .from('profiles')
       .update({
         display_name: displayName,
+        first_name: firstName || null,
+        last_name: lastName || null,
+        occupation: occupation || null,
+        book_title: bookTitle || null,
         bio: bio,
         current_work_description: currentWork,
         genres_write: genresWrite,
@@ -141,6 +153,54 @@ export default function EditProfilePage() {
             style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
+
+        <div className="mb-5 grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>First name</label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Last name</label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+        </div>
+
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Occupation</label>
+          <input
+            type="text"
+            value={occupation}
+            onChange={(e) => setOccupation(e.target.value)}
+            placeholder="e.g. Teacher, Software Engineer"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+
+        <div className="mb-5">
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Current book title</label>
+          <input
+            type="text"
+            value={bookTitle}
+            onChange={(e) => setBookTitle(e.target.value)}
+            placeholder="The title of what you're writing"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+
         <div className="mb-5">
           <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>About me</label>
           <textarea
