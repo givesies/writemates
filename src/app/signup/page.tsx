@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import GoogleSignInButton from '@/components/GoogleSignInButton'
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('')
@@ -46,6 +47,15 @@ export default function SignUpPage() {
         <h2 className="text-xl mb-6" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
           Sign up
         </h2>
+
+        <GoogleSignInButton />
+
+        <div className="flex items-center gap-3 mb-5">
+          <div className="flex-1 h-px" style={{ backgroundColor: 'var(--color-rule)' }} />
+          <span className="text-xs" style={{ color: 'var(--color-ink-muted)' }}>or</span>
+          <div className="flex-1 h-px" style={{ backgroundColor: 'var(--color-rule)' }} />
+        </div>
+
         <form onSubmit={handleSignUp} style={{ fontFamily: 'var(--font-sans)' }}>
           <div className="mb-5">
             <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Email</label>

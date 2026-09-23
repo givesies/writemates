@@ -11,6 +11,7 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
   const [text, setText] = useState('')
   const [anchor, setAnchor] = useState('')
   const [parsed, setParsed] = useState<BackfillEntry[]>([])
+  const [hasAttemptedParse, setHasAttemptedParse] = useState(false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
@@ -18,6 +19,7 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
   function handleParse() {
     const result = parseBackfillText(text)
     setParsed(result)
+    setHasAttemptedParse(true)
     setError(null)
     if (result.length > 0) setStep('review')
   }
@@ -182,14 +184,17 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
 
       <textarea
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => {
+          setText(e.target.value)
+          setHasAttemptedParse(false)
+        }}
         rows={8}
         placeholder="Paste your Scrivener writing history here..."
         className="w-full p-3 mb-4 rounded border focus:outline-none"
         style={{ borderColor: 'var(--color-rule)', backgroundColor: 'transparent' }}
       />
 
-      {parsed.length === 0 && text.trim().length > 0 && (
+      {hasAttemptedParse && parsed.length === 0 && (
         <p className="text-sm mb-4" style={{ color: '#a33' }}>
           Couldn&apos;t find any valid date/word-count lines in that text — check the format and try again.
         </p>
