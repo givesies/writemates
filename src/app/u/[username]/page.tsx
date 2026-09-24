@@ -1,8 +1,12 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
+import { Pencil, ExternalLink } from 'lucide-react'
 import FollowButton from '@/components/FollowButton'
 import MessageButton from '@/components/MessageButton'
 import { buildDailyCumulative, getAuthorTitle } from '@/lib/wordcountStats'
+
+type WorkLink = { label: string; url: string }
 
 export default async function PublicProfilePage({
   params,
@@ -80,6 +84,8 @@ export default async function PublicProfilePage({
   })()
 
   const authorTitle = getAuthorTitle(totalWordsAcrossProjects)
+  const isOwner = viewer?.id === profile.id
+  const workLinks: WorkLink[] = Array.isArray(profile.work_links) ? profile.work_links : []
 
   function latestWordCountFor(projectId: string) {
     const wordcountPosts = (posts || []).filter(
@@ -94,26 +100,33 @@ export default async function PublicProfilePage({
         className="rounded-xl p-6 mb-6"
         style={{ border: '1px solid var(--color-rule)', backgroundColor: 'var(--color-paper)' }}
       >
-        <div className="flex items-center gap-4">
-          {profile.avatar_url && (
-            <img
-              src={profile.avatar_url}
-              alt=""
-              className="w-16 h-16 rounded-full object-cover"
-            />
-          )}
-          <div>
-            <h1 className="text-3xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-              {profile.display_name || profile.username}
-            </h1>
-            <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-              @{profile.username}
-              {profile.occupation && <> · {profile.occupation}</>}
-              {totalWordsAcrossProjects > 0 && (
-                <span style={{ color: 'var(--color-accent)' }}> · {authorTitle}</span>
-              )}
-            </p>
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-4">
+            {profile.avatar_url && (
+              <img
+                src={profile.avatar_url}
+                alt=""
+                className="w-16 h-16 rounded-full object-cover"
+              />
+            )}
+            <div>
+              <h1 className="text-3xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+                {profile.display_name || profile.username}
+              </h1>
+              <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                @{profile.username}
+                {profile.occupation && <> · {profile.occupation}</>}
+                {totalWordsAcrossProjects > 0 && (
+                  <span style={{ color: 'var(--color-accent)' }}> · {authorTitle}</span>
+                )}
+              </p>
+            </div>
           </div>
+          {isOwner && (
+            <Link href="/profile/edit" aria-label="Edit profile" title="Edit profile" style={{ color: 'var(--color-ink-muted)' }}>
+              <Pencil size={18} />
+            </Link>
+          )}
         </div>
 
         <div
@@ -132,7 +145,7 @@ export default async function PublicProfilePage({
 
         {profile.bio && <p className="mt-5 text-lg" style={{ lineHeight: 1.6 }}>{profile.bio}</p>}
 
-        {(profile.book_title || profile.current_work_description) && (
+        {(profile.book_title || profile.current_work_description || workLinks.length > 0) && (
           <div
             className="mt-5 rounded-lg"
             style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
@@ -149,7 +162,29 @@ export default async function PublicProfilePage({
               </p>
             )}
             {profile.current_work_description && (
-              <p style={{ lineHeight: 1.6 }}>{profile.current_work_description}</p>
+              <p className="mb-2" style={{ lineHeight: 1.6 }}>{profile.current_work_description}</p>
+            )}
+            {workLinks.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {workLinks.map((link, i) => (
+                  
+                    key={i}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-sm rounded-full"
+                    style={{
+                      border: '1px solid var(--color-rule)',
+                      backgroundColor: 'var(--color-paper)',
+                      color: 'var(--color-accent)',
+                      padding: '0.35rem 0.75rem',
+                    }}
+                  >
+                    <ExternalLink size={13} />
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             )}
           </div>
         )}

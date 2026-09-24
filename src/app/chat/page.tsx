@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { Users } from 'lucide-react'
 
 type ConversationRow = {
   conversation_id: string
@@ -88,9 +89,24 @@ export default function ChatListPage() {
 
   return (
     <main className="max-w-md mx-auto px-6 py-16">
-      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        Chat
-      </h1>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-3xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          Chat
+        </h1>
+        <Link
+          href="/groups"
+          className="flex items-center gap-1.5 text-sm rounded-full"
+          style={{
+            fontFamily: 'var(--font-sans)',
+            color: 'var(--color-accent)',
+            border: '1px solid var(--color-rule)',
+            padding: '0.4rem 0.8rem',
+          }}
+        >
+          <Users size={15} />
+          Groups
+        </Link>
+      </div>
 
       {conversations.length === 0 && (
         <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
