@@ -1,12 +1,21 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Pencil, ExternalLink } from 'lucide-react'
+import { Pencil, Users, UserCheck } from 'lucide-react'
 import FollowButton from '@/components/FollowButton'
 import MessageButton from '@/components/MessageButton'
-import { buildDailyCumulative, getAuthorTitle } from '@/lib/wordcountStats'
+import { buildDailyCumulative } from '@/lib/wordcountStats'
 
 type WorkLink = { label: string; url: string }
+
+const PROJECT_TYPE_LABELS: Record<string, string> = {
+  book: 'Novel',
+  screenplay: 'Screenplay',
+  article: 'Article',
+  short_story: 'Short story',
+  thesis: 'Thesis',
+  other: 'Project',
+}
 
 export default async function PublicProfilePage({
   params,
@@ -62,30 +71,10 @@ export default async function PublicProfilePage({
     .order('updated_at', { ascending: false })
     .limit(10)
 
-  const { data: allSnapshots } = await supabase
-    .from('wordcount_snapshots')
-    .select('word_count, recorded_at, project_id')
-    .eq('user_id', profile.id)
-
-  const totalWordsAcrossProjects = (() => {
-    const byProject = new Map<string, typeof allSnapshots>()
-    for (const snap of allSnapshots || []) {
-      const list = byProject.get(snap.project_id) || []
-      list.push(snap)
-      byProject.set(snap.project_id, list)
-    }
-    let total = 0
-    for (const snaps of byProject.values()) {
-      const daily = buildDailyCumulative(snaps!)
-      const values = Array.from(daily.values())
-      if (values.length > 0) total += Math.max(...values)
-    }
-    return total
-  })()
-
-  const authorTitle = getAuthorTitle(totalWordsAcrossProjects)
   const isOwner = viewer?.id === profile.id
   const workLinks: WorkLink[] = Array.isArray(profile.work_links) ? profile.work_links : []
+  const writeGenres = (profile.genres_write || '').split(',').map((g: string) => g.trim()).filter(Boolean)
+  const readGenres = (profile.genres_read || '').split(',').map((g: string) => g.trim()).filter(Boolean)
 
   function latestWordCountFor(projectId: string) {
     const wordcountPosts = (posts || []).filter(
@@ -116,9 +105,6 @@ export default async function PublicProfilePage({
               <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
                 @{profile.username}
                 {profile.occupation && <> · {profile.occupation}</>}
-                {totalWordsAcrossProjects > 0 && (
-                  <span style={{ color: 'var(--color-accent)' }}> · {authorTitle}</span>
-                )}
               </p>
             </div>
           </div>
@@ -130,11 +116,15 @@ export default async function PublicProfilePage({
         </div>
 
         <div
-          className="flex items-center gap-4 mt-4 text-sm"
+          className="flex items-center gap-5 mt-4 text-sm"
           style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
         >
-          <span>{followerCount || 0} followers</span>
-          <span>{followingCount || 0} following</span>
+          <span className="flex items-center gap-1.5">
+            <Users size={15} /> {followerCount || 0} followers
+          </span>
+          <span className="flex items-center gap-1.5">
+            <UserCheck size={15} /> {followingCount || 0} following
+          </span>
           {viewer && viewer.id !== profile.id && (
             <>
               <FollowButton profileId={profile.id} initialFollowing={isFollowing} />
@@ -167,7 +157,7 @@ export default async function PublicProfilePage({
             {workLinks.length > 0 && (
               <div className="flex flex-wrap gap-2 mt-2">
                 {workLinks.map((link, i) => (
-                  
+                    <a
                     key={i}
                     href={link.url}
                     target="_blank"
@@ -180,7 +170,6 @@ export default async function PublicProfilePage({
                       padding: '0.35rem 0.75rem',
                     }}
                   >
-                    <ExternalLink size={13} />
                     {link.label}
                   </a>
                 ))}
@@ -189,26 +178,71 @@ export default async function PublicProfilePage({
           </div>
         )}
 
-        {(profile.genres_write || profile.genres_read) && (
-          <div className="mt-5 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-            {profile.genres_write && <p>Writes: {profile.genres_write}</p>}
-            {profile.genres_read && <p>Reads: {profile.genres_read}</p>}
+        {(writeGenres.length > 0 || readGenres.length > 0) && (
+          <div className="mt-5">
+            {writeGenres.length > 0 && (
+              <div className="mb-2">
+                <span className="text-xs mr-2" style={{ color: 'var(--color-ink-muted)' }}>Writes</span>
+                <span className="inline-flex flex-wrap gap-1.5">
+                  {writeGenres.map((g: string, i: number) => (
+                    <span
+                      key={i}
+                      className="text-xs rounded-full"
+                      style={{ backgroundColor: 'var(--color-paper-raised)', color: 'var(--color-ink)', padding: '0.2rem 0.6rem' }}
+                    >
+                      {g}
+                    </span>
+                  ))}
+                </span>
+              </div>
+            )}
+            {readGenres.length > 0 && (
+              <div>
+                <span className="text-xs mr-2" style={{ color: 'var(--color-ink-muted)' }}>Reads</span>
+                <span className="inline-flex flex-wrap gap-1.5">
+                  {readGenres.map((g: string, i: number) => (
+                    <span
+                      key={i}
+                      className="text-xs rounded-full"
+                      style={{ backgroundColor: 'var(--color-paper-raised)', color: 'var(--color-ink)', padding: '0.2rem 0.6rem' }}
+                    >
+                      {g}
+                    </span>
+                  ))}
+                </span>
+              </div>
+            )}
           </div>
         )}
 
         {(profile.substack_url || profile.twitter_url || profile.instagram_url || profile.website_url) && (
-          <div className="mt-5 flex gap-4 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}>
+          <div className="mt-5 flex items-center gap-3">
             {profile.substack_url && (
-              <a href={profile.substack_url} target="_blank" rel="noopener noreferrer">Read my Substack</a>
+              <a
+                href={`${profile.substack_url.replace(/\/$/, '')}/subscribe`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Subscribe on Substack"
+                className="flex items-center gap-2 text-sm rounded-full"
+                style={{ border: '1px solid var(--color-rule)', padding: '0.35rem 0.75rem 0.35rem 0.35rem' }}
+              >
+                <span
+                  className="flex items-center justify-center"
+                  style={{ width: 24, height: 24, borderRadius: 6, backgroundColor: '#FF6719', color: '#fff', fontWeight: 700, fontSize: 13 }}
+                >
+                  S
+                </span>
+                <span style={{ color: 'var(--color-accent)' }}>Subscribe To My Substack</span>
+              </a>
             )}
             {profile.twitter_url && (
-              <a href={profile.twitter_url} target="_blank" rel="noopener noreferrer">Twitter</a>
+              <a href={profile.twitter_url} target="_blank" rel="noopener noreferrer" className="text-sm" style={{ color: 'var(--color-accent)' }}>Twitter</a>
             )}
             {profile.instagram_url && (
-              <a href={profile.instagram_url} target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href={profile.instagram_url} target="_blank" rel="noopener noreferrer" className="text-sm" style={{ color: 'var(--color-accent)' }}>Instagram</a>
             )}
             {profile.website_url && (
-              <a href={profile.website_url} target="_blank" rel="noopener noreferrer">Website</a>
+              <a href={profile.website_url} target="_blank" rel="noopener noreferrer" className="text-sm" style={{ color: 'var(--color-accent)' }}>Website</a>
             )}
           </div>
         )}
@@ -228,6 +262,8 @@ export default async function PublicProfilePage({
               current && project.goal_word_count
                 ? Math.min(100, Math.round((current / project.goal_word_count) * 100))
                 : null
+            const typeLabel = PROJECT_TYPE_LABELS[project.project_type] || 'Project'
+            const startedLabel = new Date(project.created_at).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })
             return (
               <div
                 key={project.id}
@@ -245,6 +281,9 @@ export default async function PublicProfilePage({
                     </span>
                   )}
                 </div>
+                <p className="text-xs mt-0.5" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                  {typeLabel} · started {startedLabel}
+                </p>
                 {current !== null && (
                   <>
                     <div
