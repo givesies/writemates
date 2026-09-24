@@ -123,17 +123,25 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
           ))}
         </div>
 
-        <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-          Your total word count as of your most recent entry above (optional, but recommended so your history lines up with reality)
-        </label>
-        <input
-          type="number"
-          value={anchor}
-          onChange={(e) => setAnchor(e.target.value)}
-          placeholder="e.g. 34000"
-          className="w-full py-2 mb-4 border-b bg-transparent focus:outline-none"
-          style={{ borderColor: 'var(--color-rule)' }}
-        />
+        <div
+          className="rounded-lg mb-4"
+          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
+        >
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>
+            Your real, current word count
+          </label>
+          <p className="text-sm mb-3" style={{ color: 'var(--color-ink-muted)' }}>
+            Scrivener&apos;s writing-history log can drift from your actual manuscript over time (moved documents, restructuring, etc. don&apos;t always get tracked). To get the true number: in Scrivener, go to <strong>Project → Project Statistics</strong> and use the <strong>Words</strong> figure shown there — not the history dialog.
+          </p>
+          <input
+            type="number"
+            value={anchor}
+            onChange={(e) => setAnchor(e.target.value)}
+            placeholder="e.g. 34000"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
 
         {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
 
