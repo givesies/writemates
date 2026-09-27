@@ -8,9 +8,12 @@ import {
   buildDailyCumulative,
   buildDailyDeltas,
   computeProjectedFinishDetails,
+  computeStreak,
 } from '@/lib/wordcountStats'
 import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
+import StreakStrip from '@/components/StreakStrip'
+import StreakCelebration from '@/components/StreakCelebration'
 
 type Project = {
   id: string
@@ -58,7 +61,6 @@ export default function TodayPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
-  const [bannerDismissed, setBannerDismissed] = useState(false)
 
   const [currentTotal, setCurrentTotal] = useState(0)
   const [percent, setPercent] = useState<number | null>(null)
@@ -76,6 +78,8 @@ export default function TodayPage() {
   const [chartData, setChartData] = useState<{ day: string; words: number }[]>([])
   const [chartAverage, setChartAverage] = useState(0)
   const [insight, setInsight] = useState<Insight | null>(null)
+  const [streak, setStreak] = useState(0)
+  const [streakDays, setStreakDays] = useState<{ label: string; logged: boolean; isToday: boolean }[]>([])
 
   const router = useRouter()
 
@@ -169,18 +173,22 @@ export default function TodayPage() {
       setDaysSinceStart(Math.max(1, Math.floor((now.getTime() - startDate.getTime()) / 86400000) + 1))
 
       const days: { day: string; words: number }[] = []
+      const streakStripDays: { label: string; logged: boolean; isToday: boolean }[] = []
       for (let i = 6; i >= 0; i--) {
         const d = new Date()
         d.setDate(d.getDate() - i)
         const dateStr = d.toISOString().split('T')[0]
         const label = d.toLocaleDateString(undefined, { weekday: 'short' })
-        days.push({ day: label, words: dailyDeltas.get(dateStr) || 0 })
+        const words = dailyDeltas.get(dateStr) || 0
+        days.push({ day: label, words })
+        streakStripDays.push({ label: label.charAt(0), logged: words > 0, isToday: i === 0 })
       }
       setChartData(days)
       setChartAverage(days.reduce((sum, d) => sum + d.words, 0) / 7)
+      setStreakDays(streakStripDays)
+      setStreak(computeStreak(dailyMap))
 
       setInsight(computeInsight(details.avgPerCalendarDay, details.daysRemaining))
-      setBannerDismissed(false)
     }
     loadStats()
   }, [selectedId, projects])
@@ -206,6 +214,8 @@ export default function TodayPage() {
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12" style={{ fontFamily: 'var(--font-sans)' }}>
+      {selectedId && <StreakCelebration streak={streak} projectId={selectedId} />}
+
       {projects.length > 1 && (
         <select
           value={selectedId || ''}
@@ -219,6 +229,8 @@ export default function TodayPage() {
         </select>
       )}
 
+      <StreakStrip streak={streak} days={streakDays} />
+
       {project?.goal_word_count && (
         <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>
           <strong style={{ color: 'var(--color-ink)' }}>{currentTotal.toLocaleString()}</strong>
@@ -230,36 +242,26 @@ export default function TodayPage() {
         </p>
       )}
 
-      {!bannerDismissed && (
-        <div
-          className="rounded-lg mb-6 relative"
-          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
-        >
-          <button
-            onClick={() => setBannerDismissed(true)}
-            aria-label="Dismiss"
-            className="absolute text-sm"
-            style={{ top: 10, right: 12, color: 'var(--color-ink-muted)' }}
-          >
-            ✕
-          </button>
-          {finishDateLabel ? (
-            <>
-              <p className="text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-                Keep it up. Your projected finish date for your {stageLabel} of {project?.title} is
-              </p>
-              <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
-                {finishDateLabel}
-              </p>
-              <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
-            </>
-          ) : (
-            <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
-              Log a few {unit} to see your projected finish date.
+      <div
+        className="rounded-lg mb-6"
+        style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
+      >
+        {finishDateLabel ? (
+          <>
+            <p className="text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+              Keep it up. Your projected finish date for your {stageLabel} of {project?.title} is
             </p>
-          )}
-        </div>
-      )}
+            <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
+              {finishDateLabel}
+            </p>
+            <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
+          </>
+        ) : (
+          <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
+            Log a few {unit} to see your projected finish date.
+          </p>
+        )}
+      </div>
 
       <div className="grid grid-cols-2 gap-3 mb-6">
         <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
