@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `writemates`
-- **Generated On**: 2026-09-29 22:43:29 (Australia/Sydney / GMT+10:00)
+- **Generated On**: 2026-09-29 22:51:13 (Australia/Sydney / GMT+10:00)
 - **Total Files Processed**: 80
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -90,7 +90,7 @@
 │   │   │   │       └── 📄 page.tsx (9.75 KB)
 │   │   │   └── 📄 page.tsx (6.56 KB)
 │   │   ├── 📁 today/
-│   │   │   └── 📄 page.tsx (13.13 KB)
+│   │   │   └── 📄 page.tsx (13.36 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
 │   │   │       └── 📄 page.tsx (14.26 KB)
@@ -112,7 +112,7 @@
 │   │   ├── 📄 InviteLink.tsx (823 B)
 │   │   ├── 📄 LogoutButton.tsx (675 B)
 │   │   ├── 📄 MessageButton.tsx (1.98 KB)
-│   │   ├── 📄 NavBar.tsx (5.26 KB)
+│   │   ├── 📄 NavBar.tsx (6.76 KB)
 │   │   ├── 📄 PostActions.tsx (2.94 KB)
 │   │   ├── 📄 ProgressChart.tsx (658 B)
 │   │   ├── 📄 SplashScreen.tsx (1.29 KB)
@@ -231,7 +231,7 @@
 | Total Directories | 42 |
 | Text Files | 72 |
 | Binary Files | 8 |
-| Total Size | 546.02 KB |
+| Total Size | 547.75 KB |
 
 ### 📄 File Types Distribution
 
@@ -5299,15 +5299,15 @@ export default function SprintsListPage() {
 ### <a id="📄-src-app-today-page-tsx"></a>📄 `src/app/today/page.tsx`
 
 **File Info:**
-- **Size**: 13.13 KB
+- **Size**: 13.36 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/today/page.tsx`
 - **Relative Path**: `src/app/today`
 - **Created**: 2026-09-21 03:31:07 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-29 22:40:49 (Australia/Sydney / GMT+10:00)
-- **MD5**: `932ba91e6dd7ac8075877d579747cfb2`
-- **SHA256**: `52a39ffc740b0b7f12a0c6c9b6c1747684d8bdb2582367ba6a889c4af8340b92`
+- **Modified**: 2026-09-29 22:51:12 (Australia/Sydney / GMT+10:00)
+- **MD5**: `1a19efb617de183ebb2c6bcbe6b6e772`
+- **SHA256**: `7e474b397340a727728dca59c5309b5018c73ada0c4541de9acca1cccbae1147`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -5327,7 +5327,6 @@ import {
 } from '@/lib/wordcountStats'
 import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
-import StreakStrip from '@/components/StreakStrip'
 import StreakCelebration from '@/components/StreakCelebration'
 
 type Project = {
@@ -5352,21 +5351,31 @@ function Delta({
   upLabel,
   downLabel,
   goodWhen,
+  invertArrow,
 }: {
   value: number
   upLabel: string
   downLabel: string
   goodWhen: 'up' | 'down'
+  invertArrow?: boolean
 }) {
   if (value === 0) return null
   const isUp = value > 0
   const isGood = goodWhen === 'up' ? isUp : !isUp
+  const showDownArrow = invertArrow ? isUp : !isUp
+  const color = isGood ? '#16a34a' : 'var(--color-ink-muted)'
+  const iconSize = isGood ? 14 : 10
+  const strokeWidth = isGood ? 3 : 1.5
   return (
     <div
       className="flex items-center gap-1 mt-1"
-      style={{ fontSize: 11, color: isGood ? 'var(--color-accent)' : 'var(--color-ink-muted)' }}
+      style={{ fontSize: isGood ? 12 : 10, color, fontWeight: isGood ? 600 : 400 }}
     >
-      {isUp ? <ArrowUp size={11} /> : <ArrowDown size={11} />}
+      {showDownArrow ? (
+        <ArrowDown size={iconSize} strokeWidth={strokeWidth} />
+      ) : (
+        <ArrowUp size={iconSize} strokeWidth={strokeWidth} />
+      )}
       <span>{Math.abs(value).toLocaleString()} {isUp ? upLabel : downLabel}</span>
     </div>
   )
@@ -5548,8 +5557,6 @@ export default function TodayPage() {
         </select>
       )}
 
-      <StreakStrip streak={streak} days={streakDays} />
-
       {project?.goal_word_count && (
         <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>
           <strong style={{ color: 'var(--color-ink)' }}>{currentTotal.toLocaleString()}</strong>
@@ -5573,7 +5580,7 @@ export default function TodayPage() {
             <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
               {finishDateLabel}
             </p>
-            <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
+            <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" invertArrow />
           </>
         ) : (
           <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
@@ -5588,7 +5595,7 @@ export default function TodayPage() {
           <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
             {daysRemaining !== null ? `${daysRemaining} days` : '—'}
           </p>
-          <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
+          <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" invertArrow />
         </div>
         <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
           <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Today</p>
@@ -7132,15 +7139,15 @@ export default function MessageButton({ profileId }: { profileId: string }) {
 ### <a id="📄-src-components-navbar-tsx"></a>📄 `src/components/NavBar.tsx`
 
 **File Info:**
-- **Size**: 5.26 KB
+- **Size**: 6.76 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/NavBar.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-06 00:03:47 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-24 03:45:18 (Australia/Sydney / GMT+10:00)
-- **MD5**: `f48389890c575c9a2f1b0f013b7868e2`
-- **SHA256**: `889b95553f1454f38c58a59a8531d5a64bde46c2c11a72dc1100dde7ba873479`
+- **Modified**: 2026-09-29 22:47:32 (Australia/Sydney / GMT+10:00)
+- **MD5**: `657e67bdb1ebf6ec6d38e4d06ab06218`
+- **SHA256**: `ad8f3cfa26c6f483b4889a4a9826a57d5df0f2e77985bebef952007e5721c147`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -7148,10 +7155,12 @@ export default function MessageButton({ profileId }: { profileId: string }) {
 ```typescript
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Search, Library, PenLine, Settings as SettingsIcon, LogIn, UserPlus } from 'lucide-react'
+import { Menu, X, Search, Library, PenLine, Settings as SettingsIcon, LogIn, UserPlus, Zap } from 'lucide-react'
 import LogoutButton from '@/components/LogoutButton'
+import { createClient } from '@/lib/supabase/client'
+import { buildDailyCumulative, computeStreak } from '@/lib/wordcountStats'
 
 export default function NavBar({
   username,
@@ -7161,6 +7170,39 @@ export default function NavBar({
   avatarUrl?: string | null
 }) {
   const [open, setOpen] = useState(false)
+  const [streak, setStreak] = useState(0)
+
+  useEffect(() => {
+    if (!username) return
+
+    async function loadStreak() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      let projectId = localStorage.getItem('wm_current_project')
+
+      const { data: projects } = await supabase
+        .from('projects')
+        .select('id')
+        .order('created_at', { ascending: false })
+
+      const validIds = new Set((projects || []).map((p) => p.id))
+      if (!projectId || !validIds.has(projectId)) {
+        projectId = projects && projects.length > 0 ? projects[0].id : null
+      }
+      if (!projectId) return
+
+      const { data: snapshots } = await supabase
+        .from('wordcount_snapshots')
+        .select('word_count, recorded_at')
+        .eq('project_id', projectId)
+
+      const dailyMap = buildDailyCumulative(snapshots || [])
+      setStreak(computeStreak(dailyMap))
+    }
+    loadStreak()
+  }, [username])
 
   const links = username
     ? [
@@ -7193,6 +7235,12 @@ export default function NavBar({
         <div className="flex items-center gap-4">
           {username && (
             <>
+              {streak > 0 && (
+                <div className="flex items-center gap-1" title={`${streak} day streak`}>
+                  <Zap size={16} style={{ color: 'var(--color-accent)' }} fill="var(--color-accent)" />
+                  <span className="text-sm" style={{ fontWeight: 700, color: 'var(--color-accent)' }}>{streak}</span>
+                </div>
+              )}
               <Link href="/search" aria-label="Search" style={{ color: 'var(--color-ink)' }}>
                 <Search size={20} />
               </Link>

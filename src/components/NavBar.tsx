@@ -1,9 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Search, Library, PenLine, Settings as SettingsIcon, LogIn, UserPlus } from 'lucide-react'
+import { Menu, X, Search, Library, PenLine, Settings as SettingsIcon, LogIn, UserPlus, Zap } from 'lucide-react'
 import LogoutButton from '@/components/LogoutButton'
+import { createClient } from '@/lib/supabase/client'
+import { buildDailyCumulative, computeStreak } from '@/lib/wordcountStats'
 
 export default function NavBar({
   username,
@@ -13,6 +15,39 @@ export default function NavBar({
   avatarUrl?: string | null
 }) {
   const [open, setOpen] = useState(false)
+  const [streak, setStreak] = useState(0)
+
+  useEffect(() => {
+    if (!username) return
+
+    async function loadStreak() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      let projectId = localStorage.getItem('wm_current_project')
+
+      const { data: projects } = await supabase
+        .from('projects')
+        .select('id')
+        .order('created_at', { ascending: false })
+
+      const validIds = new Set((projects || []).map((p) => p.id))
+      if (!projectId || !validIds.has(projectId)) {
+        projectId = projects && projects.length > 0 ? projects[0].id : null
+      }
+      if (!projectId) return
+
+      const { data: snapshots } = await supabase
+        .from('wordcount_snapshots')
+        .select('word_count, recorded_at')
+        .eq('project_id', projectId)
+
+      const dailyMap = buildDailyCumulative(snapshots || [])
+      setStreak(computeStreak(dailyMap))
+    }
+    loadStreak()
+  }, [username])
 
   const links = username
     ? [
@@ -45,6 +80,12 @@ export default function NavBar({
         <div className="flex items-center gap-4">
           {username && (
             <>
+              {streak > 0 && (
+                <div className="flex items-center gap-1" title={`${streak} day streak`}>
+                  <Zap size={16} style={{ color: 'var(--color-accent)' }} fill="var(--color-accent)" />
+                  <span className="text-sm" style={{ fontWeight: 700, color: 'var(--color-accent)' }}>{streak}</span>
+                </div>
+              )}
               <Link href="/search" aria-label="Search" style={{ color: 'var(--color-ink)' }}>
                 <Search size={20} />
               </Link>
