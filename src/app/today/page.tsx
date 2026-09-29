@@ -46,20 +46,20 @@ function Delta({
   goodWhen: 'up' | 'down'
   invertArrow?: boolean
 }) {
-  if (value === 0) return null
   const isUp = value > 0
-  const isGood = goodWhen === 'up' ? isUp : !isUp
+  const isGood = value !== 0 && (goodWhen === 'up' ? isUp : !isUp)
   const showDownArrow = invertArrow ? isUp : !isUp
 
   useEffect(() => {
-    if (isGood) {
-      const key = `wm_chime_${upLabel}_${value}`
-      if (!sessionStorage.getItem(key)) {
-        playSuccessChime()
-        sessionStorage.setItem(key, '1')
-      }
+    if (value === 0 || !isGood) return
+    const key = `wm_chime_${upLabel}_${value}`
+    if (!sessionStorage.getItem(key)) {
+      playSuccessChime()
+      sessionStorage.setItem(key, '1')
     }
   }, [])
+
+  if (value === 0) return null
   const color = isGood ? '#16a34a' : 'var(--color-ink-muted)'
   const iconSize = isGood ? 14 : 10
   const strokeWidth = isGood ? 3 : 1.5

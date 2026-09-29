@@ -27,7 +27,7 @@ export default function StreakStrip({ days }: { days: DayStatus[] }) {
               height: 15,
               backgroundColor: d.logged ? 'var(--color-ink-muted)' : 'transparent',
               border: d.logged ? 'none' : '1px solid var(--color-rule)',
-              opacity: d.logged ? 0.55 : 1,
+              opacity: d.logged ? 0.8 : 1,
             }}
           >
             {d.logged && <Check size={8} color="var(--color-paper)" strokeWidth={3} />}

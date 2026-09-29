@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `writemates`
-- **Generated On**: 2026-09-29 22:58:10 (Australia/Sydney / GMT+10:00)
+- **Generated On**: 2026-09-29 23:01:57 (Australia/Sydney / GMT+10:00)
 - **Total Files Processed**: 81
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -90,7 +90,7 @@
 │   │   │   │       └── 📄 page.tsx (9.75 KB)
 │   │   │   └── 📄 page.tsx (6.56 KB)
 │   │   ├── 📁 today/
-│   │   │   └── 📄 page.tsx (13.72 KB)
+│   │   │   └── 📄 page.tsx (13.74 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
 │   │   │       └── 📄 page.tsx (14.26 KB)
@@ -117,7 +117,7 @@
 │   │   ├── 📄 ProgressChart.tsx (658 B)
 │   │   ├── 📄 SplashScreen.tsx (1.29 KB)
 │   │   ├── 📄 StreakCelebration.tsx (2.38 KB)
-│   │   ├── 📄 StreakStrip.tsx (1.18 KB)
+│   │   ├── 📄 StreakStrip.tsx (1.17 KB)
 │   │   ├── 📄 UnreadActivityDot.tsx (2.07 KB)
 │   │   ├── 📄 UnreadChatDot.tsx (1.59 KB)
 │   │   └── 📄 WeeklyChart.tsx (763 B)
@@ -233,7 +233,7 @@
 | Total Directories | 42 |
 | Text Files | 73 |
 | Binary Files | 8 |
-| Total Size | 548.68 KB |
+| Total Size | 548.7 KB |
 
 ### 📄 File Types Distribution
 
@@ -5301,15 +5301,15 @@ export default function SprintsListPage() {
 ### <a id="📄-src-app-today-page-tsx"></a>📄 `src/app/today/page.tsx`
 
 **File Info:**
-- **Size**: 13.72 KB
+- **Size**: 13.74 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/today/page.tsx`
 - **Relative Path**: `src/app/today`
 - **Created**: 2026-09-21 03:31:07 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-29 22:58:10 (Australia/Sydney / GMT+10:00)
-- **MD5**: `4bfb8b8d2872c4c63b24b237834f8490`
-- **SHA256**: `b4611979488298c0676877624f7eb80b0139bfff6ccd41fa2d97a9bb4fbe7a2f`
+- **Modified**: 2026-09-29 23:00:31 (Australia/Sydney / GMT+10:00)
+- **MD5**: `ba7759af8f147f258fc0397a85e274bd`
+- **SHA256**: `edd6883161d516e1b84a49ab2821830103c487daed4389f1ee1b0e57f6fa1336`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -5363,20 +5363,20 @@ function Delta({
   goodWhen: 'up' | 'down'
   invertArrow?: boolean
 }) {
-  if (value === 0) return null
   const isUp = value > 0
-  const isGood = goodWhen === 'up' ? isUp : !isUp
+  const isGood = value !== 0 && (goodWhen === 'up' ? isUp : !isUp)
   const showDownArrow = invertArrow ? isUp : !isUp
 
   useEffect(() => {
-    if (isGood) {
-      const key = `wm_chime_${upLabel}_${value}`
-      if (!sessionStorage.getItem(key)) {
-        playSuccessChime()
-        sessionStorage.setItem(key, '1')
-      }
+    if (value === 0 || !isGood) return
+    const key = `wm_chime_${upLabel}_${value}`
+    if (!sessionStorage.getItem(key)) {
+      playSuccessChime()
+      sessionStorage.setItem(key, '1')
     }
   }, [])
+
+  if (value === 0) return null
   const color = isGood ? '#16a34a' : 'var(--color-ink-muted)'
   const iconSize = isGood ? 14 : 10
   const strokeWidth = isGood ? 3 : 1.5
@@ -7734,15 +7734,15 @@ export default function StreakCelebration({ streak, projectId }: { streak: numbe
 ### <a id="📄-src-components-streakstrip-tsx"></a>📄 `src/components/StreakStrip.tsx`
 
 **File Info:**
-- **Size**: 1.18 KB
+- **Size**: 1.17 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/StreakStrip.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-27 01:58:55 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-29 22:56:21 (Australia/Sydney / GMT+10:00)
-- **MD5**: `d210a626ed5fd01913c76902c4dd3cc4`
-- **SHA256**: `a05d0a63b4f279083c3c21265988ca0f16b2c698d295a98fc40067350147357a`
+- **Modified**: 2026-09-29 23:01:57 (Australia/Sydney / GMT+10:00)
+- **MD5**: `10234be5c5effae6460506234a8da75c`
+- **SHA256**: `dcc8d2f892ae6ee8c15cbb59b9fbd83f4f2c1e0fdbef00b747a5574088ee2e9c`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -7777,7 +7777,7 @@ export default function StreakStrip({ days }: { days: DayStatus[] }) {
               height: 15,
               backgroundColor: d.logged ? 'var(--color-ink-muted)' : 'transparent',
               border: d.logged ? 'none' : '1px solid var(--color-rule)',
-              opacity: d.logged ? 0.55 : 1,
+              opacity: d.logged ? 0.8 : 1,
             }}
           >
             {d.logged && <Check size={8} color="var(--color-paper)" strokeWidth={3} />}
