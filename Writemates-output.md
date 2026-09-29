@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `writemates`
-- **Generated On**: 2026-09-29 22:54:38 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 80
+- **Generated On**: 2026-09-29 22:58:10 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 81
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -90,7 +90,7 @@
 │   │   │   │       └── 📄 page.tsx (9.75 KB)
 │   │   │   └── 📄 page.tsx (6.56 KB)
 │   │   ├── 📁 today/
-│   │   │   └── 📄 page.tsx (13.45 KB)
+│   │   │   └── 📄 page.tsx (13.72 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
 │   │   │       └── 📄 page.tsx (14.26 KB)
@@ -117,7 +117,7 @@
 │   │   ├── 📄 ProgressChart.tsx (658 B)
 │   │   ├── 📄 SplashScreen.tsx (1.29 KB)
 │   │   ├── 📄 StreakCelebration.tsx (2.38 KB)
-│   │   ├── 📄 StreakStrip.tsx (1.08 KB)
+│   │   ├── 📄 StreakStrip.tsx (1.18 KB)
 │   │   ├── 📄 UnreadActivityDot.tsx (2.07 KB)
 │   │   ├── 📄 UnreadChatDot.tsx (1.59 KB)
 │   │   └── 📄 WeeklyChart.tsx (763 B)
@@ -129,6 +129,7 @@
 │   │   ├── 📄 backfill.ts (2.51 KB)
 │   │   ├── 📄 insights.ts (1016 B)
 │   │   ├── 📄 quotes.ts (1.1 KB)
+│   │   ├── 📄 sounds.ts (997 B)
 │   │   ├── 📄 supabase.ts (246 B)
 │   │   └── 📄 wordcountStats.ts (4.66 KB)
 │   └── 📄 middleware.ts (336 B)
@@ -209,6 +210,7 @@
 - [📄 src/lib/backfill.ts](#📄-src-lib-backfill-ts)
 - [📄 src/lib/insights.ts](#📄-src-lib-insights-ts)
 - [📄 src/lib/quotes.ts](#📄-src-lib-quotes-ts)
+- [📄 src/lib/sounds.ts](#📄-src-lib-sounds-ts)
 - [📄 src/lib/supabase.ts](#📄-src-lib-supabase-ts)
 - [📄 src/lib/wordcountStats.ts](#📄-src-lib-wordcountstats-ts)
 - [📄 src/middleware.ts](#📄-src-middleware-ts)
@@ -227,18 +229,18 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 80 |
+| Total Files | 81 |
 | Total Directories | 42 |
-| Text Files | 72 |
+| Text Files | 73 |
 | Binary Files | 8 |
-| Total Size | 547.34 KB |
+| Total Size | 548.68 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
 | `.tsx` | 51 |
-| `.ts` | 14 |
+| `.ts` | 15 |
 | `.svg` | 5 |
 | `.md` | 3 |
 | `.json` | 3 |
@@ -5299,15 +5301,15 @@ export default function SprintsListPage() {
 ### <a id="📄-src-app-today-page-tsx"></a>📄 `src/app/today/page.tsx`
 
 **File Info:**
-- **Size**: 13.45 KB
+- **Size**: 13.72 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/today/page.tsx`
 - **Relative Path**: `src/app/today`
 - **Created**: 2026-09-21 03:31:07 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-29 22:54:37 (Australia/Sydney / GMT+10:00)
-- **MD5**: `9d38082b38a09144a22c19aa65c0d92a`
-- **SHA256**: `84ea55d017a27cc488c2ada8daf7a28819c406c8d428d195b97b6eddbd6c0563`
+- **Modified**: 2026-09-29 22:58:10 (Australia/Sydney / GMT+10:00)
+- **MD5**: `4bfb8b8d2872c4c63b24b237834f8490`
+- **SHA256**: `b4611979488298c0676877624f7eb80b0139bfff6ccd41fa2d97a9bb4fbe7a2f`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -5329,6 +5331,7 @@ import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
 import StreakStrip from '@/components/StreakStrip'
 import StreakCelebration from '@/components/StreakCelebration'
+import { playSuccessChime } from '@/lib/sounds'
 
 type Project = {
   id: string
@@ -5364,6 +5367,16 @@ function Delta({
   const isUp = value > 0
   const isGood = goodWhen === 'up' ? isUp : !isUp
   const showDownArrow = invertArrow ? isUp : !isUp
+
+  useEffect(() => {
+    if (isGood) {
+      const key = `wm_chime_${upLabel}_${value}`
+      if (!sessionStorage.getItem(key)) {
+        playSuccessChime()
+        sessionStorage.setItem(key, '1')
+      }
+    }
+  }, [])
   const color = isGood ? '#16a34a' : 'var(--color-ink-muted)'
   const iconSize = isGood ? 14 : 10
   const strokeWidth = isGood ? 3 : 1.5
@@ -7721,15 +7734,15 @@ export default function StreakCelebration({ streak, projectId }: { streak: numbe
 ### <a id="📄-src-components-streakstrip-tsx"></a>📄 `src/components/StreakStrip.tsx`
 
 **File Info:**
-- **Size**: 1.08 KB
+- **Size**: 1.18 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/components/StreakStrip.tsx`
 - **Relative Path**: `src/components`
 - **Created**: 2026-09-27 01:58:55 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-29 22:53:41 (Australia/Sydney / GMT+10:00)
-- **MD5**: `7571e084ade8813abc0c15523024317c`
-- **SHA256**: `e7da60e31f86f9dd4df08bc1708df37f441cb11fc7c694eb3d93802341fe3fdf`
+- **Modified**: 2026-09-29 22:56:21 (Australia/Sydney / GMT+10:00)
+- **MD5**: `d210a626ed5fd01913c76902c4dd3cc4`
+- **SHA256**: `a05d0a63b4f279083c3c21265988ca0f16b2c698d295a98fc40067350147357a`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -7743,14 +7756,16 @@ type DayStatus = { label: string; logged: boolean; isToday: boolean }
 
 export default function StreakStrip({ days }: { days: DayStatus[] }) {
   return (
-    <div className="flex justify-between mb-6">
+    <div className="flex justify-between mb-4">
       {days.map((d, i) => (
-        <div key={i} className="flex flex-col items-center gap-1.5">
+        <div key={i} className="flex flex-col items-center gap-1">
           <span
             className="text-xs"
             style={{
+              fontSize: 10,
               color: d.isToday ? 'var(--color-accent)' : 'var(--color-ink-muted)',
-              fontWeight: d.isToday ? 700 : 400,
+              fontWeight: d.isToday ? 600 : 400,
+              opacity: 0.8,
             }}
           >
             {d.label}
@@ -7758,13 +7773,14 @@ export default function StreakStrip({ days }: { days: DayStatus[] }) {
           <div
             className="rounded-full flex items-center justify-center"
             style={{
-              width: 26,
-              height: 26,
-              backgroundColor: d.logged ? 'var(--color-ink)' : 'transparent',
-              border: d.logged ? 'none' : '1.5px solid var(--color-rule)',
+              width: 15,
+              height: 15,
+              backgroundColor: d.logged ? 'var(--color-ink-muted)' : 'transparent',
+              border: d.logged ? 'none' : '1px solid var(--color-rule)',
+              opacity: d.logged ? 0.55 : 1,
             }}
           >
-            {d.logged && <Check size={13} color="var(--color-paper)" strokeWidth={3} />}
+            {d.logged && <Check size={8} color="var(--color-paper)" strokeWidth={3} />}
           </div>
         </div>
       ))}
@@ -8324,6 +8340,62 @@ const QUOTES: Quote[] = [
 
 export function getRandomQuote(): Quote {
   return QUOTES[Math.floor(Math.random() * QUOTES.length)]
+}
+
+```
+
+---
+
+### <a id="📄-src-lib-sounds-ts"></a>📄 `src/lib/sounds.ts`
+
+**File Info:**
+- **Size**: 997 B
+- **Extension**: `.ts`
+- **Language**: `typescript`
+- **Location**: `src/lib/sounds.ts`
+- **Relative Path**: `src/lib`
+- **Created**: 2026-09-29 22:57:23 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-29 22:57:23 (Australia/Sydney / GMT+10:00)
+- **MD5**: `b36b1074ad19e14e69adbaad1c22de27`
+- **SHA256**: `fd1e7e44a5285d49d0c4f746627cbf3c42b6646f784d6f71c964ce2a341d0b8d`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+let audioCtx: AudioContext | null = null
+
+function getContext(): AudioContext | null {
+  if (typeof window === 'undefined') return null
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext
+    if (!AudioContextClass) return null
+    audioCtx = new AudioContextClass()
+  }
+  return audioCtx
+}
+
+export function playSuccessChime() {
+  const ctx = getContext()
+  if (!ctx) return
+
+  const notes = [523.25, 659.25, 783.99, 1046.5]
+  const now = ctx.currentTime
+
+  notes.forEach((freq, i) => {
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.type = 'sine'
+    osc.frequency.value = freq
+    const startTime = now + i * 0.07
+    gain.gain.setValueAtTime(0, startTime)
+    gain.gain.linearRampToValueAtTime(0.15, startTime + 0.02)
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.25)
+    osc.connect(gain)
+    gain.connect(ctx.destination)
+    osc.start(startTime)
+    osc.stop(startTime + 0.25)
+  })
 }
 
 ```

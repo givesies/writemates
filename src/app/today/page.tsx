@@ -14,6 +14,7 @@ import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
 import StreakStrip from '@/components/StreakStrip'
 import StreakCelebration from '@/components/StreakCelebration'
+import { playSuccessChime } from '@/lib/sounds'
 
 type Project = {
   id: string
@@ -49,6 +50,16 @@ function Delta({
   const isUp = value > 0
   const isGood = goodWhen === 'up' ? isUp : !isUp
   const showDownArrow = invertArrow ? isUp : !isUp
+
+  useEffect(() => {
+    if (isGood) {
+      const key = `wm_chime_${upLabel}_${value}`
+      if (!sessionStorage.getItem(key)) {
+        playSuccessChime()
+        sessionStorage.setItem(key, '1')
+      }
+    }
+  }, [])
   const color = isGood ? '#16a34a' : 'var(--color-ink-muted)'
   const iconSize = isGood ? 14 : 10
   const strokeWidth = isGood ? 3 : 1.5
