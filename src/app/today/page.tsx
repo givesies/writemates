@@ -12,6 +12,7 @@ import {
 } from '@/lib/wordcountStats'
 import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
+import StreakStrip from '@/components/StreakStrip'
 import StreakCelebration from '@/components/StreakCelebration'
 
 type Project = {
@@ -241,6 +242,8 @@ export default function TodayPage() {
           ))}
         </select>
       )}
+
+      <StreakStrip days={streakDays} />
 
       {project?.goal_word_count && (
         <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>

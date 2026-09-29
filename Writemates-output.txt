@@ -5,7 +5,7 @@ PROJECT EXPORT FOR LLMs
 PROJECT INFORMATION:
 --------------------------------------------------
 Project Name: writemates
-Generated On: 2026-09-29 22:51:13 (Australia/Sydney / GMT+10:00)
+Generated On: 2026-09-29 22:54:38 (Australia/Sydney / GMT+10:00)
 Total Files Processed: 80
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
@@ -92,7 +92,7 @@ PROJECT STRUCTURE
 │   │   │   │       └── 📄 page.tsx (9.75 KB)
 │   │   │   └── 📄 page.tsx (6.56 KB)
 │   │   ├── 📁 today/
-│   │   │   └── 📄 page.tsx (13.36 KB)
+│   │   │   └── 📄 page.tsx (13.45 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
 │   │   │       └── 📄 page.tsx (14.26 KB)
@@ -119,7 +119,7 @@ PROJECT STRUCTURE
 │   │   ├── 📄 ProgressChart.tsx (658 B)
 │   │   ├── 📄 SplashScreen.tsx (1.29 KB)
 │   │   ├── 📄 StreakCelebration.tsx (2.38 KB)
-│   │   ├── 📄 StreakStrip.tsx (1.57 KB)
+│   │   ├── 📄 StreakStrip.tsx (1.08 KB)
 │   │   ├── 📄 UnreadActivityDot.tsx (2.07 KB)
 │   │   ├── 📄 UnreadChatDot.tsx (1.59 KB)
 │   │   └── 📄 WeeklyChart.tsx (763 B)
@@ -152,7 +152,7 @@ Total Files: 80
 Total Directories: 42
 Text Files: 72
 Binary Files: 8
-Total Size: 547.75 KB
+Total Size: 547.34 KB
 
 FILE TYPES DISTRIBUTION:
 ------------------------------
@@ -5252,15 +5252,15 @@ FILE: src/app/today/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 13.36 KB
+Size: 13.45 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/today/page.tsx
 Relative Path: src/app/today
 Created: 2026-09-21 03:31:07 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-29 22:51:12 (Australia/Sydney / GMT+10:00)
-MD5: 1a19efb617de183ebb2c6bcbe6b6e772
-SHA256: 7e474b397340a727728dca59c5309b5018c73ada0c4541de9acca1cccbae1147
+Modified: 2026-09-29 22:54:37 (Australia/Sydney / GMT+10:00)
+MD5: 9d38082b38a09144a22c19aa65c0d92a
+SHA256: 84ea55d017a27cc488c2ada8daf7a28819c406c8d428d195b97b6eddbd6c0563
 Encoding: ASCII
 
 FILE CONTENT:
@@ -5279,6 +5279,7 @@ import {
 } from '@/lib/wordcountStats'
 import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
+import StreakStrip from '@/components/StreakStrip'
 import StreakCelebration from '@/components/StreakCelebration'
 
 type Project = {
@@ -5508,6 +5509,8 @@ export default function TodayPage() {
           ))}
         </select>
       )}
+
+      <StreakStrip days={streakDays} />
 
       {project?.goal_word_count && (
         <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>
@@ -7694,56 +7697,52 @@ FILE: src/components/StreakStrip.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 1.57 KB
+Size: 1.08 KB
 Extension: .tsx
 Language: typescript
 Location: src/components/StreakStrip.tsx
 Relative Path: src/components
 Created: 2026-09-27 01:58:55 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-27 01:58:55 (Australia/Sydney / GMT+10:00)
-MD5: cfb514c8766382e331db44984f123e9b
-SHA256: 8d020c9856ceb7bbcf4dda5b76e72eecfe0c83ee9bc70d378db553ecb674b4b0
+Modified: 2026-09-29 22:53:41 (Australia/Sydney / GMT+10:00)
+MD5: 7571e084ade8813abc0c15523024317c
+SHA256: e7da60e31f86f9dd4df08bc1708df37f441cb11fc7c694eb3d93802341fe3fdf
 Encoding: ASCII
 
 FILE CONTENT:
 ----------------------------------------
 'use client'
 
-import { Zap } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 type DayStatus = { label: string; logged: boolean; isToday: boolean }
 
-export default function StreakStrip({ streak, days }: { streak: number; days: DayStatus[] }) {
+export default function StreakStrip({ days }: { days: DayStatus[] }) {
   return (
-    <div
-      className="rounded-lg mb-6"
-      style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
-    >
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>Your streak</span>
-        <div className="flex items-center gap-1">
-          <Zap size={16} style={{ color: 'var(--color-accent)' }} fill="var(--color-accent)" />
-          <span style={{ fontWeight: 700, color: 'var(--color-accent)' }}>{streak}</span>
-        </div>
-      </div>
-      <div className="flex justify-between">
-        {days.map((d, i) => (
-          <div key={i} className="flex flex-col items-center gap-1">
-            <span className="text-xs" style={{ color: 'var(--color-ink-muted)' }}>{d.label}</span>
-            <div
-              className="rounded-full flex items-center justify-center"
-              style={{
-                width: 28,
-                height: 28,
-                backgroundColor: d.logged ? 'var(--color-accent)' : 'var(--color-paper)',
-                border: d.isToday && !d.logged ? '2px solid var(--color-accent)' : '1px solid var(--color-rule)',
-              }}
-            >
-              {d.logged && <Zap size={13} color="var(--color-paper)" fill="var(--color-paper)" />}
-            </div>
+    <div className="flex justify-between mb-6">
+      {days.map((d, i) => (
+        <div key={i} className="flex flex-col items-center gap-1.5">
+          <span
+            className="text-xs"
+            style={{
+              color: d.isToday ? 'var(--color-accent)' : 'var(--color-ink-muted)',
+              fontWeight: d.isToday ? 700 : 400,
+            }}
+          >
+            {d.label}
+          </span>
+          <div
+            className="rounded-full flex items-center justify-center"
+            style={{
+              width: 26,
+              height: 26,
+              backgroundColor: d.logged ? 'var(--color-ink)' : 'transparent',
+              border: d.logged ? 'none' : '1.5px solid var(--color-rule)',
+            }}
+          >
+            {d.logged && <Check size={13} color="var(--color-paper)" strokeWidth={3} />}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   )
 }
