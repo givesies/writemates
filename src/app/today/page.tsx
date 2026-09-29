@@ -37,21 +37,31 @@ function Delta({
   upLabel,
   downLabel,
   goodWhen,
+  invertArrow,
 }: {
   value: number
   upLabel: string
   downLabel: string
   goodWhen: 'up' | 'down'
+  invertArrow?: boolean
 }) {
   if (value === 0) return null
   const isUp = value > 0
   const isGood = goodWhen === 'up' ? isUp : !isUp
+  const showDownArrow = invertArrow ? isUp : !isUp
+  const color = isGood ? '#16a34a' : 'var(--color-ink-muted)'
+  const iconSize = isGood ? 14 : 10
+  const strokeWidth = isGood ? 3 : 1.5
   return (
     <div
       className="flex items-center gap-1 mt-1"
-      style={{ fontSize: 11, color: isGood ? 'var(--color-accent)' : 'var(--color-ink-muted)' }}
+      style={{ fontSize: isGood ? 12 : 10, color, fontWeight: isGood ? 600 : 400 }}
     >
-      {isUp ? <ArrowUp size={11} /> : <ArrowDown size={11} />}
+      {showDownArrow ? (
+        <ArrowDown size={iconSize} strokeWidth={strokeWidth} />
+      ) : (
+        <ArrowUp size={iconSize} strokeWidth={strokeWidth} />
+      )}
       <span>{Math.abs(value).toLocaleString()} {isUp ? upLabel : downLabel}</span>
     </div>
   )
@@ -258,7 +268,7 @@ export default function TodayPage() {
             <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
               {finishDateLabel}
             </p>
-            <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
+            <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" invertArrow />
           </>
         ) : (
           <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
@@ -273,7 +283,7 @@ export default function TodayPage() {
           <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
             {daysRemaining !== null ? `${daysRemaining} days` : '—'}
           </p>
-          <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
+          <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" invertArrow />
         </div>
         <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
           <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Today</p>
