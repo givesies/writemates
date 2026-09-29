@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, use } from 'react'
+import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
@@ -14,10 +14,10 @@ const PROJECT_TYPES = [
 ]
 
 const DRAFT_STAGES = [
-  { value: 'first_draft', label: 'First draft' },
-  { value: 'editing', label: 'Editing' },
-  { value: 'revision_2', label: 'Second revision' },
-  { value: 'revision_3_plus', label: 'Third revision or later' },
+  { value: 'first_draft', label: 'First draft', defaultUnit: 'words' },
+  { value: 'editing', label: 'Editing', defaultUnit: 'pages' },
+  { value: 'revision_2', label: 'Second revision', defaultUnit: 'pages' },
+  { value: 'revision_3_plus', label: 'Third revision or later', defaultUnit: 'pages' },
 ]
 
 export default function EditProjectPage({
@@ -25,7 +25,7 @@ export default function EditProjectPage({
 }: {
   params: Promise<{ id: string }>
 }) {
-  const { id } = use(params)
+  const [id, setId] = useState('')
   const [title, setTitle] = useState('')
   const [projectType, setProjectType] = useState('book')
   const [draftStage, setDraftStage] = useState('first_draft')
@@ -38,6 +38,9 @@ export default function EditProjectPage({
 
   useEffect(() => {
     async function loadProject() {
+      const { id: projectId } = await params
+      setId(projectId)
+
       const supabase = createClient()
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
@@ -47,7 +50,7 @@ export default function EditProjectPage({
       const { data: project } = await supabase
         .from('projects')
         .select('*')
-        .eq('id', id)
+        .eq('id', projectId)
         .single()
 
       if (project) {
@@ -60,7 +63,13 @@ export default function EditProjectPage({
       setLoading(false)
     }
     loadProject()
-  }, [id, router])
+  }, [params, router])
+
+  function handleStageChange(value: string) {
+    setDraftStage(value)
+    const stage = DRAFT_STAGES.find((s) => s.value === value)
+    if (stage) setMetricUnit(stage.defaultUnit)
+  }
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
@@ -128,7 +137,7 @@ export default function EditProjectPage({
             <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Stage</label>
             <select
               value={draftStage}
-              onChange={(e) => setDraftStage(e.target.value)}
+              onChange={(e) => handleStageChange(e.target.value)}
               className="w-full py-2 border-b bg-transparent focus:outline-none"
               style={{ borderColor: 'var(--color-rule)' }}
             >

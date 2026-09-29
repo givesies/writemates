@@ -4,9 +4,9 @@ PROJECT EXPORT FOR LLMs
 
 PROJECT INFORMATION:
 --------------------------------------------------
-Project Name: Writemates
-Generated On: 2026-09-23 03:43:54 (Australia/Sydney / GMT+10:00)
-Total Files Processed: 75
+Project Name: writemates
+Generated On: 2026-09-29 22:43:29 (Australia/Sydney / GMT+10:00)
+Total Files Processed: 80
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
 
@@ -31,14 +31,17 @@ PROJECT STRUCTURE
 ├── 📁 src/
 │   ├── 📁 app/
 │   │   ├── 📁 activity/
-│   │   │   └── 📄 page.tsx (3.92 KB)
+│   │   │   └── 📄 page.tsx (4.83 KB)
 │   │   ├── 📁 api/
 │   │   │   └── 📁 link-preview/
 │   │   │       └── 📄 route.ts (1.58 KB)
+│   │   ├── 📁 auth/
+│   │   │   └── 📁 callback/
+│   │   │       └── 📄 route.ts (729 B)
 │   │   ├── 📁 chat/
 │   │   │   ├── 📁 [id]/
-│   │   │   │   └── 📄 page.tsx (4.53 KB)
-│   │   │   └── 📄 page.tsx (3.99 KB)
+│   │   │   │   └── 📄 page.tsx (4.87 KB)
+│   │   │   └── 📄 page.tsx (4.67 KB)
 │   │   ├── 📁 feed/
 │   │   │   └── 📄 page.tsx (9.04 KB)
 │   │   ├── 📁 groups/
@@ -46,14 +49,14 @@ PROJECT STRUCTURE
 │   │   │   │   └── 📄 page.tsx (3.87 KB)
 │   │   │   └── 📄 page.tsx (3.42 KB)
 │   │   ├── 📁 icon-192/
-│   │   │   └── 📄 route.tsx (479 B)
+│   │   │   └── 📄 route.tsx (984 B)
 │   │   ├── 📁 icon-512/
-│   │   │   └── 📄 route.tsx (479 B)
+│   │   │   └── 📄 route.tsx (990 B)
 │   │   ├── 📁 login/
-│   │   │   └── 📄 page.tsx (2.32 KB)
+│   │   │   └── 📄 page.tsx (3.54 KB)
 │   │   ├── 📁 onboarding/
 │   │   │   ├── 📁 new-project/
-│   │   │   │   └── 📄 page.tsx (5.02 KB)
+│   │   │   │   └── 📄 page.tsx (5.29 KB)
 │   │   │   └── 📄 page.tsx (1.16 KB)
 │   │   ├── 📁 post/
 │   │   │   ├── 📁 [id]/
@@ -62,25 +65,25 @@ PROJECT STRUCTURE
 │   │   │       └── 📄 page.tsx (6.7 KB)
 │   │   ├── 📁 profile/
 │   │   │   └── 📁 edit/
-│   │   │       └── 📄 page.tsx (8.93 KB)
+│   │   │       └── 📄 page.tsx (15.19 KB)
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   ├── 📁 backfill/
-│   │   │   │   │   └── 📄 page.tsx (6.65 KB)
+│   │   │   │   │   └── 📄 page.tsx (8.01 KB)
 │   │   │   │   ├── 📁 edit/
-│   │   │   │   │   └── 📄 page.tsx (5.95 KB)
+│   │   │   │   │   └── 📄 page.tsx (6.3 KB)
 │   │   │   │   └── 📄 page.tsx (5.31 KB)
 │   │   │   ├── 📁 log/
-│   │   │   │   └── 📄 page.tsx (11.51 KB)
+│   │   │   │   └── 📄 page.tsx (12.57 KB)
 │   │   │   └── 📄 page.tsx (9.33 KB)
 │   │   ├── 📁 read/
 │   │   │   └── 📄 page.tsx (446 B)
 │   │   ├── 📁 search/
-│   │   │   └── 📄 page.tsx (2.66 KB)
+│   │   │   └── 📄 page.tsx (3.77 KB)
 │   │   ├── 📁 settings/
 │   │   │   └── 📄 page.tsx (2.62 KB)
 │   │   ├── 📁 signup/
-│   │   │   └── 📄 page.tsx (2.34 KB)
+│   │   │   └── 📄 page.tsx (3.56 KB)
 │   │   ├── 📁 sprints/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   └── 📄 page.tsx (12.33 KB)
@@ -89,14 +92,14 @@ PROJECT STRUCTURE
 │   │   │   │       └── 📄 page.tsx (9.75 KB)
 │   │   │   └── 📄 page.tsx (6.56 KB)
 │   │   ├── 📁 today/
-│   │   │   └── 📄 page.tsx (12.75 KB)
+│   │   │   └── 📄 page.tsx (13.13 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
-│   │   │       └── 📄 page.tsx (10.12 KB)
-│   │   ├── 📄 apple-icon.tsx (554 B)
+│   │   │       └── 📄 page.tsx (14.26 KB)
+│   │   ├── 📄 apple-icon.tsx (1.03 KB)
 │   │   ├── 📄 favicon.ico (25.32 KB)
-│   │   ├── 📄 globals.css (473 B)
-│   │   ├── 📄 layout.tsx (1.56 KB)
+│   │   ├── 📄 globals.css (709 B)
+│   │   ├── 📄 layout.tsx (1.63 KB)
 │   │   ├── 📄 loading.tsx (674 B)
 │   │   ├── 📄 manifest.ts (496 B)
 │   │   └── 📄 page.tsx (302 B)
@@ -104,16 +107,19 @@ PROJECT STRUCTURE
 │   │   ├── 📄 BottomNav.tsx (4.33 KB)
 │   │   ├── 📄 ContributionCalendar.tsx (1.34 KB)
 │   │   ├── 📄 DailyBarChart.tsx (635 B)
-│   │   ├── 📄 DeleteProjectButton.tsx (2.74 KB)
+│   │   ├── 📄 DeleteProjectButton.tsx (3.01 KB)
 │   │   ├── 📄 FeedFilterSwitcher.tsx (575 B)
 │   │   ├── 📄 FollowButton.tsx (1.11 KB)
+│   │   ├── 📄 GoogleSignInButton.tsx (760 B)
 │   │   ├── 📄 InviteLink.tsx (823 B)
-│   │   ├── 📄 LogoutButton.tsx (454 B)
+│   │   ├── 📄 LogoutButton.tsx (675 B)
 │   │   ├── 📄 MessageButton.tsx (1.98 KB)
-│   │   ├── 📄 NavBar.tsx (3.09 KB)
+│   │   ├── 📄 NavBar.tsx (5.26 KB)
 │   │   ├── 📄 PostActions.tsx (2.94 KB)
 │   │   ├── 📄 ProgressChart.tsx (658 B)
-│   │   ├── 📄 SplashScreen.tsx (1.22 KB)
+│   │   ├── 📄 SplashScreen.tsx (1.29 KB)
+│   │   ├── 📄 StreakCelebration.tsx (2.38 KB)
+│   │   ├── 📄 StreakStrip.tsx (1.57 KB)
 │   │   ├── 📄 UnreadActivityDot.tsx (2.07 KB)
 │   │   ├── 📄 UnreadChatDot.tsx (1.59 KB)
 │   │   └── 📄 WeeklyChart.tsx (763 B)
@@ -124,6 +130,7 @@ PROJECT STRUCTURE
 │   │   │   └── 📄 server.ts (704 B)
 │   │   ├── 📄 backfill.ts (2.51 KB)
 │   │   ├── 📄 insights.ts (1016 B)
+│   │   ├── 📄 quotes.ts (1.1 KB)
 │   │   ├── 📄 supabase.ts (246 B)
 │   │   └── 📄 wordcountStats.ts (4.66 KB)
 │   └── 📄 middleware.ts (336 B)
@@ -132,8 +139,8 @@ PROJECT STRUCTURE
 ├── 📄 eslint.config.mjs (465 B)
 ├── 📄 next-env.d.ts (296 B)
 ├── 📄 next.config.ts (133 B)
-├── 📄 package-lock.json (250.93 KB)
-├── 📄 package.json (663 B)
+├── 📄 package-lock.json (286.05 KB)
+├── 📄 package.json (763 B)
 ├── 📄 postcss.config.mjs (94 B)
 ├── 📄 README.md (1.42 KB)
 └── 📄 tsconfig.json (670 B)
@@ -141,16 +148,16 @@ PROJECT STRUCTURE
 ================================================================================
 PROJECT STATISTICS
 ================================================================================
-Total Files: 75
-Total Directories: 40
-Text Files: 67
+Total Files: 80
+Total Directories: 42
+Text Files: 72
 Binary Files: 8
-Total Size: 480.46 KB
+Total Size: 546.02 KB
 
 FILE TYPES DISTRIBUTION:
 ------------------------------
-.tsx            : 48
-.ts             : 12
+.tsx            : 51
+.ts             : 14
 .svg            : 5
 .md             : 3
 .json           : 3
@@ -179,15 +186,15 @@ FILE: src/app/activity/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 3.92 KB
+Size: 4.83 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/activity/page.tsx
 Relative Path: src/app/activity
 Created: 2026-09-14 09:56:15 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-15 14:51:09 (Australia/Sydney / GMT+10:00)
-MD5: 21b4c5d6e125a08a9985f19c1ba508f8
-SHA256: 47f7d71950d92b8872bb4409e02717e95539bd483b1f720a0bb5f72650ce055b
+Modified: 2026-09-23 03:56:04 (Australia/Sydney / GMT+10:00)
+MD5: 2c9c8034f7ea5b0d6af930dfe2ab8022
+SHA256: 372143cc87861889195230325b952a9842e3408d622dc2f7faced4c0b663476d
 Encoding: ASCII
 
 FILE CONTENT:
@@ -195,6 +202,7 @@ FILE CONTENT:
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { Heart, UserPlus } from 'lucide-react'
 
 type LikeActivity = {
   type: 'like'
@@ -214,7 +222,6 @@ export default async function ActivityPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
-  // My own posts, so we can find likes on them
   const { data: myPosts } = await supabase
     .from('posts')
     .select('id, content, type')
@@ -258,7 +265,6 @@ export default async function ActivityPage() {
     (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   )
 
-  // Mark activity as read now that this page has loaded
   await supabase
     .from('profiles')
     .update({ activity_last_read_at: new Date().toISOString() })
@@ -280,22 +286,47 @@ export default async function ActivityPage() {
         {allActivity.map((item, i) => {
           const name = item.actor?.display_name || item.actor?.username || 'Someone'
           return (
-            <div key={i} className="py-4 border-b" style={{ borderColor: 'var(--color-rule)', fontFamily: 'var(--font-sans)' }}>
-              {item.type === 'like' && (
-                <p>
-                  <Link href={`/u/${item.actor?.username}`} style={{ fontWeight: 600 }}>{name}</Link>
-                  {' '}liked your post
-                  {item.post_content && <span style={{ color: 'var(--color-ink-muted)' }}> — &ldquo;{item.post_content.slice(0, 40)}{item.post_content.length > 40 ? '...' : ''}&rdquo;</span>}
+            <div
+              key={i}
+              className="flex items-start gap-3 mb-3 rounded-lg"
+              style={{
+                border: '1px solid var(--color-rule)',
+                backgroundColor: 'var(--color-paper)',
+                padding: '0.9rem 1rem',
+                fontFamily: 'var(--font-sans)',
+              }}
+            >
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: 'var(--color-paper-raised)' }}
+              >
+                {item.type === 'like' ? (
+                  <Heart size={15} style={{ color: 'var(--color-accent)' }} />
+                ) : (
+                  <UserPlus size={15} style={{ color: 'var(--color-accent)' }} />
+                )}
+              </div>
+              <div className="flex-1 min-w-0">
+                {item.type === 'like' && (
+                  <p className="text-sm">
+                    <Link href={`/u/${item.actor?.username}`} style={{ fontWeight: 600, color: 'var(--color-ink)' }}>{name}</Link>
+                    {' '}liked your post
+                    {item.post_content && (
+                      <span style={{ color: 'var(--color-ink-muted)' }}>
+                        {' '}— &ldquo;{item.post_content.slice(0, 40)}{item.post_content.length > 40 ? '...' : ''}&rdquo;
+                      </span>
+                    )}
+                  </p>
+                )}
+                {item.type === 'follow' && (
+                  <p className="text-sm">
+                    <Link href={`/u/${item.actor?.username}`} style={{ fontWeight: 600, color: 'var(--color-ink)' }}>{name}</Link>
+                    {' '}started following you
+                  </p>
+                )}
+                <p className="text-xs mt-1" style={{ color: 'var(--color-ink-muted)' }}>
+                  {new Date(item.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                 </p>
-              )}
-              {item.type === 'follow' && (
-                <p>
-                  <Link href={`/u/${item.actor?.username}`} style={{ fontWeight: 600 }}>{name}</Link>
-                  {' '}started following you
-                </p>
-              )}
-              <div className="text-sm mt-1" style={{ color: 'var(--color-ink-muted)' }}>
-                {new Date(item.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
               </div>
             </div>
           )
@@ -304,6 +335,7 @@ export default async function ActivityPage() {
     </main>
   )
 }
+
 ================================================================================
 
 
@@ -378,20 +410,69 @@ export async function GET(request: NextRequest) {
 
 
 ================================================================================
+FILE: src/app/auth/callback/route.ts
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 729 B
+Extension: .ts
+Language: typescript
+Location: src/app/auth/callback/route.ts
+Relative Path: src/app/auth/callback
+Created: 2026-09-23 20:40:51 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-23 21:59:10 (Australia/Sydney / GMT+10:00)
+MD5: d5589d3c03e2cbcb0c9f5c36fffc63b8
+SHA256: 5a7e3d9eb77d35f9db279e3baebddd78a07300a406fc53ecc436041bc70faeed
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+import { createClient } from '@/lib/supabase/server'
+import { NextResponse } from 'next/server'
+
+export async function GET(request: Request) {
+  const { searchParams, origin } = new URL(request.url)
+  const code = searchParams.get('code')
+
+  if (code) {
+    const supabase = await createClient()
+    const { data } = await supabase.auth.exchangeCodeForSession(code)
+
+    const user = data?.user
+    if (user) {
+      const { count } = await supabase
+        .from('projects')
+        .select('*', { count: 'exact', head: true })
+        .eq('user_id', user.id)
+
+      if (!count || count === 0) {
+        return NextResponse.redirect(`${origin}/onboarding`)
+      }
+    }
+  }
+
+  return NextResponse.redirect(`${origin}/today`)
+}
+
+================================================================================
+
+
+================================================================================
 FILE: src/app/chat/[id]/page.tsx
 ================================================================================
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 4.53 KB
+Size: 4.87 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/chat/[id]/page.tsx
 Relative Path: src/app/chat/[id]
 Created: 2026-09-15 14:20:28 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-15 14:42:38 (Australia/Sydney / GMT+10:00)
-MD5: acead2e9807359b4cc3c0f451270d18c
-SHA256: 562dced5fe6b0ea893e80567e6da5b47edd6d8b5f43218b42f374c45e793996a
+Modified: 2026-09-23 03:57:37 (Australia/Sydney / GMT+10:00)
+MD5: fbdc92371d9418b58a8d8fc9f3d21e9c
+SHA256: b05821bab97fc38e6b6df6894cfd1b3d049f6d6852255d3ff9b78bf92ac7900a
 Encoding: ASCII
 
 FILE CONTENT:
@@ -401,6 +482,8 @@ FILE CONTENT:
 import { useEffect, useState, useRef, use } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { ChevronLeft } from 'lucide-react'
 
 type Message = {
   id: string
@@ -465,7 +548,6 @@ export default function ChatThreadPage({
 
     load()
 
-    // Set up the live-update connection synchronously, so it's only ever created once per mount
     const channel = supabase
       .channel(`messages-${id}`)
       .on(
@@ -505,12 +587,17 @@ export default function ChatThreadPage({
   if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
 
   return (
-    <main className="max-w-md mx-auto px-6 py-8 flex flex-col" style={{ minHeight: '70vh' }}>
-      <h1 className="text-2xl mb-6" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        {otherName}
-      </h1>
+    <main className="max-w-md mx-auto px-6 py-6 flex flex-col" style={{ minHeight: '80vh' }}>
+      <div className="flex items-center gap-2 mb-4 pb-3" style={{ borderBottom: '1px solid var(--color-rule)' }}>
+        <Link href="/chat" aria-label="Back to chats" style={{ color: 'var(--color-ink-muted)' }}>
+          <ChevronLeft size={20} />
+        </Link>
+        <h1 className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          {otherName}
+        </h1>
+      </div>
 
-      <div className="flex-1 overflow-y-auto mb-4">
+      <div className="flex-1 overflow-y-auto mb-4 px-1">
         {messages.map((m) => {
           const mine = m.sender_id === userId
           return (
@@ -531,19 +618,22 @@ export default function ChatThreadPage({
         <div ref={bottomRef} />
       </div>
 
-      <form onSubmit={handleSend} className="flex gap-2" style={{ fontFamily: 'var(--font-sans)' }}>
+      <form
+        onSubmit={handleSend}
+        className="flex gap-2 items-center rounded-full"
+        style={{ fontFamily: 'var(--font-sans)', border: '1px solid var(--color-rule)', padding: '0.35rem 0.35rem 0.35rem 1rem' }}
+      >
         <input
           type="text"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Write a message..."
-          className="flex-1 py-2 px-3 border-b bg-transparent focus:outline-none"
-          style={{ borderColor: 'var(--color-rule)' }}
+          className="flex-1 py-1 bg-transparent focus:outline-none text-sm"
         />
         <button
           type="submit"
-          className="px-4 py-2 text-sm"
-          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+          className="px-4 py-2 text-sm rounded-full"
+          style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
         >
           Send
         </button>
@@ -551,6 +641,7 @@ export default function ChatThreadPage({
     </main>
   )
 }
+
 ================================================================================
 
 
@@ -560,15 +651,15 @@ FILE: src/app/chat/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 3.99 KB
+Size: 4.67 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/chat/page.tsx
 Relative Path: src/app/chat
 Created: 2026-09-15 14:19:56 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-15 14:19:56 (Australia/Sydney / GMT+10:00)
-MD5: dd6e9e9b4990a4ca60ea42286e550deb
-SHA256: b6382fc81a3b65de16a286efc11081c4e57e35b127905f4aba9b21f3318751d4
+Modified: 2026-09-24 03:47:04 (Australia/Sydney / GMT+10:00)
+MD5: f1d54c40177ead5c25a797de3db38f1c
+SHA256: 972afb684e7e5449e3282b49730600ecf6d36cd821d5d37f5416dacabe6c4e92
 Encoding: ASCII
 
 FILE CONTENT:
@@ -579,6 +670,7 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { Users } from 'lucide-react'
 
 type ConversationRow = {
   conversation_id: string
@@ -663,9 +755,24 @@ export default function ChatListPage() {
 
   return (
     <main className="max-w-md mx-auto px-6 py-16">
-      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        Chat
-      </h1>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-3xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          Chat
+        </h1>
+        <Link
+          href="/groups"
+          className="flex items-center gap-1.5 text-sm rounded-full"
+          style={{
+            fontFamily: 'var(--font-sans)',
+            color: 'var(--color-accent)',
+            border: '1px solid var(--color-rule)',
+            padding: '0.4rem 0.8rem',
+          }}
+        >
+          <Users size={15} />
+          Groups
+        </Link>
+      </div>
 
       {conversations.length === 0 && (
         <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
@@ -678,21 +785,25 @@ export default function ChatListPage() {
           <Link
             key={c.id}
             href={`/chat/${c.id}`}
-            className="flex items-center gap-3 py-4 border-b"
-            style={{ borderColor: 'var(--color-rule)' }}
+            className="flex items-center gap-3 mb-3 rounded-lg"
+            style={{
+              border: '1px solid var(--color-rule)',
+              backgroundColor: 'var(--color-paper)',
+              padding: '0.85rem 1rem',
+            }}
           >
             {c.other?.avatar_url ? (
-              <img src={c.other.avatar_url} alt="" className="w-10 h-10 rounded-full object-cover" />
+              <img src={c.other.avatar_url} alt="" className="w-11 h-11 rounded-full object-cover" />
             ) : (
               <div
-                className="w-10 h-10 rounded-full flex items-center justify-center text-sm"
-                style={{ backgroundColor: 'var(--color-rule)', color: 'var(--color-ink-muted)' }}
+                className="w-11 h-11 rounded-full flex items-center justify-center text-sm"
+                style={{ backgroundColor: 'var(--color-paper-raised)', color: 'var(--color-ink-muted)' }}
               >
                 {c.other?.username?.charAt(0).toUpperCase() || '?'}
               </div>
             )}
             <div className="flex-1 min-w-0">
-              <div style={{ fontFamily: 'var(--font-sans)' }}>
+              <div className="text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink)' }}>
                 {c.other?.display_name || c.other?.username || 'Unknown'}
               </div>
               {c.last && (
@@ -710,6 +821,7 @@ export default function ChatListPage() {
     </main>
   )
 }
+
 ================================================================================
 
 
@@ -724,10 +836,10 @@ Extension: .tsx
 Language: typescript
 Location: src/app/feed/page.tsx
 Relative Path: src/app/feed
-Created: 2026-09-23 03:33:14 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-23 03:43:54 (Australia/Sydney / GMT+10:00)
-MD5: c0ea5d7244f95340ddad4dc58701cdcb
-SHA256: ae54c17b1c84f4dc6fa4036a8c646bbe0feb2f8d685b3bd3577ef2d11dd6802d
+Created: 2026-09-23 03:47:59 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-23 03:47:59 (Australia/Sydney / GMT+10:00)
+MD5: fae997d177c7bde8da1c70a675820ca1
+SHA256: 2d7ee228e1f5e0745f1a9a99b00c600444973bd7015c8824c3601aa02a2bf25c
 Encoding: ASCII
 
 FILE CONTENT:
@@ -904,7 +1016,7 @@ export default async function FeedPage({
                 {post.type === 'link' && post.link_url && (
                   <div>
                     {post.content && <p className="mb-3">{post.content}</p>}
-                    
+                    <a
                       href={post.link_url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -1271,15 +1383,15 @@ FILE: src/app/icon-192/route.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 479 B
+Size: 984 B
 Extension: .tsx
 Language: typescript
 Location: src/app/icon-192/route.tsx
 Relative Path: src/app/icon-192
 Created: 2026-09-11 10:25:10 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-21 04:40:52 (Australia/Sydney / GMT+10:00)
-MD5: 599bbbd6229bad2494fe12557a6e4285
-SHA256: 67005267441b62ee4a577eb929fcb0ccdc269843f73d575feffeb9645b6c010c
+Modified: 2026-09-23 03:54:01 (Australia/Sydney / GMT+10:00)
+MD5: 4f78b061c4f07a57fd169dd980c9e787
+SHA256: d89ace03a763d6d34c41dc84eab90cc819d712761fc9f287cd339c3384ca82a8
 Encoding: ASCII
 
 FILE CONTENT:
@@ -1291,18 +1403,36 @@ export async function GET() {
     (
       <div
         style={{
-          fontSize: 100,
-          background: '#1747e0',
           width: '100%',
           height: '100%',
+          background: '#1747e0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#fffdf6',
-          fontWeight: 700,
         }}
       >
-        W
+        <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+          <div
+            style={{
+              width: 71,
+              height: 54,
+              background: '#fffdf6',
+              borderRadius: 7,
+              transform: 'rotate(-13deg)',
+              marginRight: -10,
+            }}
+          />
+          <div
+            style={{
+              width: 71,
+              height: 54,
+              background: '#fffdf6',
+              borderRadius: 7,
+              transform: 'rotate(13deg)',
+              marginLeft: -10,
+            }}
+          />
+        </div>
       </div>
     ),
     { width: 192, height: 192 }
@@ -1318,15 +1448,15 @@ FILE: src/app/icon-512/route.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 479 B
+Size: 990 B
 Extension: .tsx
 Language: typescript
 Location: src/app/icon-512/route.tsx
 Relative Path: src/app/icon-512
 Created: 2026-09-11 10:25:54 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-21 04:40:52 (Australia/Sydney / GMT+10:00)
-MD5: bfc4a5b8ec956a25d5bd07c125d07994
-SHA256: 48e08d929dbe5e7a52b43aca53dd8163dd408b7f7c9a807c7d11d8736b4119b4
+Modified: 2026-09-23 03:54:01 (Australia/Sydney / GMT+10:00)
+MD5: 54d1bd593bed94749e905c7eced12d67
+SHA256: cd956af9952616c25dddd0484cb6dfb202dc1d84c6cb05a73fe479e62ab21352
 Encoding: ASCII
 
 FILE CONTENT:
@@ -1338,18 +1468,36 @@ export async function GET() {
     (
       <div
         style={{
-          fontSize: 280,
-          background: '#1747e0',
           width: '100%',
           height: '100%',
+          background: '#1747e0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#fffdf6',
-          fontWeight: 700,
         }}
       >
-        W
+        <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+          <div
+            style={{
+              width: 190,
+              height: 145,
+              background: '#fffdf6',
+              borderRadius: 18,
+              transform: 'rotate(-13deg)',
+              marginRight: -28,
+            }}
+          />
+          <div
+            style={{
+              width: 190,
+              height: 145,
+              background: '#fffdf6',
+              borderRadius: 18,
+              transform: 'rotate(13deg)',
+              marginLeft: -28,
+            }}
+          />
+        </div>
       </div>
     ),
     { width: 512, height: 512 }
@@ -1365,15 +1513,15 @@ FILE: src/app/login/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 2.32 KB
+Size: 3.54 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/login/page.tsx
 Relative Path: src/app/login
-Created: 2026-09-05 07:18:23 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-06 10:48:26 (Australia/Sydney / GMT+10:00)
-MD5: 814b4f7152b36a2a66e734c5743c0c36
-SHA256: 9e763be3f1145444e02e3d3001023c41f8e03d79d149e9fa3894f18f447c4737
+Created: 2026-09-27 02:07:48 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-27 02:07:48 (Australia/Sydney / GMT+10:00)
+MD5: 08c93e23f600f7fea4a20cc63800341b
+SHA256: e0772adeaa71e71df951d0f2c7e5ea812d88dedc0f5f4c57c760dec4dfe470d8
 Encoding: ASCII
 
 FILE CONTENT:
@@ -1383,6 +1531,7 @@ FILE CONTENT:
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import GoogleSignInButton from '@/components/GoogleSignInButton'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -1404,48 +1553,77 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="max-w-md mx-auto px-6 py-16">
-      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        Log in
-      </h1>
-      <form onSubmit={handleLogin} style={{ fontFamily: 'var(--font-sans)' }}>
-        <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
-        <button
-          type="submit"
-          className="px-5 py-2 text-sm"
-          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+    <main
+      className="flex flex-col items-center justify-center px-6"
+      style={{ minHeight: '100vh' }}
+    >
+      <div className="text-center mb-10">
+        <h1
+          style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, fontSize: '2.25rem', color: 'var(--color-accent)' }}
         >
+          Writemates
+        </h1>
+        <p className="mt-1" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--color-ink-muted)' }}>
+          A Place For Writers
+        </p>
+      </div>
+
+      <div
+        className="w-full max-w-sm rounded-xl"
+        style={{ border: '1px solid var(--color-rule)', backgroundColor: 'var(--color-paper)', padding: '2rem' }}
+      >
+        <h2 className="text-xl mb-6" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
           Log in
-        </button>
-      </form>
-      <p className="mt-6 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-        Don&apos;t have an account? <a href="/signup">Sign up</a>
-      </p>
+        </h2>
+
+        <GoogleSignInButton />
+
+        <div className="flex items-center gap-3 mb-5">
+          <div className="flex-1 h-px" style={{ backgroundColor: 'var(--color-rule)' }} />
+          <span className="text-xs" style={{ color: 'var(--color-ink-muted)' }}>or</span>
+          <div className="flex-1 h-px" style={{ backgroundColor: 'var(--color-rule)' }} />
+        </div>
+
+        <form onSubmit={handleLogin} style={{ fontFamily: 'var(--font-sans)' }}>
+          <div className="mb-5">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+          <button
+            type="submit"
+            className="w-full py-2.5 text-sm rounded-lg"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+          >
+            Log in
+          </button>
+        </form>
+        <p className="mt-6 text-sm text-center" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          Don&apos;t have an account? <a href="/signup" style={{ color: 'var(--color-accent)' }}>Sign up</a>
+        </p>
+      </div>
     </main>
   )
 }
+
 ================================================================================
 
 
@@ -1455,15 +1633,15 @@ FILE: src/app/onboarding/new-project/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 5.02 KB
+Size: 5.29 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/onboarding/new-project/page.tsx
 Relative Path: src/app/onboarding/new-project
 Created: 2026-09-20 23:06:59 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-20 23:06:59 (Australia/Sydney / GMT+10:00)
-MD5: 98f27f431eb190a01ea30f17c365de2a
-SHA256: eb51a10584aca0bebbd90562b4ec812e702f5567ffa3a2b9fc83ceda36c65ad1
+Modified: 2026-09-29 22:43:29 (Australia/Sydney / GMT+10:00)
+MD5: fbac71d633de429e0d7833d3ceaeda52
+SHA256: 63901a4d9055b6ea2121777de93f2c4069b02939d8aa087657bb49eed5c560c5
 Encoding: ASCII
 
 FILE CONTENT:
@@ -1600,6 +1778,10 @@ export default function OnboardingNewProjectPage() {
             style={{ borderColor: 'var(--color-rule)' }}
           />
         </div>
+
+        <p className="text-xs mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+          Next, we&apos;ll ask about your writing history. If you use Scrivener, have your real word count handy — you can find it under <strong>Project → Project Statistics</strong>.
+        </p>
 
         {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
 
@@ -1997,15 +2179,15 @@ FILE: src/app/profile/edit/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 8.93 KB
+Size: 15.19 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/profile/edit/page.tsx
 Relative Path: src/app/profile/edit
 Created: 2026-09-05 23:58:11 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-14 09:37:09 (Australia/Sydney / GMT+10:00)
-MD5: 96934c934565d45955c8f7463a2b3e7b
-SHA256: 60201a18cea711d1fe943c7b453f24ef5a4199c59dde8789d9b8526d64e033c7
+Modified: 2026-09-24 03:58:44 (Australia/Sydney / GMT+10:00)
+MD5: 88628d63654a0a07e87a079e3ac46f86
+SHA256: 7b351c471b95cdac92041092a78b84c6e42d5f0a99f8ccd0e2a7b2b858e16393
 Encoding: ASCII
 
 FILE CONTENT:
@@ -2015,9 +2197,17 @@ FILE CONTENT:
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import { Plus, X } from 'lucide-react'
+
+type WorkLink = { label: string; url: string }
 
 export default function EditProfilePage() {
   const [displayName, setDisplayName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [occupation, setOccupation] = useState('')
+  const [bookTitle, setBookTitle] = useState('')
+  const [workLinks, setWorkLinks] = useState<WorkLink[]>([])
   const [bio, setBio] = useState('')
   const [currentWork, setCurrentWork] = useState('')
   const [genresWrite, setGenresWrite] = useState('')
@@ -2049,6 +2239,11 @@ export default function EditProfilePage() {
 
       if (profile) {
         setDisplayName(profile.display_name || '')
+        setFirstName(profile.first_name || '')
+        setLastName(profile.last_name || '')
+        setOccupation(profile.occupation || '')
+        setBookTitle(profile.book_title || '')
+        setWorkLinks(Array.isArray(profile.work_links) ? profile.work_links : [])
         setBio(profile.bio || '')
         setCurrentWork(profile.current_work_description || '')
         setGenresWrite(profile.genres_write || '')
@@ -2063,6 +2258,19 @@ export default function EditProfilePage() {
     }
     loadProfile()
   }, [router])
+
+  function addWorkLink() {
+    if (workLinks.length >= 5) return
+    setWorkLinks([...workLinks, { label: '', url: '' }])
+  }
+
+  function updateWorkLink(index: number, field: 'label' | 'url', value: string) {
+    setWorkLinks(workLinks.map((l, i) => (i === index ? { ...l, [field]: value } : l)))
+  }
+
+  function removeWorkLink(index: number) {
+    setWorkLinks(workLinks.filter((_, i) => i !== index))
+  }
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
@@ -2093,10 +2301,19 @@ export default function EditProfilePage() {
       newAvatarUrl = `${urlData.publicUrl}?t=${Date.now()}`
     }
 
+    const cleanedWorkLinks = workLinks
+      .filter((l) => l.url.trim() !== '')
+      .map((l) => ({ label: l.label.trim() || l.url.trim(), url: l.url.trim() }))
+
     const { error } = await supabase
       .from('profiles')
       .update({
         display_name: displayName,
+        first_name: firstName || null,
+        last_name: lastName || null,
+        occupation: occupation || null,
+        book_title: bookTitle || null,
+        work_links: cleanedWorkLinks,
         bio: bio,
         current_work_description: currentWork,
         genres_write: genresWrite,
@@ -2114,7 +2331,7 @@ export default function EditProfilePage() {
     if (error) {
       setError(error.message)
     } else {
-      router.push('/')
+      router.back()
       router.refresh()
     }
   }
@@ -2127,133 +2344,254 @@ export default function EditProfilePage() {
         Edit your profile
       </h1>
       <form onSubmit={handleSave} style={{ fontFamily: 'var(--font-sans)' }}>
-        <div className="mb-6">
-          <label className="block text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>Profile photo</label>
-          {avatarUrl && (
-            <img
-              src={avatarUrl}
-              alt=""
-              className="w-20 h-20 rounded-full object-cover mb-3"
-            />
-          )}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
-            className="w-full text-sm"
-          />
-        </div>
-        <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Display name</label>
-          <input
-            type="text"
-            value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>About me</label>
-          <textarea
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-            rows={3}
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>What I&apos;ve been working on</label>
-          <textarea
-            value={currentWork}
-            onChange={(e) => setCurrentWork(e.target.value)}
-            rows={4}
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Genres I write in</label>
-          <input
-            type="text"
-            value={genresWrite}
-            onChange={(e) => setGenresWrite(e.target.value)}
-            placeholder="e.g. literary fiction, sci-fi"
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Favorite genres to read</label>
-          <input
-            type="text"
-            value={genresRead}
-            onChange={(e) => setGenresRead(e.target.value)}
-            placeholder="e.g. mystery, fantasy"
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-
-        <h2
-          className="text-sm mb-4 pb-2 border-b"
-          style={{ color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+        <div
+          className="rounded-xl mb-6"
+          style={{ border: '1px solid var(--color-rule)', padding: '1.25rem' }}
         >
-          Elsewhere on the web
-        </h2>
+          <h2 className="text-xs mb-4" style={{ color: 'var(--color-ink-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            About you
+          </h2>
 
-        <div className="mb-4">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Substack</label>
-          <input
-            type="url"
-            value={substackUrl}
-            onChange={(e) => setSubstackUrl(e.target.value)}
-            placeholder="https://yourname.substack.com"
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
+          <div className="mb-5">
+            <label className="block text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>Profile photo</label>
+            {avatarUrl && (
+              <img
+                src={avatarUrl}
+                alt=""
+                className="w-20 h-20 rounded-full object-cover mb-3"
+              />
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
+              className="w-full text-sm"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Display name</label>
+            <input
+              type="text"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+
+          <div className="mb-4 grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>First name</label>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full py-2 border-b bg-transparent focus:outline-none"
+                style={{ borderColor: 'var(--color-rule)' }}
+              />
+            </div>
+            <div>
+              <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Last name</label>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full py-2 border-b bg-transparent focus:outline-none"
+                style={{ borderColor: 'var(--color-rule)' }}
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Occupation</label>
+            <input
+              type="text"
+              value={occupation}
+              onChange={(e) => setOccupation(e.target.value)}
+              placeholder="e.g. Teacher, Software Engineer"
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
         </div>
-        <div className="mb-4">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Twitter / X</label>
-          <input
-            type="url"
-            value={twitterUrl}
-            onChange={(e) => setTwitterUrl(e.target.value)}
-            placeholder="https://x.com/yourname"
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
+
+        <div
+          className="rounded-xl mb-6"
+          style={{ border: '1px solid var(--color-rule)', padding: '1.25rem' }}
+        >
+          <h2 className="text-xs mb-4" style={{ color: 'var(--color-ink-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            Your writing
+          </h2>
+
+          <div className="mb-4">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Current book title</label>
+            <input
+              type="text"
+              value={bookTitle}
+              onChange={(e) => setBookTitle(e.target.value)}
+              placeholder="The title of what you're writing"
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>What I&apos;ve been working on</label>
+            <textarea
+              value={currentWork}
+              onChange={(e) => setCurrentWork(e.target.value)}
+              rows={3}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+
+          <label className="block text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+            Links to your current work
+          </label>
+          {workLinks.map((link, i) => (
+            <div key={i} className="flex items-center gap-2 mb-2">
+              <input
+                type="text"
+                value={link.label}
+                onChange={(e) => updateWorkLink(i, 'label', e.target.value)}
+                placeholder="Label (e.g. Read Chapter 1)"
+                className="w-2/5 py-2 border-b bg-transparent focus:outline-none text-sm"
+                style={{ borderColor: 'var(--color-rule)' }}
+              />
+              <input
+                type="url"
+                value={link.url}
+                onChange={(e) => updateWorkLink(i, 'url', e.target.value)}
+                placeholder="https://..."
+                className="flex-1 py-2 border-b bg-transparent focus:outline-none text-sm"
+                style={{ borderColor: 'var(--color-rule)' }}
+              />
+              <button
+                type="button"
+                onClick={() => removeWorkLink(i)}
+                aria-label="Remove link"
+                style={{ color: 'var(--color-ink-muted)' }}
+              >
+                <X size={16} />
+              </button>
+            </div>
+          ))}
+          {workLinks.length < 5 && (
+            <button
+              type="button"
+              onClick={addWorkLink}
+              className="flex items-center gap-1.5 text-sm mt-2"
+              style={{ color: 'var(--color-accent)' }}
+            >
+              <Plus size={15} />
+              Add a link
+            </button>
+          )}
         </div>
-        <div className="mb-4">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Instagram</label>
-          <input
-            type="url"
-            value={instagramUrl}
-            onChange={(e) => setInstagramUrl(e.target.value)}
-            placeholder="https://instagram.com/yourname"
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
+
+        <div
+          className="rounded-xl mb-6"
+          style={{ border: '1px solid var(--color-rule)', padding: '1.25rem' }}
+        >
+          <h2 className="text-xs mb-4" style={{ color: 'var(--color-ink-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            More about you
+          </h2>
+
+          <div className="mb-4">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>About me</label>
+            <textarea
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              rows={3}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Genres I write in</label>
+            <input
+              type="text"
+              value={genresWrite}
+              onChange={(e) => setGenresWrite(e.target.value)}
+              placeholder="e.g. literary fiction, sci-fi"
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Favorite genres to read</label>
+            <input
+              type="text"
+              value={genresRead}
+              onChange={(e) => setGenresRead(e.target.value)}
+              placeholder="e.g. mystery, fantasy"
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
         </div>
-        <div className="mb-6">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Website</label>
-          <input
-            type="url"
-            value={websiteUrl}
-            onChange={(e) => setWebsiteUrl(e.target.value)}
-            placeholder="https://yourwebsite.com"
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
+
+        <div
+          className="rounded-xl mb-6"
+          style={{ border: '1px solid var(--color-rule)', padding: '1.25rem' }}
+        >
+          <h2 className="text-xs mb-4" style={{ color: 'var(--color-ink-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            Elsewhere on the web
+          </h2>
+
+          <div className="mb-4">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Substack</label>
+            <input
+              type="url"
+              value={substackUrl}
+              onChange={(e) => setSubstackUrl(e.target.value)}
+              placeholder="https://yourname.substack.com"
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Twitter / X</label>
+            <input
+              type="url"
+              value={twitterUrl}
+              onChange={(e) => setTwitterUrl(e.target.value)}
+              placeholder="https://x.com/yourname"
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Instagram</label>
+            <input
+              type="url"
+              value={instagramUrl}
+              onChange={(e) => setInstagramUrl(e.target.value)}
+              placeholder="https://instagram.com/yourname"
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Website</label>
+            <input
+              type="url"
+              value={websiteUrl}
+              onChange={(e) => setWebsiteUrl(e.target.value)}
+              placeholder="https://yourwebsite.com"
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
         </div>
 
         {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
         <button
           type="submit"
           disabled={saving}
-          className="px-5 py-2 text-sm"
-          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+          className="w-full py-2.5 text-sm rounded-lg"
+          style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
         >
           {saving ? 'Saving...' : 'Save profile'}
         </button>
@@ -2261,6 +2599,7 @@ export default function EditProfilePage() {
     </main>
   )
 }
+
 ================================================================================
 
 
@@ -2270,15 +2609,15 @@ FILE: src/app/projects/[id]/backfill/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 6.65 KB
+Size: 8.01 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/projects/[id]/backfill/page.tsx
 Relative Path: src/app/projects/[id]/backfill
 Created: 2026-09-18 04:12:57 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-20 23:12:43 (Australia/Sydney / GMT+10:00)
-MD5: 15882b925e784ddc8184982c59c1893b
-SHA256: 228e55211a145d9e1065694bb19ddefe348c56e850155a108a7164dcca15ba16
+Modified: 2026-09-24 03:42:51 (Australia/Sydney / GMT+10:00)
+MD5: 36e7b8bac809481d5afbe8f4a31db983
+SHA256: 1ab45a91eeeb13f1b91ca2711ad0b290b27b7511f174f6b2f358954526b4c6b2
 Encoding: ASCII
 
 FILE CONTENT:
@@ -2292,17 +2631,21 @@ import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
 
 export default function BackfillPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
+  const [step, setStep] = useState<'input' | 'review' | 'done'>('input')
   const [text, setText] = useState('')
   const [anchor, setAnchor] = useState('')
   const [parsed, setParsed] = useState<BackfillEntry[]>([])
+  const [hasAttemptedParse, setHasAttemptedParse] = useState(false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [saved, setSaved] = useState(false)
   const router = useRouter()
 
   function handleParse() {
-    setParsed(parseBackfillText(text))
+    const result = parseBackfillText(text)
+    setParsed(result)
+    setHasAttemptedParse(true)
     setError(null)
+    if (result.length > 0) setStep('review')
   }
 
   async function handleSave() {
@@ -2355,11 +2698,11 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
     if (error) {
       setError(error.message)
     } else {
-      setSaved(true)
+      setStep('done')
     }
   }
 
-  if (saved) {
+  if (step === 'done') {
     return (
       <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
         <h1 className="text-2xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
@@ -2375,6 +2718,74 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
         >
           Back to project
         </button>
+      </main>
+    )
+  }
+
+  if (step === 'review') {
+    return (
+      <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+        <h1 className="text-2xl mb-3" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+          Found {parsed.length} days
+        </h1>
+        <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+          Here&apos;s what we&apos;ll add. Re-adding a day you&apos;ve already backfilled will overwrite it, not stack on top.
+        </p>
+
+        <div className="rounded border mb-4" style={{ borderColor: 'var(--color-rule)', maxHeight: 320, overflowY: 'auto' }}>
+          {parsed.map((p) => (
+            <div
+              key={p.date}
+              className="flex justify-between px-3 py-2 text-sm border-b"
+              style={{ borderColor: 'var(--color-rule)' }}
+            >
+              <span>{new Date(p.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+              <span style={{ color: p.delta < 0 ? '#a33' : 'var(--color-ink)' }}>
+                {p.delta > 0 ? '+' : ''}{p.delta.toLocaleString()}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <div
+          className="rounded-lg mb-4"
+          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
+        >
+          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>
+            Your real, current word count
+          </label>
+          <p className="text-sm mb-3" style={{ color: 'var(--color-ink-muted)' }}>
+            Scrivener&apos;s writing-history log can drift from your actual manuscript over time (moved documents, restructuring, etc. don&apos;t always get tracked). To get the true number: in Scrivener, go to <strong>Project → Project Statistics</strong> and use the <strong>Words</strong> figure shown there — not the history dialog.
+          </p>
+          <input
+            type="number"
+            value={anchor}
+            onChange={(e) => setAnchor(e.target.value)}
+            placeholder="e.g. 34000"
+            className="w-full py-2 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+        </div>
+
+        {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
+
+        <div className="flex gap-3">
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="px-5 py-2 text-sm"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+          >
+            {saving ? 'Saving...' : `Save ${parsed.length} days`}
+          </button>
+          <button
+            onClick={() => setStep('input')}
+            className="px-5 py-2 text-sm"
+            style={{ color: 'var(--color-ink-muted)' }}
+          >
+            Back
+          </button>
+        </div>
       </main>
     )
   }
@@ -2395,10 +2806,6 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
         <li>Open the file, copy the two date and word-count columns, and paste them below</li>
       </ol>
 
-      <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
-        Re-pasting data for a day you&apos;ve already backfilled will overwrite it, not add to it.
-      </p>
-
       <button
         onClick={() => router.push(`/projects/${id}`)}
         className="text-sm mb-6"
@@ -2409,65 +2816,29 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
 
       <textarea
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => {
+          setText(e.target.value)
+          setHasAttemptedParse(false)
+        }}
         rows={8}
         placeholder="Paste your Scrivener writing history here..."
         className="w-full p-3 mb-4 rounded border focus:outline-none"
         style={{ borderColor: 'var(--color-rule)', backgroundColor: 'transparent' }}
       />
 
+      {hasAttemptedParse && parsed.length === 0 && (
+        <p className="text-sm mb-4" style={{ color: '#a33' }}>
+          Couldn&apos;t find any valid date/word-count lines in that text — check the format and try again.
+        </p>
+      )}
+
       <button
         onClick={handleParse}
-        className="px-5 py-2 text-sm mb-6"
+        className="px-5 py-2 text-sm"
         style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
       >
         Preview
       </button>
-
-      {parsed.length > 0 && (
-        <div className="mb-6">
-          <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
-            Found {parsed.length} days:
-          </p>
-          <div className="rounded border mb-4" style={{ borderColor: 'var(--color-rule)', maxHeight: 220, overflowY: 'auto' }}>
-            {parsed.map((p) => (
-              <div
-                key={p.date}
-                className="flex justify-between px-3 py-2 text-sm border-b"
-                style={{ borderColor: 'var(--color-rule)' }}
-              >
-                <span>{new Date(p.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                <span style={{ color: p.delta < 0 ? '#a33' : 'var(--color-ink)' }}>
-                  {p.delta > 0 ? '+' : ''}{p.delta.toLocaleString()}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-            Your total word count as of your most recent entry above (optional, but recommended so your history lines up with reality)
-          </label>
-          <input
-            type="number"
-            value={anchor}
-            onChange={(e) => setAnchor(e.target.value)}
-            placeholder="e.g. 34000"
-            className="w-full py-2 mb-4 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-
-          {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
-
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="px-5 py-2 text-sm"
-            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
-          >
-            {saving ? 'Saving...' : `Save ${parsed.length} days`}
-          </button>
-        </div>
-      )}
     </main>
   )
 }
@@ -2481,22 +2852,22 @@ FILE: src/app/projects/[id]/edit/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 5.95 KB
+Size: 6.3 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/projects/[id]/edit/page.tsx
 Relative Path: src/app/projects/[id]/edit
 Created: 2026-09-20 23:27:52 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-20 23:27:52 (Australia/Sydney / GMT+10:00)
-MD5: 739558d43ff84fe83e904fe51935bd73
-SHA256: f1d1e4331d0a72a98f40231897e2ebe358da588760b5719e8160bfbd26be27ce
+Modified: 2026-09-29 22:39:47 (Australia/Sydney / GMT+10:00)
+MD5: e9664eb85da23ce0118e8b57637f3dc0
+SHA256: 8c3890bd38cccca6d4a1dbca986bdecca384b2fabb94a36c41044f6b7d6bca75
 Encoding: ASCII
 
 FILE CONTENT:
 ----------------------------------------
 'use client'
 
-import { useEffect, useState, use } from 'react'
+import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
@@ -2510,10 +2881,10 @@ const PROJECT_TYPES = [
 ]
 
 const DRAFT_STAGES = [
-  { value: 'first_draft', label: 'First draft' },
-  { value: 'editing', label: 'Editing' },
-  { value: 'revision_2', label: 'Second revision' },
-  { value: 'revision_3_plus', label: 'Third revision or later' },
+  { value: 'first_draft', label: 'First draft', defaultUnit: 'words' },
+  { value: 'editing', label: 'Editing', defaultUnit: 'pages' },
+  { value: 'revision_2', label: 'Second revision', defaultUnit: 'pages' },
+  { value: 'revision_3_plus', label: 'Third revision or later', defaultUnit: 'pages' },
 ]
 
 export default function EditProjectPage({
@@ -2521,7 +2892,7 @@ export default function EditProjectPage({
 }: {
   params: Promise<{ id: string }>
 }) {
-  const { id } = use(params)
+  const [id, setId] = useState('')
   const [title, setTitle] = useState('')
   const [projectType, setProjectType] = useState('book')
   const [draftStage, setDraftStage] = useState('first_draft')
@@ -2534,6 +2905,9 @@ export default function EditProjectPage({
 
   useEffect(() => {
     async function loadProject() {
+      const { id: projectId } = await params
+      setId(projectId)
+
       const supabase = createClient()
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
@@ -2543,7 +2917,7 @@ export default function EditProjectPage({
       const { data: project } = await supabase
         .from('projects')
         .select('*')
-        .eq('id', id)
+        .eq('id', projectId)
         .single()
 
       if (project) {
@@ -2556,7 +2930,13 @@ export default function EditProjectPage({
       setLoading(false)
     }
     loadProject()
-  }, [id, router])
+  }, [params, router])
+
+  function handleStageChange(value: string) {
+    setDraftStage(value)
+    const stage = DRAFT_STAGES.find((s) => s.value === value)
+    if (stage) setMetricUnit(stage.defaultUnit)
+  }
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault()
@@ -2624,7 +3004,7 @@ export default function EditProjectPage({
             <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Stage</label>
             <select
               value={draftStage}
-              onChange={(e) => setDraftStage(e.target.value)}
+              onChange={(e) => handleStageChange(e.target.value)}
               className="w-full py-2 border-b bg-transparent focus:outline-none"
               style={{ borderColor: 'var(--color-rule)' }}
             >
@@ -2865,15 +3245,15 @@ FILE: src/app/projects/log/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 11.51 KB
+Size: 12.57 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/projects/log/page.tsx
 Relative Path: src/app/projects/log
 Created: 2026-09-06 00:08:45 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-23 03:21:25 (Australia/Sydney / GMT+10:00)
-MD5: 8e7713ff27859dceef882aea5511ed86
-SHA256: 16817f9cd961ad0a445189bdb0707a5faafdbb0d8f4d0743d67eee162d5ddb9d
+Modified: 2026-09-29 22:42:05 (Australia/Sydney / GMT+10:00)
+MD5: 7c2bec0e56c82de13f6307b7a9f65cb8
+SHA256: 73b252f857f8702a7dc8b724c6260a48828c058e45b15b86d61f9762a76fbf03
 Encoding: ASCII
 
 FILE CONTENT:
@@ -2885,6 +3265,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { buildDailyCumulative, buildDailyDeltas } from '@/lib/wordcountStats'
 import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
+import { getRandomQuote, type Quote } from '@/lib/quotes'
 
 type Project = {
   id: string
@@ -2907,6 +3288,8 @@ export default function LogWordcountPage() {
   const [parsedDays, setParsedDays] = useState<BackfillEntry[]>([])
   const [savingMulti, setSavingMulti] = useState(false)
 
+  const [quote, setQuote] = useState<Quote | null>(null)
+
   const router = useRouter()
 
   useEffect(() => {
@@ -2919,7 +3302,13 @@ export default function LogWordcountPage() {
       }
       const { data } = await supabase.from('projects').select('id, title, metric_unit')
       setProjects(data || [])
-      if (data && data.length > 0) setProjectId(data[0].id)
+      const storedId = localStorage.getItem('wm_current_project')
+      const storedIsValid = data?.some((p) => p.id === storedId)
+      if (storedIsValid && storedId) {
+        setProjectId(storedId)
+      } else if (data && data.length > 0) {
+        setProjectId(data[0].id)
+      }
       setLoading(false)
     }
     loadProjects()
@@ -3005,8 +3394,7 @@ export default function LogWordcountPage() {
     await refreshTodaysPost(supabase, user.id)
 
     setSaving(false)
-    router.push('/today')
-    router.refresh()
+    setQuote(getRandomQuote())
   }
 
   function handleParseMultiDay() {
@@ -3063,11 +3451,33 @@ export default function LogWordcountPage() {
     await refreshTodaysPost(supabase, user.id)
 
     setSavingMulti(false)
-    router.push('/today')
-    router.refresh()
+    setQuote(getRandomQuote())
   }
 
   if (loading) return <main className="max-w-md mx-auto px-6 py-16">Loading...</main>
+
+  if (quote) {
+    return (
+      <main className="max-w-md mx-auto px-6 py-16 text-center" style={{ fontFamily: 'var(--font-sans)' }}>
+        <p
+          className="mb-4"
+          style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', lineHeight: 1.5, color: 'var(--color-ink)' }}
+        >
+          &ldquo;{quote.text}&rdquo;
+        </p>
+        <p className="text-sm mb-10" style={{ color: 'var(--color-ink-muted)' }}>
+          — {quote.author}
+        </p>
+        <button
+          onClick={() => { router.push('/today'); router.refresh() }}
+          className="px-5 py-2 text-sm"
+          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+        >
+          Continue to Today
+        </button>
+      </main>
+    )
+  }
 
   if (projects.length === 0) {
     return (
@@ -3560,15 +3970,15 @@ FILE: src/app/search/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 2.66 KB
+Size: 3.77 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/search/page.tsx
 Relative Path: src/app/search
 Created: 2026-09-14 09:48:50 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-14 09:49:10 (Australia/Sydney / GMT+10:00)
-MD5: 432799a60617db7d8ed16f10c3e33eec
-SHA256: 37f331fec41a2b665596da01ef333e4329e5e456bbfec36b3f51ee6a00c65158
+Modified: 2026-09-23 04:01:55 (Australia/Sydney / GMT+10:00)
+MD5: cd639827345123f21f8ed64aeaa6ea3f
+SHA256: 86f2ecdba8c88002a47782b45a451646c7e72101f4182c4b52b12c95c13f6eb5
 Encoding: ASCII
 
 FILE CONTENT:
@@ -3584,48 +3994,53 @@ type Profile = {
   username: string
   display_name: string | null
   avatar_url: string | null
+  occupation: string | null
+  book_title: string | null
 }
 
 export default function SearchPage() {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<Profile[]>([])
   const [searched, setSearched] = useState(false)
+  const [searching, setSearching] = useState(false)
 
   async function handleSearch(e: React.FormEvent) {
     e.preventDefault()
     if (!query.trim()) return
 
+    setSearching(true)
     const supabase = createClient()
-    const { data } = await supabase
-      .from('profiles')
-      .select('id, username, display_name, avatar_url')
-      .or(`username.ilike.%${query}%,display_name.ilike.%${query}%`)
-      .limit(20)
+    const { data } = await supabase.rpc('search_profiles', { search_query: query.trim() })
 
     setResults(data || [])
     setSearched(true)
+    setSearching(false)
   }
 
   return (
     <main className="max-w-md mx-auto px-6 py-16">
-      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+      <h1 className="text-3xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
         Find writers
       </h1>
+      <p className="text-sm mb-6" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+        Search by name, username, occupation, book title — or their exact email.
+      </p>
       <form onSubmit={handleSearch} style={{ fontFamily: 'var(--font-sans)' }}>
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by name or username"
+          placeholder="Search..."
           className="w-full py-2 mb-4 border-b bg-transparent focus:outline-none"
           style={{ borderColor: 'var(--color-rule)' }}
         />
         <button
           type="submit"
+          disabled={searching}
           className="px-5 py-2 text-sm mb-8"
-          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+          style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
         >
-          Search
+          {searching ? 'Searching...' : 'Search'}
         </button>
       </form>
 
@@ -3640,23 +4055,36 @@ export default function SearchPage() {
           <Link
             key={profile.id}
             href={`/u/${profile.username}`}
-            className="flex items-center gap-3 py-3 border-b"
-            style={{ borderColor: 'var(--color-rule)' }}
+            className="flex items-center gap-3 mb-3 rounded-lg"
+            style={{
+              border: '1px solid var(--color-rule)',
+              backgroundColor: 'var(--color-paper)',
+              padding: '0.85rem 1rem',
+            }}
           >
-            {profile.avatar_url && (
-              <img
-                src={profile.avatar_url}
-                alt=""
-                className="w-10 h-10 rounded-full object-cover"
-              />
+            {profile.avatar_url ? (
+              <img src={profile.avatar_url} alt="" className="w-11 h-11 rounded-full object-cover" />
+            ) : (
+              <div
+                className="w-11 h-11 rounded-full flex items-center justify-center text-sm"
+                style={{ backgroundColor: 'var(--color-paper-raised)', color: 'var(--color-ink-muted)' }}
+              >
+                {(profile.display_name || profile.username).charAt(0).toUpperCase()}
+              </div>
             )}
-            <div>
-              <div style={{ fontFamily: 'var(--font-sans)' }}>
+            <div className="flex-1 min-w-0">
+              <div className="text-sm font-semibold" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink)' }}>
                 {profile.display_name || profile.username}
               </div>
               <div className="text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
                 @{profile.username}
+                {profile.occupation && <> · {profile.occupation}</>}
               </div>
+              {profile.book_title && (
+                <div className="text-xs mt-0.5" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}>
+                  Writing &ldquo;{profile.book_title}&rdquo;
+                </div>
+              )}
             </div>
           </Link>
         ))}
@@ -3664,6 +4092,7 @@ export default function SearchPage() {
     </main>
   )
 }
+
 ================================================================================
 
 
@@ -3781,15 +4210,15 @@ FILE: src/app/signup/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 2.34 KB
+Size: 3.56 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/signup/page.tsx
 Relative Path: src/app/signup
-Created: 2026-09-05 07:17:27 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-20 23:07:52 (Australia/Sydney / GMT+10:00)
-MD5: 5ea014eeedf5a13e2cefe1516c3c0836
-SHA256: 1ab6d554463f12895a664e2d05b7b5138524b8e74ec01bfb0e52917a5fc2f83a
+Created: 2026-09-27 02:07:48 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-27 02:07:48 (Australia/Sydney / GMT+10:00)
+MD5: 37609fca436b86575d7a48bcadec0f57
+SHA256: 0ac243826a8691da22a070d6c648a1bae6905b33ee387839bc50cdeb59045f3f
 Encoding: ASCII
 
 FILE CONTENT:
@@ -3799,6 +4228,7 @@ FILE CONTENT:
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import GoogleSignInButton from '@/components/GoogleSignInButton'
 
 export default function SignUpPage() {
   const [email, setEmail] = useState('')
@@ -3820,49 +4250,78 @@ export default function SignUpPage() {
   }
 
   return (
-    <main className="max-w-md mx-auto px-6 py-16">
-      <h1 className="text-3xl mb-8" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        Sign up
-      </h1>
-      <form onSubmit={handleSignUp} style={{ fontFamily: 'var(--font-sans)' }}>
-        <div className="mb-5">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-            className="w-full py-2 border-b bg-transparent focus:outline-none"
-            style={{ borderColor: 'var(--color-rule)' }}
-          />
-        </div>
-        {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
-        <button
-          type="submit"
-          className="px-5 py-2 text-sm"
-          style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
+    <main
+      className="flex flex-col items-center justify-center px-6"
+      style={{ minHeight: '100vh' }}
+    >
+      <div className="text-center mb-10">
+        <h1
+          style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, fontSize: '2.25rem', color: 'var(--color-accent)' }}
         >
+          Writemates
+        </h1>
+        <p className="mt-1" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--color-ink-muted)' }}>
+          A Place For Writers
+        </p>
+      </div>
+
+      <div
+        className="w-full max-w-sm rounded-xl"
+        style={{ border: '1px solid var(--color-rule)', backgroundColor: 'var(--color-paper)', padding: '2rem' }}
+      >
+        <h2 className="text-xl mb-6" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
           Sign up
-        </button>
-      </form>
-      <p className="mt-6 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-        Already have an account? <a href="/login">Log in</a>
-      </p>
+        </h2>
+
+        <GoogleSignInButton />
+
+        <div className="flex items-center gap-3 mb-5">
+          <div className="flex-1 h-px" style={{ backgroundColor: 'var(--color-rule)' }} />
+          <span className="text-xs" style={{ color: 'var(--color-ink-muted)' }}>or</span>
+          <div className="flex-1 h-px" style={{ backgroundColor: 'var(--color-rule)' }} />
+        </div>
+
+        <form onSubmit={handleSignUp} style={{ fontFamily: 'var(--font-sans)' }}>
+          <div className="mb-5">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={6}
+              className="w-full py-2 border-b bg-transparent focus:outline-none"
+              style={{ borderColor: 'var(--color-rule)' }}
+            />
+          </div>
+          {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
+          <button
+            type="submit"
+            className="w-full py-2.5 text-sm rounded-lg"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+          >
+            Sign up
+          </button>
+        </form>
+        <p className="mt-6 text-sm text-center" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+          Already have an account? <a href="/login" style={{ color: 'var(--color-accent)' }}>Log in</a>
+        </p>
+      </div>
     </main>
   )
 }
+
 ================================================================================
 
 
@@ -4793,15 +5252,15 @@ FILE: src/app/today/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 12.75 KB
+Size: 13.13 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/today/page.tsx
 Relative Path: src/app/today
 Created: 2026-09-21 03:31:07 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-22 00:55:21 (Australia/Sydney / GMT+10:00)
-MD5: 7b86e460f43e9c18bf3fced627226143
-SHA256: 4cdde9a914bc8d945ef7adcf1e29c19361ae7398142c7d247db5016306f7d566
+Modified: 2026-09-29 22:40:49 (Australia/Sydney / GMT+10:00)
+MD5: 932ba91e6dd7ac8075877d579747cfb2
+SHA256: 52a39ffc740b0b7f12a0c6c9b6c1747684d8bdb2582367ba6a889c4af8340b92
 Encoding: ASCII
 
 FILE CONTENT:
@@ -4816,9 +5275,12 @@ import {
   buildDailyCumulative,
   buildDailyDeltas,
   computeProjectedFinishDetails,
+  computeStreak,
 } from '@/lib/wordcountStats'
 import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
+import StreakStrip from '@/components/StreakStrip'
+import StreakCelebration from '@/components/StreakCelebration'
 
 type Project = {
   id: string
@@ -4864,9 +5326,12 @@ function Delta({
 
 export default function TodayPage() {
   const [projects, setProjects] = useState<Project[]>([])
-  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [selectedId, setSelectedIdState] = useState<string | null>(null)
+  function setSelectedId(id: string | null) {
+    setSelectedIdState(id)
+    if (id) localStorage.setItem('wm_current_project', id)
+  }
   const [loading, setLoading] = useState(true)
-  const [bannerDismissed, setBannerDismissed] = useState(false)
 
   const [currentTotal, setCurrentTotal] = useState(0)
   const [percent, setPercent] = useState<number | null>(null)
@@ -4884,6 +5349,8 @@ export default function TodayPage() {
   const [chartData, setChartData] = useState<{ day: string; words: number }[]>([])
   const [chartAverage, setChartAverage] = useState(0)
   const [insight, setInsight] = useState<Insight | null>(null)
+  const [streak, setStreak] = useState(0)
+  const [streakDays, setStreakDays] = useState<{ label: string; logged: boolean; isToday: boolean }[]>([])
 
   const router = useRouter()
 
@@ -4977,18 +5444,22 @@ export default function TodayPage() {
       setDaysSinceStart(Math.max(1, Math.floor((now.getTime() - startDate.getTime()) / 86400000) + 1))
 
       const days: { day: string; words: number }[] = []
+      const streakStripDays: { label: string; logged: boolean; isToday: boolean }[] = []
       for (let i = 6; i >= 0; i--) {
         const d = new Date()
         d.setDate(d.getDate() - i)
         const dateStr = d.toISOString().split('T')[0]
         const label = d.toLocaleDateString(undefined, { weekday: 'short' })
-        days.push({ day: label, words: dailyDeltas.get(dateStr) || 0 })
+        const words = dailyDeltas.get(dateStr) || 0
+        days.push({ day: label, words })
+        streakStripDays.push({ label: label.charAt(0), logged: words > 0, isToday: i === 0 })
       }
       setChartData(days)
       setChartAverage(days.reduce((sum, d) => sum + d.words, 0) / 7)
+      setStreakDays(streakStripDays)
+      setStreak(computeStreak(dailyMap))
 
       setInsight(computeInsight(details.avgPerCalendarDay, details.daysRemaining))
-      setBannerDismissed(false)
     }
     loadStats()
   }, [selectedId, projects])
@@ -5014,6 +5485,8 @@ export default function TodayPage() {
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12" style={{ fontFamily: 'var(--font-sans)' }}>
+      {selectedId && <StreakCelebration streak={streak} projectId={selectedId} />}
+
       {projects.length > 1 && (
         <select
           value={selectedId || ''}
@@ -5027,6 +5500,8 @@ export default function TodayPage() {
         </select>
       )}
 
+      <StreakStrip streak={streak} days={streakDays} />
+
       {project?.goal_word_count && (
         <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>
           <strong style={{ color: 'var(--color-ink)' }}>{currentTotal.toLocaleString()}</strong>
@@ -5038,36 +5513,26 @@ export default function TodayPage() {
         </p>
       )}
 
-      {!bannerDismissed && (
-        <div
-          className="rounded-lg mb-6 relative"
-          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
-        >
-          <button
-            onClick={() => setBannerDismissed(true)}
-            aria-label="Dismiss"
-            className="absolute text-sm"
-            style={{ top: 10, right: 12, color: 'var(--color-ink-muted)' }}
-          >
-            ✕
-          </button>
-          {finishDateLabel ? (
-            <>
-              <p className="text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-                Keep it up. Your projected finish date for your {stageLabel} of {project?.title} is
-              </p>
-              <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
-                {finishDateLabel}
-              </p>
-              <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
-            </>
-          ) : (
-            <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
-              Log a few {unit} to see your projected finish date.
+      <div
+        className="rounded-lg mb-6"
+        style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
+      >
+        {finishDateLabel ? (
+          <>
+            <p className="text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
+              Keep it up. Your projected finish date for your {stageLabel} of {project?.title} is
             </p>
-          )}
-        </div>
-      )}
+            <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>
+              {finishDateLabel}
+            </p>
+            <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" />
+          </>
+        ) : (
+          <p className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>
+            Log a few {unit} to see your projected finish date.
+          </p>
+        )}
+      </div>
 
       <div className="grid grid-cols-2 gap-3 mb-6">
         <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
@@ -5137,24 +5602,37 @@ FILE: src/app/u/[username]/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 10.12 KB
+Size: 14.26 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/u/[username]/page.tsx
 Relative Path: src/app/u/[username]
-Created: 2026-09-06 00:00:54 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-14 10:13:44 (Australia/Sydney / GMT+10:00)
-MD5: ef9d6c890bfe5c7e86e84f8f07374299
-SHA256: c994ff6808353b93e8943b23807fac356fe5bf8660fca922efc8d38d86ab7396
+Created: 2026-09-24 04:17:31 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-24 04:17:31 (Australia/Sydney / GMT+10:00)
+MD5: 14c7acb81dcc26e43d6566ad67b199b4
+SHA256: 664675d50576ce34a06fffd47e04f4c400ba4ead129361b5087c0ed77b21894b
 Encoding: ASCII
 
 FILE CONTENT:
 ----------------------------------------
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
+import { Pencil, Users, UserCheck } from 'lucide-react'
 import FollowButton from '@/components/FollowButton'
 import MessageButton from '@/components/MessageButton'
-import { buildDailyCumulative, getAuthorTitle } from '@/lib/wordcountStats'
+import { buildDailyCumulative } from '@/lib/wordcountStats'
+
+type WorkLink = { label: string; url: string }
+
+const PROJECT_TYPE_LABELS: Record<string, string> = {
+  book: 'Novel',
+  screenplay: 'Screenplay',
+  article: 'Article',
+  short_story: 'Short story',
+  thesis: 'Thesis',
+  other: 'Project',
+}
 
 export default async function PublicProfilePage({
   params,
@@ -5210,28 +5688,10 @@ export default async function PublicProfilePage({
     .order('updated_at', { ascending: false })
     .limit(10)
 
-  const { data: allSnapshots } = await supabase
-    .from('wordcount_snapshots')
-    .select('word_count, recorded_at, project_id')
-    .eq('user_id', profile.id)
-
-  const totalWordsAcrossProjects = (() => {
-    const byProject = new Map<string, typeof allSnapshots>()
-    for (const snap of allSnapshots || []) {
-      const list = byProject.get(snap.project_id) || []
-      list.push(snap)
-      byProject.set(snap.project_id, list)
-    }
-    let total = 0
-    for (const snaps of byProject.values()) {
-      const daily = buildDailyCumulative(snaps!)
-      const values = Array.from(daily.values())
-      if (values.length > 0) total += Math.max(...values)
-    }
-    return total
-  })()
-
-  const authorTitle = getAuthorTitle(totalWordsAcrossProjects)
+  const isOwner = viewer?.id === profile.id
+  const workLinks: WorkLink[] = Array.isArray(profile.work_links) ? profile.work_links : []
+  const writeGenres = (profile.genres_write || '').split(',').map((g: string) => g.trim()).filter(Boolean)
+  const readGenres = (profile.genres_read || '').split(',').map((g: string) => g.trim()).filter(Boolean)
 
   function latestWordCountFor(projectId: string) {
     const wordcountPosts = (posts || []).filter(
@@ -5242,197 +5702,297 @@ export default async function PublicProfilePage({
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-12">
-      <div className="flex items-center gap-4">
-        {profile.avatar_url && (
-          <img
-            src={profile.avatar_url}
-            alt=""
-            className="w-16 h-16 rounded-full object-cover"
-          />
-        )}
-        <div>
-          <h1 className="text-4xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-            {profile.display_name || profile.username}
-          </h1>
-          <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-            @{profile.username}
-            {totalWordsAcrossProjects > 0 && (
-              <span style={{ color: 'var(--color-accent)' }}> · {authorTitle}</span>
-            )}
-          </p>
-        </div>
-      </div>
-
       <div
-        className="flex items-center gap-4 mt-4 text-sm"
-        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+        className="rounded-xl p-6 mb-6"
+        style={{ border: '1px solid var(--color-rule)', backgroundColor: 'var(--color-paper)' }}
       >
-        <span>{followerCount || 0} followers</span>
-        <span>{followingCount || 0} following</span>
-        {viewer && viewer.id !== profile.id && (
-          <>
-            <FollowButton profileId={profile.id} initialFollowing={isFollowing} />
-            <MessageButton profileId={profile.id} />
-          </>
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-4">
+            {profile.avatar_url && (
+              <img
+                src={profile.avatar_url}
+                alt=""
+                className="w-16 h-16 rounded-full object-cover"
+              />
+            )}
+            <div>
+              <h1 className="text-3xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+                {profile.display_name || profile.username}
+              </h1>
+              <p style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                @{profile.username}
+                {profile.occupation && <> · {profile.occupation}</>}
+              </p>
+            </div>
+          </div>
+          {isOwner && (
+            <Link href="/profile/edit" aria-label="Edit profile" title="Edit profile" style={{ color: 'var(--color-ink-muted)' }}>
+              <Pencil size={18} />
+            </Link>
+          )}
+        </div>
+
+        <div
+          className="flex items-center gap-5 mt-4 text-sm"
+          style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+        >
+          <span className="flex items-center gap-1.5">
+            <Users size={15} /> {followerCount || 0} followers
+          </span>
+          <span className="flex items-center gap-1.5">
+            <UserCheck size={15} /> {followingCount || 0} following
+          </span>
+          {viewer && viewer.id !== profile.id && (
+            <>
+              <FollowButton profileId={profile.id} initialFollowing={isFollowing} />
+              <MessageButton profileId={profile.id} />
+            </>
+          )}
+        </div>
+
+        {profile.bio && <p className="mt-5 text-lg" style={{ lineHeight: 1.6 }}>{profile.bio}</p>}
+
+        {(profile.book_title || profile.current_work_description || workLinks.length > 0) && (
+          <div
+            className="mt-5 rounded-lg"
+            style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
+          >
+            <h2
+              className="text-xs mb-1"
+              style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+            >
+              Currently working on
+            </h2>
+            {profile.book_title && (
+              <p className="text-lg mb-1" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+                {profile.book_title}
+              </p>
+            )}
+            {profile.current_work_description && (
+              <p className="mb-2" style={{ lineHeight: 1.6 }}>{profile.current_work_description}</p>
+            )}
+            {workLinks.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {workLinks.map((link, i) => (
+                    <a
+                    key={i}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-sm rounded-full"
+                    style={{
+                      border: '1px solid var(--color-rule)',
+                      backgroundColor: 'var(--color-paper)',
+                      color: 'var(--color-accent)',
+                      padding: '0.35rem 0.75rem',
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {(writeGenres.length > 0 || readGenres.length > 0) && (
+          <div className="mt-5">
+            {writeGenres.length > 0 && (
+              <div className="mb-2">
+                <span className="text-xs mr-2" style={{ color: 'var(--color-ink-muted)' }}>Writes</span>
+                <span className="inline-flex flex-wrap gap-1.5">
+                  {writeGenres.map((g: string, i: number) => (
+                    <span
+                      key={i}
+                      className="text-xs rounded-full"
+                      style={{ backgroundColor: 'var(--color-paper-raised)', color: 'var(--color-ink)', padding: '0.2rem 0.6rem' }}
+                    >
+                      {g}
+                    </span>
+                  ))}
+                </span>
+              </div>
+            )}
+            {readGenres.length > 0 && (
+              <div>
+                <span className="text-xs mr-2" style={{ color: 'var(--color-ink-muted)' }}>Reads</span>
+                <span className="inline-flex flex-wrap gap-1.5">
+                  {readGenres.map((g: string, i: number) => (
+                    <span
+                      key={i}
+                      className="text-xs rounded-full"
+                      style={{ backgroundColor: 'var(--color-paper-raised)', color: 'var(--color-ink)', padding: '0.2rem 0.6rem' }}
+                    >
+                      {g}
+                    </span>
+                  ))}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+
+        {(profile.substack_url || profile.twitter_url || profile.instagram_url || profile.website_url) && (
+          <div className="mt-5 flex items-center gap-3">
+            {profile.substack_url && (
+              <a
+                href={`${profile.substack_url.replace(/\/$/, '')}/subscribe`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Subscribe on Substack"
+                className="flex items-center gap-2 text-sm rounded-full"
+                style={{ border: '1px solid var(--color-rule)', padding: '0.35rem 0.75rem 0.35rem 0.35rem' }}
+              >
+                <span
+                  className="flex items-center justify-center"
+                  style={{ width: 24, height: 24, borderRadius: 6, backgroundColor: '#FF6719', color: '#fff', fontWeight: 700, fontSize: 13 }}
+                >
+                  S
+                </span>
+                <span style={{ color: 'var(--color-accent)' }}>Subscribe To My Substack</span>
+              </a>
+            )}
+            {profile.twitter_url && (
+              <a href={profile.twitter_url} target="_blank" rel="noopener noreferrer" className="text-sm" style={{ color: 'var(--color-accent)' }}>Twitter</a>
+            )}
+            {profile.instagram_url && (
+              <a href={profile.instagram_url} target="_blank" rel="noopener noreferrer" className="text-sm" style={{ color: 'var(--color-accent)' }}>Instagram</a>
+            )}
+            {profile.website_url && (
+              <a href={profile.website_url} target="_blank" rel="noopener noreferrer" className="text-sm" style={{ color: 'var(--color-accent)' }}>Website</a>
+            )}
+          </div>
         )}
       </div>
-
-      {profile.bio && <p className="mt-6 text-lg" style={{ lineHeight: 1.6 }}>{profile.bio}</p>}
-
-      {profile.current_work_description && (
-        <div className="mt-8">
-          <h2
-            className="text-sm mb-2"
-            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
-          >
-            Currently working on
-          </h2>
-          <p className="text-lg" style={{ lineHeight: 1.6 }}>{profile.current_work_description}</p>
-        </div>
-      )}
-
-      {(profile.genres_write || profile.genres_read) && (
-        <div className="mt-6 text-sm" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-          {profile.genres_write && <p>Writes: {profile.genres_write}</p>}
-          {profile.genres_read && <p>Reads: {profile.genres_read}</p>}
-        </div>
-      )}
-
-      {(profile.substack_url || profile.twitter_url || profile.instagram_url || profile.website_url) && (
-        <div className="mt-6 flex gap-4 text-sm" style={{ fontFamily: 'var(--font-sans)' }}>
-          {profile.substack_url && (
-            <a href={profile.substack_url} target="_blank" rel="noopener noreferrer">Read my Substack</a>
-          )}
-          {profile.twitter_url && (
-            <a href={profile.twitter_url} target="_blank" rel="noopener noreferrer">Twitter</a>
-          )}
-          {profile.instagram_url && (
-            <a href={profile.instagram_url} target="_blank" rel="noopener noreferrer">Instagram</a>
-          )}
-          {profile.website_url && (
-            <a href={profile.website_url} target="_blank" rel="noopener noreferrer">Website</a>
-          )}
-        </div>
-      )}
 
       {projects && projects.length > 0 && (
-        <div className="mt-12">
+        <div className="mb-6">
           <h2
-            className="text-sm mb-4 pb-2 border-b"
-            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+            className="text-sm mb-3"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
           >
             Projects
           </h2>
-          <div>
-            {projects.map((project) => {
-              const current = latestWordCountFor(project.id)
-              const percent =
-                current && project.goal_word_count
-                  ? Math.min(100, Math.round((current / project.goal_word_count) * 100))
-                  : null
-              return (
-                <div key={project.id} className="py-4 border-b" style={{ borderColor: 'var(--color-rule)' }}>
-                  <div className="flex items-baseline justify-between">
-                    <span className="text-lg">{project.title}</span>
-                    {percent !== null && (
-                      <span
-                        className="text-sm"
-                        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
-                      >
-                        {percent}%
-                      </span>
-                    )}
-                  </div>
-                  {current !== null && (
-                    <>
-                      <div
-                        className="mt-2 h-px w-full"
-                        style={{ backgroundColor: 'var(--color-rule)', position: 'relative' }}
-                      >
-                        {percent !== null && (
-                          <div
-                            className="h-px absolute top-0 left-0"
-                            style={{ width: `${percent}%`, backgroundColor: 'var(--color-accent)' }}
-                          />
-                        )}
-                      </div>
-                      <div
-                        className="mt-2 text-sm"
-                        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
-                      >
-                        {current.toLocaleString()} words
-                        {project.goal_word_count && <> of {project.goal_word_count.toLocaleString()} goal</>}
-                      </div>
-                    </>
+          {projects.map((project) => {
+            const current = latestWordCountFor(project.id)
+            const percent =
+              current && project.goal_word_count
+                ? Math.min(100, Math.round((current / project.goal_word_count) * 100))
+                : null
+            const typeLabel = PROJECT_TYPE_LABELS[project.project_type] || 'Project'
+            const startedLabel = new Date(project.created_at).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })
+            return (
+              <div
+                key={project.id}
+                className="rounded-lg mb-3"
+                style={{ border: '1px solid var(--color-rule)', backgroundColor: 'var(--color-paper)', padding: '1rem' }}
+              >
+                <div className="flex items-baseline justify-between">
+                  <span className="text-lg">{project.title}</span>
+                  {percent !== null && (
+                    <span
+                      className="text-sm"
+                      style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-accent)' }}
+                    >
+                      {percent}%
+                    </span>
                   )}
                 </div>
-              )
-            })}
-          </div>
+                <p className="text-xs mt-0.5" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
+                  {typeLabel} · started {startedLabel}
+                </p>
+                {current !== null && (
+                  <>
+                    <div
+                      className="mt-2 h-1.5 w-full rounded-full"
+                      style={{ backgroundColor: 'var(--color-paper-raised)', position: 'relative' }}
+                    >
+                      {percent !== null && (
+                        <div
+                          className="h-1.5 absolute top-0 left-0 rounded-full"
+                          style={{ width: `${percent}%`, backgroundColor: 'var(--color-accent)' }}
+                        />
+                      )}
+                    </div>
+                    <div
+                      className="mt-2 text-sm"
+                      style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+                    >
+                      {current.toLocaleString()} words
+                      {project.goal_word_count && <> of {project.goal_word_count.toLocaleString()} goal</>}
+                    </div>
+                  </>
+                )}
+              </div>
+            )
+          })}
         </div>
       )}
 
       {posts && posts.length > 0 && (
-        <div className="mt-12">
+        <div>
           <h2
-            className="text-sm mb-4 pb-2 border-b"
-            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+            className="text-sm mb-3"
+            style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
           >
             Recent activity
           </h2>
-          <div>
-            {posts.map((post) => (
-              <div key={post.id} className="py-5 border-b" style={{ borderColor: 'var(--color-rule)' }}>
-                <div
-                  className="text-sm mb-2"
-                  style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
-                >
-                  {new Date(post.updated_at).toLocaleDateString(undefined, {
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </div>
-                {post.type === 'wordcount' && (
-                  <p className="text-lg">
-                    Wrote{' '}
-                    <strong style={{ color: 'var(--color-accent)' }}>
-                      {post.word_count?.toLocaleString()}
-                    </strong>{' '}
-                    words
-                    {post.projects?.title && <> on <em>{post.projects.title}</em></>}
-                  </p>
-                )}
-                {post.type === 'snippet' && post.content && (
-                  <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
-                    {post.content}
-                  </p>
-                )}
-
-                {post.media_url && (
-                  <div className="mt-3">
-                    {post.media_url.match(/\.(mp4|webm|mov)$/i) ? (
-                      <video src={post.media_url} controls className="w-full rounded" />
-                    ) : (
-                      <img src={post.media_url} alt="" className="w-full rounded" />
-                    )}
-                  </div>
-                )}
-                {post.type === 'link' && (
-                  <p className="text-lg">
-                    {post.content && <span>{post.content} — </span>}
-                    <a href={post.link_url} target="_blank" rel="noopener noreferrer">
-                      {post.link_url}
-                    </a>
-                  </p>
-                )}
+          {posts.map((post) => (
+            <div
+              key={post.id}
+              className="rounded-lg mb-3"
+              style={{ border: '1px solid var(--color-rule)', backgroundColor: 'var(--color-paper)', padding: '1rem' }}
+            >
+              <div
+                className="text-xs mb-2"
+                style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
+              >
+                {new Date(post.updated_at).toLocaleDateString(undefined, {
+                  month: 'short',
+                  day: 'numeric',
+                })}
               </div>
-            ))}
-          </div>
+              {post.type === 'wordcount' && (
+                <p className="text-lg">
+                  Wrote{' '}
+                  <strong style={{ color: 'var(--color-accent)' }}>
+                    {post.word_count?.toLocaleString()}
+                  </strong>{' '}
+                  words
+                  {post.projects?.title && <> on <em>{post.projects.title}</em></>}
+                </p>
+              )}
+              {post.type === 'snippet' && post.content && (
+                <p className="text-lg" style={{ whiteSpace: 'pre-wrap' }}>
+                  {post.content}
+                </p>
+              )}
+
+              {post.media_url && (
+                <div className="mt-3">
+                  {post.media_url.match(/\.(mp4|webm|mov)$/i) ? (
+                    <video src={post.media_url} controls className="w-full rounded" />
+                  ) : (
+                    <img src={post.media_url} alt="" className="w-full rounded" />
+                  )}
+                </div>
+              )}
+              {post.type === 'link' && (
+                <p className="text-lg">
+                  {post.content && <span>{post.content} — </span>}
+                  <a href={post.link_url} target="_blank" rel="noopener noreferrer">
+                    {post.link_url}
+                  </a>
+                </p>
+              )}
+            </div>
+          ))}
         </div>
       )}
     </main>
   )
 }
+
 ================================================================================
 
 
@@ -5442,15 +6002,15 @@ FILE: src/app/apple-icon.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 554 B
+Size: 1.03 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/apple-icon.tsx
 Relative Path: src/app
 Created: 2026-09-11 10:27:23 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-21 04:40:52 (Australia/Sydney / GMT+10:00)
-MD5: 97b7567de56c6f1866a2ad963fa396b5
-SHA256: 47ac4c793fe5da36a2231a873d6cd37869017e58087f856072c4b9dc59ab7dbb
+Modified: 2026-09-23 03:54:01 (Australia/Sydney / GMT+10:00)
+MD5: da97385c7a7756e805624ec47ff3ee76
+SHA256: 4775207e2e2f2be1ab0da0085818e14aa71173a031729ad45c4be9bc5d8e1ab6
 Encoding: ASCII
 
 FILE CONTENT:
@@ -5465,18 +6025,36 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 100,
-          background: '#1747e0',
           width: '100%',
           height: '100%',
+          background: '#1747e0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#fffdf6',
-          fontWeight: 700,
         }}
       >
-        W
+        <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+          <div
+            style={{
+              width: 67,
+              height: 51,
+              background: '#fffdf6',
+              borderRadius: 6,
+              transform: 'rotate(-13deg)',
+              marginRight: -10,
+            }}
+          />
+          <div
+            style={{
+              width: 67,
+              height: 51,
+              background: '#fffdf6',
+              borderRadius: 6,
+              transform: 'rotate(13deg)',
+              marginLeft: -10,
+            }}
+          />
+        </div>
       </div>
     ),
     { ...size }
@@ -5492,15 +6070,15 @@ FILE: src/app/globals.css
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 473 B
+Size: 709 B
 Extension: .css
 Language: css
 Location: src/app/globals.css
 Relative Path: src/app
 Created: 2026-09-03 07:01:04 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-21 04:40:22 (Australia/Sydney / GMT+10:00)
-MD5: 76e88c4d6054b1a619166ec040758556
-SHA256: 6d89a6cbe3206f44e66f396d11c3834a139a75f3b682443793e55d0c07f725b4
+Modified: 2026-09-23 09:50:29 (Australia/Sydney / GMT+10:00)
+MD5: 373770feb526013d04598a30f1cc96e6
+SHA256: c7373e7d826cf02187718416069ceafc82643eabcaa4eb68358d5e5341a65adf
 Encoding: ASCII
 
 FILE CONTENT:
@@ -5533,6 +6111,18 @@ a:hover {
 
 button {
   font-family: var(--font-sans), sans-serif;
+  transition: transform 100ms ease, filter 100ms ease, opacity 100ms ease;
+}
+
+button:active {
+  transform: scale(0.97);
+  filter: brightness(0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button:active {
+    transform: none;
+  }
 }
 
 ================================================================================
@@ -5544,21 +6134,22 @@ FILE: src/app/layout.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 1.56 KB
+Size: 1.63 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/layout.tsx
 Relative Path: src/app
 Created: 2026-09-03 07:01:05 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-22 01:00:26 (Australia/Sydney / GMT+10:00)
-MD5: 7a3745189d7d42f5069021ba789b2b75
-SHA256: b747fcc2315016cb429033f1064b064a0e5ca822a9671dc365be59c175c1af97
+Modified: 2026-09-23 09:52:33 (Australia/Sydney / GMT+10:00)
+MD5: 89576c383e9765dba5ceb5ce11206205
+SHA256: 76252e3db5c66f4fb656b86d82ea4a4a5f7e3dbda98fa77449b542aa00735bd2
 Encoding: ASCII
 
 FILE CONTENT:
 ----------------------------------------
 import type { Metadata } from "next";
 import { Source_Serif_4, Work_Sans } from "next/font/google";
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 import { createClient } from '@/lib/supabase/server'
 import NavBar from '@/components/NavBar'
@@ -5608,6 +6199,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <NavBar username={username} avatarUrl={avatarUrl} />
         <div style={{ paddingBottom: username ? 72 : 0 }}>{children}</div>
         {username && <BottomNav />}
+        <Analytics />
       </body>
     </html>
   );
@@ -6028,15 +6620,15 @@ FILE: src/components/DeleteProjectButton.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 2.74 KB
+Size: 3.01 KB
 Extension: .tsx
 Language: typescript
 Location: src/components/DeleteProjectButton.tsx
 Relative Path: src/components
 Created: 2026-09-20 23:16:47 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-20 23:25:28 (Australia/Sydney / GMT+10:00)
-MD5: d0c828bcfbcfb8352f51066a4d7b9b9e
-SHA256: 797123199e07067b4798f96becbef6b5b68075f1e926513620fba72f126449ea
+Modified: 2026-09-29 22:34:04 (Australia/Sydney / GMT+10:00)
+MD5: 7fb4778ea439856b9ff8e0f64d8da0af
+SHA256: 7eb53e41dd6534a8588b88f190dad11d8ab096bafbc94097827a6b8441c16983
 Encoding: ASCII
 
 FILE CONTENT:
@@ -6059,22 +6651,27 @@ export default function DeleteProjectButton({
 }) {
   const [confirming, setConfirming] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
   async function handleDelete() {
     setDeleting(true)
+    setError(null)
     const supabase = createClient()
     const { error } = await supabase.from('projects').delete().eq('id', projectId)
     setDeleting(false)
-    setConfirming(false)
 
-    if (!error) {
-      if (onDeleted) {
-        onDeleted()
-      } else {
-        router.push('/projects')
-        router.refresh()
-      }
+    if (error) {
+      setError(error.message)
+      return
+    }
+
+    setConfirming(false)
+    if (onDeleted) {
+      onDeleted()
+    } else {
+      router.push('/projects')
+      router.refresh()
     }
   }
 
@@ -6114,9 +6711,14 @@ export default function DeleteProjectButton({
             }}
           >
             <p className="text-sm mb-1" style={{ fontWeight: 600 }}>Delete &ldquo;{title}&rdquo;?</p>
-            <p className="text-sm mb-5" style={{ color: 'var(--color-ink-muted)' }}>
+            <p className="text-sm mb-3" style={{ color: 'var(--color-ink-muted)' }}>
               This removes the project and all its logged progress. This can&apos;t be undone.
             </p>
+            {error && (
+              <p className="text-sm mb-3" style={{ color: '#a33' }}>
+                Couldn&apos;t delete: {error}
+              </p>
+            )}
             <div className="flex justify-end gap-3">
               <button
                 onClick={() => setConfirming(false)}
@@ -6251,6 +6853,54 @@ export default function FollowButton({
 
 
 ================================================================================
+FILE: src/components/GoogleSignInButton.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 760 B
+Extension: .tsx
+Language: typescript
+Location: src/components/GoogleSignInButton.tsx
+Relative Path: src/components
+Created: 2026-09-23 20:33:57 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-23 20:33:57 (Australia/Sydney / GMT+10:00)
+MD5: eb27ef8de79a074927eab3840632801e
+SHA256: 5c7fbe26bf540adeebc974d5479658012fd259c12b2ec35c98858e1e1ef09a53
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use client'
+
+import { createClient } from '@/lib/supabase/client'
+
+export default function GoogleSignInButton() {
+  async function handleGoogleSignIn() {
+    const supabase = createClient()
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
+    })
+  }
+
+  return (
+    <button
+      onClick={handleGoogleSignIn}
+      type="button"
+      className="w-full py-2.5 text-sm rounded-lg flex items-center justify-center gap-2 mb-5"
+      style={{ border: '1px solid var(--color-rule)', backgroundColor: 'var(--color-paper)', color: 'var(--color-ink)' }}
+    >
+      <span style={{ fontWeight: 700, color: '#4285F4' }}>G</span>
+      Continue with Google
+    </button>
+  )
+}
+
+================================================================================
+
+
+================================================================================
 FILE: src/components/InviteLink.tsx
 ================================================================================
 
@@ -6307,15 +6957,15 @@ FILE: src/components/LogoutButton.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 454 B
+Size: 675 B
 Extension: .tsx
 Language: typescript
 Location: src/components/LogoutButton.tsx
 Relative Path: src/components
 Created: 2026-09-05 07:26:56 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-05 07:27:15 (Australia/Sydney / GMT+10:00)
-MD5: d6141a23aa7aec911080fa2cfa1e7697
-SHA256: 1558b10516bcb138a9d00d903e676b8488f74b23b7d98a35951ad74bbb7c2629
+Modified: 2026-09-24 03:46:17 (Australia/Sydney / GMT+10:00)
+MD5: c7b28694a9c45dfef960f6a482deb7f9
+SHA256: 6cc3ad2a1a2085b41571ee10514e090b4ef9564b5b9201d72f5b4b443c665ce6
 Encoding: ASCII
 
 FILE CONTENT:
@@ -6324,6 +6974,7 @@ FILE CONTENT:
 
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import { LogOut } from 'lucide-react'
 
 export default function LogoutButton() {
   const router = useRouter()
@@ -6336,11 +6987,17 @@ export default function LogoutButton() {
   }
 
   return (
-    <button onClick={handleLogout} style={{ padding: '0.5rem 1rem' }}>
+    <button
+      onClick={handleLogout}
+      className="w-full flex items-center justify-center gap-2 py-2.5 text-sm rounded-lg"
+      style={{ border: '1px solid var(--color-rule)', color: 'var(--color-ink-muted)' }}
+    >
+      <LogOut size={16} />
       Log out
     </button>
   )
 }
+
 ================================================================================
 
 
@@ -6446,15 +7103,15 @@ FILE: src/components/NavBar.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 3.09 KB
+Size: 5.26 KB
 Extension: .tsx
 Language: typescript
 Location: src/components/NavBar.tsx
 Relative Path: src/components
 Created: 2026-09-06 00:03:47 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-14 09:51:24 (Australia/Sydney / GMT+10:00)
-MD5: cc972b463173edb1c7c2b904453bdac5
-SHA256: ce665040d05c9d417c77964b05ee36a9740eaa1d281532e865d3e2de1d47148e
+Modified: 2026-09-24 03:45:18 (Australia/Sydney / GMT+10:00)
+MD5: f48389890c575c9a2f1b0f013b7868e2
+SHA256: 889b95553f1454f38c58a59a8531d5a64bde46c2c11a72dc1100dde7ba873479
 Encoding: ASCII
 
 FILE CONTENT:
@@ -6463,7 +7120,7 @@ FILE CONTENT:
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X, Search } from 'lucide-react'
+import { Menu, X, Search, Library, PenLine, Settings as SettingsIcon, LogIn, UserPlus } from 'lucide-react'
 import LogoutButton from '@/components/LogoutButton'
 
 export default function NavBar({
@@ -6477,16 +7134,13 @@ export default function NavBar({
 
   const links = username
     ? [
-        { href: '/projects', label: 'Projects' },
-        { href: '/projects/log', label: 'Log wordcount' },
-        { href: '/post/new', label: 'Share' },
-        { href: '/groups', label: 'Groups' },
-        { href: '/profile/edit', label: 'Edit profile' },
-        { href: '/settings', label: 'Settings' },
+        { href: '/projects', label: 'Projects', icon: Library },
+        { href: '/projects/log', label: 'Log wordcount', icon: PenLine },
+        { href: '/settings', label: 'Settings', icon: SettingsIcon },
       ]
     : [
-        { href: '/login', label: 'Log in' },
-        { href: '/signup', label: 'Sign up' },
+        { href: '/login', label: 'Log in', icon: LogIn },
+        { href: '/signup', label: 'Sign up', icon: UserPlus },
       ]
 
   return (
@@ -6532,34 +7186,93 @@ export default function NavBar({
           )}
 
           <button
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpen(true)}
             style={{ color: 'var(--color-ink)' }}
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label="Open menu"
           >
-            {open ? <X size={22} /> : <Menu size={22} />}
+            <Menu size={22} />
           </button>
         </div>
       </div>
 
-      {open && (
-        <div className="px-6 pb-5 flex flex-col gap-4" style={{ fontFamily: 'var(--font-sans)' }}>
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm"
-              style={{ color: 'var(--color-ink)' }}
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
+      <div
+        onClick={() => setOpen(false)}
+        className="fixed inset-0 transition-opacity"
+        style={{
+          backgroundColor: 'rgba(0,0,0,0.3)',
+          zIndex: 45,
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? 'auto' : 'none',
+        }}
+      />
+
+      <div
+        className="fixed top-0 right-0 h-full transition-transform duration-300 ease-in-out"
+        style={{
+          width: '82%',
+          maxWidth: 320,
+          backgroundColor: 'var(--color-paper)',
+          zIndex: 46,
+          transform: open ? 'translateX(0)' : 'translateX(100%)',
+          fontFamily: 'var(--font-sans)',
+          display: 'grid',
+          gridTemplateRows: 'auto 1fr auto',
+        }}
+      >
+        <div
+          className="flex items-center justify-between px-5 py-5 border-b"
+          style={{ borderColor: 'var(--color-rule)' }}
+        >
+          {username ? (
+            <Link href={`/u/${username}`} onClick={() => setOpen(false)} className="flex items-center gap-3">
+              {avatarUrl ? (
+                <img src={avatarUrl} alt="" className="w-9 h-9 rounded-full object-cover" />
+              ) : (
+                <div
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-sm"
+                  style={{ backgroundColor: 'var(--color-paper-raised)', color: 'var(--color-ink-muted)' }}
+                >
+                  {username.charAt(0).toUpperCase()}
+                </div>
+              )}
+              <span className="text-sm" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>@{username}</span>
             </Link>
-          ))}
-          {username && <LogoutButton />}
+          ) : (
+            <span style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, color: 'var(--color-accent)' }}>Writemates</span>
+          )}
+          <button onClick={() => setOpen(false)} aria-label="Close menu" style={{ color: 'var(--color-ink-muted)' }}>
+            <X size={22} />
+          </button>
         </div>
-      )}
+
+        <div className="flex flex-col px-5 py-3 overflow-y-auto">
+          {links.map((link) => {
+            const Icon = link.icon
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="flex items-center gap-3 text-sm py-3 border-b"
+                style={{ color: 'var(--color-ink)', borderColor: 'var(--color-rule)' }}
+                onClick={() => setOpen(false)}
+              >
+                <Icon size={18} style={{ color: 'var(--color-accent)' }} />
+                {link.label}
+              </Link>
+            )
+          })}
+        </div>
+
+        {username && (
+          <div className="px-5 py-5 border-t" style={{ borderColor: 'var(--color-rule)' }}>
+            <LogoutButton />
+          </div>
+        )}
+      </div>
     </nav>
   )
 }
+
 ================================================================================
 
 
@@ -6745,15 +7458,15 @@ FILE: src/components/SplashScreen.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 1.22 KB
+Size: 1.29 KB
 Extension: .tsx
 Language: typescript
 Location: src/components/SplashScreen.tsx
 Relative Path: src/components
 Created: 2026-09-22 00:59:27 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-22 00:59:27 (Australia/Sydney / GMT+10:00)
-MD5: c0c5a75f6db15f24ed92476af8ee8548
-SHA256: fb60f120e169ecf40dc4c455f8c6a01fccc450455a9437bf4ba5409d8e614f8c
+Modified: 2026-09-27 02:07:34 (Australia/Sydney / GMT+10:00)
+MD5: 65be574609be0b3064634c759ece7850
+SHA256: 39d3af3b4f4d453b6d01794e71d60cdda9290f1a65837ca1514e5a7c36dd9c79
 Encoding: ASCII
 
 FILE CONTENT:
@@ -6783,7 +7496,11 @@ export default function SplashScreen() {
     <div
       style={{
         position: 'fixed',
-        inset: 0,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: '100dvh',
         zIndex: 9999,
         display: 'flex',
         flexDirection: 'column',
@@ -6810,8 +7527,175 @@ export default function SplashScreen() {
           color: 'var(--color-ink-muted)',
         }}
       >
-        Where Writers Grow Together
+        A Place For Writers
       </p>
+    </div>
+  )
+}
+
+================================================================================
+
+
+================================================================================
+FILE: src/components/StreakCelebration.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 2.38 KB
+Extension: .tsx
+Language: typescript
+Location: src/components/StreakCelebration.tsx
+Relative Path: src/components
+Created: 2026-09-27 01:59:13 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-27 01:59:13 (Australia/Sydney / GMT+10:00)
+MD5: 940f065e653b06aeb98ee322006b9be3
+SHA256: 0ca3aae3b9dcff18f4e5d7225c09b09c34178a6c797e83d22697120816689bb2
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use client'
+
+import { useEffect, useState } from 'react'
+import { Zap } from 'lucide-react'
+
+function getMilestoneMessage(streak: number): string | null {
+  if (streak === 1) return "New streak started! Keep it going."
+  const milestones = [3, 5, 7, 10, 14, 21, 30, 50, 75, 100]
+  if (milestones.includes(streak)) return `${streak} day streak! You're on fire.`
+  if (streak > 100 && streak % 50 === 0) return `${streak} day streak! Incredible consistency.`
+  return null
+}
+
+export default function StreakCelebration({ streak, projectId }: { streak: number; projectId: string }) {
+  const [message, setMessage] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (streak <= 0) return
+    const msg = getMilestoneMessage(streak)
+    if (!msg) return
+
+    const today = new Date().toISOString().split('T')[0]
+    const key = `wm_streak_seen_${projectId}_${today}_${streak}`
+    if (localStorage.getItem(key)) return
+
+    setMessage(msg)
+    localStorage.setItem(key, '1')
+  }, [streak, projectId])
+
+  if (!message) return null
+
+  return (
+    <div
+      onClick={() => setMessage(null)}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        zIndex: 50,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          backgroundColor: 'var(--color-paper)',
+          borderRadius: 16,
+          padding: '2rem',
+          maxWidth: 300,
+          textAlign: 'center',
+        }}
+      >
+        <div
+          style={{
+            width: 56,
+            height: 56,
+            borderRadius: '50%',
+            backgroundColor: 'var(--color-paper-raised)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 1rem',
+          }}
+        >
+          <Zap size={28} color="var(--color-accent)" fill="var(--color-accent)" />
+        </div>
+        <p style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, fontSize: '1.1rem', marginBottom: '1.25rem' }}>
+          {message}
+        </p>
+        <button
+          onClick={() => setMessage(null)}
+          style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)', padding: '0.6rem 1.5rem', borderRadius: 8, fontSize: '0.9rem' }}
+        >
+          Nice!
+        </button>
+      </div>
+    </div>
+  )
+}
+
+================================================================================
+
+
+================================================================================
+FILE: src/components/StreakStrip.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 1.57 KB
+Extension: .tsx
+Language: typescript
+Location: src/components/StreakStrip.tsx
+Relative Path: src/components
+Created: 2026-09-27 01:58:55 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-27 01:58:55 (Australia/Sydney / GMT+10:00)
+MD5: cfb514c8766382e331db44984f123e9b
+SHA256: 8d020c9856ceb7bbcf4dda5b76e72eecfe0c83ee9bc70d378db553ecb674b4b0
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use client'
+
+import { Zap } from 'lucide-react'
+
+type DayStatus = { label: string; logged: boolean; isToday: boolean }
+
+export default function StreakStrip({ streak, days }: { streak: number; days: DayStatus[] }) {
+  return (
+    <div
+      className="rounded-lg mb-6"
+      style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
+    >
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-sm" style={{ color: 'var(--color-ink-muted)' }}>Your streak</span>
+        <div className="flex items-center gap-1">
+          <Zap size={16} style={{ color: 'var(--color-accent)' }} fill="var(--color-accent)" />
+          <span style={{ fontWeight: 700, color: 'var(--color-accent)' }}>{streak}</span>
+        </div>
+      </div>
+      <div className="flex justify-between">
+        {days.map((d, i) => (
+          <div key={i} className="flex flex-col items-center gap-1">
+            <span className="text-xs" style={{ color: 'var(--color-ink-muted)' }}>{d.label}</span>
+            <div
+              className="rounded-full flex items-center justify-center"
+              style={{
+                width: 28,
+                height: 28,
+                backgroundColor: d.logged ? 'var(--color-accent)' : 'var(--color-paper)',
+                border: d.isToday && !d.logged ? '2px solid var(--color-accent)' : '1px solid var(--color-rule)',
+              }}
+            >
+              {d.logged && <Zap size={13} color="var(--color-paper)" fill="var(--color-paper)" />}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -7341,6 +8225,48 @@ export function computeInsight(avgWordsPerWritingDay: number, daysRemaining: num
 
 
 ================================================================================
+FILE: src/lib/quotes.ts
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 1.1 KB
+Extension: .ts
+Language: typescript
+Location: src/lib/quotes.ts
+Relative Path: src/lib
+Created: 2026-09-23 03:46:17 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-23 03:46:17 (Australia/Sydney / GMT+10:00)
+MD5: 7e5aa10375a89aaa1c4824de4c30de3d
+SHA256: cf505b094d288bd0b47cef349e78c227037a5a9984097eec1df4f62d06d2f20f
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+export type Quote = { text: string; author: string }
+
+const QUOTES: Quote[] = [
+  { text: 'The first draft is just you telling yourself the story.', author: 'Terry Pratchett' },
+  { text: "You can't edit a blank page.", author: 'Jodi Picoult' },
+  { text: "Start before you're ready.", author: 'Steven Pressfield' },
+  { text: 'A word after a word after a word is power.', author: 'Margaret Atwood' },
+  { text: 'The scariest moment is always just before you start.', author: 'Stephen King' },
+  { text: 'You fail only if you stop writing.', author: 'Ray Bradbury' },
+  { text: 'Just write every day of your life.', author: 'Ray Bradbury' },
+  { text: "Get it down. Take chances. It may be bad, but it's the only way.", author: 'William Faulkner' },
+  { text: "Don't get it right, just get it written.", author: 'James Thurber' },
+  { text: 'Write what should not be forgotten.', author: 'Isabel Allende' },
+  { text: 'Either write something worth reading or do something worth writing.', author: 'Benjamin Franklin' },
+]
+
+export function getRandomQuote(): Quote {
+  return QUOTES[Math.floor(Math.random() * QUOTES.length)]
+}
+
+================================================================================
+
+
+================================================================================
 FILE: src/lib/supabase.ts
 ================================================================================
 
@@ -7687,15 +8613,15 @@ FILE: package-lock.json
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 250.93 KB
+Size: 286.05 KB
 Extension: .json
 Language: json
 Location: package-lock.json
 Relative Path: root
 Created: 2026-09-03 07:02:03 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-11 04:30:56 (Australia/Sydney / GMT+10:00)
-MD5: 62fc53545d7adf5ef0c37922af6ac7b1
-SHA256: 1c80e11c7f7f443f1b02a99bc4bae2289eb558e823cfd6f0abadd9239c510a2f
+Modified: 2026-09-26 00:11:51 (Australia/Sydney / GMT+10:00)
+MD5: 90417d65f9ae7a0163100f17a5ea39d3
+SHA256: 7bb696ed6db8448bbeb054d6363c6a1a75b176b4ef3e4e9c2d82e1b7d4dbabdb
 Encoding: ASCII
 
 FILE CONTENT:
@@ -7710,8 +8636,11 @@ FILE CONTENT:
       "name": "writemates",
       "version": "0.1.0",
       "dependencies": {
+        "@capacitor/cli": "^8.5.2",
+        "@capacitor/core": "^8.5.2",
         "@supabase/ssr": "^0.12.6",
         "@supabase/supabase-js": "^2.114.0",
+        "@vercel/analytics": "^2.0.1",
         "lucide-react": "^1.44.0",
         "next": "16.3.4",
         "react": "19.2.8",
@@ -7980,6 +8909,60 @@ FILE CONTENT:
       },
       "engines": {
         "node": ">=6.9.0"
+      }
+    },
+    "node_modules/@capacitor/cli": {
+      "version": "8.5.2",
+      "resolved": "https://registry.npmjs.org/@capacitor/cli/-/cli-8.5.2.tgz",
+      "integrity": "sha512-O2kpA5ZPJUAmliDCcmpMf8xnJwMezxlFPUrlyOAjbL3U9MFNY3l4ZpPI/UXwvyPmR8ETcVF9pFr+VdWq61rqTQ==",
+      "license": "MIT",
+      "dependencies": {
+        "@ionic/cli-framework-output": "^2.2.8",
+        "@ionic/utils-subprocess": "^3.0.1",
+        "@ionic/utils-terminal": "^2.3.5",
+        "commander": "^12.1.0",
+        "debug": "^4.4.0",
+        "env-paths": "^2.2.0",
+        "fs-extra": "^11.2.0",
+        "kleur": "^4.1.5",
+        "native-run": "^2.0.3",
+        "open": "^8.4.0",
+        "plist": "^3.1.0",
+        "prompts": "^2.4.2",
+        "rimraf": "^6.0.1",
+        "semver": "^7.6.3",
+        "tar": "^7.5.3",
+        "tslib": "^2.8.1",
+        "xcode": "^3.0.1",
+        "xml2js": "^0.6.2"
+      },
+      "bin": {
+        "cap": "bin/capacitor",
+        "capacitor": "bin/capacitor"
+      },
+      "engines": {
+        "node": ">=22.0.0"
+      }
+    },
+    "node_modules/@capacitor/cli/node_modules/semver": {
+      "version": "7.8.5",
+      "resolved": "https://registry.npmjs.org/semver/-/semver-7.8.5.tgz",
+      "integrity": "sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==",
+      "license": "ISC",
+      "bin": {
+        "semver": "bin/semver.js"
+      },
+      "engines": {
+        "node": ">=10"
+      }
+    },
+    "node_modules/@capacitor/core": {
+      "version": "8.5.2",
+      "resolved": "https://registry.npmjs.org/@capacitor/core/-/core-8.5.2.tgz",
+      "integrity": "sha512-agnQbGdhGw/KZFuLf7H9SY2o+oE7upkr/WPQsYaokXP6f9chaE8iVmbKkfN6SVl4w3pmz7oZ3Ur1hbkmy1hx+w==",
+      "license": "MIT",
+      "dependencies": {
+        "tslib": "^2.1.0"
       }
     },
     "node_modules/@emnapi/core": {
@@ -8772,6 +9755,157 @@ FILE CONTENT:
       },
       "funding": {
         "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@ionic/cli-framework-output": {
+      "version": "2.2.8",
+      "resolved": "https://registry.npmjs.org/@ionic/cli-framework-output/-/cli-framework-output-2.2.8.tgz",
+      "integrity": "sha512-TshtaFQsovB4NWRBydbNFawql6yul7d5bMiW1WYYf17hd99V6xdDdk3vtF51bw6sLkxON3bDQpWsnUc9/hVo3g==",
+      "license": "MIT",
+      "dependencies": {
+        "@ionic/utils-terminal": "2.3.5",
+        "debug": "^4.0.0",
+        "tslib": "^2.0.1"
+      },
+      "engines": {
+        "node": ">=16.0.0"
+      }
+    },
+    "node_modules/@ionic/utils-array": {
+      "version": "2.1.6",
+      "resolved": "https://registry.npmjs.org/@ionic/utils-array/-/utils-array-2.1.6.tgz",
+      "integrity": "sha512-0JZ1Zkp3wURnv8oq6Qt7fMPo5MpjbLoUoa9Bu2Q4PJuSDWM8H8gwF3dQO7VTeUj3/0o1IB1wGkFWZZYgUXZMUg==",
+      "license": "MIT",
+      "dependencies": {
+        "debug": "^4.0.0",
+        "tslib": "^2.0.1"
+      },
+      "engines": {
+        "node": ">=16.0.0"
+      }
+    },
+    "node_modules/@ionic/utils-fs": {
+      "version": "3.1.7",
+      "resolved": "https://registry.npmjs.org/@ionic/utils-fs/-/utils-fs-3.1.7.tgz",
+      "integrity": "sha512-2EknRvMVfhnyhL1VhFkSLa5gOcycK91VnjfrTB0kbqkTFCOXyXgVLI5whzq7SLrgD9t1aqos3lMMQyVzaQ5gVA==",
+      "license": "MIT",
+      "dependencies": {
+        "@types/fs-extra": "^8.0.0",
+        "debug": "^4.0.0",
+        "fs-extra": "^9.0.0",
+        "tslib": "^2.0.1"
+      },
+      "engines": {
+        "node": ">=16.0.0"
+      }
+    },
+    "node_modules/@ionic/utils-fs/node_modules/fs-extra": {
+      "version": "9.1.0",
+      "resolved": "https://registry.npmjs.org/fs-extra/-/fs-extra-9.1.0.tgz",
+      "integrity": "sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==",
+      "license": "MIT",
+      "dependencies": {
+        "at-least-node": "^1.0.0",
+        "graceful-fs": "^4.2.0",
+        "jsonfile": "^6.0.1",
+        "universalify": "^2.0.0"
+      },
+      "engines": {
+        "node": ">=10"
+      }
+    },
+    "node_modules/@ionic/utils-object": {
+      "version": "2.1.6",
+      "resolved": "https://registry.npmjs.org/@ionic/utils-object/-/utils-object-2.1.6.tgz",
+      "integrity": "sha512-vCl7sl6JjBHFw99CuAqHljYJpcE88YaH2ZW4ELiC/Zwxl5tiwn4kbdP/gxi2OT3MQb1vOtgAmSNRtusvgxI8ww==",
+      "license": "MIT",
+      "dependencies": {
+        "debug": "^4.0.0",
+        "tslib": "^2.0.1"
+      },
+      "engines": {
+        "node": ">=16.0.0"
+      }
+    },
+    "node_modules/@ionic/utils-process": {
+      "version": "2.1.12",
+      "resolved": "https://registry.npmjs.org/@ionic/utils-process/-/utils-process-2.1.12.tgz",
+      "integrity": "sha512-Jqkgyq7zBs/v/J3YvKtQQiIcxfJyplPgECMWgdO0E1fKrrH8EF0QGHNJ9mJCn6PYe2UtHNS8JJf5G21e09DfYg==",
+      "license": "MIT",
+      "dependencies": {
+        "@ionic/utils-object": "2.1.6",
+        "@ionic/utils-terminal": "2.3.5",
+        "debug": "^4.0.0",
+        "signal-exit": "^3.0.3",
+        "tree-kill": "^1.2.2",
+        "tslib": "^2.0.1"
+      },
+      "engines": {
+        "node": ">=16.0.0"
+      }
+    },
+    "node_modules/@ionic/utils-stream": {
+      "version": "3.1.7",
+      "resolved": "https://registry.npmjs.org/@ionic/utils-stream/-/utils-stream-3.1.7.tgz",
+      "integrity": "sha512-eSELBE7NWNFIHTbTC2jiMvh1ABKGIpGdUIvARsNPMNQhxJB3wpwdiVnoBoTYp+5a6UUIww4Kpg7v6S7iTctH1w==",
+      "license": "MIT",
+      "dependencies": {
+        "debug": "^4.0.0",
+        "tslib": "^2.0.1"
+      },
+      "engines": {
+        "node": ">=16.0.0"
+      }
+    },
+    "node_modules/@ionic/utils-subprocess": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/@ionic/utils-subprocess/-/utils-subprocess-3.0.1.tgz",
+      "integrity": "sha512-cT4te3AQQPeIM9WCwIg8ohroJ8TjsYaMb2G4ZEgv9YzeDqHZ4JpeIKqG2SoaA3GmVQ3sOfhPM6Ox9sxphV/d1A==",
+      "license": "MIT",
+      "dependencies": {
+        "@ionic/utils-array": "2.1.6",
+        "@ionic/utils-fs": "3.1.7",
+        "@ionic/utils-process": "2.1.12",
+        "@ionic/utils-stream": "3.1.7",
+        "@ionic/utils-terminal": "2.3.5",
+        "cross-spawn": "^7.0.3",
+        "debug": "^4.0.0",
+        "tslib": "^2.0.1"
+      },
+      "engines": {
+        "node": ">=16.0.0"
+      }
+    },
+    "node_modules/@ionic/utils-terminal": {
+      "version": "2.3.5",
+      "resolved": "https://registry.npmjs.org/@ionic/utils-terminal/-/utils-terminal-2.3.5.tgz",
+      "integrity": "sha512-3cKScz9Jx2/Pr9ijj1OzGlBDfcmx7OMVBt4+P1uRR0SSW4cm1/y3Mo4OY3lfkuaYifMNBW8Wz6lQHbs1bihr7A==",
+      "license": "MIT",
+      "dependencies": {
+        "@types/slice-ansi": "^4.0.0",
+        "debug": "^4.0.0",
+        "signal-exit": "^3.0.3",
+        "slice-ansi": "^4.0.0",
+        "string-width": "^4.1.0",
+        "strip-ansi": "^6.0.0",
+        "tslib": "^2.0.1",
+        "untildify": "^4.0.0",
+        "wrap-ansi": "^7.0.0"
+      },
+      "engines": {
+        "node": ">=16.0.0"
+      }
+    },
+    "node_modules/@isaacs/fs-minipass": {
+      "version": "4.0.1",
+      "resolved": "https://registry.npmjs.org/@isaacs/fs-minipass/-/fs-minipass-4.0.1.tgz",
+      "integrity": "sha512-wgm9Ehl2jpeqP3zw/7mo3kRHFp5MEDhqAdwy1fTGkHAwnkGOVsgpvQhL8B5n1qlb01jV3n/bI0ZfZp5lWA1k4w==",
+      "license": "ISC",
+      "dependencies": {
+        "minipass": "^7.0.4"
+      },
+      "engines": {
+        "node": ">=18.0.0"
       }
     },
     "node_modules/@jridgewell/gen-mapping": {
@@ -9605,6 +10739,15 @@ FILE CONTENT:
       "dev": true,
       "license": "MIT"
     },
+    "node_modules/@types/fs-extra": {
+      "version": "8.1.5",
+      "resolved": "https://registry.npmjs.org/@types/fs-extra/-/fs-extra-8.1.5.tgz",
+      "integrity": "sha512-0dzKcwO+S8s2kuF5Z9oUWatQJj5Uq/iqphEtE3GQJVRRYm/tD1LglU2UnXi2A8jLq5umkGouOXOR9y0n613ZwQ==",
+      "license": "MIT",
+      "dependencies": {
+        "@types/node": "*"
+      }
+    },
     "node_modules/@types/json-schema": {
       "version": "7.0.15",
       "resolved": "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz",
@@ -9623,7 +10766,6 @@ FILE CONTENT:
       "version": "20.19.43",
       "resolved": "https://registry.npmjs.org/@types/node/-/node-20.19.43.tgz",
       "integrity": "sha512-6oYBAi5ikg4Pl+kGsoYtawUMBT2zZMCvPNF7pVLnHZfd1zf38DRiWn/gT01RYCdUqkv7Fhr+C9ot4/tb+2sVvA==",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "undici-types": "~6.21.0"
@@ -9648,6 +10790,12 @@ FILE CONTENT:
       "peerDependencies": {
         "@types/react": "^19.2.0"
       }
+    },
+    "node_modules/@types/slice-ansi": {
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/@types/slice-ansi/-/slice-ansi-4.0.0.tgz",
+      "integrity": "sha512-+OpjSaq85gvlZAYINyzKpLeiFkSC4EsC6IIiT6v6TLSU5k5U83fHGj9Lel8oKEXM0HqgrMVCjXPDPVICtxF7EQ==",
+      "license": "MIT"
     },
     "node_modules/@types/use-sync-external-store": {
       "version": "0.0.6",
@@ -10304,6 +11452,57 @@ FILE CONTENT:
         "win32"
       ]
     },
+    "node_modules/@vercel/analytics": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/@vercel/analytics/-/analytics-2.0.1.tgz",
+      "integrity": "sha512-MTQG6V9qQrt1tsDeF+2Uoo5aPjqbVPys1xvnIftXSJYG2SrwXRHnqEvVoYID7BTruDz4lCd2Z7rM1BdkUehk2g==",
+      "license": "MIT",
+      "peerDependencies": {
+        "@remix-run/react": "^2",
+        "@sveltejs/kit": "^1 || ^2",
+        "next": ">= 13",
+        "nuxt": ">= 3",
+        "react": "^18 || ^19 || ^19.0.0-rc",
+        "svelte": ">= 4",
+        "vue": "^3",
+        "vue-router": "^4"
+      },
+      "peerDependenciesMeta": {
+        "@remix-run/react": {
+          "optional": true
+        },
+        "@sveltejs/kit": {
+          "optional": true
+        },
+        "next": {
+          "optional": true
+        },
+        "nuxt": {
+          "optional": true
+        },
+        "react": {
+          "optional": true
+        },
+        "svelte": {
+          "optional": true
+        },
+        "vue": {
+          "optional": true
+        },
+        "vue-router": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@xmldom/xmldom": {
+      "version": "0.9.12",
+      "resolved": "https://registry.npmjs.org/@xmldom/xmldom/-/xmldom-0.9.12.tgz",
+      "integrity": "sha512-5AXjrcMClTryPe9LgZrygpB1lj7s0S9E0+W+AHaVKAVyHanafK86iPSvG5xHVSp/jC+VH1UXu0TAEmY279xH7A==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=14.6"
+      }
+    },
     "node_modules/acorn": {
       "version": "8.18.0",
       "resolved": "https://registry.npmjs.org/acorn/-/acorn-8.18.0.tgz",
@@ -10344,11 +11543,19 @@ FILE CONTENT:
         "url": "https://github.com/sponsors/epoberezkin"
       }
     },
+    "node_modules/ansi-regex": {
+      "version": "5.0.1",
+      "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz",
+      "integrity": "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=8"
+      }
+    },
     "node_modules/ansi-styles": {
       "version": "4.3.0",
       "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz",
       "integrity": "sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "color-convert": "^2.0.1"
@@ -10544,6 +11751,15 @@ FILE CONTENT:
       "dev": true,
       "license": "MIT"
     },
+    "node_modules/astral-regex": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/astral-regex/-/astral-regex-2.0.0.tgz",
+      "integrity": "sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=8"
+      }
+    },
     "node_modules/async-function": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/async-function/-/async-function-1.0.0.tgz",
@@ -10552,6 +11768,15 @@ FILE CONTENT:
       "license": "MIT",
       "engines": {
         "node": ">= 0.4"
+      }
+    },
+    "node_modules/at-least-node": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/at-least-node/-/at-least-node-1.0.0.tgz",
+      "integrity": "sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==",
+      "license": "ISC",
+      "engines": {
+        "node": ">= 4.0.0"
       }
     },
     "node_modules/available-typed-arrays": {
@@ -10597,6 +11822,26 @@ FILE CONTENT:
       "dev": true,
       "license": "MIT"
     },
+    "node_modules/base64-js": {
+      "version": "1.5.1",
+      "resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz",
+      "integrity": "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/feross"
+        },
+        {
+          "type": "patreon",
+          "url": "https://www.patreon.com/feross"
+        },
+        {
+          "type": "consulting",
+          "url": "https://feross.org/support"
+        }
+      ],
+      "license": "MIT"
+    },
     "node_modules/baseline-browser-mapping": {
       "version": "2.11.20",
       "resolved": "https://registry.npmjs.org/baseline-browser-mapping/-/baseline-browser-mapping-2.11.20.tgz",
@@ -10607,6 +11852,36 @@ FILE CONTENT:
       },
       "engines": {
         "node": ">=6.0.0"
+      }
+    },
+    "node_modules/big-integer": {
+      "version": "1.6.52",
+      "resolved": "https://registry.npmjs.org/big-integer/-/big-integer-1.6.52.tgz",
+      "integrity": "sha512-QxD8cf2eVqJOOz63z6JIN9BzvVs/dlySa5HGSBH5xtR8dPteIRQnBxxKqkNTiT6jbDTF6jAfrd4oMcND9RGbQg==",
+      "license": "Unlicense",
+      "engines": {
+        "node": ">=0.6"
+      }
+    },
+    "node_modules/bplist-creator": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/bplist-creator/-/bplist-creator-0.1.0.tgz",
+      "integrity": "sha512-sXaHZicyEEmY86WyueLTQesbeoH/mquvarJaQNbjuOQO+7gbFcDEWqKmcWA4cOTLzFlfgvkiVxolk1k5bBIpmg==",
+      "license": "MIT",
+      "dependencies": {
+        "stream-buffers": "2.2.x"
+      }
+    },
+    "node_modules/bplist-parser": {
+      "version": "0.3.2",
+      "resolved": "https://registry.npmjs.org/bplist-parser/-/bplist-parser-0.3.2.tgz",
+      "integrity": "sha512-apC2+fspHGI3mMKj+dGevkGo/tCqVB8jMb6i+OX+E29p0Iposz07fABkRIfVUPNd5A5VbuOz1bZbnmkKLYF+wQ==",
+      "license": "MIT",
+      "dependencies": {
+        "big-integer": "1.6.x"
+      },
+      "engines": {
+        "node": ">= 5.10.0"
       }
     },
     "node_modules/brace-expansion": {
@@ -10665,6 +11940,15 @@ FILE CONTENT:
       },
       "engines": {
         "node": "^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7"
+      }
+    },
+    "node_modules/buffer-crc32": {
+      "version": "0.2.13",
+      "resolved": "https://registry.npmjs.org/buffer-crc32/-/buffer-crc32-0.2.13.tgz",
+      "integrity": "sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==",
+      "license": "MIT",
+      "engines": {
+        "node": "*"
       }
     },
     "node_modules/call-bind": {
@@ -10764,6 +12048,15 @@ FILE CONTENT:
         "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
+    "node_modules/chownr": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/chownr/-/chownr-3.0.0.tgz",
+      "integrity": "sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==",
+      "license": "BlueOak-1.0.0",
+      "engines": {
+        "node": ">=18"
+      }
+    },
     "node_modules/client-only": {
       "version": "0.0.1",
       "resolved": "https://registry.npmjs.org/client-only/-/client-only-0.0.1.tgz",
@@ -10783,7 +12076,6 @@ FILE CONTENT:
       "version": "2.0.1",
       "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",
       "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "color-name": "~1.1.4"
@@ -10796,8 +12088,16 @@ FILE CONTENT:
       "version": "1.1.4",
       "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
       "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
-      "dev": true,
       "license": "MIT"
+    },
+    "node_modules/commander": {
+      "version": "12.1.0",
+      "resolved": "https://registry.npmjs.org/commander/-/commander-12.1.0.tgz",
+      "integrity": "sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      }
     },
     "node_modules/concat-map": {
       "version": "0.0.1",
@@ -10830,7 +12130,6 @@ FILE CONTENT:
       "version": "7.0.6",
       "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
       "integrity": "sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "path-key": "^3.1.0",
@@ -11034,7 +12333,6 @@ FILE CONTENT:
       "version": "4.4.3",
       "resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",
       "integrity": "sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "ms": "^2.1.3"
@@ -11077,6 +12375,15 @@ FILE CONTENT:
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/define-lazy-prop": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/define-lazy-prop/-/define-lazy-prop-2.0.0.tgz",
+      "integrity": "sha512-Ds09qNh8yw3khSjiJjiUInaGX9xlqZDY7JVryGxdxV7NPeuqQfplOpQ66yJFZut3jLa5zOwkXw1g9EI2uKh4Og==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=8"
       }
     },
     "node_modules/define-properties": {
@@ -11142,6 +12449,18 @@ FILE CONTENT:
       "dev": true,
       "license": "ISC"
     },
+    "node_modules/elementtree": {
+      "version": "0.1.7",
+      "resolved": "https://registry.npmjs.org/elementtree/-/elementtree-0.1.7.tgz",
+      "integrity": "sha512-wkgGT6kugeQk/P6VZ/f4T+4HB41BVgNBq5CDIZVbQ02nvTVqAiVTbskxxu3eA/X96lMlfYOwnLQpN2v5E1zDEg==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "sax": "1.1.4"
+      },
+      "engines": {
+        "node": ">= 0.4.0"
+      }
+    },
     "node_modules/emoji-regex": {
       "version": "9.2.2",
       "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-9.2.2.tgz",
@@ -11161,6 +12480,15 @@ FILE CONTENT:
       },
       "engines": {
         "node": ">=10.13.0"
+      }
+    },
+    "node_modules/env-paths": {
+      "version": "2.2.1",
+      "resolved": "https://registry.npmjs.org/env-paths/-/env-paths-2.2.1.tgz",
+      "integrity": "sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=6"
       }
     },
     "node_modules/es-abstract": {
@@ -11871,6 +13199,15 @@ FILE CONTENT:
         "reusify": "^1.0.4"
       }
     },
+    "node_modules/fd-slicer": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/fd-slicer/-/fd-slicer-1.1.0.tgz",
+      "integrity": "sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==",
+      "license": "MIT",
+      "dependencies": {
+        "pend": "~1.2.0"
+      }
+    },
     "node_modules/file-entry-cache": {
       "version": "8.0.0",
       "resolved": "https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-8.0.0.tgz",
@@ -11949,6 +13286,20 @@ FILE CONTENT:
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/fs-extra": {
+      "version": "11.4.1",
+      "resolved": "https://registry.npmjs.org/fs-extra/-/fs-extra-11.4.1.tgz",
+      "integrity": "sha512-KYAb4c9BJQI6QqGKthV68OHe0badztdXJWKo0WtBA9IuCFPTKvE5ZdUBglP833aMjhaSPNO4A5j/EkzZtGlKjA==",
+      "license": "MIT",
+      "dependencies": {
+        "graceful-fs": "^4.2.0",
+        "jsonfile": "^6.0.1",
+        "universalify": "^2.0.0"
+      },
+      "engines": {
+        "node": ">=14.14"
       }
     },
     "node_modules/function-bind": {
@@ -12085,6 +13436,23 @@ FILE CONTENT:
         "url": "https://github.com/privatenumber/get-tsconfig?sponsor=1"
       }
     },
+    "node_modules/glob": {
+      "version": "13.0.6",
+      "resolved": "https://registry.npmjs.org/glob/-/glob-13.0.6.tgz",
+      "integrity": "sha512-Wjlyrolmm8uDpm/ogGyXZXb1Z+Ca2B8NbJwqBVg0axK9GbBeoS7yGV6vjXnYdGm6X53iehEuxxbyiKp8QmN4Vw==",
+      "license": "BlueOak-1.0.0",
+      "dependencies": {
+        "minimatch": "^10.2.2",
+        "minipass": "^7.1.3",
+        "path-scurry": "^2.0.2"
+      },
+      "engines": {
+        "node": "18 || 20 || >=22"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
+      }
+    },
     "node_modules/glob-parent": {
       "version": "6.0.2",
       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-6.0.2.tgz",
@@ -12096,6 +13464,42 @@ FILE CONTENT:
       },
       "engines": {
         "node": ">=10.13.0"
+      }
+    },
+    "node_modules/glob/node_modules/balanced-match": {
+      "version": "4.0.4",
+      "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-4.0.4.tgz",
+      "integrity": "sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==",
+      "license": "MIT",
+      "engines": {
+        "node": "18 || 20 || >=22"
+      }
+    },
+    "node_modules/glob/node_modules/brace-expansion": {
+      "version": "5.0.12",
+      "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-5.0.12.tgz",
+      "integrity": "sha512-YovQ3rzhaLMIrDjNDMkNS01tea93qhEhG5xy8f6+R0l+dw3Ki+5sCoIoI942iuLZTHWogWktgwVDhU09iNEimQ==",
+      "license": "MIT",
+      "dependencies": {
+        "balanced-match": "^4.0.2"
+      },
+      "engines": {
+        "node": "20 || >=22"
+      }
+    },
+    "node_modules/glob/node_modules/minimatch": {
+      "version": "10.2.6",
+      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-10.2.6.tgz",
+      "integrity": "sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==",
+      "license": "BlueOak-1.0.0",
+      "dependencies": {
+        "brace-expansion": "^5.0.8"
+      },
+      "engines": {
+        "node": "18 || 20 || >=22"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
       }
     },
     "node_modules/globals": {
@@ -12145,7 +13549,6 @@ FILE CONTENT:
       "version": "4.2.11",
       "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz",
       "integrity": "sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==",
-      "dev": true,
       "license": "ISC"
     },
     "node_modules/has-bigints": {
@@ -12313,6 +13716,21 @@ FILE CONTENT:
       "license": "MIT",
       "engines": {
         "node": ">=0.8.19"
+      }
+    },
+    "node_modules/inherits": {
+      "version": "2.0.4",
+      "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",
+      "integrity": "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==",
+      "license": "ISC"
+    },
+    "node_modules/ini": {
+      "version": "4.1.3",
+      "resolved": "https://registry.npmjs.org/ini/-/ini-4.1.3.tgz",
+      "integrity": "sha512-X7rqawQBvfdjS10YU1y1YVreA3SsLrW9dX2CewP2EbBJM4ypVNLDkO5y04gejPwKIY9lR+7r9gn3rFPt/kmWFg==",
+      "license": "ISC",
+      "engines": {
+        "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
       }
     },
     "node_modules/internal-slot": {
@@ -12497,6 +13915,21 @@ FILE CONTENT:
         "url": "https://github.com/sponsors/ljharb"
       }
     },
+    "node_modules/is-docker": {
+      "version": "2.2.1",
+      "resolved": "https://registry.npmjs.org/is-docker/-/is-docker-2.2.1.tgz",
+      "integrity": "sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==",
+      "license": "MIT",
+      "bin": {
+        "is-docker": "cli.js"
+      },
+      "engines": {
+        "node": ">=8"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
     "node_modules/is-document.all": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/is-document.all/-/is-document.all-1.0.0.tgz",
@@ -12537,6 +13970,15 @@ FILE CONTENT:
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/is-fullwidth-code-point": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz",
+      "integrity": "sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=8"
       }
     },
     "node_modules/is-generator-function": {
@@ -12770,6 +14212,18 @@ FILE CONTENT:
         "url": "https://github.com/sponsors/ljharb"
       }
     },
+    "node_modules/is-wsl": {
+      "version": "2.2.0",
+      "resolved": "https://registry.npmjs.org/is-wsl/-/is-wsl-2.2.0.tgz",
+      "integrity": "sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==",
+      "license": "MIT",
+      "dependencies": {
+        "is-docker": "^2.0.0"
+      },
+      "engines": {
+        "node": ">=8"
+      }
+    },
     "node_modules/isarray": {
       "version": "2.0.5",
       "resolved": "https://registry.npmjs.org/isarray/-/isarray-2.0.5.tgz",
@@ -12781,7 +14235,6 @@ FILE CONTENT:
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz",
       "integrity": "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==",
-      "dev": true,
       "license": "ISC"
     },
     "node_modules/iterator.prototype": {
@@ -12889,6 +14342,18 @@ FILE CONTENT:
         "node": ">=6"
       }
     },
+    "node_modules/jsonfile": {
+      "version": "6.2.1",
+      "resolved": "https://registry.npmjs.org/jsonfile/-/jsonfile-6.2.1.tgz",
+      "integrity": "sha512-zwOTdL3rFQ/lRdBnntKVOX6k5cKJwEc1HdilT71BWEu7J41gXIB2MRp+vxduPSwZJPWBxEzv4yH1wYLJGUHX4Q==",
+      "license": "MIT",
+      "dependencies": {
+        "universalify": "^2.0.0"
+      },
+      "optionalDependencies": {
+        "graceful-fs": "^4.1.6"
+      }
+    },
     "node_modules/jsx-ast-utils": {
       "version": "3.3.5",
       "resolved": "https://registry.npmjs.org/jsx-ast-utils/-/jsx-ast-utils-3.3.5.tgz",
@@ -12913,6 +14378,15 @@ FILE CONTENT:
       "license": "MIT",
       "dependencies": {
         "json-buffer": "3.0.1"
+      }
+    },
+    "node_modules/kleur": {
+      "version": "4.1.5",
+      "resolved": "https://registry.npmjs.org/kleur/-/kleur-4.1.5.tgz",
+      "integrity": "sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=6"
       }
     },
     "node_modules/language-subtag-registry": {
@@ -13344,11 +14818,31 @@ FILE CONTENT:
         "url": "https://github.com/sponsors/ljharb"
       }
     },
+    "node_modules/minipass": {
+      "version": "7.1.3",
+      "resolved": "https://registry.npmjs.org/minipass/-/minipass-7.1.3.tgz",
+      "integrity": "sha512-tEBHqDnIoM/1rXME1zgka9g6Q2lcoCkxHLuc7ODJ5BxbP5d4c2Z5cGgtXAku59200Cx7diuHTOYfSBD8n6mm8A==",
+      "license": "BlueOak-1.0.0",
+      "engines": {
+        "node": ">=16 || 14 >=14.17"
+      }
+    },
+    "node_modules/minizlib": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/minizlib/-/minizlib-3.1.0.tgz",
+      "integrity": "sha512-KZxYo1BUkWD2TVFLr0MQoM8vUUigWD3LlD83a/75BqC+4qE0Hb1Vo5v1FgcfaNXvfXzr+5EhQ6ing/CaBijTlw==",
+      "license": "MIT",
+      "dependencies": {
+        "minipass": "^7.1.2"
+      },
+      "engines": {
+        "node": ">= 18"
+      }
+    },
     "node_modules/ms": {
       "version": "2.1.3",
       "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
       "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==",
-      "dev": true,
       "license": "MIT"
     },
     "node_modules/nanoid": {
@@ -13383,6 +14877,31 @@ FILE CONTENT:
       },
       "funding": {
         "url": "https://opencollective.com/napi-postinstall"
+      }
+    },
+    "node_modules/native-run": {
+      "version": "2.0.3",
+      "resolved": "https://registry.npmjs.org/native-run/-/native-run-2.0.3.tgz",
+      "integrity": "sha512-U1PllBuzW5d1gfan+88L+Hky2eZx+9gv3Pf6rNBxKbORxi7boHzqiA6QFGSnqMem4j0A9tZ08NMIs5+0m/VS1Q==",
+      "license": "MIT",
+      "dependencies": {
+        "@ionic/utils-fs": "^3.1.7",
+        "@ionic/utils-terminal": "^2.3.4",
+        "bplist-parser": "^0.3.2",
+        "debug": "^4.3.4",
+        "elementtree": "^0.1.7",
+        "ini": "^4.1.1",
+        "plist": "^3.1.0",
+        "split2": "^4.2.0",
+        "through2": "^4.0.2",
+        "tslib": "^2.6.2",
+        "yauzl": "^2.10.0"
+      },
+      "bin": {
+        "native-run": "bin/native-run"
+      },
+      "engines": {
+        "node": ">=16.0.0"
       }
     },
     "node_modules/natural-compare": {
@@ -13625,6 +15144,23 @@ FILE CONTENT:
         "url": "https://github.com/sponsors/ljharb"
       }
     },
+    "node_modules/open": {
+      "version": "8.4.2",
+      "resolved": "https://registry.npmjs.org/open/-/open-8.4.2.tgz",
+      "integrity": "sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==",
+      "license": "MIT",
+      "dependencies": {
+        "define-lazy-prop": "^2.0.0",
+        "is-docker": "^2.1.1",
+        "is-wsl": "^2.2.0"
+      },
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
     "node_modules/optionator": {
       "version": "0.9.4",
       "resolved": "https://registry.npmjs.org/optionator/-/optionator-0.9.4.tgz",
@@ -13694,6 +15230,12 @@ FILE CONTENT:
         "url": "https://github.com/sponsors/sindresorhus"
       }
     },
+    "node_modules/package-json-from-dist": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/package-json-from-dist/-/package-json-from-dist-1.0.1.tgz",
+      "integrity": "sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==",
+      "license": "BlueOak-1.0.0"
+    },
     "node_modules/parent-module": {
       "version": "1.0.1",
       "resolved": "https://registry.npmjs.org/parent-module/-/parent-module-1.0.1.tgz",
@@ -13721,7 +15263,6 @@ FILE CONTENT:
       "version": "3.1.1",
       "resolved": "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz",
       "integrity": "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==",
-      "dev": true,
       "license": "MIT",
       "engines": {
         "node": ">=8"
@@ -13732,6 +15273,37 @@ FILE CONTENT:
       "resolved": "https://registry.npmjs.org/path-parse/-/path-parse-1.0.7.tgz",
       "integrity": "sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==",
       "dev": true,
+      "license": "MIT"
+    },
+    "node_modules/path-scurry": {
+      "version": "2.0.2",
+      "resolved": "https://registry.npmjs.org/path-scurry/-/path-scurry-2.0.2.tgz",
+      "integrity": "sha512-3O/iVVsJAPsOnpwWIeD+d6z/7PmqApyQePUtCndjatj/9I5LylHvt5qluFaBT3I5h3r1ejfR056c+FCv+NnNXg==",
+      "license": "BlueOak-1.0.0",
+      "dependencies": {
+        "lru-cache": "^11.0.0",
+        "minipass": "^7.1.2"
+      },
+      "engines": {
+        "node": "18 || 20 || >=22"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
+      }
+    },
+    "node_modules/path-scurry/node_modules/lru-cache": {
+      "version": "11.5.3",
+      "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-11.5.3.tgz",
+      "integrity": "sha512-U4N8FgzmWxc8k1VH8Kr6lQg18U7Fjvby6wXHVRX/ZZ7IwWbRMgrRbP0Wrb5q5NVinryp4SQampHKdvtecItxUg==",
+      "license": "BlueOak-1.0.0",
+      "engines": {
+        "node": "20 || >=22"
+      }
+    },
+    "node_modules/pend": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/pend/-/pend-1.2.0.tgz",
+      "integrity": "sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==",
       "license": "MIT"
     },
     "node_modules/picocolors": {
@@ -13751,6 +15323,20 @@ FILE CONTENT:
       },
       "funding": {
         "url": "https://github.com/sponsors/jonschlinkert"
+      }
+    },
+    "node_modules/plist": {
+      "version": "3.1.1",
+      "resolved": "https://registry.npmjs.org/plist/-/plist-3.1.1.tgz",
+      "integrity": "sha512-ZIfcLJC+7E7FBFnDxm9MPmt7D+DidyQ26lewieO75AdhA2ayMtsJSES0iWzqJQbcVRSrTufQoy0DR94xHue0oA==",
+      "license": "MIT",
+      "dependencies": {
+        "@xmldom/xmldom": "^0.9.10",
+        "base64-js": "^1.5.1",
+        "xmlbuilder": "^15.1.1"
+      },
+      "engines": {
+        "node": ">=10.4.0"
       }
     },
     "node_modules/possible-typed-array-names": {
@@ -13800,6 +15386,28 @@ FILE CONTENT:
       "license": "MIT",
       "engines": {
         "node": ">= 0.8.0"
+      }
+    },
+    "node_modules/prompts": {
+      "version": "2.4.2",
+      "resolved": "https://registry.npmjs.org/prompts/-/prompts-2.4.2.tgz",
+      "integrity": "sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==",
+      "license": "MIT",
+      "dependencies": {
+        "kleur": "^3.0.3",
+        "sisteransi": "^1.0.5"
+      },
+      "engines": {
+        "node": ">= 6"
+      }
+    },
+    "node_modules/prompts/node_modules/kleur": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/kleur/-/kleur-3.0.3.tgz",
+      "integrity": "sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=6"
       }
     },
     "node_modules/prop-types": {
@@ -13893,6 +15501,20 @@ FILE CONTENT:
         "redux": {
           "optional": true
         }
+      }
+    },
+    "node_modules/readable-stream": {
+      "version": "3.6.2",
+      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-3.6.2.tgz",
+      "integrity": "sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==",
+      "license": "MIT",
+      "dependencies": {
+        "inherits": "^2.0.3",
+        "string_decoder": "^1.1.1",
+        "util-deprecate": "^1.0.1"
+      },
+      "engines": {
+        "node": ">= 6"
       }
     },
     "node_modules/recharts": {
@@ -14045,6 +15667,25 @@ FILE CONTENT:
         "node": ">=0.10.0"
       }
     },
+    "node_modules/rimraf": {
+      "version": "6.1.3",
+      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-6.1.3.tgz",
+      "integrity": "sha512-LKg+Cr2ZF61fkcaK1UdkH2yEBBKnYjTyWzTJT6KNPcSPaiT7HSdhtMXQuN5wkTX0Xu72KQ1l8S42rlmexS2hSA==",
+      "license": "BlueOak-1.0.0",
+      "dependencies": {
+        "glob": "^13.0.3",
+        "package-json-from-dist": "^1.0.1"
+      },
+      "bin": {
+        "rimraf": "dist/esm/bin.mjs"
+      },
+      "engines": {
+        "node": "20 || >=22"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
+      }
+    },
     "node_modules/run-parallel": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/run-parallel/-/run-parallel-1.2.0.tgz",
@@ -14089,6 +15730,26 @@ FILE CONTENT:
         "url": "https://github.com/sponsors/ljharb"
       }
     },
+    "node_modules/safe-buffer": {
+      "version": "5.2.1",
+      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",
+      "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/feross"
+        },
+        {
+          "type": "patreon",
+          "url": "https://www.patreon.com/feross"
+        },
+        {
+          "type": "consulting",
+          "url": "https://feross.org/support"
+        }
+      ],
+      "license": "MIT"
+    },
     "node_modules/safe-push-apply": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/safe-push-apply/-/safe-push-apply-1.0.0.tgz",
@@ -14123,6 +15784,12 @@ FILE CONTENT:
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
       }
+    },
+    "node_modules/sax": {
+      "version": "1.1.4",
+      "resolved": "https://registry.npmjs.org/sax/-/sax-1.1.4.tgz",
+      "integrity": "sha512-5f3k2PbGGp+YtKJjOItpg3P99IMD84E4HOvcfleTb5joCHNXYLsR9yWFPOYGgaeMPDubQILTCMdsFb2OMeOjtg==",
+      "license": "ISC"
     },
     "node_modules/scheduler": {
       "version": "0.27.0",
@@ -14256,7 +15923,6 @@ FILE CONTENT:
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz",
       "integrity": "sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "shebang-regex": "^3.0.0"
@@ -14269,7 +15935,6 @@ FILE CONTENT:
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz",
       "integrity": "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==",
-      "dev": true,
       "license": "MIT",
       "engines": {
         "node": ">=8"
@@ -14351,6 +16016,58 @@ FILE CONTENT:
         "url": "https://github.com/sponsors/ljharb"
       }
     },
+    "node_modules/signal-exit": {
+      "version": "3.0.7",
+      "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.7.tgz",
+      "integrity": "sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==",
+      "license": "ISC"
+    },
+    "node_modules/simple-plist": {
+      "version": "1.3.1",
+      "resolved": "https://registry.npmjs.org/simple-plist/-/simple-plist-1.3.1.tgz",
+      "integrity": "sha512-iMSw5i0XseMnrhtIzRb7XpQEXepa9xhWxGUojHBL43SIpQuDQkh3Wpy67ZbDzZVr6EKxvwVChnVpdl8hEVLDiw==",
+      "license": "MIT",
+      "dependencies": {
+        "bplist-creator": "0.1.0",
+        "bplist-parser": "0.3.1",
+        "plist": "^3.0.5"
+      }
+    },
+    "node_modules/simple-plist/node_modules/bplist-parser": {
+      "version": "0.3.1",
+      "resolved": "https://registry.npmjs.org/bplist-parser/-/bplist-parser-0.3.1.tgz",
+      "integrity": "sha512-PyJxiNtA5T2PlLIeBot4lbp7rj4OadzjnMZD/G5zuBNt8ei/yCU7+wW0h2bag9vr8c+/WuRWmSxbqAl9hL1rBA==",
+      "license": "MIT",
+      "dependencies": {
+        "big-integer": "1.6.x"
+      },
+      "engines": {
+        "node": ">= 5.10.0"
+      }
+    },
+    "node_modules/sisteransi": {
+      "version": "1.0.5",
+      "resolved": "https://registry.npmjs.org/sisteransi/-/sisteransi-1.0.5.tgz",
+      "integrity": "sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==",
+      "license": "MIT"
+    },
+    "node_modules/slice-ansi": {
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/slice-ansi/-/slice-ansi-4.0.0.tgz",
+      "integrity": "sha512-qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.0.0",
+        "astral-regex": "^2.0.0",
+        "is-fullwidth-code-point": "^3.0.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/slice-ansi?sponsor=1"
+      }
+    },
     "node_modules/source-map-js": {
       "version": "1.2.1",
       "resolved": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz",
@@ -14358,6 +16075,15 @@ FILE CONTENT:
       "license": "BSD-3-Clause",
       "engines": {
         "node": ">=0.10.0"
+      }
+    },
+    "node_modules/split2": {
+      "version": "4.2.0",
+      "resolved": "https://registry.npmjs.org/split2/-/split2-4.2.0.tgz",
+      "integrity": "sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==",
+      "license": "ISC",
+      "engines": {
+        "node": ">= 10.x"
       }
     },
     "node_modules/stable-hash": {
@@ -14380,6 +16106,44 @@ FILE CONTENT:
       "engines": {
         "node": ">= 0.4"
       }
+    },
+    "node_modules/stream-buffers": {
+      "version": "2.2.0",
+      "resolved": "https://registry.npmjs.org/stream-buffers/-/stream-buffers-2.2.0.tgz",
+      "integrity": "sha512-uyQK/mx5QjHun80FLJTfaWE7JtwfRMKBLkMne6udYOmvH0CawotVa7TfgYHzAnpphn4+TweIx1QKMnRIbipmUg==",
+      "license": "Unlicense",
+      "engines": {
+        "node": ">= 0.10.0"
+      }
+    },
+    "node_modules/string_decoder": {
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.3.0.tgz",
+      "integrity": "sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==",
+      "license": "MIT",
+      "dependencies": {
+        "safe-buffer": "~5.2.0"
+      }
+    },
+    "node_modules/string-width": {
+      "version": "4.2.3",
+      "resolved": "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz",
+      "integrity": "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==",
+      "license": "MIT",
+      "dependencies": {
+        "emoji-regex": "^8.0.0",
+        "is-fullwidth-code-point": "^3.0.0",
+        "strip-ansi": "^6.0.1"
+      },
+      "engines": {
+        "node": ">=8"
+      }
+    },
+    "node_modules/string-width/node_modules/emoji-regex": {
+      "version": "8.0.0",
+      "resolved": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz",
+      "integrity": "sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==",
+      "license": "MIT"
     },
     "node_modules/string.prototype.includes": {
       "version": "2.0.1",
@@ -14495,6 +16259,18 @@ FILE CONTENT:
         "url": "https://github.com/sponsors/ljharb"
       }
     },
+    "node_modules/strip-ansi": {
+      "version": "6.0.1",
+      "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz",
+      "integrity": "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-regex": "^5.0.1"
+      },
+      "engines": {
+        "node": ">=8"
+      }
+    },
     "node_modules/strip-bom": {
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/strip-bom/-/strip-bom-3.0.0.tgz",
@@ -14588,6 +16364,40 @@ FILE CONTENT:
         "url": "https://opencollective.com/webpack"
       }
     },
+    "node_modules/tar": {
+      "version": "7.5.22",
+      "resolved": "https://registry.npmjs.org/tar/-/tar-7.5.22.tgz",
+      "integrity": "sha512-MFO/QzvtAOmJbkhOaCTvbGcFN9L9b+JunIsDwaKljSOdcLMea3NJ1k9Usz/rjdfSXTq4dfzfeS7W4p4YOAAHeA==",
+      "license": "BlueOak-1.0.0",
+      "dependencies": {
+        "@isaacs/fs-minipass": "^4.0.0",
+        "chownr": "^3.0.0",
+        "minipass": "^7.1.2",
+        "minizlib": "^3.1.0",
+        "yallist": "^5.0.0"
+      },
+      "engines": {
+        "node": ">=18"
+      }
+    },
+    "node_modules/tar/node_modules/yallist": {
+      "version": "5.0.0",
+      "resolved": "https://registry.npmjs.org/yallist/-/yallist-5.0.0.tgz",
+      "integrity": "sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw==",
+      "license": "BlueOak-1.0.0",
+      "engines": {
+        "node": ">=18"
+      }
+    },
+    "node_modules/through2": {
+      "version": "4.0.2",
+      "resolved": "https://registry.npmjs.org/through2/-/through2-4.0.2.tgz",
+      "integrity": "sha512-iOqSav00cVxEEICeD7TjLB1sueEL+81Wpzp2bY17uZjZN0pWZPuo4suZ/61VujxmqSGFfgOcNuTZ85QJwNZQpw==",
+      "license": "MIT",
+      "dependencies": {
+        "readable-stream": "3"
+      }
+    },
     "node_modules/tiny-invariant": {
       "version": "1.3.3",
       "resolved": "https://registry.npmjs.org/tiny-invariant/-/tiny-invariant-1.3.3.tgz",
@@ -14653,6 +16463,15 @@ FILE CONTENT:
       },
       "engines": {
         "node": ">=8.0"
+      }
+    },
+    "node_modules/tree-kill": {
+      "version": "1.2.2",
+      "resolved": "https://registry.npmjs.org/tree-kill/-/tree-kill-1.2.2.tgz",
+      "integrity": "sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==",
+      "license": "MIT",
+      "bin": {
+        "tree-kill": "cli.js"
       }
     },
     "node_modules/ts-api-utils": {
@@ -14852,8 +16671,16 @@ FILE CONTENT:
       "version": "6.21.0",
       "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-6.21.0.tgz",
       "integrity": "sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==",
-      "dev": true,
       "license": "MIT"
+    },
+    "node_modules/universalify": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/universalify/-/universalify-2.0.1.tgz",
+      "integrity": "sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 10.0.0"
+      }
     },
     "node_modules/unrs-resolver": {
       "version": "1.12.2",
@@ -14891,6 +16718,15 @@ FILE CONTENT:
         "@unrs/resolver-binding-win32-arm64-msvc": "1.12.2",
         "@unrs/resolver-binding-win32-ia32-msvc": "1.12.2",
         "@unrs/resolver-binding-win32-x64-msvc": "1.12.2"
+      }
+    },
+    "node_modules/untildify": {
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/untildify/-/untildify-4.0.0.tgz",
+      "integrity": "sha512-KK8xQ1mkzZeg9inewmFVDNkg3l5LUhoq9kN6iWYB/CC9YMG8HA+c1Q8HwDe6dEX7kErrEVNVBO3fWsVq5iDgtw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=8"
       }
     },
     "node_modules/update-browserslist-db": {
@@ -14943,6 +16779,22 @@ FILE CONTENT:
         "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
       }
     },
+    "node_modules/util-deprecate": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
+      "integrity": "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==",
+      "license": "MIT"
+    },
+    "node_modules/uuid": {
+      "version": "7.0.3",
+      "resolved": "https://registry.npmjs.org/uuid/-/uuid-7.0.3.tgz",
+      "integrity": "sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==",
+      "deprecated": "uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).",
+      "license": "MIT",
+      "bin": {
+        "uuid": "dist/bin/uuid"
+      }
+    },
     "node_modules/victory-vendor": {
       "version": "37.3.6",
       "resolved": "https://registry.npmjs.org/victory-vendor/-/victory-vendor-37.3.6.tgz",
@@ -14969,7 +16821,6 @@ FILE CONTENT:
       "version": "2.0.2",
       "resolved": "https://registry.npmjs.org/which/-/which-2.0.2.tgz",
       "integrity": "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==",
-      "dev": true,
       "license": "ISC",
       "dependencies": {
         "isexe": "^2.0.0"
@@ -15080,12 +16931,83 @@ FILE CONTENT:
         "node": ">=0.10.0"
       }
     },
+    "node_modules/wrap-ansi": {
+      "version": "7.0.0",
+      "resolved": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz",
+      "integrity": "sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.0.0",
+        "string-width": "^4.1.0",
+        "strip-ansi": "^6.0.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/wrap-ansi?sponsor=1"
+      }
+    },
+    "node_modules/xcode": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/xcode/-/xcode-3.0.1.tgz",
+      "integrity": "sha512-kCz5k7J7XbJtjABOvkc5lJmkiDh8VhjVCGNiqdKCscmVpdVUpEAyXv1xmCLkQJ5dsHqx3IPO4XW+NTDhU/fatA==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "simple-plist": "^1.1.0",
+        "uuid": "^7.0.3"
+      },
+      "engines": {
+        "node": ">=10.0.0"
+      }
+    },
+    "node_modules/xml2js": {
+      "version": "0.6.2",
+      "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.6.2.tgz",
+      "integrity": "sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==",
+      "license": "MIT",
+      "dependencies": {
+        "sax": ">=0.6.0",
+        "xmlbuilder": "~11.0.0"
+      },
+      "engines": {
+        "node": ">=4.0.0"
+      }
+    },
+    "node_modules/xml2js/node_modules/xmlbuilder": {
+      "version": "11.0.1",
+      "resolved": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-11.0.1.tgz",
+      "integrity": "sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=4.0"
+      }
+    },
+    "node_modules/xmlbuilder": {
+      "version": "15.1.1",
+      "resolved": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-15.1.1.tgz",
+      "integrity": "sha512-yMqGBqtXyeN1e3TGYvgNgDVZ3j84W4cwkOXQswghol6APgZWaff9lnbvN7MHYJOiXsvGPXtjTYJEiC9J2wv9Eg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=8.0"
+      }
+    },
     "node_modules/yallist": {
       "version": "3.1.1",
       "resolved": "https://registry.npmjs.org/yallist/-/yallist-3.1.1.tgz",
       "integrity": "sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==",
       "dev": true,
       "license": "ISC"
+    },
+    "node_modules/yauzl": {
+      "version": "2.10.0",
+      "resolved": "https://registry.npmjs.org/yauzl/-/yauzl-2.10.0.tgz",
+      "integrity": "sha512-p4a9I6X6nu6IhoGmBqAcbJy1mlC4j27vEPZX9F4L4/vZT3Lyq1VkFHw/V/PUcB9Buo+DG3iHkT0x3Qya58zc3g==",
+      "license": "MIT",
+      "dependencies": {
+        "buffer-crc32": "~0.2.3",
+        "fd-slicer": "~1.1.0"
+      }
     },
     "node_modules/yocto-queue": {
       "version": "0.1.0",
@@ -15135,15 +17057,15 @@ FILE: package.json
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 663 B
+Size: 763 B
 Extension: .json
 Language: json
 Location: package.json
 Relative Path: root
 Created: 2026-09-03 07:01:31 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-11 04:30:56 (Australia/Sydney / GMT+10:00)
-MD5: 4ef45cfca0f6cf5a94343fda8064145e
-SHA256: 4a6d874e95e9d8fe7217c6eced38e839f5a4aef1f25874ea6fc85eb91f73567c
+Modified: 2026-09-26 00:11:51 (Australia/Sydney / GMT+10:00)
+MD5: 23487090b96fbfe5b38ceced06be2c53
+SHA256: ec5cc73825d5993d64db288f9b40908da36734eff0ad179d91529f4222c73a5b
 Encoding: ASCII
 
 FILE CONTENT:
@@ -15159,8 +17081,11 @@ FILE CONTENT:
     "lint": "eslint"
   },
   "dependencies": {
+    "@capacitor/cli": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
     "@supabase/ssr": "^0.12.6",
     "@supabase/supabase-js": "^2.114.0",
+    "@vercel/analytics": "^2.0.1",
     "lucide-react": "^1.44.0",
     "next": "16.3.4",
     "react": "19.2.8",

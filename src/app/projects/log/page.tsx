@@ -42,7 +42,13 @@ export default function LogWordcountPage() {
       }
       const { data } = await supabase.from('projects').select('id, title, metric_unit')
       setProjects(data || [])
-      if (data && data.length > 0) setProjectId(data[0].id)
+      const storedId = localStorage.getItem('wm_current_project')
+      const storedIsValid = data?.some((p) => p.id === storedId)
+      if (storedIsValid && storedId) {
+        setProjectId(storedId)
+      } else if (data && data.length > 0) {
+        setProjectId(data[0].id)
+      }
       setLoading(false)
     }
     loadProjects()

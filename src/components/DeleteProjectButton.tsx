@@ -16,22 +16,27 @@ export default function DeleteProjectButton({
 }) {
   const [confirming, setConfirming] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
   async function handleDelete() {
     setDeleting(true)
+    setError(null)
     const supabase = createClient()
     const { error } = await supabase.from('projects').delete().eq('id', projectId)
     setDeleting(false)
-    setConfirming(false)
 
-    if (!error) {
-      if (onDeleted) {
-        onDeleted()
-      } else {
-        router.push('/projects')
-        router.refresh()
-      }
+    if (error) {
+      setError(error.message)
+      return
+    }
+
+    setConfirming(false)
+    if (onDeleted) {
+      onDeleted()
+    } else {
+      router.push('/projects')
+      router.refresh()
     }
   }
 
@@ -71,9 +76,14 @@ export default function DeleteProjectButton({
             }}
           >
             <p className="text-sm mb-1" style={{ fontWeight: 600 }}>Delete &ldquo;{title}&rdquo;?</p>
-            <p className="text-sm mb-5" style={{ color: 'var(--color-ink-muted)' }}>
+            <p className="text-sm mb-3" style={{ color: 'var(--color-ink-muted)' }}>
               This removes the project and all its logged progress. This can&apos;t be undone.
             </p>
+            {error && (
+              <p className="text-sm mb-3" style={{ color: '#a33' }}>
+                Couldn&apos;t delete: {error}
+              </p>
+            )}
             <div className="flex justify-end gap-3">
               <button
                 onClick={() => setConfirming(false)}

@@ -59,7 +59,11 @@ function Delta({
 
 export default function TodayPage() {
   const [projects, setProjects] = useState<Project[]>([])
-  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [selectedId, setSelectedIdState] = useState<string | null>(null)
+  function setSelectedId(id: string | null) {
+    setSelectedIdState(id)
+    if (id) localStorage.setItem('wm_current_project', id)
+  }
   const [loading, setLoading] = useState(true)
 
   const [currentTotal, setCurrentTotal] = useState(0)

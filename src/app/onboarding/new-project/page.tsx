@@ -131,6 +131,10 @@ export default function OnboardingNewProjectPage() {
           />
         </div>
 
+        <p className="text-xs mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+          Next, we&apos;ll ask about your writing history. If you use Scrivener, have your real word count handy — you can find it under <strong>Project → Project Statistics</strong>.
+        </p>
+
         {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
 
         <button
