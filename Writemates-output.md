@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `writemates`
-- **Generated On**: 2026-09-29 23:01:57 (Australia/Sydney / GMT+10:00)
-- **Total Files Processed**: 81
+- **Generated On**: 2026-09-29 23:09:32 (Australia/Sydney / GMT+10:00)
+- **Total Files Processed**: 82
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -54,7 +54,9 @@
 │   │   │   └── 📄 page.tsx (3.54 KB)
 │   │   ├── 📁 onboarding/
 │   │   │   ├── 📁 new-project/
-│   │   │   │   └── 📄 page.tsx (5.29 KB)
+│   │   │   │   └── 📄 page.tsx (5.52 KB)
+│   │   │   ├── 📁 writing-tool/
+│   │   │   │   └── 📄 page.tsx (1.67 KB)
 │   │   │   └── 📄 page.tsx (1.16 KB)
 │   │   ├── 📁 post/
 │   │   │   ├── 📁 [id]/
@@ -161,6 +163,7 @@
 - [📄 src/app/icon-512/route.tsx](#📄-src-app-icon-512-route-tsx)
 - [📄 src/app/login/page.tsx](#📄-src-app-login-page-tsx)
 - [📄 src/app/onboarding/new-project/page.tsx](#📄-src-app-onboarding-new-project-page-tsx)
+- [📄 src/app/onboarding/writing-tool/page.tsx](#📄-src-app-onboarding-writing-tool-page-tsx)
 - [📄 src/app/onboarding/page.tsx](#📄-src-app-onboarding-page-tsx)
 - [📄 src/app/post/[id]/page.tsx](#📄-src-app-post-id-page-tsx)
 - [📄 src/app/post/new/page.tsx](#📄-src-app-post-new-page-tsx)
@@ -229,17 +232,17 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 81 |
-| Total Directories | 42 |
-| Text Files | 73 |
+| Total Files | 82 |
+| Total Directories | 43 |
+| Text Files | 74 |
 | Binary Files | 8 |
-| Total Size | 548.7 KB |
+| Total Size | 550.6 KB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
-| `.tsx` | 51 |
+| `.tsx` | 52 |
 | `.ts` | 15 |
 | `.svg` | 5 |
 | `.md` | 3 |
@@ -1699,15 +1702,15 @@ export default function LoginPage() {
 ### <a id="📄-src-app-onboarding-new-project-page-tsx"></a>📄 `src/app/onboarding/new-project/page.tsx`
 
 **File Info:**
-- **Size**: 5.29 KB
+- **Size**: 5.52 KB
 - **Extension**: `.tsx`
 - **Language**: `typescript`
 - **Location**: `src/app/onboarding/new-project/page.tsx`
 - **Relative Path**: `src/app/onboarding/new-project`
 - **Created**: 2026-09-20 23:06:59 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-29 22:43:29 (Australia/Sydney / GMT+10:00)
-- **MD5**: `fbac71d633de429e0d7833d3ceaeda52`
-- **SHA256**: `63901a4d9055b6ea2121777de93f2c4069b02939d8aa087657bb49eed5c560c5`
+- **Modified**: 2026-09-29 23:09:31 (Australia/Sydney / GMT+10:00)
+- **MD5**: `4f3506955303133bffcea0a46a42229c`
+- **SHA256**: `1971bb51347436e23a1d208bba570ea0c4ed53ea92f4e91344f74d97c5e733de`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1715,9 +1718,9 @@ export default function LoginPage() {
 ```typescript
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 const PROJECT_TYPES = [
   { value: 'book', label: 'Book' },
@@ -1743,6 +1746,14 @@ export default function OnboardingNewProjectPage() {
   const [goalWordCount, setGoalWordCount] = useState('')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    if (searchParams.get('tool') === 'final_draft') {
+      setProjectType('screenplay')
+      setMetricUnit('pages')
+    }
+  }, [searchParams])
   const router = useRouter()
 
   function handleStageChange(value: string) {
@@ -1869,6 +1880,81 @@ export default function OnboardingNewProjectPage() {
 
 ---
 
+### <a id="📄-src-app-onboarding-writing-tool-page-tsx"></a>📄 `src/app/onboarding/writing-tool/page.tsx`
+
+**File Info:**
+- **Size**: 1.67 KB
+- **Extension**: `.tsx`
+- **Language**: `typescript`
+- **Location**: `src/app/onboarding/writing-tool/page.tsx`
+- **Relative Path**: `src/app/onboarding/writing-tool`
+- **Created**: 2026-09-29 23:06:08 (Australia/Sydney / GMT+10:00)
+- **Modified**: 2026-09-29 23:06:08 (Australia/Sydney / GMT+10:00)
+- **MD5**: `46215373f2075f9181b02f6d00a0be81`
+- **SHA256**: `3f18c5d5d19cfbe8d5f306252634a75e93576ba69ffb82882782750db0c769a2`
+- **Encoding**: ASCII
+
+**File code content:**
+
+```typescript
+'use client'
+
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase/client'
+
+const TOOLS = [
+  { value: 'scrivener', label: 'Scrivener' },
+  { value: 'google_docs', label: 'Google Docs' },
+  { value: 'word', label: 'Microsoft Word' },
+  { value: 'final_draft', label: 'Final Draft (screenplays)' },
+  { value: 'other', label: 'Something else' },
+]
+
+export default function WritingToolPage() {
+  const [saving, setSaving] = useState(false)
+  const router = useRouter()
+
+  async function choose(tool: string) {
+    setSaving(true)
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) {
+      await supabase.from('profiles').update({ writing_tool: tool }).eq('id', user.id)
+    }
+    router.push(`/onboarding/new-project?tool=${tool}`)
+  }
+
+  return (
+    <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
+      <h1 className="text-2xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
+        What do you write with?
+      </h1>
+      <p className="text-sm mb-8" style={{ color: 'var(--color-ink-muted)' }}>
+        This helps us tailor how you log your progress.
+      </p>
+
+      <div className="flex flex-col gap-3">
+        {TOOLS.map((t) => (
+          <button
+            key={t.value}
+            onClick={() => choose(t.value)}
+            disabled={saving}
+            className="text-left px-4 py-3 rounded-lg text-sm"
+            style={{ border: '1px solid var(--color-rule)', backgroundColor: 'var(--color-paper)' }}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+    </main>
+  )
+}
+
+```
+
+---
+
 ### <a id="📄-src-app-onboarding-page-tsx"></a>📄 `src/app/onboarding/page.tsx`
 
 **File Info:**
@@ -1878,9 +1964,9 @@ export default function OnboardingNewProjectPage() {
 - **Location**: `src/app/onboarding/page.tsx`
 - **Relative Path**: `src/app/onboarding`
 - **Created**: 2026-09-20 23:06:00 (Australia/Sydney / GMT+10:00)
-- **Modified**: 2026-09-21 03:33:28 (Australia/Sydney / GMT+10:00)
-- **MD5**: `74aec1ac436da529c0dff6917c80b4a4`
-- **SHA256**: `d8f67f0858364a81be0295a8af159bf370e0012ee9f482665ae0661a5403a66e`
+- **Modified**: 2026-09-29 23:06:43 (Australia/Sydney / GMT+10:00)
+- **MD5**: `1be9b4f483721e4cfd5b8305732bdf4a`
+- **SHA256**: `e2eaf41ee911a8494ea7660241921dc4d19fd6769897e5a78cc8cc9622a4fbec`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1903,7 +1989,7 @@ export default function OnboardingWelcomePage() {
       </p>
       <div className="flex flex-col gap-3">
         <button
-          onClick={() => router.push('/onboarding/new-project')}
+          onClick={() => router.push('/onboarding/writing-tool')}
           className="px-5 py-3 text-sm"
           style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
         >

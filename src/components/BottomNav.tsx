@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LayoutDashboard, Newspaper, Users, Bell, Plus, X, PenLine, FolderPlus, Share2, Upload, Timer } from 'lucide-react'
 import UnreadChatDot from '@/components/UnreadChatDot'
 import UnreadActivityDot from '@/components/UnreadActivityDot'
+import { createClient } from '@/lib/supabase/client'
 
 const tabs = [
   { href: '/today', label: 'Today', icon: LayoutDashboard },
@@ -25,6 +26,30 @@ const actions = [
 export default function BottomNav() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [logLabel, setLogLabel] = useState('Log wordcount')
+
+  useEffect(() => {
+    async function loadUnit() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      let projectId = localStorage.getItem('wm_current_project')
+
+      const { data: projects } = await supabase
+        .from('projects')
+        .select('id, metric_unit')
+        .order('created_at', { ascending: false })
+
+      if (!projects || projects.length === 0) return
+
+      let project = projects.find((p) => p.id === projectId)
+      if (!project) project = projects[0]
+
+      setLogLabel(project.metric_unit === 'pages' ? 'Log page count' : 'Log word count')
+    }
+    loadUnit()
+  }, [])
 
   return (
     <>
@@ -55,6 +80,7 @@ export default function BottomNav() {
         >
           {actions.map((action) => {
             const Icon = action.icon
+            const label = action.href === '/projects/log' ? logLabel : action.label
             return (
               <Link
                 key={action.href}
@@ -64,7 +90,7 @@ export default function BottomNav() {
                 style={{ borderColor: 'var(--color-rule)', color: 'var(--color-ink)' }}
               >
                 <Icon size={18} style={{ color: 'var(--color-accent)' }} />
-                <span className="text-sm">{action.label}</span>
+                <span className="text-sm">{label}</span>
               </Link>
             )
           })}
@@ -73,7 +99,7 @@ export default function BottomNav() {
 
       <nav
         className="fixed bottom-0 left-0 right-0 border-t z-40"
-        style={{ backgroundColor: 'var(--color-paper)', borderColor: 'var(--color-rule)' }}
+        style={{ backgroundColor: 'var(--color-paper)', borderColor:'var(--color-rule)' }}
       >
         <div className="max-w-5xl mx-auto" style={{ position: 'relative' }}>
           <div className="flex items-center justify-around py-2">

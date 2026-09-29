@@ -15,7 +15,7 @@ export default function OnboardingWelcomePage() {
       </p>
       <div className="flex flex-col gap-3">
         <button
-          onClick={() => router.push('/onboarding/new-project')}
+          onClick={() => router.push('/onboarding/writing-tool')}
           className="px-5 py-3 text-sm"
           style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
         >

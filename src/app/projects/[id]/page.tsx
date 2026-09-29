@@ -89,9 +89,9 @@ export default async function ProjectDetailPage({
         </div>
       </div>
       <p className="mb-8" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-        {currentWordCount.toLocaleString()} words
+        {currentWordCount.toLocaleString()} {project.metric_unit || 'words'}
         {percentComplete !== null && (
-          <> — <span style={{ color: 'var(--color-accent)' }}>{percentComplete}%</span> of {project.goal_word_count?.toLocaleString()} word goal</>
+          <> — <span style={{ color: 'var(--color-accent)' }}>{percentComplete}%</span> of {project.goal_word_count?.toLocaleString()} {project.metric_unit || 'word'} goal</>
         )}
       </p>
 

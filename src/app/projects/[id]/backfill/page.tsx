@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, use } from 'react'
+import { useState, useEffect, use } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
 
-export default function BackfillPage({ params }: { params: Promise<{ id: string }> }) {
+export default function BackfillPage({ params }: { params: Promise<{id: string }> }) {
   const { id } = use(params)
   const [step, setStep] = useState<'input' | 'review' | 'done'>('input')
   const [text, setText] = useState('')
@@ -14,7 +14,19 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
   const [hasAttemptedParse, setHasAttemptedParse] = useState(false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [writingTool, setWritingTool] = useState('scrivener')
   const router = useRouter()
+
+  useEffect(() => {
+    async function loadTool() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+      const { data } = await supabase.from('profiles').select('writing_tool').eq('id', user.id).single()
+      if (data?.writing_tool) setWritingTool(data.writing_tool)
+    }
+    loadTool()
+  }, [])
 
   function handleParse() {
     const result = parseBackfillText(text)
@@ -84,7 +96,7 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
         <h1 className="text-2xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
           Backfilled
         </h1>
-        <p className="mb-6" style={{ color: 'var(--color-ink-muted)' }}>
+        <p className="mb-6" style={{ color: 'var(--color-ink-muted)'}}>
           {parsed.length} days added to your history. Your graphs and finish date will reflect them now.
         </p>
         <button
@@ -131,7 +143,13 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
             Your real, current word count
           </label>
           <p className="text-sm mb-3" style={{ color: 'var(--color-ink-muted)' }}>
-            Scrivener&apos;s writing-history log can drift from your actual manuscript over time (moved documents, restructuring, etc. don&apos;t always get tracked). To get the true number: in Scrivener, go to <strong>Project → Project Statistics</strong> and use the <strong>Words</strong> figure shown there — not the history dialog.
+            {writingTool === 'scrivener' ? (
+              <>Scrivener&apos;s writing-history log can drift from your actual manuscript over time (moved documents, restructuring, etc. don&apos;t always get tracked). To get the true number: in Scrivener, go to <strong>Project → Project Statistics</strong> and use the <strong>Words</strong> figure shown there — not the history dialog.</>
+            ) : writingTool === 'final_draft' ? (
+              <>Enter the current page count shown in Final Draft&apos;s toolbar, so your stats stay accurate.</>
+            ) : (
+              <>Enter your current total so your stats stay accurate, even if the entries below are approximate.</>
+            )}
           </p>
           <input
             type="number"
@@ -143,7 +161,7 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
           />
         </div>
 
-        {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        {error && <p className="mb-3 text-sm" style={{ color: '#a33'}}>{error}</p>}
 
         <div className="flex gap-3">
           <button
@@ -172,15 +190,27 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
         Backfill past progress
       </h1>
 
-      <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
-        To import your writing history from Scrivener:
-      </p>
-      <ol className="text-sm mb-4 pl-5" style={{ color: 'var(--color-ink-muted)', listStyle: 'decimal' }}>
-        <li className="mb-1">Click <strong>Project</strong> in the top bar</li>
-        <li className="mb-1">Click <strong>Writing History</strong></li>
-        <li className="mb-1">Click <strong>Export</strong></li>
-        <li>Open the file, copy the two date and word-count columns, and paste them below</li>
-      </ol>
+      {writingTool === 'scrivener' ? (
+        <>
+          <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+            To import your writing history from Scrivener:
+          </p>
+          <ol className="text-sm mb-4 pl-5" style={{ color: 'var(--color-ink-muted)', listStyle: 'decimal' }}>
+            <li className="mb-1">Click <strong>Project</strong> in the top bar</li>
+            <li className="mb-1">Click <strong>Writing History</strong></li>
+            <li className="mb-1">Click <strong>Export</strong></li>
+            <li>Open the file, copy the two date and word-count columns, and paste them below</li>
+          </ol>
+        </>
+      ) : writingTool === 'final_draft' ? (
+        <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+          Final Draft doesn&apos;t export a writing history, so just add any past days you remember below — one date and page count per line. Not sure of exact numbers? Estimates are fine, or skip this and just log going forward.
+        </p>
+      ) : (
+        <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+          {writingTool === 'google_docs' ? 'Google Docs (Tools → Word count)' : writingTool === 'word' ? 'Word (Review → Word Count)' : 'Your writing tool'} doesn&apos;t export a writing history, so just add any past days you remember below — one date and word count per line. Not sure of exact numbers? Estimates are fine, or skip this and just log going forward.
+        </p>
+      )}
 
       <button
         onClick={() => router.push(`/projects/${id}`)}
@@ -197,7 +227,7 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
           setHasAttemptedParse(false)
         }}
         rows={8}
-        placeholder="Paste your Scrivener writing history here..."
+        placeholder={writingTool === 'scrivener' ? 'Paste your Scrivener writing history here...' : 'e.g.\n2026-09-01, 1200\n2026-09-02, 800'}
         className="w-full p-3 mb-4 rounded border focus:outline-none"
         style={{ borderColor: 'var(--color-rule)', backgroundColor: 'transparent' }}
       />

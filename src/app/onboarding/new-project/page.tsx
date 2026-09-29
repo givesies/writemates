@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 const PROJECT_TYPES = [
   { value: 'book', label: 'Book' },
@@ -28,6 +28,14 @@ export default function OnboardingNewProjectPage() {
   const [goalWordCount, setGoalWordCount] = useState('')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    if (searchParams.get('tool') === 'final_draft') {
+      setProjectType('screenplay')
+      setMetricUnit('pages')
+    }
+  }, [searchParams])
   const router = useRouter()
 
   function handleStageChange(value: string) {
