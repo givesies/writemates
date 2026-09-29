@@ -23,7 +23,11 @@ export default function SplashScreen() {
     <div
       style={{
         position: 'fixed',
-        inset: 0,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: '100dvh',
         zIndex: 9999,
         display: 'flex',
         flexDirection: 'column',
@@ -50,7 +54,7 @@ export default function SplashScreen() {
           color: 'var(--color-ink-muted)',
         }}
       >
-        Where Writers Grow Together
+        A Place For Writers
       </p>
     </div>
   )

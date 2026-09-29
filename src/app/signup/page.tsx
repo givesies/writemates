@@ -36,7 +36,7 @@ export default function SignUpPage() {
           Writemates
         </h1>
         <p className="mt-1" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--color-ink-muted)' }}>
-          Where Writers Grow Together
+          A Place For Writers
         </p>
       </div>
 
