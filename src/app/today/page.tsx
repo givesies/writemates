@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { ArrowUp, ArrowDown } from 'lucide-react'
 import {
   buildDailyCumulative,
@@ -291,34 +292,34 @@ export default function TodayPage() {
       </div>
 
       <div className="grid grid-cols-2 gap-3 mb-6">
-        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
+        <Link href={`/projects/${selectedId}/stats/completion`} className="rounded-lg block" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
           <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Time to completion</p>
           <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
             {daysRemaining !== null ? `${daysRemaining} days` : '—'}
           </p>
           <Delta value={daysRemainingDelta} upLabel="days closer" downLabel="days further" goodWhen="up" invertArrow />
-        </div>
-        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
+        </Link>
+        <Link href={`/projects/${selectedId}/stats/today`} className="rounded-lg block" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
           <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Today</p>
           <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
             {todayCount.toLocaleString()} {unit}
           </p>
           <Delta value={todayDelta} upLabel="more than yesterday" downLabel="fewer than yesterday" goodWhen="up" />
-        </div>
-        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
+        </Link>
+        <Link href={`/projects/${selectedId}/stats/week`} className="rounded-lg block" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
           <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>This week</p>
           <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
             {weekCount.toLocaleString()} {unit}
           </p>
           <Delta value={weekDelta} upLabel="more than last week" downLabel="less than last week" goodWhen="up" />
-        </div>
-        <div className="rounded-lg" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
+        </Link>
+        <Link href={`/projects/${selectedId}/stats/average`} className="rounded-lg block" style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.75rem' }}>
           <p className="text-xs mb-1" style={{ color: 'var(--color-ink-muted)' }}>Daily average</p>
           <p className="text-xl" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
             {Math.round(avgPerDay).toLocaleString()} {unit}
           </p>
           <Delta value={avgDelta} upLabel="higher since today" downLabel="lower since today" goodWhen="up" />
-        </div>
+        </Link>
       </div>
 
       {chartData.some((d) => d.words > 0) && (
