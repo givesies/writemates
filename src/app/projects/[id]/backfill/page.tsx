@@ -89,6 +89,8 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
       for (const c of cumulative) c.total = Math.max(0, c.total + offset)
     }
 
+    const lastBatchDate = cumulative[cumulative.length - 1].date
+
     const { data: existing } = await supabase
       .from('wordcount_snapshots')
       .select('id, recorded_at')
@@ -96,7 +98,10 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
 
     const backfillDateSet = new Set(cumulative.map((c) => c.date))
     const idsToDelete = (existing || [])
-      .filter((row) => backfillDateSet.has(new Date(row.recorded_at).toISOString().split('T')[0]))
+      .filter((row) => {
+        const rowDate = new Date(row.recorded_at).toISOString().split('T')[0]
+        return backfillDateSet.has(rowDate) || (anchorValue !== null && rowDate > lastBatchDate)
+      })
       .map((row) => row.id)
 
     if (idsToDelete.length > 0) {

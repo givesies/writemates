@@ -5,7 +5,7 @@ PROJECT EXPORT FOR LLMs
 PROJECT INFORMATION:
 --------------------------------------------------
 Project Name: writemates
-Generated On: 2026-09-30 01:28:20 (Australia/Sydney / GMT+10:00)
+Generated On: 2026-09-30 06:03:33 (Australia/Sydney / GMT+10:00)
 Total Files Processed: 83
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
@@ -56,7 +56,7 @@ PROJECT STRUCTURE
 │   │   │   └── 📄 page.tsx (3.54 KB)
 │   │   ├── 📁 onboarding/
 │   │   │   ├── 📁 new-project/
-│   │   │   │   └── 📄 page.tsx (5.52 KB)
+│   │   │   │   └── 📄 page.tsx (5.53 KB)
 │   │   │   ├── 📁 writing-tool/
 │   │   │   │   └── 📄 page.tsx (1.67 KB)
 │   │   │   └── 📄 page.tsx (1.16 KB)
@@ -71,7 +71,7 @@ PROJECT STRUCTURE
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   ├── 📁 backfill/
-│   │   │   │   │   └── 📄 page.tsx (9.8 KB)
+│   │   │   │   │   └── 📄 page.tsx (12.23 KB)
 │   │   │   │   ├── 📁 edit/
 │   │   │   │   │   └── 📄 page.tsx (6.3 KB)
 │   │   │   │   └── 📄 page.tsx (5.37 KB)
@@ -156,7 +156,7 @@ Total Files: 83
 Total Directories: 43
 Text Files: 75
 Binary Files: 8
-Total Size: 555.41 KB
+Total Size: 557.84 KB
 
 FILE TYPES DISTRIBUTION:
 ------------------------------
@@ -1637,15 +1637,15 @@ FILE: src/app/onboarding/new-project/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 5.52 KB
+Size: 5.53 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/onboarding/new-project/page.tsx
 Relative Path: src/app/onboarding/new-project
-Created: 2026-09-20 23:06:59 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-29 23:09:31 (Australia/Sydney / GMT+10:00)
-MD5: 4f3506955303133bffcea0a46a42229c
-SHA256: 1971bb51347436e23a1d208bba570ea0c4ed53ea92f4e91344f74d97c5e733de
+Created: 2026-09-30 01:49:38 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-30 01:49:38 (Australia/Sydney / GMT+10:00)
+MD5: cf8ee127626710b1fa4857a251bc6a17
+SHA256: d892a4e089c0a41dbae6f897fabe9bd032a1d6d72ca280bbca72cb5e1c658487
 Encoding: ASCII
 
 FILE CONTENT:
@@ -1792,7 +1792,7 @@ export default function OnboardingNewProjectPage() {
         </div>
 
         <p className="text-xs mb-4" style={{ color: 'var(--color-ink-muted)' }}>
-          Next, we&apos;ll ask about your writing history. If you use Scrivener, have your real word count handy — you can find it under <strong>Project → Project Statistics</strong>.
+          Next, we&apos;ll ask about your writing history. If you use Scrivener, have your real word count handy — you can find it under <strong>Project</strong> → <strong>Statistics</strong>.
         </p>
 
         {error && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{error}</p>}
@@ -2697,15 +2697,15 @@ FILE: src/app/projects/[id]/backfill/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 9.8 KB
+Size: 12.23 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/projects/[id]/backfill/page.tsx
 Relative Path: src/app/projects/[id]/backfill
-Created: 2026-09-18 04:12:57 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-29 23:13:33 (Australia/Sydney / GMT+10:00)
-MD5: 0a2416820fad3da9c4b0e993a808c394
-SHA256: 96e4cddc8dd89c3dd62193a41fdd90346bd02626dd77fb957a5ae8983a0d4b4d
+Created: 2026-09-30 01:48:22 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-30 06:03:33 (Australia/Sydney / GMT+10:00)
+MD5: d0f9139d11fec4380d98b1986d1cd8d9
+SHA256: b3f37751c29a9affa84304630b0f3b9a23eedeafecd211303e695714b9f61247
 Encoding: ASCII
 
 FILE CONTENT:
@@ -2727,6 +2727,9 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [writingTool, setWritingTool] = useState('scrivener')
+  const [showSimpleTotal, setShowSimpleTotal] = useState(false)
+  const [simpleTotal, setSimpleTotal] = useState('')
+  const [savingSimple, setSavingSimple] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -2746,6 +2749,34 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
     setHasAttemptedParse(true)
     setError(null)
     if (result.length > 0) setStep('review')
+  }
+
+  async function handleSaveSimpleTotal() {
+    const value = simpleTotal ? parseInt(simpleTotal.replace(/,/g, ''), 10) : null
+    if (value === null || isNaN(value)) return
+
+    setSavingSimple(true)
+    setError(null)
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { error } = await supabase.from('wordcount_snapshots').insert({
+      project_id: id,
+      user_id: user.id,
+      word_count: value,
+      source: 'manual',
+      recorded_at: new Date().toISOString(),
+    })
+
+    setSavingSimple(false)
+
+    if (error) {
+      setError(error.message)
+    } else {
+      router.push(`/projects/${id}`)
+      router.refresh()
+    }
   }
 
   async function handleSave() {
@@ -2770,6 +2801,8 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
       for (const c of cumulative) c.total = Math.max(0, c.total + offset)
     }
 
+    const lastBatchDate = cumulative[cumulative.length - 1].date
+
     const { data: existing } = await supabase
       .from('wordcount_snapshots')
       .select('id, recorded_at')
@@ -2777,7 +2810,10 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
 
     const backfillDateSet = new Set(cumulative.map((c) => c.date))
     const idsToDelete = (existing || [])
-      .filter((row) => backfillDateSet.has(new Date(row.recorded_at).toISOString().split('T')[0]))
+      .filter((row) => {
+        const rowDate = new Date(row.recorded_at).toISOString().split('T')[0]
+        return backfillDateSet.has(rowDate) || (anchorValue !== null && rowDate > lastBatchDate)
+      })
       .map((row) => row.id)
 
     if (idsToDelete.length > 0) {
@@ -2856,7 +2892,7 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
           </label>
           <p className="text-sm mb-3" style={{ color: 'var(--color-ink-muted)' }}>
             {writingTool === 'scrivener' ? (
-              <>Scrivener&apos;s writing-history log can drift from your actual manuscript over time (moved documents, restructuring, etc. don&apos;t always get tracked). To get the true number: in Scrivener, go to <strong>Project → Project Statistics</strong> and use the <strong>Words</strong> figure shown there — not the history dialog.</>
+              <>Scrivener&apos;s writing-history log can drift from your actual manuscript over time (moved documents, restructuring, etc. don&apos;t always get tracked). To get the true number: in Scrivener, go to <strong>Project</strong> → <strong>Statistics</strong> and use the <strong>Words</strong> figure shown there — not the history dialog.</>
             ) : writingTool === 'final_draft' ? (
               <>Enter the current page count shown in Final Draft&apos;s toolbar, so your stats stay accurate.</>
             ) : (
@@ -2922,6 +2958,42 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
         <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
           {writingTool === 'google_docs' ? 'Google Docs (Tools → Word count)' : writingTool === 'word' ? 'Word (Review → Word Count)' : 'Your writing tool'} doesn&apos;t export a writing history, so just add any past days you remember below — one date and word count per line. Not sure of exact numbers? Estimates are fine, or skip this and just log going forward.
         </p>
+      )}
+
+      {!showSimpleTotal ? (
+        <button
+          onClick={() => setShowSimpleTotal(true)}
+          className="text-sm mb-6"
+          style={{ color: 'var(--color-accent)', textDecoration: 'underline' }}
+        >
+          No history to paste? Just enter your current total
+        </button>
+      ) : (
+        <div
+          className="rounded-lg mb-6"
+          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
+        >
+          <label className="block text-sm mb-2" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>
+            Your current total
+          </label>
+          <input
+            type="number"
+            value={simpleTotal}
+            onChange={(e) => setSimpleTotal(e.target.value)}
+            placeholder="e.g. 12000"
+            className="w-full py-2 mb-3 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+          {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
+          <button
+            onClick={handleSaveSimpleTotal}
+            disabled={savingSimple || !simpleTotal}
+            className="px-5 py-2 text-sm"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+          >
+            {savingSimple ? 'Saving...' : 'Save and continue'}
+          </button>
+        </div>
       )}
 
       <button
