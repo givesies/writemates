@@ -5,8 +5,8 @@ PROJECT EXPORT FOR LLMs
 PROJECT INFORMATION:
 --------------------------------------------------
 Project Name: writemates
-Generated On: 2026-09-29 23:09:32 (Australia/Sydney / GMT+10:00)
-Total Files Processed: 82
+Generated On: 2026-09-30 01:28:20 (Australia/Sydney / GMT+10:00)
+Total Files Processed: 83
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
 
@@ -71,10 +71,10 @@ PROJECT STRUCTURE
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [id]/
 │   │   │   │   ├── 📁 backfill/
-│   │   │   │   │   └── 📄 page.tsx (8.01 KB)
+│   │   │   │   │   └── 📄 page.tsx (9.8 KB)
 │   │   │   │   ├── 📁 edit/
 │   │   │   │   │   └── 📄 page.tsx (6.3 KB)
-│   │   │   │   └── 📄 page.tsx (5.31 KB)
+│   │   │   │   └── 📄 page.tsx (5.37 KB)
 │   │   │   ├── 📁 log/
 │   │   │   │   └── 📄 page.tsx (12.57 KB)
 │   │   │   └── 📄 page.tsx (9.33 KB)
@@ -94,7 +94,7 @@ PROJECT STRUCTURE
 │   │   │   │       └── 📄 page.tsx (9.75 KB)
 │   │   │   └── 📄 page.tsx (6.56 KB)
 │   │   ├── 📁 today/
-│   │   │   └── 📄 page.tsx (13.74 KB)
+│   │   │   └── 📄 page.tsx (13.86 KB)
 │   │   ├── 📁 u/
 │   │   │   └── 📁 [username]/
 │   │   │       └── 📄 page.tsx (14.26 KB)
@@ -106,11 +106,12 @@ PROJECT STRUCTURE
 │   │   ├── 📄 manifest.ts (496 B)
 │   │   └── 📄 page.tsx (302 B)
 │   ├── 📁 components/
-│   │   ├── 📄 BottomNav.tsx (4.33 KB)
+│   │   ├── 📄 BottomNav.tsx (5.19 KB)
 │   │   ├── 📄 ContributionCalendar.tsx (1.34 KB)
 │   │   ├── 📄 DailyBarChart.tsx (635 B)
 │   │   ├── 📄 DeleteProjectButton.tsx (3.01 KB)
 │   │   ├── 📄 FeedFilterSwitcher.tsx (575 B)
+│   │   ├── 📄 FirstLogNudge.tsx (1.97 KB)
 │   │   ├── 📄 FollowButton.tsx (1.11 KB)
 │   │   ├── 📄 GoogleSignInButton.tsx (760 B)
 │   │   ├── 📄 InviteLink.tsx (823 B)
@@ -151,15 +152,15 @@ PROJECT STRUCTURE
 ================================================================================
 PROJECT STATISTICS
 ================================================================================
-Total Files: 82
+Total Files: 83
 Total Directories: 43
-Text Files: 74
+Text Files: 75
 Binary Files: 8
-Total Size: 550.6 KB
+Total Size: 555.41 KB
 
 FILE TYPES DISTRIBUTION:
 ------------------------------
-.tsx            : 52
+.tsx            : 53
 .ts             : 15
 .svg            : 5
 .md             : 3
@@ -2696,27 +2697,27 @@ FILE: src/app/projects/[id]/backfill/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 8.01 KB
+Size: 9.8 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/projects/[id]/backfill/page.tsx
 Relative Path: src/app/projects/[id]/backfill
 Created: 2026-09-18 04:12:57 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-24 03:42:51 (Australia/Sydney / GMT+10:00)
-MD5: 36e7b8bac809481d5afbe8f4a31db983
-SHA256: 1ab45a91eeeb13f1b91ca2711ad0b290b27b7511f174f6b2f358954526b4c6b2
+Modified: 2026-09-29 23:13:33 (Australia/Sydney / GMT+10:00)
+MD5: 0a2416820fad3da9c4b0e993a808c394
+SHA256: 96e4cddc8dd89c3dd62193a41fdd90346bd02626dd77fb957a5ae8983a0d4b4d
 Encoding: ASCII
 
 FILE CONTENT:
 ----------------------------------------
 'use client'
 
-import { useState, use } from 'react'
+import { useState, useEffect, use } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
 
-export default function BackfillPage({ params }: { params: Promise<{ id: string }> }) {
+export default function BackfillPage({ params }: { params: Promise<{id: string }> }) {
   const { id } = use(params)
   const [step, setStep] = useState<'input' | 'review' | 'done'>('input')
   const [text, setText] = useState('')
@@ -2725,7 +2726,19 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
   const [hasAttemptedParse, setHasAttemptedParse] = useState(false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [writingTool, setWritingTool] = useState('scrivener')
   const router = useRouter()
+
+  useEffect(() => {
+    async function loadTool() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+      const { data } = await supabase.from('profiles').select('writing_tool').eq('id', user.id).single()
+      if (data?.writing_tool) setWritingTool(data.writing_tool)
+    }
+    loadTool()
+  }, [])
 
   function handleParse() {
     const result = parseBackfillText(text)
@@ -2795,7 +2808,7 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
         <h1 className="text-2xl mb-4" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
           Backfilled
         </h1>
-        <p className="mb-6" style={{ color: 'var(--color-ink-muted)' }}>
+        <p className="mb-6" style={{ color: 'var(--color-ink-muted)'}}>
           {parsed.length} days added to your history. Your graphs and finish date will reflect them now.
         </p>
         <button
@@ -2842,7 +2855,13 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
             Your real, current word count
           </label>
           <p className="text-sm mb-3" style={{ color: 'var(--color-ink-muted)' }}>
-            Scrivener&apos;s writing-history log can drift from your actual manuscript over time (moved documents, restructuring, etc. don&apos;t always get tracked). To get the true number: in Scrivener, go to <strong>Project → Project Statistics</strong> and use the <strong>Words</strong> figure shown there — not the history dialog.
+            {writingTool === 'scrivener' ? (
+              <>Scrivener&apos;s writing-history log can drift from your actual manuscript over time (moved documents, restructuring, etc. don&apos;t always get tracked). To get the true number: in Scrivener, go to <strong>Project → Project Statistics</strong> and use the <strong>Words</strong> figure shown there — not the history dialog.</>
+            ) : writingTool === 'final_draft' ? (
+              <>Enter the current page count shown in Final Draft&apos;s toolbar, so your stats stay accurate.</>
+            ) : (
+              <>Enter your current total so your stats stay accurate, even if the entries below are approximate.</>
+            )}
           </p>
           <input
             type="number"
@@ -2854,7 +2873,7 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
           />
         </div>
 
-        {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
+        {error && <p className="mb-3 text-sm" style={{ color: '#a33'}}>{error}</p>}
 
         <div className="flex gap-3">
           <button
@@ -2883,15 +2902,27 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
         Backfill past progress
       </h1>
 
-      <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
-        To import your writing history from Scrivener:
-      </p>
-      <ol className="text-sm mb-4 pl-5" style={{ color: 'var(--color-ink-muted)', listStyle: 'decimal' }}>
-        <li className="mb-1">Click <strong>Project</strong> in the top bar</li>
-        <li className="mb-1">Click <strong>Writing History</strong></li>
-        <li className="mb-1">Click <strong>Export</strong></li>
-        <li>Open the file, copy the two date and word-count columns, and paste them below</li>
-      </ol>
+      {writingTool === 'scrivener' ? (
+        <>
+          <p className="text-sm mb-2" style={{ color: 'var(--color-ink-muted)' }}>
+            To import your writing history from Scrivener:
+          </p>
+          <ol className="text-sm mb-4 pl-5" style={{ color: 'var(--color-ink-muted)', listStyle: 'decimal' }}>
+            <li className="mb-1">Click <strong>Project</strong> in the top bar</li>
+            <li className="mb-1">Click <strong>Writing History</strong></li>
+            <li className="mb-1">Click <strong>Export</strong></li>
+            <li>Open the file, copy the two date and word-count columns, and paste them below</li>
+          </ol>
+        </>
+      ) : writingTool === 'final_draft' ? (
+        <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+          Final Draft doesn&apos;t export a writing history, so just add any past days you remember below — one date and page count per line. Not sure of exact numbers? Estimates are fine, or skip this and just log going forward.
+        </p>
+      ) : (
+        <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
+          {writingTool === 'google_docs' ? 'Google Docs (Tools → Word count)' : writingTool === 'word' ? 'Word (Review → Word Count)' : 'Your writing tool'} doesn&apos;t export a writing history, so just add any past days you remember below — one date and word count per line. Not sure of exact numbers? Estimates are fine, or skip this and just log going forward.
+        </p>
+      )}
 
       <button
         onClick={() => router.push(`/projects/${id}`)}
@@ -2908,7 +2939,7 @@ export default function BackfillPage({ params }: { params: Promise<{ id: string 
           setHasAttemptedParse(false)
         }}
         rows={8}
-        placeholder="Paste your Scrivener writing history here..."
+        placeholder={writingTool === 'scrivener' ? 'Paste your Scrivener writing history here...' : 'e.g.\n2026-09-01, 1200\n2026-09-02, 800'}
         className="w-full p-3 mb-4 rounded border focus:outline-none"
         style={{ borderColor: 'var(--color-rule)', backgroundColor: 'transparent' }}
       />
@@ -3152,15 +3183,15 @@ FILE: src/app/projects/[id]/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 5.31 KB
+Size: 5.37 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/projects/[id]/page.tsx
 Relative Path: src/app/projects/[id]
-Created: 2026-09-06 03:06:51 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-20 23:41:07 (Australia/Sydney / GMT+10:00)
-MD5: 6595b0ab51a952b3dac367f0c679537d
-SHA256: 56dff21e1943e045e6f8e984ab91272fc4be945879a3e63bcc20a233e21f1c0a
+Created: 2026-09-29 23:22:54 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-29 23:22:54 (Australia/Sydney / GMT+10:00)
+MD5: cf97f735d60810db4bd5322fc710ac24
+SHA256: 659df209d7925cc96592fc088779ec47bd4b3eadad4eb6003e0fc34304687d77
 Encoding: ASCII
 
 FILE CONTENT:
@@ -3256,9 +3287,9 @@ export default async function ProjectDetailPage({
         </div>
       </div>
       <p className="mb-8" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
-        {currentWordCount.toLocaleString()} words
+        {currentWordCount.toLocaleString()} {project.metric_unit || 'words'}
         {percentComplete !== null && (
-          <> — <span style={{ color: 'var(--color-accent)' }}>{percentComplete}%</span> of {project.goal_word_count?.toLocaleString()} word goal</>
+          <> — <span style={{ color: 'var(--color-accent)' }}>{percentComplete}%</span> of {project.goal_word_count?.toLocaleString()} {project.metric_unit || 'word'} goal</>
         )}
       </p>
 
@@ -5339,15 +5370,15 @@ FILE: src/app/today/page.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 13.74 KB
+Size: 13.86 KB
 Extension: .tsx
 Language: typescript
 Location: src/app/today/page.tsx
 Relative Path: src/app/today
 Created: 2026-09-21 03:31:07 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-29 23:00:31 (Australia/Sydney / GMT+10:00)
-MD5: ba7759af8f147f258fc0397a85e274bd
-SHA256: edd6883161d516e1b84a49ab2821830103c487daed4389f1ee1b0e57f6fa1336
+Modified: 2026-09-30 01:28:19 (Australia/Sydney / GMT+10:00)
+MD5: 865e7fe599e7e5847b8be02be7271c79
+SHA256: 07a59a253425039b97587017ab2a7fd80445a169c4834479ce8510197472d965
 Encoding: ASCII
 
 FILE CONTENT:
@@ -5368,6 +5399,7 @@ import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
 import StreakStrip from '@/components/StreakStrip'
 import StreakCelebration from '@/components/StreakCelebration'
+import FirstLogNudge from '@/components/FirstLogNudge'
 import { playSuccessChime } from '@/lib/sounds'
 
 type Project = {
@@ -5594,6 +5626,7 @@ export default function TodayPage() {
   return (
     <main className="max-w-2xl mx-auto px-6 py-12" style={{ fontFamily: 'var(--font-sans)' }}>
       {selectedId && <StreakCelebration streak={streak} projectId={selectedId} />}
+      {!loading && currentTotal === 0 && <FirstLogNudge unit={unit} />}
 
       {projects.length > 1 && (
         <select
@@ -6456,27 +6489,28 @@ FILE: src/components/BottomNav.tsx
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 4.33 KB
+Size: 5.19 KB
 Extension: .tsx
 Language: typescript
 Location: src/components/BottomNav.tsx
 Relative Path: src/components
 Created: 2026-09-14 09:58:20 (Australia/Sydney / GMT+10:00)
-Modified: 2026-09-21 03:32:27 (Australia/Sydney / GMT+10:00)
-MD5: ae1e286709082741157fbe051ac7b124
-SHA256: 1e6378df706d92552d8de3b7aa7bade536058c715a591d3ab55d1748eea5a7a3
+Modified: 2026-09-29 23:24:48 (Australia/Sydney / GMT+10:00)
+MD5: 8033fa7402fe73c95f8f0496c11eb17d
+SHA256: dff351d2a42e24c81d3c1f0e5bafa0213a01bbd68fd3598dda4a690d7459fd81
 Encoding: ASCII
 
 FILE CONTENT:
 ----------------------------------------
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LayoutDashboard, Newspaper, Users, Bell, Plus, X, PenLine, FolderPlus, Share2, Upload, Timer } from 'lucide-react'
 import UnreadChatDot from '@/components/UnreadChatDot'
 import UnreadActivityDot from '@/components/UnreadActivityDot'
+import { createClient } from '@/lib/supabase/client'
 
 const tabs = [
   { href: '/today', label: 'Today', icon: LayoutDashboard },
@@ -6496,6 +6530,30 @@ const actions = [
 export default function BottomNav() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [logLabel, setLogLabel] = useState('Log wordcount')
+
+  useEffect(() => {
+    async function loadUnit() {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+
+      let projectId = localStorage.getItem('wm_current_project')
+
+      const { data: projects } = await supabase
+        .from('projects')
+        .select('id, metric_unit')
+        .order('created_at', { ascending: false })
+
+      if (!projects || projects.length === 0) return
+
+      let project = projects.find((p) => p.id === projectId)
+      if (!project) project = projects[0]
+
+      setLogLabel(project.metric_unit === 'pages' ? 'Log page count' : 'Log word count')
+    }
+    loadUnit()
+  }, [])
 
   return (
     <>
@@ -6526,6 +6584,7 @@ export default function BottomNav() {
         >
           {actions.map((action) => {
             const Icon = action.icon
+            const label = action.href === '/projects/log' ? logLabel : action.label
             return (
               <Link
                 key={action.href}
@@ -6535,7 +6594,7 @@ export default function BottomNav() {
                 style={{ borderColor: 'var(--color-rule)', color: 'var(--color-ink)' }}
               >
                 <Icon size={18} style={{ color: 'var(--color-accent)' }} />
-                <span className="text-sm">{action.label}</span>
+                <span className="text-sm">{label}</span>
               </Link>
             )
           })}
@@ -6544,7 +6603,7 @@ export default function BottomNav() {
 
       <nav
         className="fixed bottom-0 left-0 right-0 border-t z-40"
-        style={{ backgroundColor: 'var(--color-paper)', borderColor: 'var(--color-rule)' }}
+        style={{ backgroundColor: 'var(--color-paper)', borderColor:'var(--color-rule)' }}
       >
         <div className="max-w-5xl mx-auto" style={{ position: 'relative' }}>
           <div className="flex items-center justify-around py-2">
@@ -6890,6 +6949,99 @@ export default function FeedFilterSwitcher({ initialView }: { initialView: strin
       <option value="public">Public feed</option>
       <option value="groups">My groups</option>
     </select>
+  )
+}
+
+================================================================================
+
+
+================================================================================
+FILE: src/components/FirstLogNudge.tsx
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 1.97 KB
+Extension: .tsx
+Language: typescript
+Location: src/components/FirstLogNudge.tsx
+Relative Path: src/components
+Created: 2026-09-30 01:27:26 (Australia/Sydney / GMT+10:00)
+Modified: 2026-09-30 01:27:26 (Australia/Sydney / GMT+10:00)
+MD5: d2fead4dedd0e65d29bb3ad764a2383f
+SHA256: 20eb33de8603d84b69c4fba833cde53ccea8a8c5bb110e0c896c8a43adac2c4a
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+'use client'
+
+import { useEffect, useState } from 'react'
+import { Sparkles } from 'lucide-react'
+
+export default function FirstLogNudge({ unit }: { unit: string }) {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const alreadyShown = localStorage.getItem('wm_first_log_nudge_shown')
+    if (alreadyShown) return
+    setVisible(true)
+    localStorage.setItem('wm_first_log_nudge_shown', '1')
+  }, [])
+
+  if (!visible) return null
+
+  return (
+    <div
+      onClick={() => setVisible(false)}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        zIndex: 50,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          backgroundColor: 'var(--color-paper)',
+          borderRadius: 16,
+          padding: '2rem',
+          maxWidth: 300,
+          textAlign: 'center',
+        }}
+      >
+        <div
+          style={{
+            width: 56,
+            height: 56,
+            borderRadius: '50%',
+            backgroundColor: 'var(--color-paper-raised)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 1rem',
+          }}
+        >
+          <Sparkles size={26} color="var(--color-accent)" />
+        </div>
+        <p style={{ fontFamily: 'var(--font-serif)', fontWeight: 600, fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+          The magic starts when you log your first {unit} count
+        </p>
+        <p className="text-sm mb-5" style={{ color: 'var(--color-ink-muted)' }}>
+          Tap the + below to get started.
+        </p>
+        <button
+          onClick={() => setVisible(false)}
+          style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)', padding: '0.6rem 1.5rem', borderRadius: 8, fontSize: '0.9rem' }}
+        >
+          Got it
+        </button>
+      </div>
+    </div>
   )
 }
 

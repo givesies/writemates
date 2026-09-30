@@ -14,6 +14,7 @@ import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
 import StreakStrip from '@/components/StreakStrip'
 import StreakCelebration from '@/components/StreakCelebration'
+import FirstLogNudge from '@/components/FirstLogNudge'
 import { playSuccessChime } from '@/lib/sounds'
 
 type Project = {
@@ -240,6 +241,7 @@ export default function TodayPage() {
   return (
     <main className="max-w-2xl mx-auto px-6 py-12" style={{ fontFamily: 'var(--font-sans)' }}>
       {selectedId && <StreakCelebration streak={streak} projectId={selectedId} />}
+      {!loading && currentTotal === 0 && <FirstLogNudge unit={unit} />}
 
       {projects.length > 1 && (
         <select
