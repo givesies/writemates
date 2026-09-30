@@ -15,6 +15,9 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [writingTool, setWritingTool] = useState('scrivener')
+  const [showSimpleTotal, setShowSimpleTotal] = useState(false)
+  const [simpleTotal, setSimpleTotal] = useState('')
+  const [savingSimple, setSavingSimple] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -34,6 +37,34 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
     setHasAttemptedParse(true)
     setError(null)
     if (result.length > 0) setStep('review')
+  }
+
+  async function handleSaveSimpleTotal() {
+    const value = simpleTotal ? parseInt(simpleTotal.replace(/,/g, ''), 10) : null
+    if (value === null || isNaN(value)) return
+
+    setSavingSimple(true)
+    setError(null)
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return
+
+    const { error } = await supabase.from('wordcount_snapshots').insert({
+      project_id: id,
+      user_id: user.id,
+      word_count: value,
+      source: 'manual',
+      recorded_at: new Date().toISOString(),
+    })
+
+    setSavingSimple(false)
+
+    if (error) {
+      setError(error.message)
+    } else {
+      router.push(`/projects/${id}`)
+      router.refresh()
+    }
   }
 
   async function handleSave() {
@@ -144,7 +175,7 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
           </label>
           <p className="text-sm mb-3" style={{ color: 'var(--color-ink-muted)' }}>
             {writingTool === 'scrivener' ? (
-              <>Scrivener&apos;s writing-history log can drift from your actual manuscript over time (moved documents, restructuring, etc. don&apos;t always get tracked). To get the true number: in Scrivener, go to <strong>Project → Project Statistics</strong> and use the <strong>Words</strong> figure shown there — not the history dialog.</>
+              <>Scrivener&apos;s writing-history log can drift from your actual manuscript over time (moved documents, restructuring, etc. don&apos;t always get tracked). To get the true number: in Scrivener, go to <strong>Project</strong> → <strong>Statistics</strong> and use the <strong>Words</strong> figure shown there — not the history dialog.</>
             ) : writingTool === 'final_draft' ? (
               <>Enter the current page count shown in Final Draft&apos;s toolbar, so your stats stay accurate.</>
             ) : (
@@ -210,6 +241,42 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
         <p className="text-sm mb-4" style={{ color: 'var(--color-ink-muted)' }}>
           {writingTool === 'google_docs' ? 'Google Docs (Tools → Word count)' : writingTool === 'word' ? 'Word (Review → Word Count)' : 'Your writing tool'} doesn&apos;t export a writing history, so just add any past days you remember below — one date and word count per line. Not sure of exact numbers? Estimates are fine, or skip this and just log going forward.
         </p>
+      )}
+
+      {!showSimpleTotal ? (
+        <button
+          onClick={() => setShowSimpleTotal(true)}
+          className="text-sm mb-6"
+          style={{ color: 'var(--color-accent)', textDecoration: 'underline' }}
+        >
+          No history to paste? Just enter your current total
+        </button>
+      ) : (
+        <div
+          className="rounded-lg mb-6"
+          style={{ backgroundColor: 'var(--color-paper-raised)', padding: '0.9rem 1rem' }}
+        >
+          <label className="block text-sm mb-2" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>
+            Your current total
+          </label>
+          <input
+            type="number"
+            value={simpleTotal}
+            onChange={(e) => setSimpleTotal(e.target.value)}
+            placeholder="e.g. 12000"
+            className="w-full py-2 mb-3 border-b bg-transparent focus:outline-none"
+            style={{ borderColor: 'var(--color-rule)' }}
+          />
+          {error && <p className="mb-3 text-sm" style={{ color: '#a33' }}>{error}</p>}
+          <button
+            onClick={handleSaveSimpleTotal}
+            disabled={savingSimple || !simpleTotal}
+            className="px-5 py-2 text-sm"
+            style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-paper)' }}
+          >
+            {savingSimple ? 'Saving...' : 'Save and continue'}
+          </button>
+        </div>
       )}
 
       <button
