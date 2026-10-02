@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'Writemates',
   webDir: 'public',
   server: {
-    url: 'https://writemates.vercel.app',
+    url: 'https://www.writemates.app',
     cleartext: false
   }
 };
