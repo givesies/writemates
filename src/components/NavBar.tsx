@@ -62,7 +62,7 @@ export default function NavBar({
       ]
 
   return (
-    <nav className="border-b" style={{ borderColor: 'var(--color-rule)' }}>
+    <nav className="border-b" style={{ borderColor: 'var(--color-rule)', paddingTop: 'env(safe-area-inset-top)' }}>
       <div className="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between gap-8" style={{ fontFamily: 'var(--font-sans)' }}>
         <Link
           href="/"
@@ -141,6 +141,8 @@ export default function NavBar({
           fontFamily: 'var(--font-sans)',
           display: 'grid',
           gridTemplateRows: 'auto 1fr auto',
+          paddingTop: 'env(safe-area-inset-top)',
+          paddingBottom: 'env(safe-area-inset-bottom)',
         }}
       >
         <div

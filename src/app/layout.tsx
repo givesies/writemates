@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Source_Serif_4, Work_Sans } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
@@ -27,6 +27,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -48,7 +54,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <SplashScreen />
         <NavBar username={username} avatarUrl={avatarUrl} />
-        <div style={{ paddingBottom: username ? 72 : 0 }}>{children}</div>
+        <div style={{ paddingBottom: username ? 'calc(72px + env(safe-area-inset-bottom))' : 0 }}>{children}</div>
         {username && <BottomNav />}
         <Analytics />
       </body>
