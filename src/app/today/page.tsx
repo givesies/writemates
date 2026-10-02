@@ -10,6 +10,8 @@ import {
   buildDailyDeltas,
   computeProjectedFinishDetails,
   computeStreak,
+  localDay,
+  parseLocalDay,
 } from '@/lib/wordcountStats'
 import { computeInsight, type Insight } from '@/lib/insights'
 import WeeklyChart from '@/components/WeeklyChart'
@@ -153,10 +155,10 @@ export default function TodayPage() {
       setCurrentTotal(total)
       setPercent(project.goal_word_count ? Math.min(100, Math.round((total / project.goal_word_count) * 100)) : null)
 
-      const todayStr = new Date().toISOString().split('T')[0]
+      const todayStr = localDay(new Date())
       const yesterday = new Date()
       yesterday.setDate(yesterday.getDate() - 1)
-      const yesterdayStr = yesterday.toISOString().split('T')[0]
+      const yesterdayStr = localDay(yesterday)
 
       const todayWords = dailyDeltas.get(todayStr) || 0
       const yesterdayWords = dailyDeltas.get(yesterdayStr) || 0
@@ -167,7 +169,7 @@ export default function TodayPage() {
       let week = 0
       let lastWeek = 0
       for (const [dateStr, words] of dailyDeltas.entries()) {
-        const diffDays = Math.floor((now.getTime() - new Date(dateStr).getTime()) / 86400000)
+        const diffDays = Math.floor((now.getTime() - parseLocalDay(dateStr).getTime()) / 86400000)
         if (diffDays >= 0 && diffDays < 7) week += words
         else if (diffDays >= 7 && diffDays < 14) lastWeek += words
       }
@@ -196,7 +198,7 @@ export default function TodayPage() {
 
       const created = new Date(project.created_at)
       const snapshotDates = Array.from(dailyMap.keys()).sort()
-      const earliestSnapshotDate = snapshotDates.length > 0 ? new Date(snapshotDates[0]) : null
+      const earliestSnapshotDate = snapshotDates.length > 0 ? parseLocalDay(snapshotDates[0]) : null
       const startDate = earliestSnapshotDate && earliestSnapshotDate < created ? earliestSnapshotDate : created
       setDaysSinceStart(Math.max(1, Math.floor((now.getTime() - startDate.getTime()) / 86400000) + 1))
 
@@ -205,7 +207,7 @@ export default function TodayPage() {
       for (let i = 6; i >= 0; i--) {
         const d = new Date()
         d.setDate(d.getDate() - i)
-        const dateStr = d.toISOString().split('T')[0]
+        const dateStr = localDay(d)
         const label = d.toLocaleDateString(undefined, { weekday: 'short' })
         const words = dailyDeltas.get(dateStr) || 0
         days.push({ day: label, words })

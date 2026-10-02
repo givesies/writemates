@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
-import { buildDailyCumulative, buildDailyDeltas } from '@/lib/wordcountStats'
+import { buildDailyCumulative, buildDailyDeltas, localDay, timestampForDay } from '@/lib/wordcountStats'
 import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
 import { getRandomQuote, type Quote } from '@/lib/quotes'
 
@@ -17,6 +17,9 @@ export default function LogWordcountPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [projectId, setProjectId] = useState('')
   const [currentTotal, setCurrentTotal] = useState(0)
+  // Total at the end of the last day before today, and what's been logged today so far
+  const [baseTotal, setBaseTotal] = useState(0)
+  const [todaySoFar, setTodaySoFar] = useState<number | null>(null)
   const [delta, setDelta] = useState('')
   const [loading, setLoading] = useState(true)
   const [loadingTotal, setLoadingTotal] = useState(false)
@@ -68,13 +71,22 @@ export default function LogWordcountPage() {
       const dailyMap = buildDailyCumulative(snapshots || [])
       const values = Array.from(dailyMap.values())
       setCurrentTotal(values.length > 0 ? values[values.length - 1] : 0)
+
+      const today = localDay(new Date())
+      let base = 0
+      for (const [day, total] of dailyMap.entries()) {
+        if (day < today) base = total
+      }
+      setBaseTotal(base)
+      const todayTotal = dailyMap.get(today)
+      setTodaySoFar(todayTotal === undefined ? null : todayTotal - base)
       setLoadingTotal(false)
     }
     loadCurrentTotal()
   }, [projectId])
 
   async function refreshTodaysPost(supabase: ReturnType<typeof createClient>, userId: string) {
-    const today = new Date().toISOString().split('T')[0]
+    const today = localDay(new Date())
     const { data: allSnapshots } = await supabase
       .from('wordcount_snapshots')
       .select('word_count, recorded_at')
@@ -116,7 +128,9 @@ export default function LogWordcountPage() {
       return
     }
 
-    const newTotal = Math.max(0, currentTotal + deltaNum)
+    // The number entered is today's total so far. It replaces anything logged
+    // earlier today (the latest entry of a day wins), rather than adding to it.
+    const newTotal = Math.max(0, baseTotal + deltaNum)
 
     const { error: snapshotError } = await supabase.from('wordcount_snapshots').insert({
       project_id: projectId,
@@ -165,7 +179,7 @@ export default function LogWordcountPage() {
 
     const dateSet = new Set(cumulative.map((c) => c.date))
     const idsToDelete = (existing || [])
-      .filter((row) => dateSet.has(new Date(row.recorded_at).toISOString().split('T')[0]))
+      .filter((row) => dateSet.has(localDay(row.recorded_at)))
       .map((row) => row.id)
 
     if (idsToDelete.length > 0) {
@@ -177,7 +191,7 @@ export default function LogWordcountPage() {
       user_id: user.id,
       word_count: c.total,
       source: 'manual',
-      recorded_at: `${c.date}T12:00:00`,
+      recorded_at: timestampForDay(c.date),
     }))
 
     const { error } = await supabase.from('wordcount_snapshots').insert(rows)
@@ -235,10 +249,10 @@ export default function LogWordcountPage() {
   return (
     <main className="max-w-md mx-auto px-6 py-16" style={{ fontFamily: 'var(--font-sans)' }}>
       <h1 className="text-3xl mb-2" style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
-        Add today&apos;s words
+        Log today&apos;s {unit}
       </h1>
       <p className="text-sm mb-6" style={{ color: 'var(--color-ink-muted)' }}>
-        Tell us how much you wrote — we&apos;ll add it to your total.
+        Enter your total for today so far. Logging again later replaces it — no adding up needed.
       </p>
 
       <div className="mb-5">
@@ -264,7 +278,7 @@ export default function LogWordcountPage() {
           <form onSubmit={handleSubmit}>
             <div className="mb-2">
               <label className="block text-sm mb-1" style={{ color: 'var(--color-ink-muted)' }}>
-                How many {unit} did you write today?
+                How many {unit} have you written today in total?
               </label>
               <input
                 type="number"
@@ -276,8 +290,13 @@ export default function LogWordcountPage() {
                 style={{ borderColor: 'var(--color-rule)' }}
               />
             </div>
+            {todaySoFar !== null && (
+              <p className="text-xs mb-2" style={{ color: 'var(--color-accent)' }}>
+                You&apos;ve logged {todaySoFar.toLocaleString()} {unit} today. Enter your new total for today to replace it.
+              </p>
+            )}
             <p className="text-xs mb-6" style={{ color: 'var(--color-ink-muted)' }}>
-              Cut some text instead? Enter a negative number.
+              Cut more than you wrote today? Enter a negative number.
             </p>
 
             {message && <p className="mb-4 text-sm" style={{ color: '#a33' }}>{message}</p>}
@@ -287,7 +306,7 @@ export default function LogWordcountPage() {
               className="px-5 py-2 text-sm"
               style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-paper)' }}
             >
-              {saving ? 'Saving...' : 'Add to total'}
+              {saving ? 'Saving...' : 'Save today\u2019s total'}
             </button>
           </form>
 

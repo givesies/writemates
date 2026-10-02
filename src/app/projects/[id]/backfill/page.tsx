@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, use } from 'react'
+import { localDay, timestampForDay } from '@/lib/wordcountStats'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { parseBackfillText, type BackfillEntry } from '@/lib/backfill'
@@ -89,6 +90,7 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
       for (const c of cumulative) c.total = Math.max(0, c.total + offset)
     }
 
+    const firstBatchDate = cumulative[0].date
     const lastBatchDate = cumulative[cumulative.length - 1].date
 
     const { data: existing } = await supabase
@@ -96,11 +98,13 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
       .select('id, recorded_at')
       .eq('project_id', id)
 
-    const backfillDateSet = new Set(cumulative.map((c) => c.date))
+    // Clear every existing entry inside the imported date range (not just exact
+    // date matches), so stray manual entries on in-between days can't survive.
     const idsToDelete = (existing || [])
       .filter((row) => {
-        const rowDate = new Date(row.recorded_at).toISOString().split('T')[0]
-        return backfillDateSet.has(rowDate) || (anchorValue !== null && rowDate > lastBatchDate)
+        const rowDate = localDay(row.recorded_at)
+        const insideRange = rowDate >= firstBatchDate && rowDate <= lastBatchDate
+        return insideRange || (anchorValue !== null && rowDate > lastBatchDate)
       })
       .map((row) => row.id)
 
@@ -113,7 +117,7 @@ export default function BackfillPage({ params }: { params: Promise<{id: string }
       user_id: user.id,
       word_count: c.total,
       source: 'backfill',
-      recorded_at: `${c.date}T12:00:00`,
+      recorded_at: timestampForDay(c.date),
     }))
 
     const { error } = await supabase.from('wordcount_snapshots').insert(rows)

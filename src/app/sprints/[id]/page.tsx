@@ -3,7 +3,7 @@
 import { useEffect, useState, use } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
-import { buildDailyCumulative } from '@/lib/wordcountStats'
+import { buildDailyCumulative, localDay } from '@/lib/wordcountStats'
 
 type Participant = {
   user_id: string
@@ -138,7 +138,7 @@ export default function SprintViewPage({
       .eq('user_id', userId)
 
     if (me.project_id) {
-      const today = new Date().toISOString().split('T')[0]
+      const today = localDay(new Date())
       await supabase.from('wordcount_snapshots').insert({
         project_id: me.project_id,
         user_id: userId,

@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { ChevronLeft, Sparkles } from 'lucide-react'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
-import { buildDailyCumulative, buildDailyDeltas, computeProjectedFinishDetails } from '@/lib/wordcountStats'
+import { buildDailyCumulative, buildDailyDeltas, computeProjectedFinishDetails, parseLocalDay } from '@/lib/wordcountStats'
 
 const METRIC_CONFIG: Record<string, { title: string; goodWhenLow: boolean }> = {
   completion: { title: 'Time to completion', goodWhenLow: true },
@@ -59,7 +59,7 @@ export default function StatDetailPage({
       const result: { date: string; value: number; label: string }[] = []
 
       for (const d of dates) {
-        const label = new Date(d).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+        const label = parseLocalDay(d).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
 
         if (metric === 'today') {
           result.push({ date: d, value: dailyDeltas.get(d) || 0, label })
@@ -67,10 +67,10 @@ export default function StatDetailPage({
         }
 
         if (metric === 'week') {
-          const dObj = new Date(d)
+          const dObj = parseLocalDay(d)
           let sum = 0
           for (const [dateStr, words] of dailyDeltas.entries()) {
-            const diffDays = Math.floor((dObj.getTime() - new Date(dateStr).getTime()) / 86400000)
+            const diffDays = Math.floor((dObj.getTime() - parseLocalDay(dateStr).getTime()) / 86400000)
             if (diffDays >= 0 && diffDays < 7) sum += words
           }
           result.push({ date: d, value: sum, label })

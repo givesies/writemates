@@ -1,11 +1,44 @@
 type Snapshot = { word_count: number; recorded_at: string }
 
+// The calendar day (YYYY-MM-DD) in the user's own timezone — not UTC.
+// Using UTC here filed anything logged before ~10am Sydney time under the previous day.
+export function localDay(d: Date | string): string {
+  const dt = typeof d === 'string' ? new Date(d) : d
+  const y = dt.getFullYear()
+  const m = String(dt.getMonth() + 1).padStart(2, '0')
+  const day = String(dt.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
+// Midnight, local time, at the start of a YYYY-MM-DD day.
+export function parseLocalDay(day: string): Date {
+  const [y, m, d] = day.split('-').map(Number)
+  return new Date(y, m - 1, d)
+}
+
+// Timestamp to store for an imported/catch-up entry on a given day: local noon
+// for past days, and "now" for today so that anything logged later still counts as later.
+export function timestampForDay(day: string): string {
+  const now = new Date()
+  if (day >= localDay(now)) return now.toISOString()
+  const noon = parseLocalDay(day)
+  noon.setHours(12)
+  return noon.toISOString()
+}
+
+// Running total per local day, in date order. The LATEST entry of a day wins
+// (not the highest), so a correction can lower a total.
 export function buildDailyCumulative(snapshots: Snapshot[]): Map<string, number> {
-  const dailyMap = new Map<string, number>()
+  const latest = new Map<string, { t: number; count: number }>()
   for (const snap of snapshots) {
-    const day = new Date(snap.recorded_at).toISOString().split('T')[0]
-    const existing = dailyMap.get(day) || 0
-    if (snap.word_count > existing) dailyMap.set(day, snap.word_count)
+    const t = new Date(snap.recorded_at).getTime()
+    const day = localDay(snap.recorded_at)
+    const existing = latest.get(day)
+    if (!existing || t >= existing.t) latest.set(day, { t, count: snap.word_count })
+  }
+  const dailyMap = new Map<string, number>()
+  for (const day of Array.from(latest.keys()).sort()) {
+    dailyMap.set(day, latest.get(day)!.count)
   }
   return dailyMap
 }
@@ -27,14 +60,14 @@ export function computeStreak(dailyCumulative: Map<string, number>): number {
   const cursor = new Date()
   cursor.setHours(0, 0, 0, 0)
 
-  let dayStr = cursor.toISOString().split('T')[0]
+  let dayStr = localDay(cursor)
   if (!daySet.has(dayStr)) {
     cursor.setDate(cursor.getDate() - 1)
   }
 
   let streak = 0
   for (let i = 0; i < 365; i++) {
-    dayStr = cursor.toISOString().split('T')[0]
+    dayStr = localDay(cursor)
     if (daySet.has(dayStr)) {
       streak++
       cursor.setDate(cursor.getDate() - 1)
@@ -58,7 +91,7 @@ export function computeWeeklyComparison(dailyDeltas: Map<string, number>): { thi
   let thisWeek = 0
   let lastWeek = 0
   for (const [dateStr, words] of dailyDeltas.entries()) {
-    const date = new Date(dateStr)
+    const date = parseLocalDay(dateStr)
     const diffDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24))
     if (diffDays >= 0 && diffDays < 7) thisWeek += words
     else if (diffDays >= 7 && diffDays < 14) lastWeek += words
@@ -94,7 +127,7 @@ export function computeProjectedFinishDetails(
   // Simple, motivating pace: total words written over every calendar day since
   // you started, not just the days you happened to write — so any new entry
   // directly moves the average, rather than being diluted or ignored.
-  const firstDate = new Date(allDates[0])
+  const firstDate = parseLocalDay(allDates[0])
   const today = new Date()
   today.setHours(0, 0, 0, 0)
   const daysSinceStart = Math.max(1, Math.round((today.getTime() - firstDate.getTime()) / 86400000) + 1)
