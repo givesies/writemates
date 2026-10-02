@@ -6,6 +6,7 @@ import { Menu, X, Search, Library, PenLine, Settings as SettingsIcon, LogIn, Use
 import LogoutButton from '@/components/LogoutButton'
 import { createClient } from '@/lib/supabase/client'
 import { buildDailyCumulative, computeStreak } from '@/lib/wordcountStats'
+import { useIsNativeApp } from '@/lib/native'
 
 export default function NavBar({
   username,
@@ -16,6 +17,8 @@ export default function NavBar({
 }) {
   const [open, setOpen] = useState(false)
   const [streak, setStreak] = useState(0)
+  // Apple rejects apps labelled as beta, so the tag is hidden inside the iOS app only
+  const isNative = useIsNativeApp()
 
   useEffect(() => {
     if (!username) return
@@ -70,12 +73,14 @@ export default function NavBar({
           style={{ fontFamily: 'var(--font-serif)', fontWeight: 600 }}
         >
           Writemates
-          <span
-            className="text-xs"
-            style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, color: 'var(--color-ink-muted)' }}
-          >
-            beta
-          </span>
+          {!isNative && (
+            <span
+              className="text-xs"
+              style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, color: 'var(--color-ink-muted)' }}
+            >
+              beta
+            </span>
+          )}
         </Link>
 
         <div className="flex items-center gap-4">

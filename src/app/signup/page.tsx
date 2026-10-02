@@ -82,6 +82,12 @@ export default function SignUpPage() {
           >
             Sign up
           </button>
+          <p className="mt-4 text-xs text-center" style={{ color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>
+            By signing up you agree to our{' '}
+            <a href="/terms" style={{ color: 'var(--color-accent)' }}>Terms of Use</a> and{' '}
+            <a href="/privacy" style={{ color: 'var(--color-accent)' }}>Privacy Policy</a>, including
+            the community rules — no abusive or objectionable content.
+          </p>
         </form>
         <p className="mt-6 text-sm text-center" style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}>
           Already have an account? <a href="/login" style={{ color: 'var(--color-accent)' }}>Log in</a>

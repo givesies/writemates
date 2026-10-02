@@ -1,19 +1,13 @@
 'use client'
 
-import { useSyncExternalStore } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { useIsNativeApp } from '@/lib/native'
 
 // Inside the iOS app, Google's sign-in page opens in Safari instead of the app,
 // so the session never reaches the app. Hide the button there until
 // Sign in with Apple / native Google sign-in is added. The website is unaffected.
-function isNativeApp(): boolean {
-  const cap = (window as unknown as { Capacitor?: { isNativePlatform?: () => boolean } }).Capacitor
-  return !!cap?.isNativePlatform?.()
-}
-
 export default function GoogleSignInButton() {
-  // false while rendering on the server, real value once in the browser
-  const hidden = useSyncExternalStore(() => () => {}, isNativeApp, () => false)
+  const hidden = useIsNativeApp()
 
   async function handleGoogleSignIn() {
     const supabase = createClient()

@@ -52,6 +52,20 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${sourceSerif.variable} ${workSans.variable}`}>
       <body className="min-h-full flex flex-col">
+        {/* Solid strip behind the iPhone clock/battery area so page content can't
+            scroll up underneath it. Has zero height in a normal browser. */}
+        <div
+          aria-hidden
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 'env(safe-area-inset-top)',
+            backgroundColor: 'var(--color-paper)',
+            zIndex: 44,
+          }}
+        />
         <SplashScreen />
         <NavBar username={username} avatarUrl={avatarUrl} />
         <div style={{ paddingBottom: username ? 'calc(72px + env(safe-area-inset-bottom))' : 0 }}>{children}</div>
