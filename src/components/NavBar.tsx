@@ -30,6 +30,7 @@ export default function NavBar({
       const { data: projects } = await supabase
         .from('projects')
         .select('id')
+        .eq('user_id', user.id)
         .order('created_at', { ascending: false })
 
       const validIds = new Set((projects || []).map((p) => p.id))

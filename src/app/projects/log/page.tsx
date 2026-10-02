@@ -40,7 +40,7 @@ export default function LogWordcountPage() {
         router.push('/login')
         return
       }
-      const { data } = await supabase.from('projects').select('id, title, metric_unit')
+      const { data } = await supabase.from('projects').select('id, title, metric_unit').eq('user_id', user.id)
       setProjects(data || [])
       const storedId = localStorage.getItem('wm_current_project')
       const storedIsValid = data?.some((p) => p.id === storedId)

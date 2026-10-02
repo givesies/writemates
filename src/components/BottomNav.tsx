@@ -39,6 +39,7 @@ export default function BottomNav() {
       const { data: projects } = await supabase
         .from('projects')
         .select('id, metric_unit')
+        .eq('user_id', user.id)
         .order('created_at', { ascending: false })
 
       if (!projects || projects.length === 0) return
