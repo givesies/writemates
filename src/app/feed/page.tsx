@@ -55,6 +55,11 @@ export default async function FeedPage({
     posts = data || []
   }
 
+  // Hide posts from anyone this user has blocked
+  const { data: myBlocks } = await supabase.from('blocks').select('blocked_id').eq('blocker_id', user.id)
+  const blockedIds = new Set((myBlocks || []).map((b) => b.blocked_id))
+  posts = posts.filter((p) => !blockedIds.has(p.user_id))
+
   const { data: myLikes } = await supabase
     .from('likes')
     .select('post_id')
@@ -224,6 +229,7 @@ export default async function FeedPage({
                     initialLiked={likedPostIds.has(post.id)}
                     initialLikeCount={likeCounts.get(post.id) || 0}
                     isOwner={post.user_id === user.id}
+                    authorId={post.user_id}
                   />
                 </div>
               </div>

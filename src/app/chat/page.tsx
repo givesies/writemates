@@ -49,6 +49,10 @@ export default function ChatListPage() {
 
       const convoIds = (myConvos || []).map((c: ConversationRow) => c.conversation_id)
 
+      // Hide chats with anyone this user has blocked
+      const { data: myBlocks } = await supabase.from('blocks').select('blocked_id').eq('blocker_id', user.id)
+      const blockedIds = new Set((myBlocks || []).map((b: { blocked_id: string }) => b.blocked_id))
+
       const results: ConversationSummary[] = []
       for (const convoId of convoIds) {
         const { data: otherParticipant } = await supabase
@@ -65,6 +69,9 @@ export default function ChatListPage() {
           .order('created_at', { ascending: false })
           .limit(1)
           .maybeSingle()
+
+        const otherPerson = (otherParticipant?.profiles as unknown as OtherPerson) || null
+        if (otherPerson && blockedIds.has(otherPerson.id)) continue
 
         results.push({
           id: convoId,

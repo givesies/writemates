@@ -4,17 +4,20 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Heart, Share2, Trash2 } from 'lucide-react'
+import ReportButton from '@/components/ReportButton'
 
 export default function PostActions({
   postId,
   initialLiked,
   initialLikeCount,
   isOwner,
+  authorId,
 }: {
   postId: string
   initialLiked: boolean
   initialLikeCount: number
   isOwner?: boolean
+  authorId?: string
 }) {
   const [liked, setLiked] = useState(initialLiked)
   const [count, setCount] = useState(initialLikeCount)
@@ -75,7 +78,7 @@ export default function PostActions({
   }
 
   return (
-    <div className="flex items-center gap-4 mt-3" style={{ fontFamily: 'var(--font-sans)' }}>
+    <div className="flex flex-wrap items-center gap-4 mt-3" style={{ fontFamily: 'var(--font-sans)' }}>
       <button
         onClick={toggleLike}
         className="flex items-center gap-1 text-sm"
@@ -101,6 +104,9 @@ export default function PostActions({
           <Trash2 size={16} />
           Delete
         </button>
+      )}
+      {!isOwner && authorId && (
+        <ReportButton reportedUserId={authorId} postId={postId} className="ml-auto" />
       )}
     </div>
   )

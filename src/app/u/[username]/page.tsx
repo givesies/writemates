@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { Pencil, Users, UserCheck } from 'lucide-react'
 import FollowButton from '@/components/FollowButton'
 import MessageButton from '@/components/MessageButton'
+import BlockButton from '@/components/BlockButton'
+import ReportButton from '@/components/ReportButton'
 import { buildDailyCumulative } from '@/lib/wordcountStats'
 
 type WorkLink = { label: string; url: string }
@@ -72,6 +74,17 @@ export default async function PublicProfilePage({
     .limit(10)
 
   const isOwner = viewer?.id === profile.id
+
+  let isBlocked = false
+  if (viewer && !isOwner) {
+    const { data: blockRow } = await supabase
+      .from('blocks')
+      .select('blocked_id')
+      .eq('blocker_id', viewer.id)
+      .eq('blocked_id', profile.id)
+      .maybeSingle()
+    isBlocked = !!blockRow
+  }
   const workLinks: WorkLink[] = Array.isArray(profile.work_links) ? profile.work_links : []
   const writeGenres = (profile.genres_write || '').split(',').map((g: string) => g.trim()).filter(Boolean)
   const readGenres = (profile.genres_read || '').split(',').map((g: string) => g.trim()).filter(Boolean)
@@ -132,6 +145,13 @@ export default async function PublicProfilePage({
             </>
           )}
         </div>
+
+        {viewer && viewer.id !== profile.id && (
+          <div className="flex flex-wrap items-center gap-5 mt-3">
+            <BlockButton profileId={profile.id} initialBlocked={isBlocked} />
+            <ReportButton reportedUserId={profile.id} label="Report user" />
+          </div>
+        )}
 
         {profile.bio && <p className="mt-5 text-lg" style={{ lineHeight: 1.6 }}>{profile.bio}</p>}
 
