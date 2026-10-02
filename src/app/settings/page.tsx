@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import InviteLink from '@/components/InviteLink'
+import DeleteAccount from '@/components/DeleteAccount'
 
 export default function SettingsPage() {
   const [message, setMessage] = useState('')
@@ -81,6 +82,14 @@ export default function SettingsPage() {
           {saving ? 'Sending...' : 'Send message'}
         </button>
       </form>
+
+      <h2
+        className="text-sm mb-4 mt-10 pb-2 border-b"
+        style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)', borderColor: 'var(--color-rule)' }}
+      >
+        Delete account
+      </h2>
+      <DeleteAccount />
     </main>
   )
 }

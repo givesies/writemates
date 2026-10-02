@@ -88,9 +88,9 @@ const sections: { heading: string; body: React.ReactNode }[] = [
     body: (
       <p>
         We keep your information for as long as you have an account. You can edit or remove your profile
-        details, projects and posts at any time in the app. To delete your account and all associated
-        data, email hello@writemates.app or use the Contact support form in Settings and we will permanently delete it
-        within 30 days.
+        details, projects and posts at any time in the app. You can permanently delete your
+        account and all associated data yourself at any time in Settings → Delete account. If you
+        can’t access your account, email hello@writemates.app and we will delete it within 30 days.
       </p>
     ),
   },
