@@ -129,13 +129,13 @@ export default async function PublicProfilePage({
         </div>
 
         <div
-          className="flex items-center gap-5 mt-4 text-sm"
+          className="flex flex-wrap items-center gap-x-5 gap-y-3 mt-4 text-sm"
           style={{ fontFamily: 'var(--font-sans)', color: 'var(--color-ink-muted)' }}
         >
-          <span className="flex items-center gap-1.5">
+          <span className="flex items-center gap-1.5 whitespace-nowrap">
             <Users size={15} /> {followerCount || 0} followers
           </span>
-          <span className="flex items-center gap-1.5">
+          <span className="flex items-center gap-1.5 whitespace-nowrap">
             <UserCheck size={15} /> {followingCount || 0} following
           </span>
           {viewer && viewer.id !== profile.id && (
